@@ -4,6 +4,9 @@
 This is just a basic rails app right now. 
 #### Here is how to install:
 1) Make sure you have rails
+```
+gem install rails
+```
 2) Grab a copy of this code
 ```
 git clone https://github.com/codeforamerica/landshark.git
