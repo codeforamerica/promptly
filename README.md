@@ -13,6 +13,7 @@ git clone https://github.com/codeforamerica/landshark.git
 ```
 3) Make sure you install everything you need
 ```
+cd landshark
 bundle update
 ```
 4) Start up your server
