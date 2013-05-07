@@ -1,5 +1,5 @@
 # LandShark
-## A text message reminder system for San Francisco Human Services Agency
+### A text message reminder system for San Francisco Human Services Agency
 
 This is just a basic rails app right now. 
 #### Here is how to install:
@@ -11,7 +11,7 @@ gem install rails
 ```
 git clone https://github.com/codeforamerica/landshark.git
 ```
-3) Make sure you install everything you need
+3) Install everything you need
 ```
 cd landshark
 bundle update

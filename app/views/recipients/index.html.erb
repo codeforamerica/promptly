@@ -1,0 +1,27 @@
+<h1>Listing recipients</h1>
+
+<table>
+  <tr>
+    <th>Phone</th>
+    <th>Case</th>
+    <th>Active</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @recipients.each do |recipient| %>
+  <tr>
+    <td><%= recipient.phone %></td>
+    <td><%= recipient.case %></td>
+    <td><%= recipient.active %></td>
+    <td><%= link_to 'Show', recipient %></td>
+    <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
+    <td><%= link_to 'Destroy', recipient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Recipient', new_recipient_path %>
