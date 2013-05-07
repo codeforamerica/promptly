@@ -1,0 +1,2 @@
+module RecipentsHelper
+end
