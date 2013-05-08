@@ -14,6 +14,12 @@
   <b>Active:</b>
   <%= @recipient.active %>
 </p>
+<p>
+  <b>Reports:</b>
+  <% @recipient.reports.each_with_index do |report, index| %>
+  <p><%= report.report_type %> | <%= report.humanname %>
+  <% end %>
+</p>
 
 
 <%= link_to 'Edit', edit_recipient_path(@recipient) %> |
