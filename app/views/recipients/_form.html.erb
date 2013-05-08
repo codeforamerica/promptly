@@ -23,6 +23,22 @@
     <%= f.label :active %><br />
     <%= f.check_box :active %>
   </div>
+  <div class="field">
+  <div class="control-group">
+    <span class="control-label">Report Name</span>
+    <div class="controls">
+      <%= f.collection_select :id, @report, :id, :report_type, :prompt => true %>
+
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control-group">
+      <%= f.fields_for :reports do |builder| %>
+        <%= render 'report_questions', :f => builder %>
+      <% end %>
+    </div>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
