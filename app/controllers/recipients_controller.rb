@@ -25,6 +25,9 @@ class RecipientsController < ApplicationController
   # GET /recipients/new.json
   def new
     @recipient = Recipient.new
+    @report = Report.all
+    # binding.pry
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +38,7 @@ class RecipientsController < ApplicationController
   # GET /recipients/1/edit
   def edit
     @recipient = Recipient.find(params[:id])
+    @report = Report.all
   end
 
   # POST /recipients
