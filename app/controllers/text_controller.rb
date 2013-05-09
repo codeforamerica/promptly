@@ -33,8 +33,7 @@ class TextController < ApplicationController
   private
 
   def verify_recipient(phone_number)
-    phone_number.gsub('+1','')
-    @recipients = Recipient.find(:all, :conditions => ["phone = ?", phone_number])
+    @recipients = Recipient.find(:all, :conditions => ["phone = ?", phone_number.gsub('+1','')])
     if @recipients
       send_reply(phone_number, params["Body"])
     else
