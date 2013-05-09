@@ -14,6 +14,10 @@ Landshark::Application.routes.draw do
   resources :recipents
 
 
+  match 'text' => 'text#receive_text_message', :as => 'receive_message'
+
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
