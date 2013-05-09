@@ -16,8 +16,8 @@
 </p>
 <p>
   <b>Reports:</b>
-  <% @recipient.reports.each_with_index do |report, index| %>
-  <p><%= report.report_type %> | <%= report.humanname %>
+  <% @report.each_with_index do |report, index| %>
+  <p><%= report.report_type %>
   <% end %>
 </p>
 

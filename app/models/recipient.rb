@@ -3,5 +3,6 @@ class Recipient < ActiveRecord::Base
   has_and_belongs_to_many :reports
   has_and_belongs_to_many :programs
   has_and_belongs_to_many :conversations
-  accepts_nested_attributes_for :reports
+  
+  attr_accessible :report_ids
 end
