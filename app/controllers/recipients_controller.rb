@@ -1,4 +1,7 @@
 class RecipientsController < ApplicationController
+
+  before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
+
   # GET /recipients
   # GET /recipients.json
   def index
@@ -13,8 +16,10 @@ class RecipientsController < ApplicationController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    @recipient = Recipient.find(params[:id])
-    @report = Report.find(@recipient.id)
+    @report = @recipient.reports
+    # binding.pry
+    # Report.where("recipient_id = ?", params[:id])
+    # Report.joins(:recipients_reports).where(:reports => {:id => :recipient_id})
 
     respond_to do |format|
       format.html # show.html.erb
@@ -26,7 +31,6 @@ class RecipientsController < ApplicationController
   # GET /recipients/new.json
   def new
     @recipient = Recipient.new
-    @report = Report.all
     # binding.pry
 
 
@@ -38,8 +42,6 @@ class RecipientsController < ApplicationController
 
   # GET /recipients/1/edit
   def edit
-    @recipient = Recipient.find(params[:id])
-    @report = Report.all
   end
 
   # POST /recipients
@@ -61,8 +63,6 @@ class RecipientsController < ApplicationController
   # PUT /recipients/1
   # PUT /recipients/1.json
   def update
-    @recipient = Recipient.find(params[:id])
-
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
         format.html { redirect_to @recipient, notice: 'Recipient was successfully updated.' }
@@ -77,12 +77,17 @@ class RecipientsController < ApplicationController
   # DELETE /recipients/1
   # DELETE /recipients/1.json
   def destroy
-    @recipient = Recipient.find(params[:id])
     @recipient.destroy
 
     respond_to do |format|
       format.html { redirect_to recipients_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def set_recipient!
+    @recipient = Recipient.find(params[:id])
   end
 end
