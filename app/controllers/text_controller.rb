@@ -31,7 +31,7 @@ class TextController < ApplicationController
       @twilio_client.account.sms.messages.create(
         :from => "+1#{twilio_phone_number}",
         :to => from_number,
-        :body => "We got your message! #{message_body}"
+        :body => "We got your message! '#{message_body}' Thanks!"
       )
     else
       redirect_to(recipients_path)
