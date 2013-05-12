@@ -6,11 +6,11 @@
 </p>
 
 <p>
-  <b>Case:</b>
-  <%= @recipient.case %>
+  <b>Reminder Date:</b>
+  <%= @recipient.reminder_date.to_s(:date_format) %>
 </p>
 
-<p>
+<!-- <p>
   <b>Active:</b>
   <%= @recipient.active %>
 </p>
@@ -19,7 +19,7 @@
   <% @report.each_with_index do |report, index| %>
   <p><%= report.report_type %>
   <% end %>
-</p>
+</p> -->
 
 
 <%= link_to 'Edit', edit_recipient_path(@recipient) %> |
