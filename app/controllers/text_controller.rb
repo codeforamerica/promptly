@@ -22,7 +22,7 @@ class TextController < ApplicationController
     message_body = params["Body"]
     from_number = params["From"]
     if from_number
-      verify_recipient(from_number)
+      # verify_recipient(from_number)
     else
       redirect_to(recipients_path)
     end
