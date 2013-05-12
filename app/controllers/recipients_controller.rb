@@ -70,8 +70,9 @@ class RecipientsController < ApplicationController
           :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}."
           # ,:StatusCallback => ENV['app_url']+ENV['twilio_sms_postback']+'?smsId='+textmessageId.to_s
         )
-        self.twilio_call_id = message.sid
-        puts twilio_call_id
+        # if message.sid
+        #   puts message.sid
+        # end
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }

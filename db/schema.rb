@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130510142403) do
+ActiveRecord::Schema.define(:version => 20130512201512) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20130510142403) do
   end
 
   create_table "recipients", :force => true do |t|
-    t.integer  "phone"
+    t.string   "phone"
     t.integer  "case"
     t.boolean  "active"
     t.datetime "created_at",    :null => false
