@@ -67,8 +67,8 @@ class RecipientsController < ApplicationController
         )
         # binding.pry
         @conversation.date = DateTime.now
-        @conversation.message = @message[0].body
-        @conversation.to_number = @message[0].number
+        @conversation.message = @message.body
+        @conversation.to_number = @message.number
         @conversation.from_number = twilio_phone_number
         @conversation.save
       else
