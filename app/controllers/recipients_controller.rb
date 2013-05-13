@@ -62,8 +62,8 @@ class RecipientsController < ApplicationController
         @message = @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
           :to => "+1#{@recipient.phone}",
-          :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.",
-          :StatusCallback => 'conversations/new'
+          :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}."
+          # :StatusCallback => 'conversations/new'
         )
         # binding.pry
         @conversation.date = DateTime.now
