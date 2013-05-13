@@ -2,7 +2,7 @@ class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   before_filter :standardize_numbers, only: [ :create, :update ]
-
+  after_filter :log_conversation, only: [ :create, :update]
   # GET /recipients
   # GET /recipients.json
   def index
@@ -34,7 +34,6 @@ class RecipientsController < ApplicationController
     @recipient = Recipient.new
     # binding.pry
 
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @recipient }
@@ -51,7 +50,6 @@ class RecipientsController < ApplicationController
     @recipient = Recipient.new(params[:recipient])
     # binding.pry
 
-
     respond_to do |format|
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
@@ -67,12 +65,9 @@ class RecipientsController < ApplicationController
         message = @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
           :to => "+1#{@recipient.phone}",
-          :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}."
-          # ,:StatusCallback => ENV['app_url']+ENV['twilio_sms_postback']+'?smsId='+textmessageId.to_s
+          :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.",
+          :StatusCallback => 'conversations/new'
         )
-        # if message.sid
-        #   puts message.sid
-        # end
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
@@ -113,9 +108,14 @@ class RecipientsController < ApplicationController
 
   private 
 
-
   # Intercepts the params hash and formats the phone number
   def standardize_numbers
     params[:recipient][:phone].gsub!(/[()-. a-zA-Z]/, "")
+  end
+
+  private
+
+  def log_conversation
+    @conversation = Conversation.new(params[:recipient])
   end
 end

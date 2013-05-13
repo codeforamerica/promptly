@@ -9,6 +9,14 @@
   <b>Message:</b>
   <%= @conversation.message %>
 </p>
+<p>
+	<b>To number:</b>
+  <%= @conversation.to_number %>
+</p>
+<p>
+	<b>From number:</b>
+  <%= @conversation.from_number %>
+</p>
 
 
 <%= link_to 'Edit', edit_conversation_path(@conversation) %> |
