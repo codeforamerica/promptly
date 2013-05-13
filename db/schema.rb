@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513171246) do
+ActiveRecord::Schema.define(:version => 20130513215828) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -20,6 +20,11 @@ ActiveRecord::Schema.define(:version => 20130513171246) do
     t.datetime "updated_at",  :null => false
     t.string   "to_number"
     t.string   "from_number"
+  end
+
+  create_table "conversations_recipients", :id => false, :force => true do |t|
+    t.integer "recipient_id"
+    t.integer "conversation_id"
   end
 
   create_table "notifications", :force => true do |t|
@@ -37,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20130513171246) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "recipents", :force => true do |t|
+    t.integer  "phone"
+    t.integer  "case"
+    t.boolean  "active"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "recipients", :force => true do |t|
     t.string   "phone"
     t.integer  "case"
@@ -52,7 +65,6 @@ ActiveRecord::Schema.define(:version => 20130513171246) do
   end
 
   create_table "reports", :force => true do |t|
-    t.string   "type"
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

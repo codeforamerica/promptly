@@ -18,9 +18,6 @@ class RecipientsController < ApplicationController
   # GET /recipients/1.json
   def show
     @report = @recipient.reports
-    # binding.pry
-    # Report.where("recipient_id = ?", params[:id])
-    # Report.joins(:recipients_reports).where(:reports => {:id => :recipient_id})
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,7 +29,6 @@ class RecipientsController < ApplicationController
   # GET /recipients/new.json
   def new
     @recipient = Recipient.new
-    # binding.pry
 
     respond_to do |format|
       format.html # new.html.erb
@@ -52,6 +48,7 @@ class RecipientsController < ApplicationController
 
     respond_to do |format|
       if @recipient.save
+        @conversation = Conversation.new
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
 
@@ -62,12 +59,18 @@ class RecipientsController < ApplicationController
 
         @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
         # binding.pry
-        message = @twilio_client.account.sms.messages.create(
+        @message = @twilio_client.account.sms.messages.create(
           :from => "+1#{twilio_phone_number}",
           :to => "+1#{@recipient.phone}",
           :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.",
           :StatusCallback => 'conversations/new'
         )
+        # binding.pry
+        @conversation.date = DateTime.now
+        @conversation.message = @message[0].body
+        @conversation.to_number = @message[0].number
+        @conversation.from_number = twilio_phone_number
+        @conversation.save
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
@@ -110,12 +113,12 @@ class RecipientsController < ApplicationController
 
   # Intercepts the params hash and formats the phone number
   def standardize_numbers
-    params[:recipient][:phone].gsub!(/[()-. a-zA-Z]/, "")
+    params[:recipient][:phone].gsub!(/[^0-9]/, "")
   end
 
   private
 
   def log_conversation
-    @conversation = Conversation.new(params[:recipient])
+    @conversation = Conversation.new
   end
 end
