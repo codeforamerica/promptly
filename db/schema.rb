@@ -37,14 +37,6 @@ ActiveRecord::Schema.define(:version => 20130513171246) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "recipents", :force => true do |t|
-    t.integer  "phone"
-    t.integer  "case"
-    t.boolean  "active"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "recipients", :force => true do |t|
     t.string   "phone"
     t.integer  "case"
@@ -60,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130513171246) do
   end
 
   create_table "reports", :force => true do |t|
+    t.string   "type"
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
