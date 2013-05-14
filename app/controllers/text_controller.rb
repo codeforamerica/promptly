@@ -3,20 +3,20 @@ class TextController < ApplicationController
   end
  
   def send_text_message
-    number_to_send_to = +19196361635
+    number_to_send_to = "+19196361635"
  
-    twilio_sid = ENV['TWILIO_SID']
-    twilio_token = ENV['TWILIO_TOKEN']
+    # twilio_sid = ENV['TWILIO_SID']
+    # twilio_token = ENV['TWILIO_TOKEN']
     twilio_phone_number = ENV['TWILIO_NUMBER']
 
-    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-    # binding.pry
-    @twilio_client.account.sms.messages.create(
-      :from => "+1#{twilio_phone_number}",
-      :to => number_to_send_to,
-      :body => "This is an automatic message. It gets sent to #{number_to_send_to}"
-    )
-    Delayed::Job.enqueue SendMessage.new("+1#{twilio_phone_number}", number_to_send_to, "This is an automatic message. It gets sent to #{number_to_send_to}", 1, 1.minute.from_now)
+    # @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+    # # binding.pry
+    # @twilio_client.account.sms.messages.create(
+    #   :from => "+1#{twilio_phone_number}",
+    #   :to => number_to_send_to,
+    #   :body => "This is an automatic message. It gets sent to #{number_to_send_to}"
+    # )
+    Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", number_to_send_to, "This is an automatic message. It gets sent to #{number_to_send_to}"), 1, 1.minute.from_now)
     flash[:notice] = "sending message"
   end
 
