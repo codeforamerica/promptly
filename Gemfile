@@ -5,6 +5,7 @@ gem 'friendly_id'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'twilio-ruby'
 gem 'unicorn'
+gem 'delayed_job_active_record'
 
 group :development do
   gem 'pry'
