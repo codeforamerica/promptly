@@ -16,7 +16,7 @@ class TextController < ApplicationController
     #   :to => number_to_send_to,
     #   :body => "This is an automatic message. It gets sent to #{number_to_send_to}"
     # )
-    Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", number_to_send_to, "This is an automatic message. It gets sent to #{number_to_send_to}"), 1, '2013-05-14 16:54:11')
+    Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", number_to_send_to, "This is an automatic message. It gets sent to #{number_to_send_to}"), 1, '2013-05-14 23:57:11')
     # flash[:notice] = "sending message"
   end
 
