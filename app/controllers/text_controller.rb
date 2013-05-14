@@ -16,14 +16,16 @@ class TextController < ApplicationController
       :to => number_to_send_to,
       :body => "This is an automatic message. It gets sent to #{number_to_send_to}"
     )
+    Delayed::Job.enqueue SendMessage.new("+1#{twilio_phone_number}", number_to_send_to, "This is an automatic message. It gets sent to #{number_to_send_to}", 1, 1.minute.from_now)
+    flash[:notice] = "sending message"
   end
 
-  def in_the_future
-    # Some other code
-    send_text_message
-  end
+  # def in_the_future
+  #   # Some other code
+  #   send_text_message
+  # end
   # 5.minutes.from_now will be evaluated when in_the_future is called
-  handle_asynchronously :in_the_future, :run_at => Proc.new { 1.minute.from_now }
+  # handle_asynchronously :in_the_future, :run_at => Proc.new { 1.minute.from_now }
 
   def receive_text_message
     message_body = params["Body"]
