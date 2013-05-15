@@ -11,26 +11,27 @@ class Notifier
 
     def log
       # logging logic
-      @conversation = Conversation.new
-      @conversation.date = response.date
-      @conversation.message = response.body
-      @conversation.to_number = response.to
-      @conversation.from_number = response.from
+      @conversation = Conversation.new({
+        date: response.date,
+        message: response.body,
+        to_number: response.to,
+        from_number: response.from
+      })
       @conversation.save
     end
 
     private
 
-    attr_reader :response
+    attr_reader :response, :conversation
 
   end
 
-  def initialize(reminder)
-    @reminder = reminder
+  def initialize(recipient, body)
+    @recipient, @body = recipient, body
   end
 
-  def self.perform(reminder)
-    new(reminder).perform
+  def self.perform(recipient)
+    new(recipient).perform
   end
 
   def perform
@@ -49,23 +50,15 @@ class Notifier
 
   private
 
-  attr_reader :reminder
-
+  attr_reader :recipient
+  attr_reader :body
 
   def from
-    reminder.from_number
+    ENV["TWILIO_NUMBER"]
   end
 
   def to
-    reminder.to_number
-  end
-
-  def body
-    reminder.body
-  end
-
-   def date
-    reminder.date
+    recipient.phone
   end
 
   def account_sid
