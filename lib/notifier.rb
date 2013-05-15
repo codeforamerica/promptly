@@ -30,7 +30,7 @@ class Notifier
     @recipient, @body = recipient, body
   end
 
-  def self.perform(recipient)
+  def self.perform(recipient, body)
     new(recipient).perform
   end
 
