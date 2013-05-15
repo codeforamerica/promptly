@@ -2,7 +2,7 @@ class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   before_filter :standardize_numbers, only: [ :create, :update ]
-  after_filter :log_conversation, only: [ :create, :update]
+  # after_filter :log_conversation, only: [ :create, :update]
   # GET /recipients
   # GET /recipients.json
   def index
@@ -48,33 +48,36 @@ class RecipientsController < ApplicationController
 
     respond_to do |format|
       if @recipient.save
-        @conversation = Conversation.new
+        # @conversation = Conversation.new
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
 
         #send confirmation
-        twilio_sid = ENV['TWILIO_SID']
-        twilio_token = ENV['TWILIO_TOKEN']
+        # twilio_sid = ENV['TWILIO_SID']
+        # twilio_token = ENV['TWILIO_TOKEN']
         twilio_phone_number = ENV['TWILIO_NUMBER']
 
-        @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
+        # @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
         # binding.pry
-        @message = @twilio_client.account.sms.messages.create(
-          :from => "+1#{twilio_phone_number}",
-          :to => "+1#{@recipient.phone}",
-          :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}."
-          # :StatusCallback => 'conversations/new'
-        )
+        Notifier.new(to: "+1#{twilio_phone_number}", from: "+1#{@recipient.phone}", body: "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.", date: @recipient.reminder_date)
+        # @message = @twilio_client.account.sms.messages.create(
+        #   :from => "+1#{twilio_phone_number}",
+        #   :to => "+1#{@recipient.phone}",
+        #   :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}."
+        #   # :StatusCallback => 'conversations/new'
+        # )
         if @recipient.reminder_date < DateTime.now
-          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, DateTime.now)
+          Notifier.new(to: "+1#{twilio_phone_number}", from: "+1#{@recipient.phone}", body: "Your report is due in 3 days.", date: DateTime.now)
+          # Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, DateTime.now)
           log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", DateTime.now)
         else
-          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, @recipient.reminder_date.to_s)
-          log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", @recipient.reminder_date)
+          Notifier.new(to: "+1#{twilio_phone_number}", from: "+1#{@recipient.phone}", body: "Your report is due in 3 days.", date: DateTime.now)
+          # Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, @recipient.reminder_date.to_s)
+          # log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", @recipient.reminder_date)
         end
 
         # binding.pry
-        log_conversation(@message.to, "+1#{twilio_phone_number}", @message.body, DateTime.now)
+        # log_conversation(@message.to, "+1#{twilio_phone_number}", @message.body, DateTime.now)
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
