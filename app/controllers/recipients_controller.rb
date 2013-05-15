@@ -65,6 +65,12 @@ class RecipientsController < ApplicationController
           :body => "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}."
           # :StatusCallback => 'conversations/new'
         )
+        if @recipient.reminder_date < DateTime.now
+          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days. "), 1, DateTime.now)
+        else
+          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days. "), 1, @recipient.reminder_date.to_s)
+        end
+
         # binding.pry
         @conversation.date = DateTime.now
         @conversation.message = @message.body
