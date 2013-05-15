@@ -48,12 +48,6 @@ class RecipientsController < ApplicationController
 
     respond_to do |format|
       if @recipient.save
-
-      end
-    end
-
-    respond_to do |format|
-      if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
 
