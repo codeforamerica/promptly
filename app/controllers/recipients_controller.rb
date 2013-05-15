@@ -71,7 +71,7 @@ class RecipientsController < ApplicationController
           # Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, DateTime.now)
           log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", DateTime.now)
         else
-          Notifier.new(from: "+1#{twilio_phone_number}", to: "+1#{@recipient.phone}", body: "Your report is due in 3 days.", date: DateTime.now)
+          Delayed::Job.enqueue(Notifier.new(from: "+1#{twilio_phone_number}", to: "+1#{@recipient.phone}", body: "Your report is due in 3 days.", date: @recipient.reminder_date.to_s))
           # Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, @recipient.reminder_date.to_s)
           # log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", @recipient.reminder_date)
         end
