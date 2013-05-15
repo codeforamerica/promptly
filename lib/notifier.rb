@@ -35,7 +35,7 @@ class Notifier
 
   def perform
     client.account.sms.messages.create(attributes).tap do |response|
-      Logger.log(response) #if response.valid?
+      Logger.new(response) #if response.valid?
     end
   end
 
