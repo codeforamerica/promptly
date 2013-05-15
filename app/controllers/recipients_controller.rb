@@ -66,17 +66,15 @@ class RecipientsController < ApplicationController
           # :StatusCallback => 'conversations/new'
         )
         if @recipient.reminder_date < DateTime.now
-          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days. "), 1, DateTime.now)
+          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, DateTime.now)
+          log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", DateTime.now)
         else
-          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days. "), 1, @recipient.reminder_date.to_s)
+          Delayed::Job.enqueue(SendMessage.new("+1#{twilio_phone_number}", "+1#{@recipient.phone}", "Your report is due in 3 days."), 1, @recipient.reminder_date.to_s)
+          log_conversation("+1#{@recipient.phone}", "+1#{twilio_phone_number}", "Your report is due in 3 days.", @recipient.reminder_date)
         end
 
         # binding.pry
-        @conversation.date = DateTime.now
-        @conversation.message = @message.body
-        @conversation.to_number = @message.to
-        @conversation.from_number = twilio_phone_number
-        @conversation.save
+        log_conversation(@message.to, "+1#{twilio_phone_number}", @message.body, DateTime.now)
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
@@ -124,7 +122,14 @@ class RecipientsController < ApplicationController
 
   private
 
-  def log_conversation
+  def log_conversation(to, from, message, date)
     @conversation = Conversation.new
+    @conversation.date = date
+    @conversation.message = message
+    @conversation.to_number = to
+    @conversation.from_number = from
+    @conversation.save
   end
 end
+
+
