@@ -5,6 +5,7 @@ gem 'friendly_id'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'twilio-ruby'
 gem 'unicorn'
+gem 'delayed_job_active_record'
 
 group :development do
   gem 'pry'
@@ -13,6 +14,7 @@ end
 group :development, :test do
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails', '2.11.0'
+  gem 'sms-spec'
 end
 
 # Gems used only for assets and not required

@@ -3,8 +3,8 @@
 <table>
   <tr>
     <th>Phone</th>
-    <th>Case</th>
-    <th>Active</th>
+    <th>Reminder Date</th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,8 +13,7 @@
 <% @recipients.each do |recipient| %>
   <tr>
     <td><%= recipient.phone %></td>
-    <td><%= recipient.case %></td>
-    <td><%= recipient.active %></td>
+    <td><%= recipient.reminder_date %></td>
     <td><%= link_to 'Show', recipient %></td>
     <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
     <td><%= link_to 'Destroy', recipient, method: :delete, data: { confirm: 'Are you sure?' } %></td>

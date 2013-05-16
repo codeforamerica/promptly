@@ -1,13 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Date:</b>
+  <b>Date sent:</b>
   <%= @conversation.date %>
 </p>
 
 <p>
   <b>Message:</b>
   <%= @conversation.message %>
+</p>
+<p>
+	<b>To number:</b>
+  <%= @conversation.to_number %>
+</p>
+<p>
+	<b>From number:</b>
+  <%= @conversation.from_number %>
 </p>
 
 

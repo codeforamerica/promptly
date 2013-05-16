@@ -11,14 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509001321) do
+ActiveRecord::Schema.define(:version => 20130514213409) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
     t.text     "message"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "to_number"
+    t.string   "from_number"
   end
+
+  create_table "conversations_recipients", :id => false, :force => true do |t|
+    t.integer "recipient_id"
+    t.integer "conversation_id"
+  end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "notifications", :force => true do |t|
     t.integer  "report_id"
@@ -35,12 +58,21 @@ ActiveRecord::Schema.define(:version => 20130509001321) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "recipients", :force => true do |t|
+  create_table "recipents", :force => true do |t|
     t.integer  "phone"
     t.integer  "case"
     t.boolean  "active"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "recipients", :force => true do |t|
+    t.string   "phone"
+    t.integer  "case"
+    t.boolean  "active"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.datetime "reminder_date"
   end
 
   create_table "recipients_reports", :id => false, :force => true do |t|
@@ -49,7 +81,6 @@ ActiveRecord::Schema.define(:version => 20130509001321) do
   end
 
   create_table "reports", :force => true do |t|
-    t.string   "type"
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false

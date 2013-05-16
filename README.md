@@ -16,10 +16,14 @@ git clone https://github.com/codeforamerica/landshark.git
 cd landshark
 bundle update
 ```
-4) Start up your server
+4) Setup your environment
+
+You'll need to setup your environment variables. Heroku has a good overview <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. You can store these in an .env file in your root directory. You'll want things like your Twilio account info to go in here. *Make sure you don't put your environment variables on github or otherwise expose them publicly!*
+
+5) Start up your server
 ```
 rails s
 ```
-5) You should see the project at http://localhost:3000
+6) You should see the project at http://localhost:3000
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>
