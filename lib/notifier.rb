@@ -23,19 +23,7 @@ class Notifier
 
     attr_reader :response
     attr_reader :conversation
-
-    def to
-      response.to
-    end
-
-    def from
-      reponse.from
-    end
-
-    def body
-      response.body
-    end
-
+    
   end
 
   def initialize(recipient, body)
