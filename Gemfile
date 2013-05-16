@@ -6,6 +6,7 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'twilio-ruby'
 gem 'unicorn'
 gem 'delayed_job_active_record'
+gem 'bootstrap-sass', '~> 2.1.0'
 
 group :development do
   gem 'pry'
@@ -22,8 +23,6 @@ end
 group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'compass-rails'
-  gem 'bootstrap-sass', '~> 2.1.0'
-  gem 'coffee-rails', '3.2.2'
   gem 'uglifier', '1.2.3'
 end
 
