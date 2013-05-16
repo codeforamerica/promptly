@@ -1,3 +1,10 @@
-.header {
+.navbar-inner {
 	background: #3D6AA2;
+	.brand {
+		text-shadow: none;
+		color: #333;
+		font-weight: 400;
+		letter-spacing: -1px;
+		font-size: 24px;
+	}
 }
