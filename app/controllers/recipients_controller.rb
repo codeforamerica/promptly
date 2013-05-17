@@ -17,8 +17,8 @@ class RecipientsController < ApplicationController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    @report = @recipient.reports
-    binding.pry
+    # @conversations = Conversation.all
+    # binding.pry
 
     respond_to do |format|
       format.html # show.html.erb
