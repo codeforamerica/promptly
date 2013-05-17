@@ -4,6 +4,7 @@ class Recipient < ActiveRecord::Base
   has_and_belongs_to_many :conversations
   
   attr_accessible :report_ids
+  attr_accessible :conversation_ids
 
   # validates :phone, :presence => true
 end
