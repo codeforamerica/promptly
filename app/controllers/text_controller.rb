@@ -26,7 +26,7 @@ class TextController < ApplicationController
     @recipients = Recipient.find(:all, :conditions => ["phone = ?", phone_number.gsub('+1','')])
     if @recipients
       @recipients.each do |recipient|
-       Notifier.perform(@recipient, "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.")
+       Notifier.perform(recipient, "Thanks we'll remind you of your report on: #{recipient.reminder_date.to_s(:date_format)}.")
       end
     else
       Notifier.perform(phone_number, "Sorry we couldn't verify your number.")
