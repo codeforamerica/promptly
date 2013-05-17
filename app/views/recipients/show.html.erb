@@ -16,8 +16,8 @@
 </p>
 <p>-->
   <b>Conversations:</b>
-  <% @recipient.conversations.each_with_index do |a, index| %>
-    <p><% a.date %> | <%= a.message %></p>
+  <% @recipient.conversations do |a| %>
+    <p><% a.to_number %> | <%= a.message %></p>
   <% end %>
 </p> 
 
