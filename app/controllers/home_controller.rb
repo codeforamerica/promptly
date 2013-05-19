@@ -1,11 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @recents = Conversation.all
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @recents }
-    end
+    add_user
+    list_upcoming
+    list_recent
   end
 
   def add_user
@@ -15,6 +12,7 @@ class HomeController < ApplicationController
   	# list queued
   end
 
+  private
   # GET /conversations
   def list_recent
   	@recents = Conversation.all
