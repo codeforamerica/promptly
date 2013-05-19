@@ -24,7 +24,9 @@ group :assets do
   gem 'sass-rails',   '3.2.5'
   gem 'compass-rails'
   gem 'uglifier', '1.2.3'
+  gem 'font-awesome-sass-rails'
 end
+
 
 gem 'jquery-rails', '2.0.2'
 

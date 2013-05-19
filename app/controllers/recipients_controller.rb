@@ -52,7 +52,7 @@ class RecipientsController < ApplicationController
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
 
-        Notifier.perform(@recipient, "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.")
+        Notifier.perform(@recipient, "Thanks, we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.")
         if @recipient.reminder_date < DateTime.now
           Notifier.perform(@recipient, "Your report is due in 3 days.")
         else

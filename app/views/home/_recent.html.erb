@@ -1,0 +1,6 @@
+                <h3 id="recentmessages">Recent</h3>
+
+            	<% @recents.each do |recents| %>
+                        <p><%= recents.date %></p>
+                        <p><%= recents.message %></p>
+                <% end %>
