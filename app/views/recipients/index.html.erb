@@ -1,26 +1,17 @@
-<h1>Listing recipients</h1>
-
-<table>
-  <tr>
-    <th>Phone</th>
-    <th>Reminder Date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @recipients.each do |recipient| %>
-  <tr>
-    <td><%= recipient.phone %></td>
-    <td><%= recipient.reminder_date %></td>
-    <td><%= link_to 'Show', recipient %></td>
-    <td><%= link_to 'Edit', edit_recipient_path(recipient) %></td>
-    <td><%= link_to 'Destroy', recipient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Recipient', new_recipient_path %>
+<div class="container-fluid">
+  <h2>All users</h2>
+  <% @recipients.each do |recipient| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="span8 offset1">
+        <ul class="unstyled">
+          <li>Phone number: <%= link_to recipient.phone, recipient %></li>
+          <li>Reminder date: <%= recipient.reminder_date %></li>
+          <li><%= link_to 'Show', recipient %> | <%= link_to 'Delete', recipient, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+      </div>    
+    </div>
+  </div>
+  <% end %>
+  <%= link_to 'New Recipient', new_recipient_path %>
+</div>

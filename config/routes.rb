@@ -17,8 +17,6 @@ Landshark::Application.routes.draw do
 
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
-  match 'send' => 'text#send_text_message'
-
 
 
   # The priority is based upon order of creation:

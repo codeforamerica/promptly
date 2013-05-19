@@ -17,7 +17,8 @@ class RecipientsController < ApplicationController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    @report = @recipient.reports
+    # @conversations = Conversation.all
+    # binding.pry
 
     respond_to do |format|
       format.html # show.html.erb
@@ -55,11 +56,8 @@ class RecipientsController < ApplicationController
         if @recipient.reminder_date < DateTime.now
           Notifier.perform(@recipient, "Your report is due in 3 days.")
         else
-          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your report is due in 3 days."), @recipient.reminder_date.to_s)
+          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your report is due in 3 days."), @recipient.reminder_date)
         end
-
-        # binding.pry
-        # log_conversation(@message.to, "+1#{twilio_phone_number}", @message.body, DateTime.now)
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
@@ -103,17 +101,6 @@ class RecipientsController < ApplicationController
   # Intercepts the params hash and formats the phone number
   def standardize_numbers
     params[:recipient][:phone].gsub!(/[^0-9]/, "")
-  end
-
-  private
-
-  def log_conversation(to, from, message, date)
-    @conversation = Conversation.new
-    @conversation.date = date
-    @conversation.message = message
-    @conversation.to_number = to
-    @conversation.from_number = from
-    @conversation.save
   end
 end
 
