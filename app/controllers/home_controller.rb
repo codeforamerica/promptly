@@ -5,6 +5,7 @@ class HomeController < ApplicationController
     list_recent
   end
 
+private
   def add_user
   end
 
@@ -12,7 +13,6 @@ class HomeController < ApplicationController
   	# list queued
   end
 
-  private
   # GET /conversations
   def list_recent
   	@recents = Conversation.all
