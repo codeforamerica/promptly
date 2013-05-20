@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     add_user
     list_upcoming
