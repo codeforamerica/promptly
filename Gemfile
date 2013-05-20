@@ -25,6 +25,7 @@ group :assets do
   gem 'compass-rails'
   gem 'uglifier', '1.2.3'
   gem 'font-awesome-sass-rails'
+  gem 'coffee-rails'
 end
 
 
