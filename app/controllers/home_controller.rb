@@ -1,12 +1,30 @@
 class HomeController < ApplicationController
   def index
-    add_user
     list_upcoming
     list_recent
+    add_recipient
   end
 
-private
-  def add_user
+  def add_recipient
+    @add_recipient = Recipient.new(params[:add_recipient])
+    # binding.pry
+
+    respond_to do |format|
+    # if @add_recipient.save
+    #   format.html { redirect_to @add_recipient, notice: 'Recipient was successfully created.' }
+    #   format.json { render json: @add_recipient, status: :created, location: @add_recipient }
+
+    #   # Notifier.perform(@add_recipient, "Thanks, we'll remind you of your report on: #{@add_recipient.reminder_date.to_s(:date_format)}.")
+    #   # if @add_recipient.reminder_date < DateTime.now
+    #   #   Notifier.perform(@add_recipient, "Your report is due in 3 days.")
+    #   # else
+    #   #   Delayed::Job.enqueue(Notifier.perform(@add_recipient, "Your report is due in 3 days."), @add_recipient.reminder_date)
+    #   # end
+    # else
+      format.html { render action: "new" }
+      format.json { render json: @add_recipient.errors, status: :unprocessable_entity }
+    # end
+    end
   end
 
   def list_upcoming
