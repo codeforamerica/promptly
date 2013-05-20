@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def add_recipient
-    @add_recipient = Recipient.new(params[:add_recipient])
+    @add_recipient = Recipient.all
     # binding.pry
 
     respond_to do |format|
@@ -21,8 +21,8 @@ class HomeController < ApplicationController
     #   #   Delayed::Job.enqueue(Notifier.perform(@add_recipient, "Your report is due in 3 days."), @add_recipient.reminder_date)
     #   # end
     # else
-      format.html { render action: "new" }
-      format.json { render json: @add_recipient.errors, status: :unprocessable_entity }
+      format.html { render :inline => @add_recipient }
+      # format.json { render json: @add_recipient.errors, status: :unprocessable_entity }
     # end
     end
   end
@@ -35,10 +35,10 @@ class HomeController < ApplicationController
   def list_recent
   	@recents = Conversation.all
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @recents }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @recents }
+    # end
   end
 
 end
