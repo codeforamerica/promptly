@@ -1,6 +1,7 @@
-    		<div class="control-group">
-<% @add_recipient.each do |recipient| %>
-<p><%= recipient.id %></p>
-<% end %>
-
-    		</div>
+<div class="control-group">
+	<h3>All users</h3>
+	<% @add_recipient.each do |recipient| %>
+	<p><%= recipient.phone %></p>
+	<% end %>
+	<%= link_to 'New user', new_recipient_path, :class => 'btn btn-primary' %>
+</div>
