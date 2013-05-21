@@ -1,2 +1,5 @@
-                <h3 id="upcomingmessages">Upcoming</h3>
-                <p>Content</p>
+<h3 id="upcomingmessages">Upcoming</h3>
+<% @recents.each do |recents| %>
+        <p><%= recents.date %></p>
+        <p><%= recents.message %></p>
+<% end %>

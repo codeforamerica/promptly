@@ -1,7 +1,13 @@
-<div class="navbar">
-  <div class="navbar-inner subnav navbar">
-  	<%= link_to 'Text messages', recipients_path, :class => 'brand' %>
-  	<ul class="nav navbar-inverse">
-    </ul>
-  </div>
-</div><!-- end nav-bar-->
+ <!-- start navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">Landshark</a>
+			<ul class="nav">
+				<li><a href="/" class="">Home</a><li>
+				<li><%= link_to 'Recipients', recipients_path %></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- end navbar -->
