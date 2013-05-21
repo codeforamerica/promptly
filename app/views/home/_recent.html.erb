@@ -1,6 +1,8 @@
 <h3 id="recentmessages">Recent</h3>
 
 <% @recents.each do |recents| %>
-        <p><%= recents.date %></p>
-        <p><%= recents.message %></p>
+	<dl>
+    <dt>Sent on <%= recents.date.to_s(:date_format) %>:</dt>
+    <dd><%= recents.message %></dd>
+ </dl>
 <% end %>
