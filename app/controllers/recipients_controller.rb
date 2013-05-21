@@ -52,11 +52,11 @@ class RecipientsController < ApplicationController
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
 
-        Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{recipient.reminder_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
+        Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{@recipient.reminder_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
         if @recipient.reminder_date < DateTime.now
           Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due on Monday, May 27th. Need help? Call (415) 558-1001.")
         else
-          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{recipient.reminder_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @recipient.reminder_date)
+          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{@recipient.reminder_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @recipient.reminder_date)
           format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         end
       else
