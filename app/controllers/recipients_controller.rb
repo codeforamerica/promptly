@@ -56,7 +56,7 @@ class RecipientsController < ApplicationController
         if @recipient.reminder_date < DateTime.now
           Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due on Friday, November 8th. Need help? Call (415) 558-1001.")
         else
-          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due on Friday, November 8th. Need help? Call (415) 558-1001."), @recipient.reminder_date)
+          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{recipient.reminder_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @recipient.reminder_date)
         end
       else
         format.html { render action: "new" }
