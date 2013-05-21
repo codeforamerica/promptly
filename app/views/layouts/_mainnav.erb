@@ -4,8 +4,8 @@
 		<div class="container">
 			<a class="brand" href="#">Landshark</a>
 			<ul class="nav">
-				<li><a href="/" class="">Home</a><li>
-				<li><%= link_to 'Recipients', recipients_path %></li>
+				<li class="<%= 'active' if params[:controller] == 'home' %>"><a href="/">Home</a><li>
+				<li class="<%= 'active' if params[:controller] == 'recipients' %>"><%= link_to 'Recipients', recipients_path %></li>
 			</ul>
 		</div>
 	</div>
