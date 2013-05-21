@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     list_upcoming
     list_recent
