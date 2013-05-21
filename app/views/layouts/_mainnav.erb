@@ -9,12 +9,12 @@
 			<%= link_to "Landshark", root_path, :class => 'brand' %>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="active">
+					<li class="<%= 'active' if current_page?(root_url)%>">
 						<%= link_to "Home", root_path %>
 					</li>
 					<li>
 					</li>
-					<li>
+					<li class="<%= 'active' if current_page?(:controller => 'recipients', :action => 'index')%>">
 						<%= link_to "Recipients", recipients_path %>
 					</li>
 				</ul>

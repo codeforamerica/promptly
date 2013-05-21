@@ -14,8 +14,6 @@ Landshark::Application.routes.draw do
   resources :programs
 
 
-  resources :recipents
-
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 
