@@ -5,3 +5,10 @@
   <dd><%= recents.message %></dd>
 </dl>
 <% end %>
+
+<h3>Upcoming messages</h3>
+	<% @upcoming.each do |upcoming| %>
+	<dl>
+	  <dt><%= upcoming.handler %></dt>
+	</dl>
+	<% end %>
