@@ -21,6 +21,13 @@
   </div>
   <div class="field">
     <div class="control-group">
+      <div class="controls">
+        <%= collection_select :recipients, :program_ids, Program.all, :id, :name %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control-group">
       <%= f.label :reminder_date, :class => 'control-label' %>
       <div class="control-group">
         <%= f.date_select :reminder_date,{:start_year => Time.now.year,
