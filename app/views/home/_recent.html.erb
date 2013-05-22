@@ -2,7 +2,7 @@
 
 <% @recents.each do |recents| %>
 	<dl>
-    <dt>Sent to <%= link_to recents.to_number, recipient_path(recents.recipients) %> on <%= recents.date.to_s(:date_format) %>:</dt>
+    <dt>Sent to <%= link_to recents.to_number, recipient_path(recents.recipient_ids) %> on <%= recents.date.to_s(:date_format) %>:</dt>
     <dd><%= recents.message %></dd>
  </dl>
 <% end %>
