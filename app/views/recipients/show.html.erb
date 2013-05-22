@@ -16,8 +16,10 @@
 </p>
 <p>-->
   <b>Conversations:</b>
-  <% @recipient.conversations do |a| %>
-    <p><% a.to_number %> | <%= a.message %></p>
+  <% @recipient.conversations.each do |conversation| %>
+    <p>Date sent: <%= conversation.date.to_s(:date_format) %>
+    <p>To number: <%= conversation.to_number %></p>
+    <p>Message: <%= conversation.message %></p>
   <% end %>
 </p> 
 
