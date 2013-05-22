@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20130514213409) do
   end
 
   create_table "reports", :force => true do |t|
+    t.string   "type"
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
