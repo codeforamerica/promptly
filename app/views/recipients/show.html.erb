@@ -9,19 +9,18 @@
   <b>Reminder Date:</b>
   <%= @recipient.reminder_date.to_s(:date_format) %>
 </p>
-
-<!-- <p>
-  <b>Active:</b>
-  <%= @recipient.active %>
+<p>
+<b>Programs:</b>
+  <% @recipient.programs.each do |program| %>
+    <p><%= program.name %></p>
+  <% end %>
 </p>
-<p>-->
   <b>Conversations:</b>
   <% @recipient.conversations.each do |conversation| %>
     <p>Date sent: <%= conversation.date.to_s(:date_format) %>
     <p>To number: <%= conversation.to_number %></p>
     <p>Message: <%= conversation.message %></p>
   <% end %>
-</p> 
 
 
 <%= link_to 'Edit', edit_recipient_path(@recipient) %> |
