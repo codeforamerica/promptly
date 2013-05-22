@@ -22,7 +22,7 @@
   <div class="field">
     <div class="control-group">
       <div class="controls">
-        <%= collection_select :recipients, :program_ids, Program.all, :id, :name %>
+        <%= f.collection_select :report_ids, Report.all, :id, :humanname %>
       </div>
     </div>
   </div>
