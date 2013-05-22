@@ -45,6 +45,7 @@ class RecipientsController < ApplicationController
   # POST /recipients.json
   def create
     @recipient = Recipient.new(params[:recipient])
+    # @recipient.reports(params[:recipient])
     # binding.pry
 
     respond_to do |format|

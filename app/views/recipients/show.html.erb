@@ -10,9 +10,9 @@
   <%= @recipient.reminder_date.to_s(:date_format) %>
 </p>
 <p>
-<b>Programs:</b>
-  <% @recipient.programs.each do |program| %>
-    <p><%= program.name %></p>
+<b>Reports:</b>
+  <% @recipient.reports.each do |report| %>
+    <p><%= report.humanname %></p>
   <% end %>
 </p>
   <b>Conversations:</b>
