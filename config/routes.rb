@@ -1,4 +1,7 @@
 Landshark::Application.routes.draw do
+  resources :messages
+
+
   get "home/index"
   root :to => 'home#index'
 
