@@ -12,14 +12,37 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :report_type %><br />
-    <%= f.text_field :report_type %>
+    <div class="control-group">
+      <%= f.label :report_type, "Form name of this report", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :report_type, :placeholder=>"QR-7, etc." %>
+      </div>
+    </div>
   </div>
   <div class="field">
-    <%= f.label :humanname %><br />
-    <%= f.text_area :humanname %>
+    <div class="control-group">
+      <%= f.label :humanname, "Description of this report" %>
+      <div class="controls">
+        <%= f.text_area :humanname %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control-group">
+      <%= f.label :program_ids, "Select a program for this report", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select :program_ids, Program.all, :id, :name %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control-group">
+      <%= f.fields_for :messages do |builder| %>
+        <%= render 'message_questions', :f => builder %>
+      <% end %>
+    </div>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class=>'btn btn-primary' %>
   </div>
 <% end %>
