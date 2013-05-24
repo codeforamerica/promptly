@@ -31,7 +31,6 @@
       <%= f.label :reminder_date, :class => 'control-label' %>
       <div class="control-group">
         <%= f.date_select :reminder_date,{:start_year => Time.now.year,
-          :end_year => 1900,
           :use_short_month => true,
           :order => [:month, :day, :year],
           :prompt => {:month => 'Month', :day => 'Day', :year => 'Year'}},
