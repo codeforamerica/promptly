@@ -3,6 +3,6 @@ class Report < ActiveRecord::Base
   has_and_belongs_to_many :recipients
   has_many :programs, :through => :recipients
   has_many :messages
-  accepts_nested_attributes_for :messages
-  attr_accessible :message_attributes
+  accepts_nested_attributes_for :messages, :allow_destroy => true
+  attr_accessible :messages_attributes
 end
