@@ -16,12 +16,15 @@
     <%= f.text_field :type %>
   </div>
   <div class="field">
-    <%= f.label :message %><br />
-    <%= f.text_area :message %>
+    <%= f.label :messagetext %><br />
+    <%= f.text_area :messagetext %>
   </div>
   <div class="field">
-    <%= f.label :report_id %><br />
-    <%= f.number_field :report_id %>
+    <div class="control-group">
+      <div class="controls">
+        <%= f.collection_select :report_ids, Report.all, :id, :humanname %>
+      </div>
+    </div>
   </div>
   <div class="field">
     <%= f.label :send_date %><br />
