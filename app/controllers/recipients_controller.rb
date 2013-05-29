@@ -66,6 +66,7 @@ class RecipientsController < ApplicationController
             report_id: report.id,
             recipient_id: @recipient.id
           })
+          @notification.save
         end
       else
         format.html { render action: "new" }
