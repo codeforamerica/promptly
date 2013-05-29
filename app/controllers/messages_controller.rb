@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.all
     @report = Report.all
+    @program = Program.all
 
     respond_to do |format|
       format.html # index.html.erb

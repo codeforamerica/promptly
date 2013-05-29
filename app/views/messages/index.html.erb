@@ -1,15 +1,15 @@
-<% @report.each do |report| %>
-<h2>Report name:</h2> <%= report.report_type %>
-  <% report.messages.each do |message| %>
-    <td><%= message.type %></td>
-    <td><%= message.messagetext %></td>
-    <td><%= message.report_id %></td>
-    <td><%= message.send_date %></td>
+<% @program.each do |program| %>
+  <h2>Program: <%= program.name %></h2>
+  <% program.reports.each do |report| %>
+    <h4>Report name: <%= report.report_type %></h4>
+      <% report.messages.each do |message| %>
+        <p><%= message.type %></p>
+        <p><%= message.messagetext %></p>
+      <% end %>
+        <p><%= link_to 'Show', report %></p>
+        <p><%= link_to 'Edit', edit_report_path(report) %></p>
   <% end %>
-    <td><%= link_to 'Show', report %></td>
-    <td><%= link_to 'Edit', edit_report_path(report) %></td>
-<% end %>
-
+ <% end %> 
 <br />
 
 <%= link_to 'New report', new_report_path %>
