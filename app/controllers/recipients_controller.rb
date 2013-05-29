@@ -97,6 +97,11 @@ class RecipientsController < ApplicationController
     end
   end
 
+  def import
+    Recipient.import(params[:file])
+    redirect_to root_url, notice: "Users imported."
+  end
+
   private
 
   def set_recipient!

@@ -7,9 +7,11 @@ gem 'twilio-ruby'
 gem 'unicorn'
 gem 'delayed_job_active_record'
 gem 'bootstrap-sass', '~> 2.1.0'
+gem 'roo'
 
 group :development do
   gem 'pry'
+  gem 'pry-nav'
 end
 
 group :development, :test do
