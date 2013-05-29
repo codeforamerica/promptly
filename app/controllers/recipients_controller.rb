@@ -46,19 +46,26 @@ class RecipientsController < ApplicationController
   def create
     @recipient = Recipient.new(params[:recipient])
     # @recipient.reports(params[:recipient])
-    # binding.pry
 
     respond_to do |format|
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-
-        Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{@recipient.reminder_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
-        if @recipient.reminder_date < DateTime.now
-          Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due on Monday, May 27th. Need help? Call (415) 558-1001.")
-        else
-          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{@recipient.reminder_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @recipient.reminder_date)
-          # format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
+        @recipient.reports.each do |report|
+          # binding.pry
+          # puts "Your #{report.humanname} is due #{@recipient.reminder_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages."
+          Notifier.perform(@recipient, "Your #{report.humanname} report is due #{@recipient.reminder_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
+          if @recipient.reminder_date < DateTime.now
+            Notifier.perform(@recipient, "Your #{report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
+          else
+            Delayed::Job.enqueue(Notifier.perform(@recipient, "Your #{report.humanname} report is due #{@recipient.reminder_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @recipient.reminder_date)
+            # format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
+          end
+          @notification = Notifications.new({
+            send_date: @recipient.reminder_date,
+            report_id: report.id,
+            recipient_id: @recipient.id
+          })
         end
       else
         format.html { render action: "new" }

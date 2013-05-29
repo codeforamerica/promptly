@@ -19,6 +19,15 @@ class Notifier
       })
       @conversation.recipients << @recipient
       @conversation.save
+
+      # @notification = Notification.new({
+      #   date: DateTime.now,
+      #   notification: response[:body],
+      #   to_number: response[:to],
+      #   from_number: response[:from]
+      # })
+      # @notification.recipients << @recipient
+      # @notification.save
     end
 
     private
