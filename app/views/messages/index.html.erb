@@ -1,29 +1,15 @@
-<h1>Listing messages</h1>
-
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Message</th>
-    <th>Report</th>
-    <th>Send date</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @messages.each do |message| %>
-  <tr>
+<% @report.each do |report| %>
+<h2>Report name:</h2> <%= report.report_type %>
+  <% report.messages.each do |message| %>
     <td><%= message.type %></td>
-    <td><%= message.message %></td>
+    <td><%= message.messagetext %></td>
     <td><%= message.report_id %></td>
     <td><%= message.send_date %></td>
-    <td><%= link_to 'Show', message %></td>
-    <td><%= link_to 'Edit', edit_message_path(message) %></td>
-    <td><%= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% end %>
+    <td><%= link_to 'Show', report %></td>
+    <td><%= link_to 'Edit', edit_report_path(report) %></td>
 <% end %>
-</table>
 
 <br />
 
-<%= link_to 'New Message', new_message_path %>
+<%= link_to 'New report', new_report_path %>
