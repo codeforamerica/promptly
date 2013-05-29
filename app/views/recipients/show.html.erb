@@ -13,6 +13,9 @@
 <b>Reports:</b>
   <% @recipient.reports.each do |report| %>
     <p><%= report.humanname %></p>
+    <% report.messages.each do |message| %>
+      <p>Reminder message: <%= message.messagetext %></p>
+    <% end %>
   <% end %>
 </p>
   <b>Conversations:</b>

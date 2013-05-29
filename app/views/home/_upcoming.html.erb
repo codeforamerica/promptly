@@ -1,14 +1,8 @@
-<h3 id="upcomingmessages">Upcoming</h3>
-<% @recents.each do |recents| %>
-<dl>
-  <dt><%= recents.date.to_s(:date_format) %></dt>
-  <dd><%= recents.message %></dd>
-</dl>
-<% end %>
-
 <h3>Upcoming messages</h3>
 	<% @upcoming.each do |upcoming| %>
 	<dl>
-	  <dt><%= upcoming.handler %></dt>
+	  <dt><%= upcoming.send_date %></dt>
+	  <dt><%= upcoming.recipient_id %></dt>
+	  <dt><%= upcoming.report_id %></dt>
 	</dl>
 	<% end %>

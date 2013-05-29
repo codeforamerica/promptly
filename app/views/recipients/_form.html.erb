@@ -21,8 +21,9 @@
   </div>
   <div class="field">
     <div class="control-group">
+      <%= f.label :report_ids, "Available reports", :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :report_ids, Report.all, :id, :humanname %>
+        <%= f.collection_select :report_ids, Report.all, :id, :humanname, {:multiple => true, :rows=>5, :prompt => 'Select a report'} %>
       </div>
     </div>
   </div>
