@@ -19,15 +19,6 @@ class Notifier
       })
       @conversation.recipients << @recipient
       @conversation.save
-
-      # @notification = Notification.new({
-      #   date: DateTime.now,
-      #   notification: response[:body],
-      #   to_number: response[:to],
-      #   from_number: response[:from]
-      # })
-      # @notification.recipients << @recipient
-      # @notification.save
     end
 
     private
@@ -49,6 +40,10 @@ class Notifier
     Logger.log(attributes, recipient)
     client.account.sms.messages.create(attributes).tap do |response|
     end
+  end
+
+  def self.newqueue(recipient, body)
+    new(recipient, body).perform
   end
 
   def attributes
