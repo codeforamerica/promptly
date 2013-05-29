@@ -3,6 +3,6 @@
 	<dl>
 	  <dt><%= upcoming.send_date.to_s(:date_format) %></dt>
 	  <dt><%= @recipient.find(upcoming.recipient_id).first.phone %></dt>
-	  <dt><%= @report.find(upcoming.report_id).first.humanname %></dt>
+	  <dt><%= @report.find(upcoming.report_id).first.messages.first.messagetext %></dt>
 	</dl>
 	<% end %>
