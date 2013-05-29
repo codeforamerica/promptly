@@ -13,5 +13,13 @@
     </div>
   </div>
   <% end %>
+  <h2>Import users</h2>
+
+  <%= form_tag import_recipients_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+  <% end %>
+  
   <%= link_to 'New Recipient', new_recipient_path %>
 </div>
+

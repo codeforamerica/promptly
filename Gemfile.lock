@@ -93,6 +93,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -121,6 +123,10 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    roo (1.11.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
     rspec (2.11.0)
       rspec-core (~> 2.11.0)
       rspec-expectations (~> 2.11.0)
@@ -134,6 +140,7 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.11.0)
+    ruby-ole (1.2.11.6)
     rubyzip (0.9.9)
     sass (3.2.9)
     sass-rails (3.2.5)
@@ -148,6 +155,8 @@ GEM
     slop (3.4.5)
     sms-spec (0.1.7)
       rspec
+    spreadsheet (0.8.5)
+      ruby-ole (>= 1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -189,8 +198,10 @@ DEPENDENCIES
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
   pry
+  pry-nav
   rack-cors
   rails (= 3.2.13)
+  roo
   rspec-rails (= 2.11.0)
   sass-rails (= 3.2.5)
   sms-spec
