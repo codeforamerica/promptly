@@ -1,8 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @add_recipient = Recipient.all
+    @recipient = Recipient.all
     @recents = Conversation.all
     @upcoming = Notifications.all
+    @report = Report.all
   end
 
 end
