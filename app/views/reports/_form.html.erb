@@ -29,9 +29,9 @@
   </div>
   <div class="field">
     <div class="control-group">
-      <%= f.label :program_ids, "Select a program for this report", :class => 'control-label' %>
+      <%= f.label :program_id, "Select a program for this report", :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :program_ids, Program.all, :id, :name %>
+        <%= f.collection_select :program_id, Program.all, :id, :name %>
       </div>
     </div>
   </div>
