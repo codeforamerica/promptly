@@ -11,18 +11,22 @@ gem install rails
 gem install bundler
 ```
 
-2) Clone this repo
+2) Install PostgreSQL
+- Mac: http://postgresapp.com/
+- Other: http://www.postgresql.org/
+
+3) Clone this repo
 ```
 git clone https://github.com/codeforamerica/landshark.git
 ```
 
-3) Install required gems
+4) Install required gems
 ```
 cd landshark
 bundle install
 ```
 
-4) Setup environment variables
+5) Setup environment variables
 
 LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILIO_TOKEN.
 
@@ -30,11 +34,18 @@ There are many ways to do this. Heroku has a good overview <a href="https://devc
 
 *Make sure your .gitignore includes /.env so you don't publicize your secret keys.*
 
-5) Start the server
+6) Setup local database
+- Add your Postgres username to config/database.yml ($USER by default)
+```
+rake db:create
+rake db:migrate
+```
+
+7) Start the server
 ```
 foreman start
 ```
 
-6) You should see the project at http://localhost:5000
+7) You should see the project at http://localhost:5000
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>

@@ -2,3 +2,4 @@ RACK_ENV=development
 TWILIO_NUMBER=?
 TWILIO_SID=?
 TWILIO_TOKEN=?
+DATABASE_URL=postgres://<username>@localhost/landshark
