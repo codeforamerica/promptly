@@ -28,14 +28,17 @@ bundle install
 
 5) Setup environment variables
 
-LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILIO_TOKEN.
+- Edit .sample_env by replacing <username> with your Postgres username ($USER by default)
+- rename .sample_env .env.
 
-There are many ways to do this. Heroku has a good overview <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. The easiest way is to use foreman and a .env file in the root directory. You can edit .sample_env and rename it to .env.
+LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILIO_TOKEN. The easiest way is to use foreman and a .env file in the root directory, but there are many ways to do this. Heroku has a good overview <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. 
 
-*Make sure your .gitignore includes /.env so you don't publicize your secret keys.*
+*Make sure your .gitignore always includes /.env so you don't publicize your secret keys.*
 
 6) Setup local database
-- Add your Postgres username to config/database.yml ($USER by default)
+- First, add your Postgres username to config/database.yml ($USER by default)
+
+- Then run:
 ```
 rake db:create
 rake db:migrate
@@ -46,6 +49,6 @@ rake db:migrate
 foreman start
 ```
 
-7) You should see the project at http://localhost:5000
+7) You should see the project at <a href="http://localhost:5000">http://localhost:5000</a>
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>
