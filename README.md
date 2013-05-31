@@ -36,12 +36,12 @@ LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILI
 *Make sure your .gitignore always includes /.env so you don't publicize your secret keys.*
 
 6) Setup local database
-- First, edit config/database.yml to include your Postgres username ($USER by default):
+- First, edit **config/database.yml** to include your Postgres username ($USER by default):
 ```
 development:
   adapter: postgresql
   host: localhost
-  username: **<username>**
+  username: <username>
   database: landshark
 ```
 
@@ -56,6 +56,6 @@ rake db:migrate
 foreman start
 ```
 
-7) You should see the project at <a href="http://localhost:5000">http://localhost:5000</a>
+8) You should see the project at <a href="http://localhost:5000">http://localhost:5000</a>
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>
