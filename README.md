@@ -5,7 +5,7 @@ A text message reminder system for San Francisco Human Services Agency.
 This project is young and in flux. Feel free to email sf@codeforamerica.org if you're interested in deploying or contributing.
 
 #### Install
-1) Install Rails and bundler if you don't already have them
+1) Install Rails and Bundler if you don't already have them
 ```
 gem install rails
 gem install bundler
