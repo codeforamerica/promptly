@@ -8,6 +8,7 @@ gem 'unicorn'
 gem 'delayed_job_active_record'
 gem 'bootstrap-sass', '~> 2.1.0'
 gem 'roo'
+gem 'foreman'
 
 group :development do
   gem 'pry'
