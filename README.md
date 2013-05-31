@@ -29,14 +29,21 @@ bundle install
 5) Setup environment variables
 
 - Edit .sample_env by replacing <username> with your Postgres username ($USER by default)
-- rename .sample_env .env.
+- Rename .sample_env to *.env*
 
 LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILIO_TOKEN. The easiest way is to use foreman and a .env file in the root directory, but there are many ways to do this. Heroku has a good overview <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. 
 
 *Make sure your .gitignore always includes /.env so you don't publicize your secret keys.*
 
 6) Setup local database
-- First, add your Postgres username to config/database.yml ($USER by default)
+- First, edit config/database.yml to include your Postgres username ($USER by default):
+```
+development:
+  adapter: postgresql
+  host: localhost
+  username: <username>
+  database: landshark
+```
 
 - Then run:
 ```
