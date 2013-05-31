@@ -39,10 +39,10 @@ LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILI
 - First, edit **config/database.yml** to include your Postgres username ($USER by default):
 ```
 development:
-  adapter: postgresql
-  host: localhost
-  username: <username>
-  database: landshark
+    adapter: postgresql
+    host: localhost
+    username: <username>
+    database: landshark
 ```
 
 - Then run:
