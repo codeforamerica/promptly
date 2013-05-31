@@ -5,9 +5,10 @@ A text message reminder system for San Francisco Human Services Agency.
 This project is young and in flux. Feel free to email sf@codeforamerica.org if you're interested in deploying or contributing.
 
 #### Install
-1) Install Rails
+1) Install Rails and bundler if you don't already have them
 ```
 gem install rails
+gem install bundler
 ```
 
 2) Clone this repo
@@ -18,7 +19,6 @@ git clone https://github.com/codeforamerica/landshark.git
 3) Install required gems
 ```
 cd landshark
-gem install bundler (if you don't have it already)
 bundle install
 ```
 
