@@ -25,11 +25,7 @@ class Recipient < ActiveRecord::Base
       recipient = where(phone: row["phone"])
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
-      if recipient.reports && recipient.reports.first.id != @report.id
-        recipient.reports << @report
-      else
-        recipient.reports << @report
-      end
+      recipient.reports << @report
       recipient.notifications.where(send_date: formatDate, report_id: @report.id, recipient_id: recipient.id)
 	      .first_or_create(row.to_hash.slice(*recipient.notifications.accessible_attributes))
 	  end
