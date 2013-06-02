@@ -6,7 +6,7 @@
       <div class="span8 offset1">
         <ul class="unstyled">
           <li>Phone number: <%= link_to recipient.phone, recipient %></li>
-          <li>Reminder date: <%= recipient.reminder_date %></li>
+          <%= render(:partial => 'notifications', :collection => recipient.notifications, :as => :reminders) || 'You have no reminders' %>
           <li><%= link_to 'Show', recipient %> | <%= link_to 'Delete', recipient, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
       </div>    
