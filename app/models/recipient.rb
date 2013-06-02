@@ -1,26 +1,32 @@
 class Recipient < ActiveRecord::Base
-  attr_accessible :active, :case, :phone, :reminder_date, :report_attributes
+  attr_accessible :active, :case, :phone, :reminder_date, :report_attributes, :notification_attributes
   has_and_belongs_to_many :reports
   has_and_belongs_to_many :conversations
   has_and_belongs_to_many :programs
+  has_many :notifications
 
   attr_accessible :report_ids
   attr_accessible :conversation_ids
   attr_accessible :program_ids
+  attr_accessible :notification_ids
+
+  accepts_nested_attributes_for :notifications, :allow_destroy => true
 
   # validates :phone, :presence => true
 
   def self.import(file)
 	  spreadsheet = open_spreadsheet(file)
 	  header = spreadsheet.row(1)
-	  (2..spreadsheet.last_row).each do |i|
-	    row = Hash[[header, spreadsheet.row(i)].transpose]
-	    recipient = where(phone: row["phone"])
-        .first_or_create!(row.to_hash.slice(*accessible_attributes))
-        # binding.pry
-
-      recipient.reports.where(report_type: row['report_name'])
-        .first_or_create!(row.to_hash.slice(*recipient.reports.accessible_attributes))
+    (2..spreadsheet.last_row).each do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      formatDate = Date.strptime(row["reminder_date"], '%m/%d/%Y')
+      recipient = where(phone: row["phone"])
+        .first_or_create(row.to_hash.slice(*accessible_attributes))
+      @report = Report.where(report_type: row['report_type']).first_or_create
+      recipient.notifications.where(send_date: formatDate, report_id: @report.id)
+	      .first_or_create(row.to_hash.slice(*recipient.notifications.accessible_attributes))
+      # recipient.reports.where(report_id: @report.id)
+      #   .first_or_create(row.to_hash.slice(*recipient.reports.accessible_attributes))
 	  end
 	end
 
