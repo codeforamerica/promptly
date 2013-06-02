@@ -11,6 +11,7 @@ class Recipient < ActiveRecord::Base
   attr_accessible :notification_ids
 
   accepts_nested_attributes_for :notifications, :allow_destroy => true
+  accepts_nested_attributes_for :reports
 
   # validates :phone, :presence => true
 
@@ -20,13 +21,17 @@ class Recipient < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       formatDate = Date.strptime(row["reminder_date"], '%m/%d/%Y')
+      @report = Report.where(report_type: row['report_type']).first_or_create
       recipient = where(phone: row["phone"])
         .first_or_create(row.to_hash.slice(*accessible_attributes))
-      @report = Report.where(report_type: row['report_type']).first_or_create
-      recipient.notifications.where(send_date: formatDate, report_id: @report.id)
+      #assign related reports to our current report
+      if recipient.reports && recipient.reports.first.id != @report.id
+        recipient.reports << @report
+      else
+        recipient.reports << @report
+      end
+      recipient.notifications.where(send_date: formatDate, report_id: @report.id, recipient_id: recipient.id)
 	      .first_or_create(row.to_hash.slice(*recipient.notifications.accessible_attributes))
-      # recipient.reports.where(report_id: @report.id)
-      #   .first_or_create(row.to_hash.slice(*recipient.reports.accessible_attributes))
 	  end
 	end
 
