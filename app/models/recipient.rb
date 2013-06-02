@@ -21,15 +21,23 @@ class Recipient < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       formatDate = Date.strptime(row["reminder_date"], '%m/%d/%Y')
-      @report = Report.where(report_type: row['report_type']).first_or_initialize
+      @report = Report.where(report_type: row['report_type']).first_or_create
       recipient = where(phone: row["phone"])
-        .first_or_initialize(row.to_hash.slice(*accessible_attributes))
+        .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
+      @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id, send_date: formatDate).first_or_create
       recipient.reports << @report
-      recipient.notifications.where(send_date: formatDate, report_id: @report.id, recipient_id: recipient.id)
-	      .first_or_initialize(row.to_hash.slice(*recipient.notifications.accessible_attributes))
-      recipient.save
-      
+      recipient.notifications << @notification
+      # a = recipient.notifications.where(send_date: formatDate, report_id: @report.id, recipient_id: recipient.id)
+      # binding.pry
+
+      # Notifier.perform(recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
+      if @notification.send_date < DateTime.now
+        Notifier.perform(recipient, "Your #{@report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
+      else
+        # use Notifier.new here so delayed job can hook into the perform method
+        Delayed::Job.enqueue(Notifier.new(recipient, "Your #{r@eport.humanname} report is due #{recipient.notifications.send_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @notification.send_date)
+      end
 	  end
 	end
 
