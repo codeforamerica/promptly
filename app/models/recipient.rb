@@ -26,15 +26,18 @@ class Recipient < ActiveRecord::Base
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
       @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id, send_date: formatDate).first_or_create
-      recipient.reports << @report
-      recipient.notifications << @notification
-
-      # Notifier.perform(recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
-      if @notification.send_date < DateTime.now
-        Notifier.perform(recipient, "Your #{@report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
-      else
-        # use Notifier.new here so delayed job can hook into the perform method
-        Delayed::Job.enqueue(Notifier.new(recipient, "Your #{r@eport.humanname} report is due #{recipient.notifications.send_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @notification.send_date)
+      if !recipient.reports
+        recipient.reports << @report
+      end
+      if !recipient.notifications
+        recipient.notifications << @notification
+        sendNotification(@notification, @report, recipient)
+      else recipient.notifications do |notification|
+          if recipient.notification.send_date != formatDate || recipient.notification.report_id != @report.id
+            recipient.notification.update_attributes(:send_date => formateDate, :report_id => @report.id)
+            sendNotification(@notification, @report, recipient)
+          end
+        end
       end
 	  end
 	end
@@ -47,4 +50,5 @@ class Recipient < ActiveRecord::Base
 		  else raise "Unknown file type: #{file.original_filename}"
 	  end
 	end
+
 end
