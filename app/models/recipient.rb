@@ -3,7 +3,7 @@ class Recipient < ActiveRecord::Base
   has_and_belongs_to_many :reports
   has_and_belongs_to_many :conversations
   has_and_belongs_to_many :programs
-  has_many :notifications
+  has_many :notifications, :dependent => :destroy
 
   attr_accessible :report_ids
   attr_accessible :conversation_ids
