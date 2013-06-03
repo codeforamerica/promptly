@@ -1,5 +1,6 @@
-<div class="container-fluid">
+  <div class="row-fluid">
   <h3>All recipients</h3>
+  </div>
   <% @recipients.each do |recipient| %>
   <div class="row-fluid">
     <div class="span12">
@@ -22,5 +23,4 @@
   <% end %>
   
   <%= link_to 'New Recipient', new_recipient_path %>
-</div>
 

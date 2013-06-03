@@ -28,8 +28,6 @@ class Recipient < ActiveRecord::Base
       @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id, send_date: formatDate).first_or_create
       recipient.reports << @report
       recipient.notifications << @notification
-      # a = recipient.notifications.where(send_date: formatDate, report_id: @report.id, recipient_id: recipient.id)
-      # binding.pry
 
       # Notifier.perform(recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
       if @notification.send_date < DateTime.now
