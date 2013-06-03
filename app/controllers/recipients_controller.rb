@@ -46,7 +46,6 @@ class RecipientsController < ApplicationController
   def create
     @recipient = Recipient.new(params[:recipient])
     @notification = Notification.new(params[:notifications])
-    binding.pry
 
     respond_to do |format|
       if @recipient.save
