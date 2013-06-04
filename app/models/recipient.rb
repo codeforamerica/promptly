@@ -25,20 +25,32 @@ class Recipient < ActiveRecord::Base
       recipient = where(phone: row["phone"])
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
-      @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id, send_date: formatDate).first_or_create
-      if !recipient.reports
-        recipient.reports << @report
+      # binding.pry
+      @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id).first_or_initialize
+      if recipient.reports.blank?
+        recipient.reports <<  @report
+      else 
+        recipient.reports.each do |report|
+          if report.id != @report.id
+            recipient.reports << @report
+          end
+        end
       end
-      if recipient.notifications.each do |notification|
-        # binding.pry
-          if notification.send_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y') && notification.report_id = @report.id
-            notification.update_attributes(:send_date => formatDate, :report_id => @report.id)
+      if recipient.notifications.blank?
+        @notification.send_date = formatDate
+        recipient.notifications << @notification
+        sendNotification(formatDate, @report, recipient)
+      else
+        recipient.notifications.each do |notification|
+          if notification.report_id == @report.id && notification.send_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
+            notification.update_column('send_date', formatDate)
+            sendNotification(formatDate, @report, recipient)
+          elsif notification.report_id != @report.id
+            @notification.send_date = formatDate
+            recipient.notifications << @notification
             sendNotification(formatDate, @report, recipient)
           end
         end
-      else
-        recipient.notifications << @notification
-        sendNotification(@notification, @report, recipient)
       end
 	  end
 	end
