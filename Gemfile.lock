@@ -31,15 +31,12 @@ GEM
     arel (3.0.2)
     bootstrap-sass (2.1.1.0)
     builder (3.0.4)
-    capybara (1.1.2)
+    capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
-      selenium-webdriver (~> 2.0)
-      xpath (~> 0.1.4)
-    childprocess (0.3.9)
-      ffi (~> 1.0, >= 1.0.11)
+      xpath (~> 2.0)
     chunky_png (1.2.8)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -60,17 +57,32 @@ GEM
     delayed_job_active_record (0.4.4)
       activerecord (>= 2.1.0, < 4)
       delayed_job (~> 3.0)
-    diff-lcs (1.1.3)
+    diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (4.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
     ffi (1.8.1)
     font-awesome-sass-rails (3.0.2.2)
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
+    formatador (0.2.4)
     friendly_id (4.0.9)
     fssm (0.2.10)
-    hike (1.2.2)
+    guard (1.8.0)
+      formatador (>= 0.2.4)
+      listen (>= 1.0.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-rspec (2.5.4)
+      guard (>= 1.1)
+      rspec (~> 2.11)
+    hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.0.2)
@@ -80,12 +92,17 @@ GEM
     jwt (0.1.8)
       multi_json (>= 1.5)
     kgio (2.8.0)
+    listen (1.1.6)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      rb-kqueue (>= 0.2)
+    lumberjack (1.0.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.23)
-    multi_json (1.7.3)
+    multi_json (1.7.6)
     nokogiri (1.5.9)
     pg (0.12.2)
     polyglot (0.3.3)
@@ -98,7 +115,7 @@ GEM
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
-    rack-cors (0.2.7)
+    rack-cors (0.2.8)
       rack
     rack-ssl (1.3.3)
       rack
@@ -121,25 +138,32 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.11.0)
     rake (10.0.4)
+    rb-fsevent (0.9.3)
+    rb-inotify (0.9.0)
+      ffi (>= 0.5.0)
+    rb-kqueue (0.2.0)
+      ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     roo (1.11.2)
       nokogiri
       rubyzip
       spreadsheet (> 0.6.4)
-    rspec (2.11.0)
-      rspec-core (~> 2.11.0)
-      rspec-expectations (~> 2.11.0)
-      rspec-mocks (~> 2.11.0)
-    rspec-core (2.11.1)
-    rspec-expectations (2.11.3)
-      diff-lcs (~> 1.1.3)
-    rspec-mocks (2.11.3)
-    rspec-rails (2.11.0)
+    rspec (2.13.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
+    rspec-core (2.13.1)
+    rspec-expectations (2.13.0)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-mocks (2.13.1)
+    rspec-rails (2.13.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
-      rspec (~> 2.11.0)
+      rspec-core (~> 2.13.0)
+      rspec-expectations (~> 2.13.0)
+      rspec-mocks (~> 2.13.0)
     ruby-ole (1.2.11.6)
     rubyzip (0.9.9)
     sass (3.2.9)
@@ -147,11 +171,8 @@ GEM
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.32.1)
-      childprocess (>= 0.2.5)
-      multi_json (~> 1.0)
-      rubyzip
-      websocket (~> 1.0.4)
+    shoulda-matchers (2.1.0)
+      activesupport (>= 3.0.0)
     slop (3.4.5)
     sms-spec (0.1.7)
       rspec
@@ -165,7 +186,7 @@ GEM
     sqlite3 (1.3.5)
     thor (0.18.1)
     tilt (1.4.1)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     twilio-ruby (3.9.0)
@@ -180,8 +201,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    websocket (1.0.7)
-    xpath (0.1.4)
+    xpath (2.0.0)
       nokogiri (~> 1.3)
 
 PLATFORMS
@@ -189,12 +209,14 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 2.1.0)
-  capybara (= 1.1.2)
+  capybara
   coffee-rails
   compass-rails
   delayed_job_active_record
+  factory_girl_rails
   font-awesome-sass-rails
   friendly_id
+  guard-rspec
   jquery-rails (= 2.0.2)
   pg (= 0.12.2)
   pry
@@ -202,8 +224,9 @@ DEPENDENCIES
   rack-cors
   rails (= 3.2.13)
   roo
-  rspec-rails (= 2.11.0)
+  rspec-rails
   sass-rails (= 3.2.5)
+  shoulda-matchers
   sms-spec
   sqlite3 (= 1.3.5)
   twilio-ruby
