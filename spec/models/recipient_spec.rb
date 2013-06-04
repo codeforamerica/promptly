@@ -1,18 +1,15 @@
 require 'spec_helper'
 
 describe Recipient do
-	before :each do
-	    @recipient = Recipient.new(:phone => +19196361635, :case => 1234)
-	end
-  subject { @recipient }
-
-  it { should respond_to(:phone) }
-  it { should respond_to(:case) }
-
-  it { should be_valid }
-
-  describe "when phone is not present" do
-    before { @recipient.phone = " " }
-    it { should_not be_valid }
+	it "has a valid factory" do
+    FactoryGirl.create(:recipient).should be_valid
   end
+  it "is invalid without a phone number" do
+    FactoryGirl.build(:recipient, phone: nil).should_not be_valid
+  end
+  it "has many reports" do
+    should have_and_belong_to_many(:reports)
+  end
+
+  it "accepts an uploaded spreadsheet"
 end
