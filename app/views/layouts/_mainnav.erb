@@ -12,10 +12,11 @@
 					<li class="<%= 'active' if current_page?(root_url)%>">
 						<%= link_to "Home", root_path %>
 					</li>
-					<li>
-					</li>
 					<li class="<%= 'active' if current_page?(:controller => 'recipients', :action => 'index')%>">
 						<%= link_to "Recipients", recipients_path %>
+					</li>
+					<li class="<%= 'active' if current_page?(:controller => 'messages', :action => 'index')%>">
+						<%= link_to "Messages", messages_path %>
 					</li>
 				</ul>
 			</div>
