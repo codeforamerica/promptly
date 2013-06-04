@@ -13,7 +13,7 @@ class Recipient < ActiveRecord::Base
   accepts_nested_attributes_for :notifications, :allow_destroy => true
   accepts_nested_attributes_for :reports
 
-  # validates :phone, :presence => true
+  validates :phone, :presence => true
 
   def self.import(file)
 	  spreadsheet = open_spreadsheet(file)

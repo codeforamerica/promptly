@@ -7,8 +7,8 @@
         <thead>
           <tr>
             <th>Phone number</th>
-            <th>Report</th>
             <th>Reminder date</th>
+            <th>Report</th>
           </tr>
         </thead>
         <% @recipients.each do |recipient| %>
@@ -20,7 +20,7 @@
           </tr>
           <% end %>
         </table>
-        <div class="dumbPadding"><%= link_to 'New Recipient', new_recipient_path, :class=>'btn btn-primary' %></div>
+        <div class="dumbPadding"><%= link_to 'New recipient', new_recipient_path, :class=>'btn btn-primary' %></div>
       </div>    
     </div>
     <div class="row-fluid">
