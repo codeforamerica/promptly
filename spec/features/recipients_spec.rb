@@ -1,4 +1,4 @@
-# spec/requests/contacts_spec.rb
+# spec/requests/recipients_spec.rb
 
 require 'spec_helper'
 
