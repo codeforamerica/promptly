@@ -21,21 +21,19 @@ class Recipient < ActiveRecord::Base
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       formatDate = Date.strptime(row["reminder_date"], '%m/%d/%Y')
-      @report = Report.where(report_type: row['report_type']).first_or_create
+      @report = Report.where(report_type: row['report_type']).first_or_initialize
       recipient = where(phone: row["phone"])
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
-      # binding.pry
       @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id).first_or_initialize
       if recipient.reports.blank?
         recipient.reports <<  @report
       else 
-        recipient.reports.each do |report|
-          if report.id != @report.id
+        unless recipient.reports.any? {|h| h[:id] == @report.id}
             recipient.reports << @report
           end
-        end
       end
+
       if recipient.notifications.blank?
         @notification.send_date = formatDate
         recipient.notifications << @notification
