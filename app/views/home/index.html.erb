@@ -11,6 +11,7 @@
             <%= render(:partial => 'ataglance') %>
             </div>
             <div class="span9">
+            <h3 id="recentmessages">Recent</h3>
              <%= render(:partial => 'recent', :collection => @recents, :as => :recents) || 'There are no recent messages' %>
             </div>
         </div>
