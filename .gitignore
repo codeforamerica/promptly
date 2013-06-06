@@ -5,11 +5,17 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 # Ignore database config
 /config/database.yml
 
 >>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+=======
+# Ignore database config
+/config/database.yml
+
+>>>>>>> b93cade4bae295581a3e8d41922d427909ca0025
 # Ignore bundler config
 /.bundle
 
