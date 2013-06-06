@@ -11,6 +11,7 @@ gem 'roo'
 gem 'devise'
 gem 'cancan'
 gem 'foreman'
+gem 'jquery-rails', '2.0.2'
 
 group :development do
   gem 'pry'
@@ -32,8 +33,6 @@ group :assets do
   gem 'font-awesome-sass-rails'
   gem 'coffee-rails'
 end
-
-gem 'jquery-rails', '2.0.2'
 
 group :test do
   gem "factory_girl_rails"
