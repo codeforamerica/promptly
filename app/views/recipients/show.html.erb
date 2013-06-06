@@ -5,21 +5,24 @@
   <%= @recipient.phone %>
 </p>
 
+  <ul class="unstyled">
+    <%= render(:partial => 'notifications', :collection => notifications, :as => :reminders) || 'You have no reminders' %>
+  </ul>
 <p>
-  <b>Reminder Date:</b>
-  <%= @recipient.reminder_date.to_s(:date_format) %>
-</p>
-
-<!-- <p>
-  <b>Active:</b>
-  <%= @recipient.active %>
-</p>
-<p>
-  <b>Reports:</b>
-  <% @report.each_with_index do |report, index| %>
-  <p><%= report.report_type %>
+<b>Reports:</b>
+  <% @recipient.reports.each do |report| %>
+    <p><%= report.humanname %></p>
+    <% report.messages.each do |message| %>
+      <p>Reminder message: <%= message.messagetext %></p>
+    <% end %>
   <% end %>
-</p> -->
+</p>
+  <b>Conversations:</b>
+  <% @recipient.conversations.each do |conversation| %>
+    <p>Date sent: <%= conversation.date.to_s(:date_format) %>
+    <p>To number: <%= conversation.to_number %></p>
+    <p>Message: <%= conversation.message %></p>
+  <% end %>
 
 
 <%= link_to 'Edit', edit_recipient_path(@recipient) %> |

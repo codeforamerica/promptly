@@ -6,12 +6,17 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-	<%= render 'layouts/mainnav' %>
-	<div class="container-fluid">
-		<%= yield %>
-	</div>
-	<%= render 'layouts/footer' %>
 
+<body>
+  <%= render 'layouts/mainnav' %>
+  <div class="container-fluid">
+<<<<<<< HEAD
+  	<p class="notice"><%= notice %></p>
+     <p class="alert"><%= alert %></p>
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+    <%= yield %>
+  </div>
+  <%= render 'layouts/footer' %>
 </body>
 </html>

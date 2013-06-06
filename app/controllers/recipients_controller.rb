@@ -2,6 +2,10 @@ class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   before_filter :standardize_numbers, only: [ :create, :update ]
+<<<<<<< HEAD
+  before_filter :authenticate_user!
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
   # after_filter :log_conversation, only: [ :create, :update]
   # GET /recipients
   # GET /recipients.json
@@ -17,7 +21,8 @@ class RecipientsController < ApplicationController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    @report = @recipient.reports
+    # @conversations = Conversation.all
+    # binding.pry
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,18 +49,25 @@ class RecipientsController < ApplicationController
   # POST /recipients.json
   def create
     @recipient = Recipient.new(params[:recipient])
-    # binding.pry
+    @notification = Notification.new(params[:notifications])
 
     respond_to do |format|
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-
-        Notifier.perform(@recipient, "Thanks we'll remind you of your report on: #{@recipient.reminder_date.to_s(:date_format)}.")
-        if @recipient.reminder_date < DateTime.now
-          Notifier.perform(@recipient, "Your report is due in 3 days.")
-        else
-          Delayed::Job.enqueue(Notifier.perform(@recipient, "Your report is due in 3 days."), @recipient.reminder_date)
+        @recipient.reports.each do |report|
+          Notifier.perform(@recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
+          if @notification.send_date < DateTime.now
+            Notifier.perform(@recipient, "Your #{report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
+          else
+            # use Notifier.new here so delayed job can hook into the perform method
+            Delayed::Job.enqueue(Notifier.new(@recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @notification.send_date)
+          end
+          @notification.report_id = report.id
+          @notification.recipient_id = @recipient.id
+          @notification.send_date = @notification.send_date
+          
+          @notification.save
         end
       else
         format.html { render action: "new" }
@@ -89,10 +101,15 @@ class RecipientsController < ApplicationController
     end
   end
 
+  def import
+    Recipient.import(params[:file])
+    redirect_to root_url, notice: "Users imported."
+  end
+
   private
 
   def set_recipient!
-    @recipient = Recipient.find(params[:id])
+    @recipient = Recipient.find(params[:id], include: [:notifications])
   end
 
   private 

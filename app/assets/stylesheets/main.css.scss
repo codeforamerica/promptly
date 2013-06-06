@@ -1,3 +1,7 @@
+.dumbPadding {
+	padding: 10px 0px;
+}
+
 .navbar-inner {
 	background: #3D6AA2;
 	.brand {
@@ -15,3 +19,8 @@
 	border-top: 1px solid #e5e5e5;
 	background-color: #f5f5f5;
 }
+
+.messageMain {
+	display: none;
+}
+

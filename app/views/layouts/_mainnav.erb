@@ -1,7 +1,42 @@
-<div class="navbar">
-  <div class="navbar-inner subnav navbar">
-  	<%= link_to 'Text messages', recipients_path, :class => 'brand' %>
-  	<ul class="nav navbar-inverse">
-    </ul>
-  </div>
-</div><!-- end nav-bar-->
+<div class="navbar navbar-inverse"> <!-- navbar -->
+	<div class="navbar-inner">
+		<div class="container">
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<%= link_to "Landshark", root_path, :class => 'brand' %>
+			<div class="nav-collapse collapse">
+				<ul class="nav">
+					<li class="<%= 'active' if current_page?(root_url)%>">
+						<%= link_to "Home", root_path %>
+					</li>
+					<li>
+					</li>
+<<<<<<< HEAD
+					<li class="<%= 'active' if current_page?(recipients_url)%>">
+						<%= link_to "Recipients", recipients_path %>
+					</li>
+				</ul>
+				<div class="pull-right span2">
+				<% if user_signed_in? %>
+				  Logged in as <strong><%= current_user.email %></strong>.
+				  <%= link_to 'Edit profile', edit_user_registration_path %> |
+				  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+				<% else %>
+				  <%= link_to "Sign up", new_user_registration_path %> |
+				  <%= link_to "Login", new_user_session_path %>
+				<% end %>
+				</div>
+=======
+					<li class="<%= 'active' if current_page?(:controller => 'recipients', :action => 'index')%>">
+						<%= link_to "Recipients", recipients_path %>
+					</li>
+				</ul>
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</div> <!-- /navbar -->

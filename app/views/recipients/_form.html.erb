@@ -21,17 +21,26 @@
   </div>
   <div class="field">
     <div class="control-group">
-      <%= f.label :reminder_date, :class => 'control-label' %>
-      <div class="control-group">
-        <%= f.date_select :reminder_date,{:start_year => Time.now.year,
-          :end_year => 1900,
+      <%= f.label :report_ids, "Available reports", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select :report_ids, Report.all, :id, :humanname, {:multiple => true, :rows=>5, :prompt => 'Select a report'} %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control-group">
+      <%= fields_for :notifications do |builder| %>
+        <%= builder.label :send_date, :class => 'control-label' %>
+        <div class="control-group">
+        <%= builder.date_select :send_date,{:start_year => Time.now.year,
           :use_short_month => true,
           :order => [:month, :day, :year],
           :prompt => {:month => 'Month', :day => 'Day', :year => 'Year'}},
           {:class => 'year',
-          :id => 'reminder_date'} %>
+          :id => 'send_date'} %>
         </div>
-      </div>
+      <% end %>
+    </div>
   </div>
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>

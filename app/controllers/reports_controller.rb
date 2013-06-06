@@ -1,6 +1,10 @@
 class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
+<<<<<<< HEAD
+  before_filter :authenticate_user!
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
   def index
     @reports = Report.all
 
@@ -14,6 +18,7 @@ class ReportsController < ApplicationController
   # GET /reports/1.json
   def show
     @report = Report.find(params[:id])
+    @program = Program.find(@report.program_id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +30,8 @@ class ReportsController < ApplicationController
   # GET /reports/new.json
   def new
     @report = Report.new
+    # @report.messages = Message.new
+    @report.messages.build
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,5 +1,17 @@
 Landshark::Application.routes.draw do
-  resources :recipients
+<<<<<<< HEAD
+  devise_for :users
+
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+  resources :messages
+
+  get "home/index"
+  root :to => 'home#index'
+
+  resources :recipients do
+    collection { post :import }
+  end
 
 
   resources :conversations
@@ -11,12 +23,8 @@ Landshark::Application.routes.draw do
   resources :programs
 
 
-  resources :recipents
-
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
-  match 'send' => 'text#send_text_message'
-
 
 
   # The priority is based upon order of creation:
@@ -68,7 +76,6 @@ Landshark::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'recipients#index'
 
   # See how all your routes lay out with "rake routes"
 

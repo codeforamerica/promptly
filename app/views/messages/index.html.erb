@@ -1,0 +1,32 @@
+<div class="row-fluid">
+  <div class="span6 pull-left">
+  <% @program.each do |program| %>
+    <div class="btn-group dropdown">
+      <a class="btn dropdown-toggle" data-toggle="dropdown_#{program.name}" href="#">
+        Program: <%= program.name %>
+        <span class="caret"></span>
+      </a>
+    </div>
+  <% program.reports.each do |report| %>
+      <ul class="dropdown_#{program.name}-menu unstyled">
+        <li><a href="#"><%= report.report_type %></a></li>
+      </ul>
+    <div class="messageMain span6 pull-right">
+      <% report.messages.each do |message| %>
+        <p><%= message.type %></p>
+        <p><%= message.messagetext %></p>
+      <% end %>
+        <p><%= link_to 'Show', report %></p>
+        <p><%= link_to 'Edit', edit_report_path(report) %></p>
+    </div>
+  <% end %>
+ <% end %> 
+  <br />
+
+  <%= link_to 'New report', new_report_path %>
+  </div>
+</div>
+
+<script>
+  $('.dropdown-toggle').dropdown()
+</script>
