@@ -1,4 +1,5 @@
 require 'spec_helper'
+include ActionDispatch::TestProcess
 
 describe Recipient do
 	it "has a valid factory" do
@@ -12,5 +13,11 @@ describe Recipient do
     should have_and_belong_to_many(:reports)
   end
 
-  it "accepts an uploaded spreadsheet"
+  describe "Importing data" do
+    data = fixture_file_upload(Rails.root + 'spec/files/landshark.csv', 'text/csv')
+
+    it "should read csv and add 2 new records" do
+      expect {Recipient.import(data)}.to change(Recipient,:count).by(2)
+    end
+  end
 end
