@@ -5,10 +5,9 @@
   <%= @recipient.phone %>
 </p>
 
-<p>
-  <b>Reminder Date:</b>
-  <%= @recipient.reminder_date.to_s(:date_format) %>
-</p>
+  <ul class="unstyled">
+    <%= render(:partial => 'notifications', :collection => notifications, :as => :reminders) || 'You have no reminders' %>
+  </ul>
 <p>
 <b>Reports:</b>
   <% @recipient.reports.each do |report| %>
