@@ -12,6 +12,7 @@ gem 'devise'
 gem 'cancan'
 gem 'foreman'
 gem 'jquery-rails', '2.0.2'
+gem 'role_model'
 
 group :development do
   gem 'pry'

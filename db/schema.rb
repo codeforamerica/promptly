@@ -12,10 +12,10 @@
 # It's strongly recommended to check this file into your version control system.
 
 <<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130606172825) do
+ActiveRecord::Schema.define(:version => 20130606231104) do
 =======
-ActiveRecord::Schema.define(:version => 20130529205044) do
->>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+ActiveRecord::Schema.define(:version => 20130606172825) do
+>>>>>>> 5301d714a70b4baa13c7e87d8a4e04e95d7dae6f
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(:version => 20130529205044) do
     t.integer  "program_id"
   end
 
-<<<<<<< HEAD
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -115,11 +114,14 @@ ActiveRecord::Schema.define(:version => 20130529205044) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+<<<<<<< HEAD
 =======
->>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+
+>>>>>>> 5301d714a70b4baa13c7e87d8a4e04e95d7dae6f
 end
