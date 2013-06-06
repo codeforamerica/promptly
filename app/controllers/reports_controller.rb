@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   # GET /reports
   # GET /reports.json
+  before_filter :authenticate_user!
   def index
     @reports = Report.all
 
