@@ -31,11 +31,13 @@ group :assets do
   gem 'coffee-rails'
 end
 
-
 gem 'jquery-rails', '2.0.2'
 
 group :test do
   gem 'capybara', '1.1.2'
+  gem 'guard-rspec'
+  gem 'shoulda-matchers'
+  gem 'rake'
 end
 
 group :production do
