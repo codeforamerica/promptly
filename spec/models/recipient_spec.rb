@@ -1,18 +1,23 @@
 require 'spec_helper'
+include ActionDispatch::TestProcess
 
 describe Recipient do
-	before :each do
-	    @recipient = Recipient.new(:phone => +19196361635, :case => 1234)
-	end
-  subject { @recipient }
+	it "has a valid factory" do
+    FactoryGirl.create(:recipient).should be_valid
+    FactoryGirl.create(:report)
+  end
+  it "is invalid without a phone number" do
+    FactoryGirl.build(:recipient, phone: nil).should_not be_valid
+  end
+  it "has many reports" do
+    should have_and_belong_to_many(:reports)
+  end
 
-  it { should respond_to(:phone) }
-  it { should respond_to(:case) }
+  describe "Importing data" do
+    data = fixture_file_upload(Rails.root + 'spec/files/landshark.csv', 'text/csv')
 
-  it { should be_valid }
-
-  describe "when phone is not present" do
-    before { @recipient.phone = " " }
-    it { should_not be_valid }
+    it "should read csv and add 2 new records" do
+      expect {Recipient.import(data)}.to change(Recipient,:count).by(2)
+    end
   end
 end
