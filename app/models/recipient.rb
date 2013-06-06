@@ -16,6 +16,7 @@ class Recipient < ActiveRecord::Base
   validates :phone, :presence => true
 
   def self.import(file)
+    puts file
 	  spreadsheet = open_spreadsheet(file)
 	  header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|

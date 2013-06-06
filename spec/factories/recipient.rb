@@ -9,4 +9,5 @@ FactoryGirl.define do
     report_type "Calfresh"
     humanname "a test"
   end
+
 end
