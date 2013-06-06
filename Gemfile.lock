@@ -157,6 +157,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    role_model (0.8.1)
     roo (1.11.2)
       nokogiri
       rubyzip
@@ -241,6 +242,7 @@ DEPENDENCIES
   rack-cors
   rails (= 3.2.13)
   rake
+  role_model
   roo
   rspec-rails
   sass-rails (= 3.2.5)
