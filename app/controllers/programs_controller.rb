@@ -1,6 +1,11 @@
 class ProgramsController < ApplicationController
+<<<<<<< HEAD
 
   before_filter :authenticate_user!
+=======
+  # GET /programs
+  # GET /programs.json
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
   def index
     @programs = Program.all
 

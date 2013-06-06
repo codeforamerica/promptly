@@ -5,12 +5,15 @@ require 'spec_helper'
 describe "Reports" do
   before :each do
      FactoryGirl.create(:program)
+<<<<<<< HEAD
      @user = FactoryGirl.create(:user)
      #sign in
     visit new_user_session_path
     fill_in "Email",    :with => @user.email
     fill_in "Password", :with => @user.password
     click_button "Sign in"
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
   end
   it "Adds a new report and displays the results" do
     visit reports_path
