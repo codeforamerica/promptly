@@ -4,7 +4,13 @@ require 'spec_helper'
 
 describe "Recipients" do
   before :each do
-     @report = FactoryGirl.create(:report, :humanname => "the test report")
+    @report = FactoryGirl.create(:report, :humanname => "the test report")
+    @user = FactoryGirl.create(:user)
+    #sign in
+    visit new_user_session_path
+    fill_in "Email",    :with => @user.email
+    fill_in "Password", :with => @user.password
+    click_button "Sign in"
   end
 
   it "Adds a new recipient and displays the results" do
