@@ -1,4 +1,6 @@
 Landshark::Application.routes.draw do
+  devise_for :users
+
   resources :messages
 
   get "home/index"

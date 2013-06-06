@@ -40,4 +40,5 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
   SmsSpec.driver = :"twilio-ruby"
+  config.include Devise::TestHelpers, :type => :controller
 end

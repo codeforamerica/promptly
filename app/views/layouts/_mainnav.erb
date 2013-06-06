@@ -14,10 +14,20 @@
 					</li>
 					<li>
 					</li>
-					<li class="<%= 'active' if current_page?(:controller => 'recipients', :action => 'index')%>">
+					<li class="<%= 'active' if current_page?(recipients_url)%>">
 						<%= link_to "Recipients", recipients_path %>
 					</li>
 				</ul>
+				<div class="pull-right span2">
+				<% if user_signed_in? %>
+				  Logged in as <strong><%= current_user.email %></strong>.
+				  <%= link_to 'Edit profile', edit_user_registration_path %> |
+				  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+				<% else %>
+				  <%= link_to "Sign up", new_user_registration_path %> |
+				  <%= link_to "Login", new_user_session_path %>
+				<% end %>
+				</div>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
