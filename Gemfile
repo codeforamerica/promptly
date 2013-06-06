@@ -8,6 +8,12 @@ gem 'unicorn'
 gem 'delayed_job_active_record'
 gem 'bootstrap-sass', '~> 2.1.0'
 gem 'roo'
+<<<<<<< HEAD
+gem 'devise'
+gem 'cancan'
+=======
+gem 'foreman'
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
 
 group :development do
   gem 'pry'
@@ -30,7 +36,10 @@ group :assets do
   gem 'coffee-rails'
 end
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
 gem 'jquery-rails', '2.0.2'
 
 group :test do
@@ -38,6 +47,7 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem 'shoulda-matchers'
+  gem 'rake'
 end
 
 group :production do

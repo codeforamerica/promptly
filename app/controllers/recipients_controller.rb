@@ -2,6 +2,10 @@ class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   before_filter :standardize_numbers, only: [ :create, :update ]
+<<<<<<< HEAD
+  before_filter :authenticate_user!
+=======
+>>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
   # after_filter :log_conversation, only: [ :create, :update]
   # GET /recipients
   # GET /recipients.json
