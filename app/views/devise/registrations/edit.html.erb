@@ -18,6 +18,10 @@
 
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></div>
+  
+  <div class="field-label"><%= f.label :roles, 'Select a role' %><br />
+    <%= f.collection_select :roles, User.valid_roles, :to_s, :to_s %>
+  </div>
 
   <div><%= f.submit "Update" %></div>
 <% end %>
