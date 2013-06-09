@@ -1,12 +1,17 @@
+p.login {
+	color: darken(#FFF, 5%);
+	padding: 0 0 0 0;
+}
+
 .dumbPadding {
 	padding: 10px 0px;
 }
 
+.navbar,
 .navbar-inner {
-	background: #3D6AA2;
+	text-shadow: none;
 	.brand {
 		text-shadow: none;
-		color: #d0d0d0;
 		font-weight: 500;
 		font-size: 32px;
 	}
