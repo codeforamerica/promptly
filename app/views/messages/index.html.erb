@@ -1,6 +1,28 @@
 <%= render 'breadcrumb' %>
 <div class="row-fluid">
-  <div class="span6 pull-left">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Program</th>
+          <th>Report Type</th>
+          <th>Number of Recipients</th>
+          <th>Date Sent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each do |message| %>
+        <tr>
+          <td><%= message.report_id %></td>
+          <td><%= message.type %></td>
+          <td></td>
+          <td><%= message.send_date %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
   <% @program.each do |program| %>
     <div class="btn-group dropdown">
       <a class="btn dropdown-toggle" data-toggle="dropdown_#{program.name}" href="#">
@@ -8,7 +30,7 @@
         <span class="caret"></span>
       </a>
     </div>
-  <% program.reports.each do |report| %>
+<!--  <% program.reports.each do |report| %>
       <ul class="dropdown_#{program.name}-menu unstyled">
         <li><a href="#"><%= report.report_type %></a></li>
       </ul>
@@ -22,7 +44,7 @@
     </div>
   <% end %>
  <% end %> 
-  <br />
+  <br /> -->
 
   <%= link_to 'New report', new_report_path %>
   </div>

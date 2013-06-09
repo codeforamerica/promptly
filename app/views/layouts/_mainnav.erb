@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse"> <!-- navbar -->
+<div class="navbar"> <!-- navbar -->
 	<div class="navbar-inner">
 		<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -13,20 +13,18 @@
 						<%= link_to "Home", root_path %>
 					</li>
 					<li class="<%= 'active' if current_page?(messages_url)%>">
-						<%= link_to "messages", messages_path %>
+						<%= link_to "Messages", messages_path %>
 					</li>
 					<li class="<%= 'active' if current_page?(recipients_url)%>">
 						<%= link_to "Recipients", recipients_path %>
 					</li>
 				</ul>
-				<div class="pull-right span2">
+				<div class="pull-right span3">
 				<% if user_signed_in? %>
-				  Logged in as <strong><%= current_user.email %></strong>.
-				  <%= link_to 'Edit profile', edit_user_registration_path %> |
-				  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+				  <p class="login">Logged in as <strong><%= current_user.email %></strong>.</p>
+				  <p class="login"><%= link_to 'Edit profile', edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
 				<% else %>
-				  <%= link_to "Sign up", new_user_registration_path %> |
-				  <%= link_to "Login", new_user_session_path %>
+				  <p class="login"><%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></p>
 				<% end %>
 				</div>
 			</div>
