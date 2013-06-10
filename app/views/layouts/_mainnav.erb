@@ -19,12 +19,11 @@
 						<%= link_to "Recipients", recipients_path %>
 					</li>
 				</ul>
-				<div class="pull-right span3">
+				<div class="login pull-right">
 				<% if user_signed_in? %>
-				  <p class="login">Logged in as <strong><%= current_user.email %></strong>.</p>
-				  <p class="login"><%= link_to 'Edit profile', edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+				  <p><%= link_to 'Edit profile', edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
 				<% else %>
-				  <p class="login"><%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></p>
+				  <p><%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></p>
 				<% end %>
 				</div>
 			</div>
@@ -32,3 +31,9 @@
 		</div>
 	</div>
 </div> <!-- /navbar -->
+<% if user_signed_in? %>
+	<div class="username">
+		<p>Logged in as <strong><%= current_user.email %></strong>.</p>
+	</div>
+<% else %>
+<% end %>
