@@ -1,12 +1,30 @@
+.login {
+	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+
+	a {
+		color: darken(#FFF, 5%);
+		padding: 0 0 0 0;
+	}
+}
+
+.username {
+	display: block;
+	clear: all;
+	float: right;
+
+	margin: -10px 15px 30px 0;
+	color: #F38630;
+}
+
 .dumbPadding {
 	padding: 10px 0px;
 }
 
 .navbar-inner {
-	background: #3D6AA2;
+	height: $baseLineHeight;
+	text-shadow: none;
 	.brand {
 		text-shadow: none;
-		color: #d0d0d0;
 		font-weight: 500;
 		font-size: 32px;
 	}

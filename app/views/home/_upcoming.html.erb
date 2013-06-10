@@ -1,8 +1,0 @@
-<h3>Upcoming messages</h3>
-	<% @upcoming.each do |message| %>
-	<dl>
-	  <dt><%= message.send_date.to_s(:date_format) %></dt>
-	  <dt><%= @recipient.find(message.recipient_id).first.phone %></dt>
-	  <dt><%= @report.find(message.report_id).first.report_type %></dt>
-	</dl>
-	<% end %>

@@ -2,7 +2,7 @@ class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   before_filter :standardize_numbers, only: [ :create, :update ]
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
   load_and_authorize_resource
   # after_filter :log_conversation, only: [ :create, :update]
   # GET /recipients
@@ -53,20 +53,7 @@ class RecipientsController < ApplicationController
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-        @recipient.reports.each do |report|
-          Notifier.perform(@recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
-          if @notification.send_date < DateTime.now
-            Notifier.perform(@recipient, "Your #{report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
-          else
-            # use Notifier.new here so delayed job can hook into the perform method
-            Delayed::Job.enqueue(Notifier.new(@recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @notification.send_date)
-          end
-          @notification.report_id = report.id
-          @notification.recipient_id = @recipient.id
-          @notification.send_date = @notification.send_date
-          
-          @notification.save
-        end
+        Notifier.perform(@recipient, @notification)
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }

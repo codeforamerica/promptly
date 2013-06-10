@@ -1,0 +1,43 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+
+ */
+
+// Re-doing the Bootstrap color scheme
+$white: #FFFFFF;
+$blue: #69D2E7;
+$aqua: #A7DBD8;
+$tan: #E0E4CC; 
+$orange: #F38630;
+$red: #FA6900;
+
+$linkColor: $red;
+$placeholderText: $tan;
+
+$navbarBackground: $blue;
+$navbarBackgroundHighlight: $blue;
+$navbarBrandColor: $white;
+$navbarText: $white;
+$navbarBrandColor: $white;
+$navbarLinkColor: darken($white, 5%);
+$navbarLinkColorHover: $white;
+$navbarLinkColorActive: $orange;
+$navbarLinkBackgroundHover: $navbarBackground;
+$navbarLinkBackgroundActive: $white;
+
+
+
+$btnPrimaryBackground: $linkColor;
+$btnPrimaryBackgroundHighlight: $linkColor;
+
+@import "bootstrap";
+@import "main";

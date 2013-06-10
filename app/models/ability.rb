@@ -5,7 +5,7 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    # a signed-in user can do everything
+    
     if user.has_role? :admin
      # an admin can do everything
       can :manage, :all
