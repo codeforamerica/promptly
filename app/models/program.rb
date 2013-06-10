@@ -1,5 +1,5 @@
 class Program < ActiveRecord::Base
-  attr_accessible :description, :name, :report_ids, :report_id
+  attr_accessible :description, :name, :report_id
   has_many :reports
   has_and_belongs_to_many :recipients
 

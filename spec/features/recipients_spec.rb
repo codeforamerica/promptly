@@ -11,7 +11,6 @@ describe "Recipients" do
     fill_in "Email",    :with => @user.email
     fill_in "Password", :with => @user.password
     click_button "Sign in"
-     @report = FactoryGirl.create(:report, :humanname => "the test report")
   end
 
   it "Adds a new recipient and displays the results" do
