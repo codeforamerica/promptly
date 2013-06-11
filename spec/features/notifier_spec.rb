@@ -32,7 +32,15 @@ describe Notifier do
     ENV['TWILIO_SID'].should_not be_nil
   end
   it "sends a message" do
-    Notifier.perform(@recipient, @notification)
+    account_sid = ENV['TWILIO_SID']
+    auth_token = ENV['TWILIO_TOKEN']
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    # visit("http://twilio.com/Accounts/#{account_sid}/SMS/Messages")
+     
+    theText = @client.account.sms.messages.create(:body => "Candygram.",
+        :to => @recipient.phone,
+        :from => ENV['TWILIO_NUMBER'])
+    theText.should_not be_nil
   end
   describe "logs a message" do
     it "creates a new conversation"

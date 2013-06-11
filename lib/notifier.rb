@@ -64,8 +64,7 @@ class Notifier
   end
 
   def body
-     @recipient.reports.each do |report|
-     end
+    Message.find('report_id =?', @recipient.reports.id)
   end
 
   def notification
