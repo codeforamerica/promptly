@@ -21,30 +21,6 @@
 
   <div class="field">
     <div class="control-group">
-      <%= f.label :report_type, "Form name of this report", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :report_type, :placeholder=>"QR-7, etc." %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :humanname, "Description of this report", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_area :humanname %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :program_id, "Select a program for this report", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.collection_select :program_id, Program.all, :id, :name %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
         <%= f.label :messagetext, "Reminder message text", :class => 'control-label' %>
         <div class="controls">
           <%= f.text_area :messagetext, :rows=>5 %>

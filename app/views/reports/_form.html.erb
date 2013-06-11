@@ -35,13 +35,6 @@
       </div>
     </div>
   </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.fields_for :messages do |builder| %>
-        <%= render 'message_questions', :f => builder %>
-      <% end %>
-    </div>
-  </div>
   <div class="actions">
     <%= f.submit :class=>'btn btn-primary' %>
   </div>
