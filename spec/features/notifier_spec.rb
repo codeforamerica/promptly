@@ -1,5 +1,6 @@
 require 'spec_helper'
 include ActionDispatch::TestProcess
+# Delayed::Worker.delay_jobs = false
 
 describe Notifier do
   before :each do
@@ -31,16 +32,13 @@ describe Notifier do
     ENV['TWILIO_TOKEN'].should_not be_nil
     ENV['TWILIO_SID'].should_not be_nil
   end
-  it "sends a message" do
-    account_sid = ENV['TWILIO_SID']
-    auth_token = ENV['TWILIO_TOKEN']
-    @client = Twilio::REST::Client.new account_sid, auth_token
-    # visit("http://twilio.com/Accounts/#{account_sid}/SMS/Messages")
-     
-    theText = @client.account.sms.messages.create(:body => "Candygram.",
-        :to => @recipient.phone,
-        :from => ENV['TWILIO_NUMBER'])
-    theText.should_not be_nil
+  it "add message to delayed job queue" do
+    @recipient.reports.try(:each) do |report|
+      expect {
+        Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
+        }.to change(Delayed::Job,:count).by(1)
+    end
+    Delayed::Worker.new(quiet: false).work_off.should == [1, 0]
   end
   describe "logs a message" do
     it "creates a new conversation"
