@@ -3,9 +3,9 @@
     <label class="control-label" for="reportName">Choose a program for the message</label>
     <div class="controls">
       <%= p.collection_select :program_id, Program.all, :id, :name %>
+      <span class="help-inline">
+      </span>
     </div>
-    <span class="help-inline">
-      <%= link_to 'Or create', new_program_path %>
-    </span>
   </div>
+
 </div>
