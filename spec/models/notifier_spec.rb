@@ -27,6 +27,13 @@ describe Notifier do
       @notification.save
     end
   end
+  it "has a valid message in the body" do
+    @recipient.reports.try(:each) do |report|
+      test = Notifier.new(@recipient, Message.find_by_report_id(report.id))
+      puts test.attributes[:body]
+      test.attributes[:body].should include(@message.messagetext)
+    end
+  end
   it "has valid twilio credentials" do
     ENV['TWILIO_NUMBER'].should_not be_nil
     ENV['TWILIO_TOKEN'].should_not be_nil
@@ -35,7 +42,7 @@ describe Notifier do
   it "add message to delayed job queue" do
     @recipient.reports.try(:each) do |report|
       expect {
-        Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
+        Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id)), DateTime.now)
         }.to change(Delayed::Job,:count).by(1)
         Delayed::Worker.new(quiet: false).work_off.should == [1, 0]
     end

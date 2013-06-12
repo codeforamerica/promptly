@@ -28,28 +28,37 @@ class Notifier
     
   end
 
-  def initialize(recipient, notification)
-    @recipient, @notification = recipient, notification
+  def initialize(recipient, smsmessage)
+    @recipient, @smsmessage = recipient, smsmessage
   end
 
-  def self.perform(recipient, notification)
-    new(recipient, notification).perform
+  def self.perform(recipient, smsmessage)
+    new(recipient, smsmessage).perform
   end
 
   def perform
     Logger.log(attributes, recipient)
-    client.account.sms.messages.create(attributes).tap do |response|
-    end
+    client.account.sms.messages.create(attributes)
   end
 
   def attributes
     {
       from: from,
       to: to,
-      body: body
+      body: smsmessage
     }
   end
 
+  def notification_add
+    @recipient.reports.each do |report|
+      @notification = Notification.new
+      @notification.report_id = report.id
+      @notification.recipient_id = @recipient.id
+      @notification.send_date = @notification.send_date
+      @notification.save
+    end
+  end
+  
   private
 
   attr_reader :recipient
@@ -64,22 +73,9 @@ class Notifier
   end
 
   def body
-    @notification
-    # @recipient.reports.each do |report|
-    #   Message.find_by_report_id(report.id).messagetext
-    # end
-
+    smsmessage
   end
 
-  def notification_add
-    @recipient.reports.each do |report|
-      @notification = Notification.new
-      @notification.report_id = report.id
-      @notification.recipient_id = @recipient.id
-      @notification.send_date = @notification.send_date
-      @notification.save
-    end
-  end
 
   def account_sid
     ENV["TWILIO_SID"]
