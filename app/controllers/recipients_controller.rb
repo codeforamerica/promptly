@@ -53,7 +53,6 @@ class RecipientsController < ApplicationController
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-        Delayed::Job.enqueue(Notifier.new(@recipient, "hi, i'm a test"), DateTime.now)
         @recipient.reports.try(:each) do |report|
           if @notification.send_date < DateTime.now
             Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
