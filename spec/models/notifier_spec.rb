@@ -41,7 +41,7 @@ describe Notifier do
   it "add message to delayed job queue" do
     @recipient.reports.try(:each) do |report|
       expect {
-        Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id)), DateTime.now)
+        Notifier.delay(priority: 1, run_at: 1.minute.from_now).send_message(@recipient, Message.find_by_report_id(report.id).messagetext)
         }.to change(Delayed::Job,:count).by(1)
         Delayed::Worker.new(quiet: false).work_off.should == [1, 0]
     end

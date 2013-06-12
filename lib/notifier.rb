@@ -41,6 +41,11 @@ class Notifier
     client.account.sms.messages.create(attributes)
   end
 
+  def self.send_message
+    Logger.log(attributes, recipient)
+    client.account.sms.messages.create(attributes)
+  end
+
   def attributes
     {
       from: from,
@@ -49,7 +54,7 @@ class Notifier
     }
   end
 
-  def notification_add
+  def self.notification_add
     @recipient.reports.each do |report|
       @notification = Notification.new
       @notification.report_id = report.id
