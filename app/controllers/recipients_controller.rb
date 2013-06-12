@@ -55,10 +55,12 @@ class RecipientsController < ApplicationController
         format.json { render json: @recipient, status: :created, location: @recipient }
         @recipient.reports.try(:each) do |report|
           if @notification.send_date < DateTime.now
-            Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
+            Notifier.delay(priority: 1, run_at: DateTime.now).new(@recipient, Message.find_by_report_id(report.id).messagetext)
+            # Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
           else
             # use Notifier.new here so delayed job can hook into the perform method
-             Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), @notification.send_date)
+            Notifier.delay(priority: 1, run_at: @notification.send_date).new(@recipient, Message.find_by_report_id(report.id).messagetext)
+             # Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), @notification.send_date)
             Notifier.notification_add
           end
         end
