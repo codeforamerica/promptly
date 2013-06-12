@@ -64,12 +64,14 @@ class Notifier
   end
 
   def body
-    @recipient.reports.each do |report|
-      Message.find_by_report_id(report.id)
-    end
+    @notification
+    # @recipient.reports.each do |report|
+    #   Message.find_by_report_id(report.id).messagetext
+    # end
+
   end
 
-  def notification
+  def notification_add
     @recipient.reports.each do |report|
       @notification = Notification.new
       @notification.report_id = report.id

@@ -37,8 +37,8 @@ describe Notifier do
       expect {
         Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
         }.to change(Delayed::Job,:count).by(1)
+        Delayed::Worker.new(quiet: false).work_off.should == [1, 0]
     end
-    Delayed::Worker.new(quiet: false).work_off.should == [1, 0]
   end
   describe "logs a message" do
     it "creates a new conversation"
