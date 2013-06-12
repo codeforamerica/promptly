@@ -15,6 +15,7 @@ gem 'jquery-rails', '2.0.2'
 gem 'role_model'
 gem 'pg', '0.12.2'
 
+
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'sms-spec'
   gem 'dotenv-rails'
   gem 'database_cleaner'
+  gem "daemons"
 end
 
 # Gems used only for assets and not required

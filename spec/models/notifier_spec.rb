@@ -30,7 +30,6 @@ describe Notifier do
   it "has a valid message in the body" do
     @recipient.reports.try(:each) do |report|
       test = Notifier.new(@recipient, Message.find_by_report_id(report.id))
-      puts test.attributes[:body]
       test.attributes[:body].should include(@message.messagetext)
     end
   end

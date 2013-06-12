@@ -45,7 +45,7 @@ class Notifier
     {
       from: from,
       to: to,
-      body: smsmessage
+      body: body
     }
   end
 
@@ -58,7 +58,7 @@ class Notifier
       @notification.save
     end
   end
-  
+
   private
 
   attr_reader :recipient
@@ -73,7 +73,7 @@ class Notifier
   end
 
   def body
-    smsmessage
+    @smsmessage
   end
 
 
