@@ -62,5 +62,12 @@ class Recipient < ActiveRecord::Base
 		  else raise "Unknown file type: #{file.original_filename}"
 	  end
 	end
-
+  
+  def self.sendNotification(notification, report, recipient)
+    if notification < DateTime.now
+      Notifier.perform(recipient, Message.find_by_report_id(report.id).messagetext)
+    else
+      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+    end
+  end
 end

@@ -19,17 +19,13 @@ describe Notifier do
     end
   end
   it "creates a new notification" do
-    @recipient.reports.each do |report|
-      @notification = Notification.new
-      @notification.report_id = report.id
-      @notification.recipient_id = @recipient.id
-      @notification.send_date = "01/01/2013"
-      @notification.save
-    end
+    expect {
+      Notifier.notification_add(@recipient, @message)
+      }.to change(Notification, :count).by(1)
   end
   it "has a valid message in the body" do
     @recipient.reports.try(:each) do |report|
-      test = Notifier.new(@recipient, Message.find_by_report_id(report.id))
+      test = Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext)
       test.attributes[:body].should include(@message.messagetext)
     end
   end
@@ -41,9 +37,8 @@ describe Notifier do
   it "add message to delayed job queue" do
     @recipient.reports.try(:each) do |report|
       expect {
-        Notifier.delay(priority: 1, run_at: 1.minute.from_now).send_message(@recipient, Message.find_by_report_id(report.id).messagetext)
+        Notifier.delay(priority: 1, run_at: 2.minutes.from_now).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
         }.to change(Delayed::Job,:count).by(1)
-        Delayed::Worker.new(quiet: false).work_off.should == [1, 0]
     end
   end
   describe "logs a message" do
