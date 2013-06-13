@@ -13,15 +13,15 @@
 
   <%= f.fields_for :programs do |builder| %>
     <% render 'programSelector', :p => builder %>
+  <% end %>
     <%= link_to_add_fields "Add program", f, :programs %>
 
-  <% end %>
 
   <%= f.fields_for :reports do |builder| %>
     <% render 'reportSelector', :r => builder %>
   <% end %>
 
-  <div class="field">
+  <div class="field" id="<%= :messagetext %>">
     <div class="control-group">
         <%= f.label :messagetext, "Reminder message text", :class => 'control-label' %>
         <div class="controls">
