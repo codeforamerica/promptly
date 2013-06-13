@@ -18,9 +18,9 @@ describe Notifier do
       report.messages.should_not be_nil
     end
   end
-  it "creates a new notification" do
+  it "logs a new notification" do
     expect {
-      Notifier.notification_add(@recipient, @message)
+      Notifier.log_notification(@recipient, @message)
       }.to change(Notification, :count).by(1)
   end
   it "has a valid message in the body" do

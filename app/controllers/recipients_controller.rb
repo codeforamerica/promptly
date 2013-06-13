@@ -61,7 +61,7 @@ class RecipientsController < ApplicationController
             # use Notifier.new here so delayed job can hook into the perform method
             Notifier.delay(priority: 1, run_at: @notification.send_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
              # Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), @notification.send_date)
-            Notifier.notification_add(@recipient, @notification.send_date)
+            Notifier.log_notification(@recipient, @notification.send_date)
           end
         end
       else
