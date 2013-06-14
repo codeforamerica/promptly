@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606231104) do
+ActiveRecord::Schema.define(:version => 20130614043506) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -45,12 +45,12 @@ ActiveRecord::Schema.define(:version => 20130606231104) do
 
   create_table "messages", :force => true do |t|
     t.string   "type"
-    t.integer  "report_id"
     t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "message_text"
     t.text     "messagetext"
+    t.integer  "report_id"
   end
 
   create_table "notifications", :force => true do |t|
