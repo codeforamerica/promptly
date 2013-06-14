@@ -11,17 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614022304) do
-
-  create_table "children", :force => true do |t|
-    t.string   "name"
-    t.integer  "age"
-    t.integer  "parent_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "children", ["parent_id"], :name => "index_children_on_parent_id"
+ActiveRecord::Schema.define(:version => 20130606231104) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -53,12 +43,6 @@ ActiveRecord::Schema.define(:version => 20130614022304) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "grandparents", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "messages", :force => true do |t|
     t.string   "type"
     t.integer  "report_id"
@@ -76,15 +60,6 @@ ActiveRecord::Schema.define(:version => 20130614022304) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
-
-  create_table "parents", :force => true do |t|
-    t.string   "name"
-    t.integer  "grandparent_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  add_index "parents", ["grandparent_id"], :name => "index_parents_on_grandparent_id"
 
   create_table "programs", :force => true do |t|
     t.string   "name"
