@@ -1,3 +1,5 @@
+<%= debug @message %>
+
 <%= form_for(@message) do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
@@ -10,11 +12,6 @@
       </ul>
     </div>
   <% end %>
-
-  <%= f.fields_for :programs do |builder| %>
-    <% render 'programSelector', :p => builder %>
-  <% end %>
-    <%= link_to_add_fields "Add program", f, :programs %>
 
 
   <%= f.fields_for :reports do |builder| %>
