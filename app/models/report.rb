@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  attr_accessible :humanname, :report_type, :recipient_ids, :program_id
+  attr_accessible :humanname, :report_type, :recipient_id, :program_id, :reminder_id
   attr_accessible :recipient_attributes
   
   belongs_to :reminders
