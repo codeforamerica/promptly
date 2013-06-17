@@ -49,12 +49,13 @@ class Notifier
     }
   end
 
-  def self.log_notification(recipient, send_date)
+   def self.notification_add(recipient, send_date, job_id)
     recipient.reports.each do |report|
       @notification = Notification.new
       @notification.report_id = report.id
       @notification.recipient_id = recipient.id
       @notification.send_date = send_date
+      @notification.job_id = job_id
       @notification.save
     end
   end
