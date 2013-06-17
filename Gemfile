@@ -13,6 +13,7 @@ gem 'cancan'
 gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'role_model'
+gem 'formtastic'
 
 group :development do
   gem 'pry'
