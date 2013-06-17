@@ -18,11 +18,6 @@ describe Notifier do
       report.messages.should_not be_nil
     end
   end
-  it "logs a new notification" do
-    expect {
-      Notifier.log_notification(@recipient, @message)
-      }.to change(Notification, :count).by(1)
-  end
   it "has a valid message in the body" do
     @recipient.reports.try(:each) do |report|
       test = Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext)
@@ -41,6 +36,23 @@ describe Notifier do
         }.to change(Delayed::Job,:count).by(1)
     end
   end
+
+  it "adds delayed job id to notifications and creates new notification" do
+    @recipient.reports.try(:each) do |report|
+      test = Notifier.delay(priority: 1, run_at: 2.minutes.from_now).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+      # binding.pry
+      expect {
+      Notifier.notification_add(@recipient, @message, test.id)
+      }.to change(Notification, :count).by(1)
+    end
+  end
+
+  it "deletes old notifications and delayed jobs on update" do
+    @recipient.reports.try(:each) do |report|
+      old_notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
+    end
+  end
+
   describe "logs a message" do
     it "creates a new conversation"
   end
