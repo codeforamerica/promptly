@@ -5,6 +5,7 @@ describe Recipient do
 	it "has a valid factory" do
     FactoryGirl.create(:recipient).should be_valid
     FactoryGirl.create(:report)
+    FactoryGirl.create(:message)
   end
   it "is invalid without a phone number" do
     FactoryGirl.build(:recipient, phone: nil).should_not be_valid
@@ -14,6 +15,9 @@ describe Recipient do
   end
 
   describe "Importing data" do
+    before :each do
+     FactoryGirl.create(:recipient)
+   end
     data = fixture_file_upload(Rails.root + 'spec/files/landshark.csv', 'text/csv')
 
     it "should read csv and add 2 new records" do

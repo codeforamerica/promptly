@@ -63,15 +63,12 @@ class Recipient < ActiveRecord::Base
 		  else raise "Unknown file type: #{file.original_filename}"
 	  end
 	end
-
-def self.sendNotification(sendDate, report, recipient)
-    # Notifier.perform(recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
-    if sendDate < DateTime.now
-      Notifier.perform(recipient, "Your #{report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
+  
+  def self.sendNotification(notification, report, recipient)
+    if notification < DateTime.now
+      Notifier.perform(recipient, Message.find_by_report_id(report.id).messagetext)
     else
-      # use Notifier.new here so delayed job can hook into the perform method
-      Delayed::Job.enqueue(Notifier.new(recipient, "Your #{report.humanname} report is due #{sendDate.to_s(:date_format)}. Need help? Call (415) 558-1001."), sendDate)
+      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
     end
   end
-
 end

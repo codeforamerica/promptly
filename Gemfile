@@ -14,16 +14,18 @@ gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'role_model'
 gem 'formtastic'
+gem 'pg', '0.12.2'
 
-group :development do
-  gem 'pry'
-  gem 'pry-nav'
-end
 
 group :development, :test do
+  gem 'pry'
+  gem 'pry-nav'
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails'
   gem 'sms-spec'
+  gem 'dotenv-rails'
+  gem 'database_cleaner'
+  gem "daemons"
 end
 
 # Gems used only for assets and not required
@@ -42,8 +44,4 @@ group :test do
   gem "guard-rspec"
   gem 'shoulda-matchers'
   gem 'rake'
-end
-
-group :production do
-  gem 'pg', '0.12.2'
 end

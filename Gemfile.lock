@@ -54,6 +54,8 @@ GEM
       sass (~> 3.1)
     compass-rails (1.0.3)
       compass (>= 0.12.2, < 0.14)
+    daemons (1.1.9)
+    database_cleaner (1.0.1)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
     delayed_job_active_record (0.4.4)
@@ -66,6 +68,7 @@ GEM
       warden (~> 1.2.1)
     diff-lcs (1.2.4)
     dotenv (0.8.0)
+    dotenv-rails (0.8.0)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -232,8 +235,11 @@ DEPENDENCIES
   capybara
   coffee-rails
   compass-rails
+  daemons
+  database_cleaner
   delayed_job_active_record
   devise
+  dotenv-rails
   factory_girl_rails
   font-awesome-sass-rails
   foreman
