@@ -56,12 +56,9 @@ class RecipientsController < ApplicationController
         @recipient.reports.try(:each) do |report|
           if @notification.send_date < DateTime.now
             Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
-            # Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), DateTime.now)
           else
-            # use Notifier.new here so delayed job can hook into the perform method
-            Notifier.delay(priority: 1, run_at: @notification.send_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
-             # Delayed::Job.enqueue(Notifier.new(@recipient, Message.find_by_report_id(report.id).messagetext), @notification.send_date)
-            Notifier.log_notification(@recipient, @notification.send_date)
+            theJob = Notifier.delay(priority: 1, run_at: @notification.send_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+            Notifier.notification_add(@recipient, @notification.send_date, theJob.id)
           end
         end
       else
@@ -76,6 +73,26 @@ class RecipientsController < ApplicationController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
+        @notification_new = Notification.new(params[:notifications])
+        @recipient.reports.try(:each) do |report|
+          @notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
+          notifier_job = Delayed::Job.find_by_id(@notification.job_id)
+          puts "***********************#{notifier_job}*****************"
+          if notifier_job
+            notifier_job.destroy
+          end
+          if @notification
+            puts "***********************#{@notification.id}*****************"
+             @notification.destroy 
+          end
+          # tie this to the params send date
+          if @notification_new.send_date < DateTime.now
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+          else
+            theJob = Notifier.delay(priority: 1, run_at: @notification_new.send_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+            Notifier.notification_add(@recipient, @notification_new.send_date, theJob.id)
+          end
+        end
         format.html { redirect_to @recipient, notice: 'Recipient was successfully updated.' }
         format.json { head :no_content }
       else
