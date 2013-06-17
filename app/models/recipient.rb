@@ -1,5 +1,6 @@
 class Recipient < ActiveRecord::Base
   attr_accessible :active, :case, :phone, :reminder_date, :report_attributes, :notification_attributes
+  has_and_belongs_to_many :reminders
   has_and_belongs_to_many :reports
   has_and_belongs_to_many :conversations
   has_and_belongs_to_many :programs

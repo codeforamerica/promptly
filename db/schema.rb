@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617155912) do
+ActiveRecord::Schema.define(:version => 20130617185143) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -45,20 +45,19 @@ ActiveRecord::Schema.define(:version => 20130617155912) do
 
   create_table "messages", :force => true do |t|
     t.string   "type"
-    t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "message_text"
-    t.text     "messagetext"
+    t.integer  "reminder_id"
     t.integer  "report_id"
   end
 
   create_table "notifications", :force => true do |t|
     t.integer  "report_id"
     t.integer  "recipient_id"
-    t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.datetime "sent_date"
   end
 
   create_table "programs", :force => true do |t|
@@ -66,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20130617155912) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "report_id"
+    t.integer  "reminder_id"
   end
 
   create_table "programs_recipients", :id => false, :force => true do |t|
@@ -90,11 +89,12 @@ ActiveRecord::Schema.define(:version => 20130617155912) do
 
   create_table "reminders", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "program_id"
     t.integer  "report_id"
     t.integer  "message_id"
+    t.integer  "recipient_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20130617155912) do
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "report_type"
+    t.integer  "reminder_id"
     t.integer  "program_id"
   end
 

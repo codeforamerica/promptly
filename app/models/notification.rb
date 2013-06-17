@@ -1,5 +1,5 @@
 class Notification < ActiveRecord::Base
-	attr_accessible :recipient_id, :report_id, :send_date
+	attr_accessible :recipient_id, :reminder_id, :send_date
   belongs_to :recipient
-  belongs_to :report
+  belongs_to :reminder
 end
