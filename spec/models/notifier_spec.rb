@@ -46,6 +46,13 @@ describe Notifier do
       }.to change(Notification, :count).by(1)
     end
   end
+
+  it "deletes old notifications and delayed jobs on update" do
+    @recipient.reports.try(:each) do |report|
+      old_notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
+    end
+  end
+
   describe "logs a message" do
     it "creates a new conversation"
   end

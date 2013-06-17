@@ -77,12 +77,10 @@ class RecipientsController < ApplicationController
         @recipient.reports.try(:each) do |report|
           @notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
           notifier_job = Delayed::Job.find_by_id(@notification.job_id)
-          puts "***********************#{notifier_job}*****************"
           if notifier_job
             notifier_job.destroy
           end
           if @notification
-            puts "***********************#{@notification.id}*****************"
              @notification.destroy 
           end
           # tie this to the params send date
