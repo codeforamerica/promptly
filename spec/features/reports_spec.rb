@@ -19,7 +19,6 @@ describe "Reports" do
       click_link 'New Report'
       fill_in 'Form name of this report', with: "Test report"
       fill_in 'report_humanname', with: "this is just a test"
-      select "Calfresh", :from => "report_program_id"
       click_button "Create Report"
     }.to change(Report,:count).by(1)
     page.should have_content "Report was successfully created."
