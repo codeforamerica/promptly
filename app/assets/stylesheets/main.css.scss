@@ -1,5 +1,7 @@
+@import "application.css";
+
 .login {
-	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
 
 	a {
 		color: darken(#FFF, 5%);
@@ -21,7 +23,7 @@
 }
 
 .navbar-inner {
-	height: $baseLineHeight;
+	// height: $baseLineHeight;
 	text-shadow: none;
 	.brand {
 		text-shadow: none;
@@ -40,5 +42,11 @@
 
 .messageMain {
 	display: none;
+}
+
+//bootstrap override 
+
+.dropdown-menu {
+	// position: relative;
 }
 
