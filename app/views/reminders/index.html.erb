@@ -1,0 +1,36 @@
+<%= render 'breadcrumb' %>
+<%= render 'sorting' %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Program</th>
+          <th>Report Type</th>
+          <th>Number of Recipients</th>
+          <th>Date Sent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reminders.each do |reminder| %>
+        <tr>
+          <td><%= reminder.name %></td>
+          <td><%= reminder.program_id %></td>
+          <td></td>
+          <td><%= reminder.message_id %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+
+  <%= link_to 'New message', new_message_path %>
+  </div>
+</div>
+
+<script>
+  $('.dropdown-toggle').dropdown()
+</script>

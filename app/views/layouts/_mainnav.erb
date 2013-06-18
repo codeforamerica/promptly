@@ -12,8 +12,9 @@
 					<li class="<%= 'active' if current_page?(root_url)%>">
 						<%= link_to "Home", root_path %>
 					</li>
-					<li class="<%= 'active' if current_page?(messages_url)%>">
-						<%= link_to "Messages", messages_path %>
+					<li class="<%= 'active' if current_page?(reminders_url)%> dropdown">
+						<%= link_to "Reminders", reminders_path, :class => "dropdown-toggle" %>
+						<b class="caret"></b>
 					</li>
 					<li class="<%= 'active' if current_page?(recipients_url)%>">
 						<%= link_to "Recipients", recipients_path %>
