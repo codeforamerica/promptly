@@ -12,7 +12,7 @@ FactoryGirl.define do
   end
 
   factory :message do
-		messagetext "Hi, I'm a test."
+		message_text "Hi, I'm a test."
   end
 
 end

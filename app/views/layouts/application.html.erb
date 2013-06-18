@@ -10,8 +10,10 @@
 <body>
   <%= render 'layouts/mainnav' %>
   <div class="container-fluid">
-  	<p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  	<div class="notice">
+      <div><%= notice %></div>
+      <div><%= alert %></div>
+    </div>
     <%= yield %>
   </div>
   <%= render 'layouts/footer' %>

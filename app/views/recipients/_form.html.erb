@@ -30,15 +30,15 @@
   <div class="field">
     <div class="control-group">
       <%= fields_for :notifications do |builder| %>
-        <%= builder.label :send_date, :class => 'control-label' %>
+        <%= builder.label :sent_date, :class => 'control-label' %>
         <div class="control-group">
-        <%= builder.datetime_select :send_date,{:start_year => Time.now.year,
+        <%= builder.datetime_select :sent_date,{:start_year => Time.now.year,
           :use_short_month => false,
           :ampm => true,
           :order => [:month, :day, :year],
           :prompt => {:month => 'Month', :day => 'Day', :year => 'Year', :hour => 'Hour', :minute => 'Minute'}},
           {:class => 'year',
-          :id => 'send_date'} %>
+          :id => 'sent_date'} %>
         </div>
       <% end %>
     </div>
