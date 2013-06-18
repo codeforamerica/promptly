@@ -13,10 +13,7 @@
 						<%= link_to "Home", root_path %>
 					</li>
 					<li class="<%= 'active' if current_page?(reminders_url)%> dropdown">
-						<%= link_to reminders_path, :data => {:toggle => "dropdown"} do %>
-							Reminders
-							<b class="caret"></b>
-						<% end %>
+						<%= link_to reminders_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Reminders<b class="caret"></b><% end %>
 						<%= render 'layouts/reminders_dropdown' %>
 					</li>
 					<li class="<%= 'active' if current_page?(recipients_url)%>">
