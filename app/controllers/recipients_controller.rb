@@ -55,11 +55,11 @@ class RecipientsController < ApplicationController
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
         @recipient.reports.try(:each) do |report|
-          if @notification.send_date < DateTime.now
-            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+          if @notification.sent_date < DateTime.now
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
           else
-            theJob = Notifier.delay(priority: 1, run_at: @notification.send_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
-            Notifier.notification_add(@recipient, @notification.send_date, theJob.id)
+            theJob = Notifier.delay(priority: 1, run_at: @notification.sent_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+            Notifier.notification_add(@recipient, @notification.sent_date, theJob.id)
           end
         end
       else
@@ -85,11 +85,11 @@ class RecipientsController < ApplicationController
              @notification.destroy 
           end
           # tie this to the params send date
-          if @notification_new.send_date < DateTime.now
-            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+          if @notification_new.sent_date < DateTime.now
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
           else
-            theJob = Notifier.delay(priority: 1, run_at: @notification_new.send_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
-            Notifier.notification_add(@recipient, @notification_new.send_date, theJob.id)
+            theJob = Notifier.delay(priority: 1, run_at: @notification_new.sent_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+            Notifier.notification_add(@recipient, @notification_new.sent_date, theJob.id)
           end
         end
         format.html { redirect_to @recipient, notice: 'Recipient was successfully updated.' }

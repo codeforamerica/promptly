@@ -37,16 +37,16 @@ class Recipient < ActiveRecord::Base
       end
 
       if recipient.notifications.blank?
-        @notification.send_date = formatDate
+        @notification.sent_date = formatDate
         recipient.notifications << @notification
         sendNotification(formatDate, @report, recipient)
       else
         recipient.notifications.each do |notification|
-          if notification.report_id == @report.id && notification.send_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
-            notification.update_column('send_date', formatDate)
+          if notification.report_id == @report.id && notification.sent_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
+            notification.update_column('sent_date', formatDate)
             sendNotification(formatDate, @report, recipient)
           elsif notification.report_id != @report.id
-            @notification.send_date = formatDate
+            @notification.sent_date = formatDate
             recipient.notifications << @notification
             sendNotification(formatDate, @report, recipient)
           end
@@ -66,9 +66,9 @@ class Recipient < ActiveRecord::Base
   
   def self.sendNotification(notification, report, recipient)
     if notification < DateTime.now
-      Notifier.perform(recipient, Message.find_by_report_id(report.id).messagetext)
+      Notifier.perform(recipient, Message.find_by_report_id(report.id).message_text)
     else
-      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).messagetext)
+      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).message_text)
     end
   end
 end

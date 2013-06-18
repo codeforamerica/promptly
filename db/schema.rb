@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130617185143) do
+ActiveRecord::Schema.define(:version => 20130618144036) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -52,6 +52,11 @@ ActiveRecord::Schema.define(:version => 20130617185143) do
     t.integer  "report_id"
   end
 
+  create_table "messages_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "message_id"
+  end
+
   create_table "notifications", :force => true do |t|
     t.integer  "report_id"
     t.integer  "recipient_id"
@@ -74,6 +79,11 @@ ActiveRecord::Schema.define(:version => 20130617185143) do
     t.integer "program_id"
   end
 
+  create_table "programs_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "program_id"
+  end
+
   create_table "recipients", :force => true do |t|
     t.string   "phone"
     t.integer  "case"
@@ -81,6 +91,11 @@ ActiveRecord::Schema.define(:version => 20130617185143) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.datetime "reminder_date"
+  end
+
+  create_table "recipients_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "recipient_id"
   end
 
   create_table "recipients_reports", :id => false, :force => true do |t|
@@ -98,13 +113,18 @@ ActiveRecord::Schema.define(:version => 20130617185143) do
     t.integer  "recipient_id"
   end
 
+  create_table "reminders_reports", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "report_id"
+  end
+
   create_table "reports", :force => true do |t|
-    t.string   "type"
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "reminder_id"
     t.integer  "program_id"
+    t.string   "report_type"
   end
 
   create_table "users", :force => true do |t|
