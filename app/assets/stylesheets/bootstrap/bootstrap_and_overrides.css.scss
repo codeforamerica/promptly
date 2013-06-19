@@ -24,3 +24,6 @@ $navbarLinkBackgroundActive: $white;
 
 $btnPrimaryBackground: $linkColor;
 $btnPrimaryBackgroundHighlight: $linkColor;
+
+@import "bootstrap";
+@import "bootstrap-responsive";
