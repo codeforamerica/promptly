@@ -1,21 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Type:</b>
-  <%= @reminder.type %>
+  <b>Name:</b>
+  <%= @reminder.name %>
 </p>
 
 <p>
-  <b>Reminder:</b>
-  <%= @reminder.reminder %>
-</p>
 
 <p>
   <b>Programs:</b>
-  <%= @program %>
+  <%= @reminder.programs.first.id %>
 <p>
   <b>Reports:</b>
-  <%= @reports %>
+  <%= @reminder.reports.first.id %>
 </p>
 
 

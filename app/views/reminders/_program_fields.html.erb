@@ -1,1 +1,22 @@
-<p>Hi</p>
+<fieldset>
+  <div class="field">
+      <div class="control-group">
+        <%= f.label :name, "Name of this program", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control-group">
+        <%= f.label :description, "Description of this report", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_area :description %>
+        </div>
+      </div> 
+    </div>
+  </fieldset>
+  <div>
+    <%= f.hidden_field :_destroy %>
+    <%= link_to "Remove program", '#', class: "remove_fields btn btn-danger btn-small" %>
+  </div>
