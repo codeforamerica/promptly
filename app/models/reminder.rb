@@ -1,6 +1,6 @@
 class Reminder < ActiveRecord::Base
   attr_accessible :created_at, :message_id, :name, :program_id, :report_id, :updated_at
-  attr_accessible :programs_attributes, :reports_attributes
+  attr_accessible :programs_attributes, :reports_attributes, :program_ids, :report_ids
 
   has_and_belongs_to_many :programs
   has_and_belongs_to_many :reports
@@ -8,6 +8,6 @@ class Reminder < ActiveRecord::Base
   has_and_belongs_to_many :recipients
 
   accepts_nested_attributes_for :programs
-  accepts_nested_attributes_for :reports, allow_destroy: true
+  accepts_nested_attributes_for :reports
   accepts_nested_attributes_for :messages
 end
