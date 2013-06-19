@@ -10,38 +10,38 @@
       </ul>
     </div>
   <% end %>
+  
+    <div class="field">
+      <div class="control-group">
+        <%= f.label :name, "Name of this reminder", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :name %>
+        </div>
+      </div>
+    </div>
 
   <%= f.fields_for :programs do |builder| %>
     <% render 'programSelector', :p => builder %>
   <% end %>
+  <%= link_to_add_fields "Add program", f, :programs %>
 
   <%= f.fields_for :reports do |builder| %>
-  <div class="field">
-    <div class="control-group">
-      <label class="control-label" for="reportName">Choose a report for the message</label>
-      <div class="controls">
-        <%= collection_select :reminder, :report_id, @reports, :id, :humanname %>
-      </div>
-      <span class="help-inline">
-      </span>
-    </div>
-  </div>
+    <% render 'reportSelector', :r => builder %>
   <% end %>
+  <%= link_to_add_fields "Add report", f, :reports %>
 
   <%= f.fields_for :messages do |builder| %>
-  <div class="field" id="<%= :messagetext %>">
+  <div class="field" id="<%= :message_text %>">
     <div class="control-group">
-        <%= builder.label :messagetext, "Reminder message text", :class => 'control-label' %>
+        <%= builder.label :message_text, "Reminder message text", :class => 'control-label' %>
         <div class="controls">
-          <%= builder.text_area :messagetext, :rows=>5 %>
+          <%= builder.text_area :message_text, :rows=>5 %>
         </div>
     </div>
   </div>
   <% end %>
 
   <div class="actions">
-    <%= f.actions do %>
-    <%= f.action :submit, :class=>'btn btn-primary' %>
-    <%= end %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

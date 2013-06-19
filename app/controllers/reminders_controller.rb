@@ -1,6 +1,8 @@
 class RemindersController < ApplicationController
   # GET /reminders
   # GET /reminders.json
+  load_and_authorize_resource
+  
   def index
   	@reminders = Reminder.all
     @programs = Program.all
@@ -17,8 +19,8 @@ class RemindersController < ApplicationController
   # GET /reminders/1.json
   def show
     @reminder = Reminder.find(params[:id])
-    @programs = Program.find(@reminder.program_id)
-    @reports = Report.find(@reminder.report_id)
+    # @programs = Program.find(@reminder.program_id)
+    # @reports = Report.find(@reminder.report_id)
 
   end
 
@@ -26,8 +28,9 @@ class RemindersController < ApplicationController
   # GET /reminders/new.json
   def new
     @reminder = Reminder.new
-    report = @reminder.reports.build
-    message = report.messages.build
+    @report = @reminder.reports.build
+    @program = @reminder.programs.build
+    @message = @report.messages.build
 
 
     respond_to do |format|
@@ -45,6 +48,8 @@ class RemindersController < ApplicationController
   # POST /reminders.json
   def create
     @reminder = Reminder.new(params[:reminder])
+    @report = Report.new(params[:report])
+    @program = Program.new(params[:program])
 
     respond_to do |format|
       if @reminder.save
