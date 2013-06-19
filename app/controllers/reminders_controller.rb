@@ -5,9 +5,7 @@ class RemindersController < ApplicationController
   
   def index
   	@reminders = Reminder.all
-    @programs = Program.all
-    @reports = Report.all
-    @messages = Message.all
+
 
     respond_to do |format|
       format.html # index.html.erb
