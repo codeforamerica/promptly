@@ -3,8 +3,6 @@ class MessagesController < ApplicationController
   # GET /messages.json
   def index
     @messages = Message.all
-    @report = Report.all
-    @program = Program.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,8 +25,6 @@ class MessagesController < ApplicationController
   # GET /messages/new.json
   def new
     @message = Message.new
-    report = @message.reports.build
-    # program = report.programs.build
 
     respond_to do |format|
       format.html # new.html.erb
