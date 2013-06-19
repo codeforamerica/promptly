@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <div class="control-group">
-      <%= f.label :humanname, "Description of this report" %>
+      <%= f.label :humanname, "Description of this report", :class => 'control-label' %>
       <div class="controls">
         <%= f.text_area :humanname %>
       </div>
@@ -33,13 +33,6 @@
       <div class="controls">
         <%= f.collection_select :program_id, Program.all, :id, :name %>
       </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.fields_for :messages do |builder| %>
-        <%= render 'message_questions', :f => builder %>
-      <% end %>
     </div>
   </div>
   <div class="actions">

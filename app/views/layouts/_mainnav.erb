@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse"> <!-- navbar -->
+<div class="navbar"> <!-- navbar -->
 	<div class="navbar-inner">
 		<div class="container">
 			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -12,20 +12,19 @@
 					<li class="<%= 'active' if current_page?(root_url)%>">
 						<%= link_to "Home", root_path %>
 					</li>
-					<li>
+					<li class="<%= 'active' if current_page?(reminders_url)%> dropdown">
+						<%= link_to reminders_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Reminders<b class="caret"></b><% end %>
+						<%= render 'layouts/reminders_dropdown' %>
 					</li>
 					<li class="<%= 'active' if current_page?(recipients_url)%>">
 						<%= link_to "Recipients", recipients_path %>
 					</li>
 				</ul>
-				<div class="pull-right span2">
+				<div class="login pull-right">
 				<% if user_signed_in? %>
-				  Logged in as <strong><%= current_user.email %></strong>.
-				  <%= link_to 'Edit profile', edit_user_registration_path %> |
-				  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+				  <p><%= link_to 'Edit profile', edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
 				<% else %>
-				  <%= link_to "Sign up", new_user_registration_path %> |
-				  <%= link_to "Login", new_user_session_path %>
+				  <p><%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></p>
 				<% end %>
 				</div>
 			</div>
@@ -33,3 +32,9 @@
 		</div>
 	</div>
 </div> <!-- /navbar -->
+<% if user_signed_in? %>
+	<div class="username">
+		<p>Logged in as <strong><%= current_user.email %></strong>.</p>
+	</div>
+<% else %>
+<% end %>

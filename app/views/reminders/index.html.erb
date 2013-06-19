@@ -1,0 +1,37 @@
+<%= render 'breadcrumb' %>
+<%= render 'sorting' %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Program</th>
+          <th>Report Type</th>
+          <th>Number of Recipients</th>
+          <th>Date Sent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @reminders.each do |reminder| %>
+        <tr>
+          <td><%= link_to reminder.name, reminder %></td>
+          <td><%= render(:partial => 'programs', :collection => reminder.programs, :as => :program) || 'No program' %></td>
+          <td></td>
+          <td></td>
+          <td><%= link_to 'Edit', edit_reminder_path(reminder), :class=>'btn btn-mini' %>  <%= link_to 'Delete', reminder, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+
+  <%= link_to 'Create reminder', new_reminder_path, :class => 'btn btn-primary' %>
+  </div>
+</div>
+
+<script>
+  $('.dropdown-toggle').dropdown()
+</script>

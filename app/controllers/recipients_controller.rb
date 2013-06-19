@@ -2,7 +2,9 @@ class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   before_filter :standardize_numbers, only: [ :create, :update ]
-  before_filter :authenticate_user!
+  # before_filter :authenticate_user!
+  load_and_authorize_resource
+
   # after_filter :log_conversation, only: [ :create, :update]
   # GET /recipients
   # GET /recipients.json
@@ -52,19 +54,13 @@ class RecipientsController < ApplicationController
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-        @recipient.reports.each do |report|
-          Notifier.perform(@recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
-          if @notification.send_date < DateTime.now
-            Notifier.perform(@recipient, "Your #{report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
+        @recipient.reports.try(:each) do |report|
+          if @notification.sent_date < DateTime.now
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
           else
-            # use Notifier.new here so delayed job can hook into the perform method
-            Delayed::Job.enqueue(Notifier.new(@recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. Need help? Call (415) 558-1001."), @notification.send_date)
+            theJob = Notifier.delay(priority: 1, run_at: @notification.sent_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+            Notifier.notification_add(@recipient, @notification.sent_date, theJob.id)
           end
-          @notification.report_id = report.id
-          @notification.recipient_id = @recipient.id
-          @notification.send_date = @notification.send_date
-          
-          @notification.save
         end
       else
         format.html { render action: "new" }
@@ -78,6 +74,24 @@ class RecipientsController < ApplicationController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
+        @notification_new = Notification.new(params[:notifications])
+        @recipient.reports.try(:each) do |report|
+          @notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
+          notifier_job = Delayed::Job.find_by_id(@notification.job_id)
+          if notifier_job
+            notifier_job.destroy
+          end
+          if @notification
+             @notification.destroy 
+          end
+          # tie this to the params send date
+          if @notification_new.sent_date < DateTime.now
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+          else
+            theJob = Notifier.delay(priority: 1, run_at: @notification_new.sent_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+            Notifier.notification_add(@recipient, @notification_new.sent_date, theJob.id)
+          end
+        end
         format.html { redirect_to @recipient, notice: 'Recipient was successfully updated.' }
         format.json { head :no_content }
       else

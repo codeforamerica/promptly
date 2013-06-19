@@ -11,7 +11,6 @@ describe "Recipients" do
     fill_in "Email",    :with => @user.email
     fill_in "Password", :with => @user.password
     click_button "Sign in"
-     @report = FactoryGirl.create(:report, :humanname => "the test report")
   end
 
   it "Adds a new recipient and displays the results" do
@@ -20,9 +19,11 @@ describe "Recipients" do
       click_link 'New recipient'
       fill_in 'recipient_phone', with: "9196361635"
       select @report.humanname, :from => "Available reports"
-      select "Jan", :from => "notifications[send_date(2i)]"
-      select "1", :from => "notifications[send_date(3i)]"
-      select "2013", :from => "notifications[send_date(1i)]"
+      select "Jan", :from => "notifications[sent_date(2i)]"
+      select "1", :from => "notifications[sent_date(3i)]"
+      select "2013", :from => "notifications[sent_date(1i)]"
+      select "12 PM", :from => "notifications[sent_date(4i)]"
+      select "00", :from => "notifications[sent_date(5i)]"
       click_button "Create Recipient"
     }.to change(Recipient,:count).by(1)
     page.should have_content "Recipient was successfully created."

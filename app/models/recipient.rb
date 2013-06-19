@@ -1,5 +1,6 @@
 class Recipient < ActiveRecord::Base
   attr_accessible :active, :case, :phone, :reminder_date, :report_attributes, :notification_attributes
+  has_and_belongs_to_many :reminders
   has_and_belongs_to_many :reports
   has_and_belongs_to_many :conversations
   has_and_belongs_to_many :programs
@@ -36,16 +37,16 @@ class Recipient < ActiveRecord::Base
       end
 
       if recipient.notifications.blank?
-        @notification.send_date = formatDate
+        @notification.sent_date = formatDate
         recipient.notifications << @notification
         sendNotification(formatDate, @report, recipient)
       else
         recipient.notifications.each do |notification|
-          if notification.report_id == @report.id && notification.send_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
-            notification.update_column('send_date', formatDate)
+          if notification.report_id == @report.id && notification.sent_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
+            notification.update_column('sent_date', formatDate)
             sendNotification(formatDate, @report, recipient)
           elsif notification.report_id != @report.id
-            @notification.send_date = formatDate
+            @notification.sent_date = formatDate
             recipient.notifications << @notification
             sendNotification(formatDate, @report, recipient)
           end
@@ -62,15 +63,12 @@ class Recipient < ActiveRecord::Base
 		  else raise "Unknown file type: #{file.original_filename}"
 	  end
 	end
-
-def self.sendNotification(sendDate, report, recipient)
-    # Notifier.perform(recipient, "Your #{report.humanname} report is due #{@notification.send_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop these text messages.")
-    if sendDate < DateTime.now
-      Notifier.perform(recipient, "Your #{report.humanname} report is due on Monday, May 27th. Need help? Call (415) 558-1001.")
+  
+  def self.sendNotification(notification, report, recipient)
+    if notification < DateTime.now
+      Notifier.perform(recipient, Message.find_by_report_id(report.id).message_text)
     else
-      # use Notifier.new here so delayed job can hook into the perform method
-      Delayed::Job.enqueue(Notifier.new(recipient, "Your #{report.humanname} report is due #{sendDate.to_s(:date_format)}. Need help? Call (415) 558-1001."), sendDate)
+      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).message_text)
     end
   end
-
 end

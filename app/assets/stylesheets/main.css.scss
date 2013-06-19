@@ -1,12 +1,32 @@
+@import "application";
+
+.login {
+	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+
+	a {
+		color: darken(#FFF, 5%);
+		padding: 0 0 0 0;
+	}
+}
+
+.username {
+	display: block;
+	clear: all;
+	float: right;
+
+	margin: -10px 15px 30px 0;
+	color: #F38630;
+}
+
 .dumbPadding {
 	padding: 10px 0px;
 }
 
 .navbar-inner {
-	background: #3D6AA2;
+	// height: $baseLineHeight;
+	text-shadow: none;
 	.brand {
 		text-shadow: none;
-		color: #d0d0d0;
 		font-weight: 500;
 		font-size: 32px;
 	}
@@ -23,4 +43,37 @@
 .messageMain {
 	display: none;
 }
+
+//bootstrap override 
+
+.dropdown-menu {
+	// position: relative;
+}
+
+// Re-doing the Bootstrap color scheme
+$white: #FFFFFF;
+$blue: #69D2E7;
+$aqua: #A7DBD8;
+$tan: #E0E4CC; 
+$orange: #F38630;
+$red: #FA6900;
+
+$linkColor: $red;
+$placeholderText: $tan;
+
+$navbarBackground: $blue;
+$navbarBackgroundHighlight: $blue;
+$navbarBrandColor: $white;
+$navbarText: $white;
+$navbarBrandColor: $white;
+$navbarLinkColor: darken($white, 5%);
+$navbarLinkColorHover: $white;
+$navbarLinkColorActive: $orange;
+$navbarLinkBackgroundHover: $navbarBackground;
+$navbarLinkBackgroundActive: $white;
+
+
+
+$btnPrimaryBackground: $linkColor;
+$btnPrimaryBackgroundHighlight: $linkColor;
 

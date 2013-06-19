@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @reminder.name %>
+</p>
+
+<p>
+
+<p>
+  <b>Programs:</b>
+  <%= @reminder.programs.first.id %>
+<p>
+  <b>Reports:</b>
+  <%= @reminder.reports.first.id %>
+</p>
+
+
+<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
+<%= link_to 'Back', reminders_path %>

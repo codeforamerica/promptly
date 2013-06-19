@@ -1,7 +1,9 @@
+<%= debug @message %>
+
 <%= form_for(@message) do |f| %>
   <% if @message.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this report from being saved:</h2>
 
       <ul>
       <% @message.errors.full_messages.each do |msg| %>
@@ -11,26 +13,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :messagetext %><br />
-    <%= f.text_area :messagetext %>
-  </div>
-  <div class="field">
+
+  <%= f.fields_for :reports do |builder| %>
+    <% render 'reportSelector', :r => builder %>
+  <% end %>
+
+  <div class="field" id="<%= :messagetext %>">
     <div class="control-group">
-      <div class="controls">
-        <%= f.collection_select :report_ids, Report.all, :id, :humanname %>
-      </div>
+        <%= f.label :messagetext, "Reminder message text", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_area :messagetext, :rows=>5 %>
+        </div>
     </div>
   </div>
-  <div class="field">
-    <%= f.label :send_date %><br />
-    <%= f.datetime_select :send_date %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class=>'btn btn-primary' %>
   </div>
 <% end %>

@@ -27,6 +27,8 @@ class MessagesController < ApplicationController
   # GET /messages/new.json
   def new
     @message = Message.new
+    report = @message.reports.build
+    # program = report.programs.build
 
     respond_to do |format|
       format.html # new.html.erb

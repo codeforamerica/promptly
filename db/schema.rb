@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20130606172825) do
-=======
-ActiveRecord::Schema.define(:version => 20130529205044) do
->>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
+ActiveRecord::Schema.define(:version => 20130619061854) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -49,20 +45,25 @@ ActiveRecord::Schema.define(:version => 20130529205044) do
 
   create_table "messages", :force => true do |t|
     t.string   "type"
-    t.integer  "report_id"
-    t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "message_text"
-    t.text     "messagetext"
+    t.integer  "reminder_id"
+    t.integer  "report_id"
+  end
+
+  create_table "messages_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "message_id"
   end
 
   create_table "notifications", :force => true do |t|
     t.integer  "report_id"
     t.integer  "recipient_id"
-    t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.integer  "job_id"
+    t.datetime "sent_date"
   end
 
   create_table "programs", :force => true do |t|
@@ -70,11 +71,16 @@ ActiveRecord::Schema.define(:version => 20130529205044) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.integer  "report_id"
+    t.integer  "reminder_id"
   end
 
   create_table "programs_recipients", :id => false, :force => true do |t|
     t.integer "recipient_id"
+    t.integer "program_id"
+  end
+
+  create_table "programs_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
     t.integer "program_id"
   end
 
@@ -87,21 +93,39 @@ ActiveRecord::Schema.define(:version => 20130529205044) do
     t.datetime "reminder_date"
   end
 
+  create_table "recipients_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "recipient_id"
+  end
+
   create_table "recipients_reports", :id => false, :force => true do |t|
     t.integer "recipient_id"
     t.integer "report_id"
   end
 
+  create_table "reminders", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "report_id"
+    t.integer  "message_id"
+    t.integer  "recipient_id"
+  end
+
+  create_table "reminders_reports", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "report_id"
+  end
+
   create_table "reports", :force => true do |t|
-    t.string   "type"
     t.text     "humanname"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-    t.string   "report_type"
+    t.integer  "reminder_id"
     t.integer  "program_id"
+    t.string   "report_type"
   end
 
-<<<<<<< HEAD
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -115,11 +139,10 @@ ActiveRecord::Schema.define(:version => 20130529205044) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
-=======
->>>>>>> 7b8ab7086104eb504f49dfc3d8c2f9b614f5351c
 end

@@ -1,8 +1,0 @@
-<h3 id="recentmessages">Recent</h3>
-
-<% @recents.each do |recents| %>
-	<dl>
-    <dt>Sent to <%= link_to recents.to_number, recipient_path(recents.recipient_ids) %> on <%= recents.date.to_s(:date_format) %>:</dt>
-    <dd><%= recents.message %></dd>
- </dl>
-<% end %>

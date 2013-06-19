@@ -1,0 +1,939 @@
+<?xml version='1.0' encoding='ISO-8859-1' standalone='yes'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN' 'http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' >
+<head>
+<title>Database documentation</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF8"/>
+<style type='text/css'>
+	 #dbs {font-family:Tahoma,Dialog,Sans-Serif;font-size:12px;background:#fff;width:80%;border-collapse:collapse;text-align:left;margin:20px;}
+	 #dbs thead{background:#ddd;}
+	 #dbs th{font-size:12px;font-weight:bold;color:#333;border-bottom:2px solid #333;padding:7px 8px;}
+	 #dbs td{border-bottom:1px solid #ccc;color:#333;padding:5px 8px;white-space: pre;}
+	 td.subpart{background:#ddd}
+	 #dbs tbody tr:hover td{color:#000;background:#fffcea;}
+</style>
+</head>
+
+<body>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1050' height='1002' viewbox='0 0 1050 1002' >
+<style type='text/css'>
+  text                { text-rendering: optimizeLegibility; fill:#18191b; font-family: Candara, Dialog, Arial; font-size:12px; }
+  text.fk             { fill:#57103e; }
+  text.pk             { fill:#0c31a1; }
+  text.colType        { fill:#a9bdc6; }
+  text.tableTitle     { fill:#121111; }
+  path                { stroke:#817255; stroke-width:1.5; fill:none; }
+  rect.grp            { opacity:0.5; stroke:#c2ab83; stroke-width:1; }
+  rect.table          { fill:#ffffff; stroke:#9ea1a4; stroke-width:0.5; filter:url(#shadow); }
+  line.table          { stroke:#9ea1a4; stroke-width:0.3; }
+  rect.callout        { fill:url(#calloutGradient); stroke:#aea913; stroke-width:0.5; }
+  path.callout        { fill:#f4f1a4; stroke:#aea913; stroke-width:0.5; }
+</style>
+<defs>
+  <pattern id='layoutGradient' patternUnits='userSpaceOnUse' x='0' y='0' width='10' height='10' viewBox='0 0 10 10'>
+    <rect x='0' y='0' width='10' height='10' style='fill:#f7f7f0;' />
+    <line x1='5' y1='10' x2='5' y2='0' style='stroke:#949494;stroke-width:0.5;stroke-dasharray:1,9;'  />
+  </pattern>
+  <radialGradient id='layoutGradientOld' cx='20%' cy='20%' r='25%' fx='10%' fy='0%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#efefef' />
+  </radialGradient>
+  <linearGradient id='tableHeaderGradient' x1='0%' y1='0%' x2='0%' y2='100%' >
+          <stop offset='0%' stop-color='#f6fafc' stop-opacity='1'/> 
+          <stop offset='50%' stop-color='#e1ebfa' stop-opacity='1'/> 
+          <stop offset='51%' stop-color='#bdd4f1' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#d6e2f9' stop-opacity='1' /> 
+   </linearGradient>
+  <radialGradient id='calloutGradient' cx='20%' cy='20%' r='100%' fx='10%' fy='10%'>
+	   <stop offset='0%' stop-color='#ffffff' />
+    <stop offset='100%' stop-color='#f4f1a4' />
+  </radialGradient>
+  <filter id='shadow' width='150%' height='150%'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='2' result='image1' /> 
+    <feOffset in='image1' result='image2' dx='2' dy='2' />
+    <feComposite in='SourceGraphic' in2='image2' operator='over' /> 
+  </filter>
+  <filter id='emboss'> 
+    <feGaussianBlur in='SourceAlpha' stdDeviation='2' result='blur'/> 
+    <feSpecularLighting in='blur' surfaceScale='-3' style='lighting-color:white' 
+      specularConstant='1' specularExponent='16' result='spec' kernelUnitLength='1' >
+      <feDistantLight azimuth='45' elevation='45' />
+    </feSpecularLighting> 
+    <feComposite in='spec' in2='SourceGraphic' operator='in' result='specOut'/> 
+    <feComposite in='SourceGraphic' in2='specOut' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' result='litPaint'/>  
+  </filter>
+  <filter id='embossAndShadow' filterUnits='userSpaceOnUse' x='0' y='0' width='400' height='120'> 
+     <feGaussianBlur in='SourceAlpha' stdDeviation='3' result='blur'/> 
+     <feOffset in='blur' dx='4' dy='4' result='offsetBlur'/> 
+     <feSpecularLighting in='blur' surfaceScale='5' specularConstant='.75' specularExponent='20' lighting-color='#bbbbbb' result='specOut'>
+        <fePointLight x='-5000' y='-10000' z='20000'/>  
+     </feSpecularLighting> 
+     <feComposite in='specOut' in2='SourceAlpha' operator='in' result='specOut'/> 
+     <feComposite in='SourceGraphic' in2='specOut' operator='arithmetic' k1='0' k2='1' k3='1' k4='0' result='litPaint'/>  
+     <feMerge> 
+         <feMergeNode in='offsetBlur'/> 
+         <feMergeNode in='litPaint'/> 
+     </feMerge> 
+  </filter> 
+  <radialGradient id='legendGradient' fx='5%' fy='5%' r='75%' spreadMethod='pad'>
+          <stop offset='0%' stop-color='#cfd7f6' stop-opacity='1'/> 
+          <stop offset='100%' stop-color='#919dd0' stop-opacity='1' /> 
+   </radialGradient>
+  <pattern id='hintPointerSV' patternUnits='userSpaceOnUse' x='0' y='0' width='14' height='14' viewBox='0 0 14 14' >
+      <path d='M 0,0 Q 7,7,0,13 Q 13,7,13,0' class='callout' />
+  </pattern>
+  <pattern id='hintPointerSE' patternUnits='userSpaceOnUse' x='0' y='0' width='14' height='14' viewBox='0 0 14 14' >
+      <path d='M 0,0 Q 3,7,13,13 Q 7,7,13,0' class='callout' />
+  </pattern>
+  <pattern id='hintPointerNV' patternUnits='userSpaceOnUse' x='0' y='0' width='14' height='14' viewBox='0 0 14 14' >
+      <path d='M 0,13 Q 7,7,0,0 Q 13,7,13,13' class='callout' />
+  </pattern>
+  <pattern id='hintPointerNE' patternUnits='userSpaceOnUse' x='0' y='0' width='14' height='14' viewBox='0 0 14 14' >
+      <path d='M 0,13 Q 3,7,13,0 Q 7,7,13,13' class='callout' />
+  </pattern>
+  <symbol id='pk' overflow='visible' >
+    <g transform='scale(0.85)'>
+     <path style='fill:#e9ad16;stroke:#9c4f15;stroke-width:0.7;stroke-linecap:round;stroke-linejoin:round;filter:url(#emboss);'
+        d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+     <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+        style='fill:#ffe5a5;fill-opacity:1;stroke:#854e31;stroke-width:0.09912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='unq' overflow='visible' >
+    <g transform='scale(0.85)'>
+      <rect style='fill:#e07554;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:#ffffe2;stroke:#313131;stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.4' y='6.6' style='font-size:8px;fill:#7c0909;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' overflow='visible' >
+    <g transform='scale(0.85)'>
+      <rect style='fill:#e07554;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+         width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:#ffffe2;stroke:#313131;stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+         d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+         transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' overflow='visible' >
+    <path style='fill:#946d00;stroke:#5c2352;stroke-width:0.46;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+    d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+  </symbol>
+  <symbol id='ref' overflow='visible' >
+  <path style='fill:#1877c8;stroke:#29365f;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+  </symbol>
+  <marker id='arrow' viewBox='0 0 7 7' refX='0' refY='3' markerUnits='strokeWidth' markerWidth='7' markerHeight='7' orient='auto'>
+    <path d='M 0,0 L 7, 3 L 0,7 z' style='fill:#776c57; stroke-width:0px;' />
+  </marker>
+  <marker id='foot' viewBox='0 0 7 7' refX='7' refY='3' markerUnits='strokeWidth' markerWidth='7' markerHeight='7' orient='auto'>
+    <path d='M 0,3 L 14, 3 z' style='stroke:#776c57;' />
+  </marker>
+</defs>
+
+<!-- ============= Desktop ============= -->
+<rect x='1' y='1' width='1048' height='1000' rx='7' ry='7' style='fill:url(#layoutGradient); stroke:#104576; stroke-width:0.5;' />
+
+<!-- ============= Legend ============= -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='240' height='90' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#embossAndShadow);'/> 
+  <text x='20' y='30'>Project 'Sqlite'</text> 
+  <text x='20' y='44'>Layout 'Default'</text> 
+  <text x='20' y='70'>Column comments available as tooltips.</text> 
+  <a xlink:href='http://www.dbschema.com' title='Visit http://www.dbschema.com'> 
+    <text x='20' y='84'>Generated using DbSchema</text> 
+  </a>
+
+</g>
+
+<g transform='translate(0,120)'>
+<!-- ============= Table 'schema_migrations' ============= -->
+<rect class='table' x='448' y='469' width='112' height='56' rx='7' ry='7' />
+<path d='M 448.50 490.00 L 448.50 476.50 Q 448.50 469.50 455.50 469.50 L 552.50 469.50 Q 559.50 469.50 559.50 476.50 L 559.50 490.00 L448.50 490.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='448' y1='490' x2='560' y2='490'/>
+<a xlink:href='#schema_migrations' title='Default.schema_migrations' ><text x='455' y='483' class='tableTitle'>schema_migrations</text></a>
+  <a xlink:href='#version' title='Unique Index  ( version ) '><use id='unq' x='450' y='502' xlink:href='#unq'/></a>
+<a xlink:href='#version' title='VARCHAR&#040; 255 &#041; not null '><text x='465' y='511' >version</text></a>
+
+<!-- ============= Table 'sqlite_sequence' ============= -->
+<rect class='table' x='266' y='469' width='98' height='70' rx='7' ry='7' />
+<path d='M 266.50 490.00 L 266.50 476.50 Q 266.50 469.50 273.50 469.50 L 356.50 469.50 Q 363.50 469.50 363.50 476.50 L 363.50 490.00 L266.50 490.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='266' y1='490' x2='364' y2='490'/>
+<a xlink:href='#sqlite_sequence' title='Default.sqlite_sequence' ><text x='274' y='483' class='tableTitle'>sqlite_sequence</text></a>
+  <a xlink:href='#name' title='ENUM '><text x='283' y='511' >name</text></a>
+  <a xlink:href='#seq' title='ENUM '><text x='283' y='525' >seq</text></a>
+
+<!-- ============= Table 'conversations' ============= -->
+<rect class='table' x='644' y='469' width='112' height='140' rx='7' ry='7' />
+<path d='M 644.50 490.00 L 644.50 476.50 Q 644.50 469.50 651.50 469.50 L 748.50 469.50 Q 755.50 469.50 755.50 476.50 L 755.50 490.00 L644.50 490.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='644' y1='490' x2='756' y2='490'/>
+<a xlink:href='#conversations' title='Default.conversations' ><text x='665' y='483' class='tableTitle'>conversations</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='646' y='502' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='661' y='511' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='661' y='525' >created_at</text></a>
+  <a xlink:href='#date' title='DATETIME '><text x='661' y='539' >date</text></a>
+  <a xlink:href='#from_number' title='VARCHAR&#040; 255 &#041; '><text x='661' y='553' >from_number</text></a>
+  <a xlink:href='#message' title='TEXT '><text x='661' y='567' >message</text></a>
+  <a xlink:href='#to_number' title='VARCHAR&#040; 255 &#041; '><text x='661' y='581' >to_number</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='661' y='595' >updated_at</text></a>
+
+<!-- ============= Table 'recipients_reports' ============= -->
+<rect class='table' x='448' y='315' width='112' height='70' rx='7' ry='7' />
+<path d='M 448.50 336.00 L 448.50 322.50 Q 448.50 315.50 455.50 315.50 L 552.50 315.50 Q 559.50 315.50 559.50 322.50 L 559.50 336.00 L448.50 336.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='448' y1='336' x2='560' y2='336'/>
+<a xlink:href='#recipients_reports' title='Default.recipients_reports' ><text x='458' y='329' class='tableTitle'>recipients_reports</text></a>
+  <a xlink:href='#recipient_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='465' y='357' >recipient_id</text></a>
+  <a xlink:href='#report_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='465' y='371' >report_id</text></a>
+
+<!-- ============= Table 'notifications' ============= -->
+<rect class='table' x='644' y='259' width='112' height='126' rx='7' ry='7' />
+<path d='M 644.50 280.00 L 644.50 266.50 Q 644.50 259.50 651.50 259.50 L 748.50 259.50 Q 755.50 259.50 755.50 266.50 L 755.50 280.00 L644.50 280.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='644' y1='280' x2='756' y2='280'/>
+<a xlink:href='#notifications' title='Default.notifications' ><text x='668' y='273' class='tableTitle'>notifications</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='646' y='292' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='661' y='301' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='661' y='315' >created_at</text></a>
+  <a xlink:href='#recipient_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='661' y='329' >recipient_id</text></a>
+  <a xlink:href='#report_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='661' y='343' >report_id</text></a>
+  <a xlink:href='#send_date' title='DATETIME '><text x='661' y='357' >send_date</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='661' y='371' >updated_at</text></a>
+
+<!-- ============= Table 'recipients' ============= -->
+<rect class='table' x='238' y='245' width='126' height='140' rx='7' ry='7' />
+<path d='M 238.50 266.00 L 238.50 252.50 Q 238.50 245.50 245.50 245.50 L 356.50 245.50 Q 363.50 245.50 363.50 252.50 L 363.50 266.00 L238.50 266.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='238' y1='266' x2='364' y2='266'/>
+<a xlink:href='#recipients' title='Default.recipients' ><text x='276' y='259' class='tableTitle'>recipients</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='240' y='278' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='255' y='287' class='pk'>id</text></a>
+  <a xlink:href='#active' title='BOOLEAN&#040; 2000000000&#044; 10 &#041; '><text x='255' y='301' >active</text></a>
+  <a xlink:href='#case' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='255' y='315' >case</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='255' y='329' >created_at</text></a>
+  <a xlink:href='#phone' title='VARCHAR&#040; 255 &#041; '><text x='255' y='343' >phone</text></a>
+  <a xlink:href='#reminder_date' title='DATETIME '><text x='255' y='357' >reminder_date</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='255' y='371' >updated_at</text></a>
+
+<!-- ============= Table 'conversations_recipients' ============= -->
+<rect class='table' x='42' y='469' width='140' height='70' rx='7' ry='7' />
+<path d='M 42.50 490.00 L 42.50 476.50 Q 42.50 469.50 49.50 469.50 L 174.50 469.50 Q 181.50 469.50 181.50 476.50 L 181.50 490.00 L42.50 490.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='42' y1='490' x2='182' y2='490'/>
+<a xlink:href='#conversations_recipients' title='Default.conversations_recipients' ><text x='49' y='483' class='tableTitle'>conversations_recipients</text></a>
+  <a xlink:href='#conversation_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='59' y='511' >conversation_id</text></a>
+  <a xlink:href='#recipient_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='59' y='525' >recipient_id</text></a>
+
+<!-- ============= Table 'delayed_jobs' ============= -->
+<rect class='table' x='448' y='623' width='112' height='210' rx='7' ry='7' />
+<path d='M 448.50 644.00 L 448.50 630.50 Q 448.50 623.50 455.50 623.50 L 552.50 623.50 Q 559.50 623.50 559.50 630.50 L 559.50 644.00 L448.50 644.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='448' y1='644' x2='560' y2='644'/>
+<a xlink:href='#delayed_jobs' title='Default.delayed_jobs' ><text x='469' y='637' class='tableTitle'>delayed_jobs</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='450' y='656' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='465' y='665' class='pk'>id</text></a>
+  <a xlink:href='#attempts' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='465' y='679' >attempts</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='465' y='693' >created_at</text></a>
+  <a xlink:href='#failed_at' title='DATETIME '><text x='465' y='707' >failed_at</text></a>
+  <a xlink:href='#handler' title='TEXT '><text x='465' y='721' >handler</text></a>
+  <a xlink:href='#last_error' title='TEXT '><text x='465' y='735' >last_error</text></a>
+  <a xlink:href='#locked_at' title='DATETIME '><text x='465' y='749' >locked_at</text></a>
+  <a xlink:href='#locked_by' title='VARCHAR&#040; 255 &#041; '><text x='465' y='763' >locked_by</text></a>
+  <a xlink:href='#priority' title='Index  ( priority, run_at ) '><use id='idx' x='450' y='768' xlink:href='#idx'/></a>
+<a xlink:href='#priority' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='465' y='777' >priority</text></a>
+  <a xlink:href='#queue' title='VARCHAR&#040; 255 &#041; '><text x='465' y='791' >queue</text></a>
+  <a xlink:href='#run_at' title='Index  ( priority, run_at ) '><use id='idx' x='450' y='796' xlink:href='#idx'/></a>
+<a xlink:href='#run_at' title='DATETIME '><text x='465' y='805' >run_at</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='465' y='819' >updated_at</text></a>
+
+<!-- ============= Table 'programs_recipients' ============= -->
+<rect class='table' x='56' y='623' width='126' height='70' rx='7' ry='7' />
+<path d='M 56.50 644.00 L 56.50 630.50 Q 56.50 623.50 63.50 623.50 L 174.50 623.50 Q 181.50 623.50 181.50 630.50 L 181.50 644.00 L56.50 644.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='56' y1='644' x2='182' y2='644'/>
+<a xlink:href='#programs_recipients' title='Default.programs_recipients' ><text x='67' y='637' class='tableTitle'>programs_recipients</text></a>
+  <a xlink:href='#program_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='73' y='665' >program_id</text></a>
+  <a xlink:href='#recipient_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='73' y='679' >recipient_id</text></a>
+
+<!-- ============= Table 'users' ============= -->
+<rect class='table' x='840' y='469' width='168' height='238' rx='7' ry='7' />
+<path d='M 840.50 490.00 L 840.50 476.50 Q 840.50 469.50 847.50 469.50 L 1000.50 469.50 Q 1007.50 469.50 1007.50 476.50 L 1007.50 490.00 L840.50 490.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='840' y1='490' x2='1008' y2='490'/>
+<a xlink:href='#users' title='Default.users' ><text x='911' y='483' class='tableTitle'>users</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='842' y='502' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='857' y='511' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='857' y='525' >created_at</text></a>
+  <a xlink:href='#current_sign_in_at' title='DATETIME '><text x='857' y='539' >current_sign_in_at</text></a>
+  <a xlink:href='#current_sign_in_ip' title='VARCHAR&#040; 255 &#041; '><text x='857' y='553' >current_sign_in_ip</text></a>
+  <a xlink:href='#email' title='Unique Index  ( email ) '><use id='unq' x='842' y='558' xlink:href='#unq'/></a>
+<a xlink:href='#email' title='VARCHAR&#040; 255 &#041; not null '><text x='857' y='567' >email</text></a>
+  <a xlink:href='#encrypted_password' title='VARCHAR&#040; 255 &#041; not null '><text x='857' y='581' >encrypted_password</text></a>
+  <a xlink:href='#last_sign_in_at' title='DATETIME '><text x='857' y='595' >last_sign_in_at</text></a>
+  <a xlink:href='#last_sign_in_ip' title='VARCHAR&#040; 255 &#041; '><text x='857' y='609' >last_sign_in_ip</text></a>
+  <a xlink:href='#remember_created_at' title='DATETIME '><text x='857' y='623' >remember_created_at</text></a>
+  <a xlink:href='#reset_password_sent_at' title='DATETIME '><text x='857' y='637' >reset_password_sent_at</text></a>
+  <a xlink:href='#reset_password_token' title='Unique Index  ( reset_password_token ) '><use id='unq' x='842' y='642' xlink:href='#unq'/></a>
+<a xlink:href='#reset_password_token' title='VARCHAR&#040; 255 &#041; '><text x='857' y='651' >reset_password_token</text></a>
+  <a xlink:href='#roles_mask' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='857' y='665' >roles_mask</text></a>
+  <a xlink:href='#sign_in_count' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='857' y='679' >sign_in_count</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='857' y='693' >updated_at</text></a>
+
+<!-- ============= Table 'programs' ============= -->
+<rect class='table' x='840' y='259' width='112' height='126' rx='7' ry='7' />
+<path d='M 840.50 280.00 L 840.50 266.50 Q 840.50 259.50 847.50 259.50 L 944.50 259.50 Q 951.50 259.50 951.50 266.50 L 951.50 280.00 L840.50 280.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='840' y1='280' x2='952' y2='280'/>
+<a xlink:href='#programs' title='Default.programs' ><text x='871' y='273' class='tableTitle'>programs</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='842' y='292' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='857' y='301' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='857' y='315' >created_at</text></a>
+  <a xlink:href='#description' title='TEXT '><text x='857' y='329' >description</text></a>
+  <a xlink:href='#name' title='VARCHAR&#040; 255 &#041; '><text x='857' y='343' >name</text></a>
+  <a xlink:href='#report_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='857' y='357' >report_id</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='857' y='371' >updated_at</text></a>
+
+<!-- ============= Table 'reports' ============= -->
+<rect class='table' x='644' y='693' width='112' height='140' rx='7' ry='7' />
+<path d='M 644.50 714.00 L 644.50 700.50 Q 644.50 693.50 651.50 693.50 L 748.50 693.50 Q 755.50 693.50 755.50 700.50 L 755.50 714.00 L644.50 714.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='644' y1='714' x2='756' y2='714'/>
+<a xlink:href='#reports' title='Default.reports' ><text x='681' y='707' class='tableTitle'>reports</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='646' y='726' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='661' y='735' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='661' y='749' >created_at</text></a>
+  <a xlink:href='#humanname' title='TEXT '><text x='661' y='763' >humanname</text></a>
+  <a xlink:href='#program_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='661' y='777' >program_id</text></a>
+  <a xlink:href='#report_type' title='VARCHAR&#040; 255 &#041; '><text x='661' y='791' >report_type</text></a>
+  <a xlink:href='#type' title='VARCHAR&#040; 255 &#041; '><text x='661' y='805' >type</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='661' y='819' >updated_at</text></a>
+
+<!-- ============= Table 'messages' ============= -->
+<rect class='table' x='448' y='77' width='112' height='154' rx='7' ry='7' />
+<path d='M 448.50 98.00 L 448.50 84.50 Q 448.50 77.50 455.50 77.50 L 552.50 77.50 Q 559.50 77.50 559.50 84.50 L 559.50 98.00 L448.50 98.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='448' y1='98' x2='560' y2='98'/>
+<a xlink:href='#messages' title='Default.messages' ><text x='479' y='91' class='tableTitle'>messages</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='450' y='110' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='465' y='119' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='465' y='133' >created_at</text></a>
+  <a xlink:href='#message_text' title='VARCHAR&#040; 255 &#041; '><text x='465' y='147' >message_text</text></a>
+  <a xlink:href='#messagetext' title='TEXT '><text x='465' y='161' >messagetext</text></a>
+  <a xlink:href='#report_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='465' y='175' >report_id</text></a>
+  <a xlink:href='#send_date' title='DATETIME '><text x='465' y='189' >send_date</text></a>
+  <a xlink:href='#type' title='VARCHAR&#040; 255 &#041; '><text x='465' y='203' >type</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='465' y='217' >updated_at</text></a>
+
+<!-- ============= Table 'reminders' ============= -->
+<rect class='table' x='644' y='35' width='112' height='140' rx='7' ry='7' />
+<path d='M 644.50 56.00 L 644.50 42.50 Q 644.50 35.50 651.50 35.50 L 748.50 35.50 Q 755.50 35.50 755.50 42.50 L 755.50 56.00 L644.50 56.00 ' style='fill:url(#tableHeaderGradient); stroke:none;' />
+<line class='table' x1='644' y1='56' x2='756' y2='56'/>
+<a xlink:href='#reminders' title='Default.reminders' ><text x='674' y='49' class='tableTitle'>reminders</text></a>
+  <a xlink:href='#id' title='Primary Key  ( id ) '><use id='pk' x='646' y='68' xlink:href='#pk'/></a>
+<a xlink:href='#id' title='INTEGER&#040; 2000000000&#044; 10 &#041; not null '><text x='661' y='77' class='pk'>id</text></a>
+  <a xlink:href='#created_at' title='DATETIME not null '><text x='661' y='91' >created_at</text></a>
+  <a xlink:href='#message_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='661' y='105' >message_id</text></a>
+  <a xlink:href='#name' title='VARCHAR&#040; 255 &#041; '><text x='661' y='119' >name</text></a>
+  <a xlink:href='#program_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='661' y='133' >program_id</text></a>
+  <a xlink:href='#report_id' title='INTEGER&#040; 2000000000&#044; 10 &#041; '><text x='661' y='147' >report_id</text></a>
+  <a xlink:href='#updated_at' title='DATETIME not null '><text x='661' y='161' >updated_at</text></a>
+
+</g></svg>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='conversations'>conversations</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='date'>date</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='from_number'>from&#095;number</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='message'>message</a></td>
+		<td width='40%'> TEXT   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='to_number'>to&#095;number</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;conversations primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='conversations_recipients'>conversations_recipients</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='conversation_id'>conversation&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='recipient_id'>recipient&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='delayed_jobs'>delayed_jobs</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='attempts'>attempts</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='failed_at'>failed&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='handler'>handler</a></td>
+		<td width='40%'> TEXT   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='last_error'>last&#095;error</a></td>
+		<td width='40%'> TEXT   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='locked_at'>locked&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='locked_by'>locked&#095;by</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='priority'>priority</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='queue'>queue</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='run_at'>run&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;delayed&#095;jobs primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>delayed&#095;jobs&#095;priority </td>
+		<td> ON priority&#044; run&#095;at</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='messages'>messages</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='message_text'>message&#095;text</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='messagetext'>messagetext</a></td>
+		<td width='40%'> TEXT   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='report_id'>report&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='send_date'>send&#095;date</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='type'>type</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;messages primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='notifications'>notifications</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='recipient_id'>recipient&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='report_id'>report&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='send_date'>send&#095;date</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;notifications primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='programs'>programs</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='description'>description</a></td>
+		<td width='40%'> TEXT   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='name'>name</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='report_id'>report&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;programs primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='programs_recipients'>programs_recipients</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='program_id'>program&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='recipient_id'>recipient&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='recipients'>recipients</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='active'>active</a></td>
+		<td width='40%'> BOOLEAN&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='case'>case</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='phone'>phone</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='reminder_date'>reminder&#095;date</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;recipients primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='recipients_reports'>recipients_reports</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='recipient_id'>recipient&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='report_id'>report&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='reminders'>reminders</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='message_id'>message&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='name'>name</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='program_id'>program&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='report_id'>report&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;reminders primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='reports'>reports</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='humanname'>humanname</a></td>
+		<td width='40%'> TEXT   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='program_id'>program&#095;id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='report_type'>report&#095;type</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='type'>type</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;reports primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='schema_migrations'>schema_migrations</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='version'>version</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>unique&#095;schema&#095;migrations unique</td>
+		<td> ON version</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='sqlite_sequence'>sqlite_sequence</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='name'>name</a></td>
+		<td width='40%'> ENUM   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='seq'>seq</a></td>
+		<td width='40%'> ENUM   </td>
+		<td width='99%'>  </td>
+	</tr>
+</tbody>
+</table>
+
+<br/><br/>
+<table id='dbs' >
+<thead>
+<tr><th colspan='3'><a name='users'>users</a></th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><a name='id'>id</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='created_at'>created&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='current_sign_in_at'>current&#095;sign&#095;in&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='current_sign_in_ip'>current&#095;sign&#095;in&#095;ip</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='email'>email</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='encrypted_password'>encrypted&#095;password</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='last_sign_in_at'>last&#095;sign&#095;in&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='last_sign_in_ip'>last&#095;sign&#095;in&#095;ip</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='remember_created_at'>remember&#095;created&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='reset_password_sent_at'>reset&#095;password&#095;sent&#095;at</a></td>
+		<td width='40%'> DATETIME   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='reset_password_token'>reset&#095;password&#095;token</a></td>
+		<td width='40%'> VARCHAR&#040; 255 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='roles_mask'>roles&#095;mask</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='sign_in_count'>sign&#095;in&#095;count</a></td>
+		<td width='40%'> INTEGER&#040; 2000000000&#044; 10 &#041;   </td>
+		<td width='99%'>  </td>
+	</tr>
+	<tr>
+		<td><a name='updated_at'>updated&#095;at</a></td>
+		<td width='40%'> DATETIME  NOT NULL  </td>
+		<td width='99%'>  </td>
+	</tr>
+<tr><td colspan='3' class='subpart'><b>Indexes</b></td></tr>
+	<tr>		<td>pk&#095;users primary key</td>
+		<td> ON id</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>index&#095;users&#095;on&#095;reset&#095;password&#095;token unique</td>
+		<td> ON reset&#095;password&#095;token</td>
+		<td>  </td>
+	</tr>
+	<tr>		<td>index&#095;users&#095;on&#095;email unique</td>
+		<td> ON email</td>
+		<td>  </td>
+	</tr>
+</tbody>
+</table>
+
+</body></html>

@@ -28,22 +28,17 @@ class Notifier
     
   end
 
-  def initialize(recipient, body)
-    @recipient, @body = recipient, body
+  def initialize(recipient, smsmessage)
+    @recipient, @smsmessage = recipient, smsmessage
   end
 
-  def self.perform(recipient, body)
-    new(recipient, body).perform
+  def self.perform(recipient, smsmessage)
+    new(recipient, smsmessage).perform
   end
 
   def perform
     Logger.log(attributes, recipient)
-    client.account.sms.messages.create(attributes).tap do |response|
-    end
-  end
-
-  def self.newqueue(recipient, body)
-    new(recipient, body).perform
+    client.account.sms.messages.create(attributes)
   end
 
   def attributes
@@ -52,6 +47,17 @@ class Notifier
       to: to,
       body: body
     }
+  end
+
+   def self.notification_add(recipient, sent_date, job_id)
+    recipient.reports.each do |report|
+      @notification = Notification.new
+      @notification.report_id = report.id
+      @notification.recipient_id = recipient.id
+      @notification.sent_date = sent_date
+      @notification.job_id = job_id
+      @notification.save
+    end
   end
 
   private
@@ -66,6 +72,11 @@ class Notifier
   def to
     recipient.phone
   end
+
+  def body
+    @smsmessage
+  end
+
 
   def account_sid
     ENV["TWILIO_SID"]
