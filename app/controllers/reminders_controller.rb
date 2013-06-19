@@ -26,8 +26,8 @@ class RemindersController < ApplicationController
   # GET /reminders/new.json
   def new
     @reminder = Reminder.new
-    @report = @reminder.reports.build
-    @program = @reminder.programs.build
+    @report = @reminder.create_report
+    @program = @reminder.create_program
     @message = @report.messages.build
 
 
