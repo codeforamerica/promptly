@@ -239,6 +239,7 @@ DEPENDENCIES
   cancan
   capybara
   coffee-rails
+  compass
   compass-rails
   daemons
   database_cleaner
@@ -262,6 +263,7 @@ DEPENDENCIES
   role_model
   roo
   rspec-rails
+  sass
   sass-rails
   shoulda-matchers
   sms-spec
