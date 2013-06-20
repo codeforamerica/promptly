@@ -23,7 +23,6 @@
   <%= f.fields_for :programs do |builder| %>
     <% render 'programSelector', :p => builder %>
   <% end %>
-  <%= link_to_add_fields "Add program", f, :programs %>
 
   <%= f.fields_for :reports do |builder| %>
     <% render 'reportSelector', :r => builder %>

@@ -8,7 +8,8 @@ class Reminder < ActiveRecord::Base
   has_many :messages, :through => :reports
   has_and_belongs_to_many :recipients
 
-  accepts_nested_attributes_for :programs
-  accepts_nested_attributes_for :reports
-  accepts_nested_attributes_for :messages
+
+  accepts_nested_attributes_for :program, :reject_if => lambda { |a| a[:content].blank? }
+  accepts_nested_attributes_for :report, :reject_if => lambda { |a| a[:content].blank? }
+  accepts_nested_attributes_for :message, :reject_if => lambda { |a| a[:content].blank? }
 end

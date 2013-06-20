@@ -5,14 +5,14 @@ FactoryGirl.define do
 		reports {[FactoryGirl.create(:report)]}
   end
 		
-  factory :report do
-    report_type "Calfresh"
-    humanname "a test"
-    messages {[FactoryGirl.create(:message)]}
-  end
+  # factory :report do
+  #   report_type "Calfresh"
+  #   humanname "a test"
+  #   messages {[FactoryGirl.create(:message)]}
+  # end
 
-  factory :message do
-		message_text "Hi, I'm a test."
-  end
+  # factory :message do
+		# message_text "Hi, I'm a test."
+  # end
 
 end
