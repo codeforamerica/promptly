@@ -20,14 +20,14 @@
       </div>
     </div>
 
-  <%= f.fields_for :programs do |builder| %>
+  <%= f.fields_for :program do |builder| %>
     <% render 'programSelector', :p => builder %>
   <% end %>
 
-  <%= f.fields_for :reports do |builder| %>
+  <%= f.fields_for :report do |builder| %>
     <% render 'reportSelector', :r => builder %>
   <% end %>
-  <%= link_to_add_fields "Add report", f, :reports, :messages %>
+  <%= link_to_add_fields("Add report", f, :report, :message) %>
   
 
   <div class="actions">
