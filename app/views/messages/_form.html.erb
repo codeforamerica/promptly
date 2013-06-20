@@ -18,11 +18,11 @@
     <% render 'reportSelector', :r => builder %>
   <% end %>
 
-  <div class="field" id="<%= :messagetext %>">
+  <div class="field" id="<%= :message_text %>">
     <div class="control-group">
-        <%= f.label :messagetext, "Reminder message text", :class => 'control-label' %>
+        <%= f.label :message_text, "Reminder message text", :class => 'control-label' %>
         <div class="controls">
-          <%= f.text_area :messagetext, :rows=>5 %>
+          <%= f.text_area :message_text, :rows=>5 %>
         </div>
     </div>
   </div>
