@@ -2,7 +2,7 @@
   <div class="control-group">
     <label class="control-label" for="reportName">Choose a report for the message</label>
     <div class="controls">
-      <%= collection_select :reminder, :report_ids, Report.all, :id, :humanname %>
+      <%= collection_select :reports, :report_id, Report.all, :id, :humanname %>
     </div>
     <span class="help-inline">
     </span>

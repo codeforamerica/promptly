@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 
+<%= @reminder.inspect %>
+<%= @reminder.program %>
+<%= @reminder.report %>
+
 <p>
   <b>Name:</b>
   <%= @reminder.name %>
@@ -8,11 +12,11 @@
 <p>
 
 <p>
-  <b>Programs:</b>
-  <%= @reminder.programs.first.id %>
+  <b>Program:</b>
+  <%= @reminder.program.inspect %>
 <p>
-  <b>Reports:</b>
-  <%= @reminder.reports.first.id %>
+  <b>Report:</b>
+  <%= @reminder.report.inspect %>
 </p>
 
 

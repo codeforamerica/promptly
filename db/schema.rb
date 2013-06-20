@@ -61,10 +61,9 @@ ActiveRecord::Schema.define(:version => 20130620155411) do
     t.integer  "recipient_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "job_id"
     t.datetime "sent_date"
+    t.integer  "job_id"
     t.integer  "reminder_id"
-    t.integer  "report_id"
   end
 
   create_table "programs", :force => true do |t|
