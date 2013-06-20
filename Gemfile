@@ -12,13 +12,23 @@ gem 'cancan'
 gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'role_model'
-gem 'formtastic'
-gem 'pg', '0.12.2'
 gem 'sass'
 gem 'sass-rails'
 gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
+
+#need javascript runtime to run rake tasks
+gem 'therubyracer'
+
+#not working on local server for some reason
+gem 'formtastic'
+
+#sql server adapter
+gem 'activerecord-sqlserver-adapter'
+
+#required for activerecord-sqlserver-adapter
+gem 'tiny_tds'
 
 
 group :development, :test do
@@ -30,6 +40,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem "daemons"
+  gem 'pg', '0.12.2'
 end
 
 # Gems used only for assets and not required
