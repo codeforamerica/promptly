@@ -30,16 +30,16 @@ describe Notifier do
     ENV['TWILIO_SID'].should_not be_nil
   end
   it "add message to delayed job queue" do
-    @recipient.reports.try(:each) do |report|
+    @recipient.reminders.try(:each) do |reminder|
       expect {
-        Notifier.delay(priority: 1, run_at: 2.minutes.from_now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+        Notifier.delay(priority: 1, run_at: 2.minutes.from_now).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
         }.to change(Delayed::Job,:count).by(1)
     end
   end
 
   it "adds delayed job id to notifications and creates new notification" do
-    @recipient.reports.try(:each) do |report|
-      test = Notifier.delay(priority: 1, run_at: 2.minutes.from_now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+    @recipient.reminders.try(:each) do |reminder|
+      test = Notifier.delay(priority: 1, run_at: 2.minutes.from_now).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
       # binding.pry
       expect {
       Notifier.notification_add(@recipient, @message, test.id)
@@ -48,8 +48,8 @@ describe Notifier do
   end
 
   it "deletes old notifications and delayed jobs on update" do
-    @recipient.reports.try(:each) do |report|
-      old_notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
+    @recipient.reminders.try(:each) do |reminder|
+      old_notification = Notification.find_by_reminder_id_and_recipient_id(reminder.id, @recipient.id)
     end
   end
 

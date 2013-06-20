@@ -12,6 +12,9 @@
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
   
+  <div><%= f.label :name, "Choose a user name" %><br />
+  <%= f.text_field :name %></div>
+  
   <%= f.collection_select :roles, User.valid_roles, :to_s, :to_s %>
 
   <div><%= f.submit "Sign up" %></div>
