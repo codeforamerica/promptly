@@ -30,8 +30,6 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @report = @reminder.reports.build
     @program = @reminder.programs.build
-    @message = @report.messages.build
-
 
     respond_to do |format|
       format.html # new.html.erb

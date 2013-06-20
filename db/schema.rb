@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619061854) do
+ActiveRecord::Schema.define(:version => 20130620155411) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -58,12 +58,13 @@ ActiveRecord::Schema.define(:version => 20130619061854) do
   end
 
   create_table "notifications", :force => true do |t|
-    t.integer  "report_id"
     t.integer  "recipient_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "job_id"
     t.datetime "sent_date"
+    t.integer  "reminder_id"
+    t.integer  "report_id"
   end
 
   create_table "programs", :force => true do |t|
@@ -124,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20130619061854) do
     t.integer  "reminder_id"
     t.integer  "program_id"
     t.string   "report_type"
+    t.integer  "message_id"
   end
 
   create_table "users", :force => true do |t|
@@ -140,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20130619061854) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.integer  "roles_mask"
+    t.string   "name"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
