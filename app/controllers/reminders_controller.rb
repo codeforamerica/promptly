@@ -5,9 +5,7 @@ class RemindersController < ApplicationController
   
   def index
   	@reminders = Reminder.all
-    @programs = Program.all
-    @reports = Report.all
-    @messages = Message.all
+
 
     respond_to do |format|
       format.html # index.html.erb
@@ -28,8 +26,8 @@ class RemindersController < ApplicationController
   # GET /reminders/new.json
   def new
     @reminder = Reminder.new
-    @report = @reminder.reports.build
-    @program = @reminder.programs.build
+    @report = @reminder.build_report
+    @program = @reminder.build_program
 
     respond_to do |format|
       format.html # new.html.erb

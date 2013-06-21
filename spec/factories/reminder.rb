@@ -2,7 +2,9 @@
 FactoryGirl.define do
   factory :reminder do
     name "test reminder"
-		reports {[FactoryGirl.create(:report)]}
-    programs {[FactoryGirl.create(:program)]}
+		report  {FactoryGirl.create(:report)}
+  	program {FactoryGirl.create(:program)}
+  	message {FactoryGirl.create(:message)}
+    # recipients {[FactoryGirl.create(:recipient)]}
   end
 end

@@ -17,11 +17,13 @@ describe Recipient do
   describe "Importing data" do
     before :each do
      FactoryGirl.create(:recipient)
+     FactoryGirl.create(:report)
+     FactoryGirl.create(:message)
    end
     data = fixture_file_upload(Rails.root + 'spec/files/landshark.csv', 'text/csv')
 
     it "should read csv and add 2 new records" do
-      expect {Recipient.import(data)}.to change(Recipient,:count).by(2)
+      expect { Recipient.import(data) }.to change(Recipient,:count).by(2)
     end
   end
 end
