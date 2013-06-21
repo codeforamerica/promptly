@@ -10,6 +10,7 @@ describe "user registration" do
     fill_in "Email",                 :with => @user.email
     fill_in "Password",              :with => @user.password
     fill_in "Password confirmation", :with => @user.password
+    select "admin",                  :from => "user_roles"
 
     click_button "Sign up"
 
