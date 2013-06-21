@@ -5,7 +5,7 @@ class Reminder < ActiveRecord::Base
 
   has_one :program
   has_one :report
-  has_one :message, :through => :reports
+  has_one :message
 
 
   accepts_nested_attributes_for :program, :reject_if => lambda { |a| a[:content].blank? }
