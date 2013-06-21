@@ -9,3 +9,6 @@ script:
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get install -qq freetds-dev
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
