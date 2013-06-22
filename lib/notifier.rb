@@ -38,7 +38,6 @@ class Notifier
 
   def perform
     Logger.log(attributes, recipient)
-    puts client
     client.account.sms.messages.create(attributes)
   end
 

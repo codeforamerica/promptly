@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :report do
   	report_type "QR-7"
 		humanname "Quarterly Report"
-		message { FactoryGirl.create(:message) }
+		messages { [FactoryGirl.create(:message)] }
   end
 
   factory :message do
