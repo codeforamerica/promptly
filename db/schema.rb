@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621180851) do
+ActiveRecord::Schema.define(:version => 20130622183421) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20130621180851) do
     t.integer  "report_id"
     t.integer  "message_id"
     t.integer  "recipient_id"
+    t.integer  "program_id"
   end
 
   create_table "reminders_reports", :id => false, :force => true do |t|

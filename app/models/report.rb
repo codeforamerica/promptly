@@ -1,10 +1,10 @@
 class Report < ActiveRecord::Base
-  attr_accessible :humanname, :report_type, :recipient_id, :program_id, :reminder_id
-  attr_accessible :messages_attributes
+  attr_accessible :humanname, :report_type, :recipient_id, :program_id, :reminder_id, :message_id
+  attr_accessible :message_attributes
   
-  belongs_to :reminders
+  has_many :reminders
   belongs_to :programs
-  has_one :message, :dependent => :destroy
+  has_many :message, :dependent => :destroy
 
   accepts_nested_attributes_for :message
 

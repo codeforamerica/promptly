@@ -6,7 +6,6 @@ class RemindersController < ApplicationController
   def index
   	@reminders = Reminder.all
 
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reminders }
@@ -17,8 +16,6 @@ class RemindersController < ApplicationController
   # GET /reminders/1.json
   def show
     @reminder = Reminder.find(params[:id])
-    # @programs = Program.find(@reminder.program_id)
-    # @reports = Report.find(@reminder.report_id)
 
   end
 
@@ -28,6 +25,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @report = @reminder.build_report
     @program = @reminder.build_program
+    # @message = @reminder.report.message.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,9 +42,9 @@ class RemindersController < ApplicationController
   # POST /reminders.json
   def create
     @reminder = Reminder.new(params[:reminder])
-    @report = Report.new(params[:report])
-    @program = Program.new(params[:program])
-
+    # @report = Report.find(params[:report_id])
+    # @program = Program.find(params[:program_id])
+    
     respond_to do |format|
       if @reminder.save
         format.html { redirect_to @reminder, notice: 'Reminder was successfully created.' }
@@ -62,6 +60,7 @@ class RemindersController < ApplicationController
   # PUT /reminders/1.json
   def update
     @reminder = Reminder.find(params[:id])
+
 
     respond_to do |format|
       if @reminder.update_attributes(params[:reminder])

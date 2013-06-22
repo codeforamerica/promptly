@@ -20,13 +20,25 @@
       </div>
     </div>
 
-  <%= f.fields_for :program do |builder| %>
-    <% render 'programSelector', :p => builder %>
-  <% end %>
+  <div class="field">
+  <div class="control-group">
+    <label class="control-label" for="programName">Choose a program for the reminder</label>
+    <div class="controls">
+      <%= f.collection_select :program_id, Program.all, :id, :name %>
+    </div>
+  </div>
+</div>
 
-  <%= f.fields_for :report do |builder| %>
-    <% render 'reportSelector', :r => builder %>
-  <% end %>
+ <div class="field">
+  <div class="control-group">
+    <label class="control-label" for="reportName">Choose a report for the message</label>
+    <div class="controls">
+      <%= f.collection_select :report_id, Report.all, :id, :report_type %>
+    </div>
+    <span class="help-inline">
+    </span>
+  </div>
+</div>
   <%= link_to_add_fields("Add report", f, :report, :message) %>
   
 
