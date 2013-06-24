@@ -21,16 +21,6 @@ gem 'bootstrap-sass'
 #need javascript runtime to run rake tasks
 gem 'therubyracer'
 
-#not working on local server for some reason
-gem 'formtastic'
-
-#sql server adapter
-gem 'activerecord-sqlserver-adapter'
-
-#required for activerecord-sqlserver-adapter
-gem 'tiny_tds'
-
-
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
@@ -58,4 +48,12 @@ group :test do
   gem "guard-rspec"
   gem 'shoulda-matchers'
   gem 'rake'
+end
+
+group :production, :staging do
+  #sql server adapter
+  gem 'activerecord-sqlserver-adapter'
+
+  #required for activerecord-sqlserver-adapter
+  gem 'tiny_tds'
 end

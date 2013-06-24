@@ -8,7 +8,7 @@ class Receiver
   end
 
   def perform
-    # Loop over messages sent to our twilio number and on today
+    # Loop over messages sent to our twilio number and only for today
       # binding.pry
     client.account.sms.messages.list.each do |message|
       # Logger.log()
