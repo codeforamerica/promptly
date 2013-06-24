@@ -9,8 +9,9 @@ class Receiver
 
   def perform
     # Loop over messages sent to our twilio number and only for today
-      # binding.pry
-    client.account.sms.messages.list.each do |message|
+      binding.pry
+    client.sms.messages.list.each do |message|
+      puts '*********************#{message}'
       # Logger.log()
       puts message.from
       puts message.to
@@ -33,7 +34,7 @@ class Receiver
   end
 
   def client
-    @client = Twilio::REST::Client.new(account_sid, account_token)
+    @client = Twilio::REST::Client.new(account_sid, account_token).account
   end
 
   # def receive_text_message

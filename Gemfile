@@ -18,6 +18,11 @@ gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
 
+# hack to make heroku cedar not install special groups
+def hg(g)
+  (ENV['HOME'].gsub('/','') == 'app' ? 'test' : g)
+end
+
 #need javascript runtime to run rake tasks
 gem 'therubyracer'
 
@@ -50,7 +55,7 @@ group :test do
   gem 'rake'
 end
 
-group :production, :staging do
+group hg(:production) do
   #sql server adapter
   gem 'activerecord-sqlserver-adapter'
 
