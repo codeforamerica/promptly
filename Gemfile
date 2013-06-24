@@ -26,17 +26,15 @@ end
 #need javascript runtime to run rake tasks
 gem 'therubyracer'
 
-group :development, :test do
-  gem 'pry'
-  gem 'pry-nav'
-  gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails'
-  gem 'sms-spec'
-  gem 'dotenv-rails'
-  gem 'database_cleaner'
-  gem "daemons"
-  gem 'pg', '0.12.2'
-end
+gem 'pry'
+gem 'pry-nav'
+gem 'sqlite3', '1.3.5'
+gem 'rspec-rails'
+gem 'sms-spec'
+gem 'dotenv-rails'
+gem 'database_cleaner'
+gem "daemons"
+gem 'pg', '0.12.2'
 
 # Gems used only for assets and not required
 # in production environments by default.
