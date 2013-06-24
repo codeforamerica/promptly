@@ -18,23 +18,25 @@ gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
 
-# hack to make heroku cedar not install special groups
-def hg(g)
-  (ENV['HOME'].gsub('/','') == 'app' ? 'test' : g)
-end
+# # hack to make heroku cedar not install special groups
+# def hg(g)
+#   (ENV['HOME'].gsub('/','') == 'app' ? 'test' : g)
+# end
 
 #need javascript runtime to run rake tasks
 gem 'therubyracer'
 
-gem 'pry'
-gem 'pry-nav'
-gem 'sqlite3', '1.3.5'
-gem 'rspec-rails'
-gem 'sms-spec'
-gem 'dotenv-rails'
-gem 'database_cleaner'
-gem "daemons"
-gem 'pg', '0.12.2'
+group :development, :test do
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'sqlite3', '1.3.5'
+  gem 'rspec-rails'
+  gem 'sms-spec'
+  gem 'dotenv-rails'
+  gem 'database_cleaner'
+  gem "daemons"
+  gem 'pg', '0.12.2'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -53,10 +55,10 @@ group :test do
   gem 'rake'
 end
 
-group hg(:production) do
+group :production do
   #sql server adapter
-  gem 'activerecord-sqlserver-adapter'
+  # gem 'activerecord-sqlserver-adapter'
 
-  #required for activerecord-sqlserver-adapter
-  gem 'tiny_tds'
+  # #required for activerecord-sqlserver-adapter
+  # gem 'tiny_tds'
 end
