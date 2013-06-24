@@ -22,8 +22,6 @@ GEM
       activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-sqlserver-adapter (3.2.10)
-      activerecord (~> 3.2.0)
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -216,7 +214,6 @@ GEM
       ref
     thor (0.18.1)
     tilt (1.4.1)
-    tiny_tds (0.5.1)
     treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
@@ -241,7 +238,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-sqlserver-adapter
   bootstrap-sass
   cancan
   capybara
@@ -275,7 +271,6 @@ DEPENDENCIES
   sms-spec
   sqlite3 (= 1.3.5)
   therubyracer
-  tiny_tds
   twilio-ruby
   uglifier (= 1.2.3)
   unicorn
