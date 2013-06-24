@@ -14,11 +14,11 @@ describe Receiver do
     it "has valid twilio credentials" do
       ENV['TWILIO_NUMBER'].should_not be_nil
       ENV['TWILIO_TOKEN'].should_not be_nil
-      ENV['TWILIO_SID'].should_not be_nil
+    ENV['TWILIO_SID'].should_not be_nil
     end
     it "checks the twilio log" do
-      # Delayed::Worker.delay_jobs = false
-      # Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
+      Delayed::Worker.delay_jobs = false
+      Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
     end
     it "checks the twilio log every 2 minutes"
     it "adds a new delayed job to check for messages"
