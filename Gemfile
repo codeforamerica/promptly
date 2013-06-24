@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'friendly_id'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'twilio-ruby'
+gem 'twilio-ruby', "~> 3.8.0"
+gem 'twilio'
 gem 'unicorn'
 gem 'delayed_job_active_record'
 gem 'roo'
@@ -17,6 +18,7 @@ gem 'sass-rails'
 gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
+gem 'pg'
 
 # # hack to make heroku cedar not install special groups
 # def hg(g)
@@ -35,7 +37,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem "daemons"
-  gem 'pg', '0.12.2'
+
 end
 
 # Gems used only for assets and not required
