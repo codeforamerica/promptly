@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'friendly_id'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'twilio-ruby', "~> 3.8.0"
+gem 'twilio-ruby'
 gem 'twilio'
 gem 'unicorn'
 gem 'delayed_job_active_record'
@@ -33,7 +33,6 @@ group :development, :test do
   gem 'pry-nav'
   gem 'sqlite3', '1.3.5'
   gem 'rspec-rails'
-  gem 'sms-spec'
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem "daemons"
