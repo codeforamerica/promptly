@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'friendly_id'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'twilio-ruby'
+gem 'twilio-ruby', "~> 3.8.0"
+gem 'twilio'
 gem 'unicorn'
 gem 'delayed_job_active_record'
 gem 'roo'
@@ -12,13 +13,20 @@ gem 'cancan'
 gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'role_model'
-gem 'pg', '0.12.2'
 gem 'sass'
 gem 'sass-rails'
 gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
+gem 'pg'
 
+# # hack to make heroku cedar not install special groups
+# def hg(g)
+#   (ENV['HOME'].gsub('/','') == 'app' ? 'test' : g)
+# end
+
+#need javascript runtime to run rake tasks
+gem 'therubyracer'
 
 group :development, :test do
   gem 'pry'
@@ -29,6 +37,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem "daemons"
+
 end
 
 # Gems used only for assets and not required
@@ -46,4 +55,12 @@ group :test do
   gem "guard-rspec"
   gem 'shoulda-matchers'
   gem 'rake'
+end
+
+group :production do
+  #sql server adapter
+  # gem 'activerecord-sqlserver-adapter'
+
+  # #required for activerecord-sqlserver-adapter
+  # gem 'tiny_tds'
 end

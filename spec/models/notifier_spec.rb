@@ -13,14 +13,14 @@ describe Notifier do
   it "has one or many reports" do
    @recipient.should have_and_belong_to_many(:reports)
   end
-  it "has valid message for each report" do
-    @recipient.reports.each do |report|
-      report.messages.should_not be_nil
+  it "has valid message for each reminder" do
+    @recipient.reminders.each do |reminder|
+      reminder.message.should_not be_nil
     end
   end
   it "has a valid message in the body" do
-    @recipient.reports.try(:each) do |report|
-      test = Notifier.new(@recipient, Message.find_by_report_id(report.id).message_text)
+    @recipient.reminders.try(:each) do |reminder|
+      test = Notifier.new(@recipient, Message.find_by_reminder_id(reminder.id).message_text)
       test.attributes[:body].should include(@message.message_text)
     end
   end

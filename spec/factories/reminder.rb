@@ -6,5 +6,6 @@ FactoryGirl.define do
     	program { FactoryGirl.create(:program) }
     	message {[FactoryGirl.create(:message)]}
     # recipients {[FactoryGirl.create(:recipient)]}
+
   end
 end

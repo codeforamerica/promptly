@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620155411) do
+ActiveRecord::Schema.define(:version => 20130622183421) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -44,12 +44,12 @@ ActiveRecord::Schema.define(:version => 20130620155411) do
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "messages", :force => true do |t|
-    t.string   "type"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "message_text"
     t.integer  "reminder_id"
     t.integer  "report_id"
+    t.string   "message_type"
   end
 
   create_table "messages_reminders", :id => false, :force => true do |t|
@@ -61,9 +61,10 @@ ActiveRecord::Schema.define(:version => 20130620155411) do
     t.integer  "recipient_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.datetime "sent_date"
     t.integer  "job_id"
+    t.datetime "sent_date"
     t.integer  "reminder_id"
+    t.integer  "report_id"
   end
 
   create_table "programs", :force => true do |t|
@@ -110,6 +111,7 @@ ActiveRecord::Schema.define(:version => 20130620155411) do
     t.integer  "report_id"
     t.integer  "message_id"
     t.integer  "recipient_id"
+    t.integer  "program_id"
   end
 
   create_table "reminders_reports", :id => false, :force => true do |t|

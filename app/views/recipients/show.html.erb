@@ -12,9 +12,7 @@
 <b>Reminders:</b>
   <% @recipient.reminders.each do |reminder| %>
     <p><%= reminder.name %></p>
-    <% reminder.messages.each do |message| %>
-      <p>Reminder message: <%= message.message_text %></p>
-    <% end %>
+      <p>Reminder message: <%= reminder.messages.first.message_text %></p>
   <% end %>
 </p>
   <b>Conversations:</b>

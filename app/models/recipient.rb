@@ -66,9 +66,9 @@ class Recipient < ActiveRecord::Base
   
   def self.sendNotification(notification, report, recipient)
     if notification < DateTime.now
-      Notifier.perform(recipient, Message.find_by_report_id(report.id).message_text)
+      Notifier.delay(priority: 1, run_at: DateTime.now).perform(recipient, Message.find_by_report_id(report.id).message_text)
     else
-      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+      Notifier.delay(priority: 1, run_at: notification).perform(recipient, Message.find_by_report_id(report.id).message_text)
     end
   end
 end
