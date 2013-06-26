@@ -1,5 +1,4 @@
 @import "application";
-@import "bootstrap/bootstrap_and_overrides";
 
 .login {
 	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
@@ -12,11 +11,7 @@
 
 .username {
 	display: block;
-	clear: all;
 	float: right;
-
-	margin: -10px 15px 30px 0;
-	color: #F38630;
 }
 
 .dumbPadding {
