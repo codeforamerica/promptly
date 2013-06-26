@@ -27,6 +27,12 @@ describe Receiver do
         Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
       }.to change(Delayed::Job,:count).by(1)
     end
+    it "logs the conversation" do
+      
+      expect {
+        Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
+      }.to change(Conversation,:count)
+    end
     it "adds a new delayed job to check for messages"
 
   end
@@ -42,8 +48,6 @@ describe Receiver do
     it "parses the message"
     it "figures out which reply to send"
     it "sends a reply"
-    it "logs the conversation" do
-      
-    end
+    
   end
 end

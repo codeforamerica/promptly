@@ -56,7 +56,7 @@ class Receiver
           :body => "Hi, looks like you are trying to get a hold of us. Give us a call at (877) 366-3076 and we can help you. Thanks.")
         Logger.log(response)
       else
-        # hitting the current_user_exists method too many times.******** NEED TO REFACTOR
+        # hitting the current_user_exists method too many times. ******** NEED TO REFACTOR
         Logger.log(message, current_user_exists?(message.from))
         # should we have a limit here? if we already sent 5 message, send something special or just don't send anything?
         check_datetime = Date.today - 1.day

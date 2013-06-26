@@ -1,5 +1,41 @@
 @import "application";
 
+//Fonts
+$headerFont: 'Open Sans Condensed', sans-serif;
+$bodyFont: 'Open Sans', sans-serif;
+
+// Re-doing the Bootstrap color scheme
+$white: #FFFFFF;
+$blue: #2E88CC;
+$darkBlue: #116FA8;
+$aqua: #A7DBD8;
+$tan: #E0E4CC; 
+$orange: #F38630;
+$red: #FA6900;
+$lightGreen: #68B6BC;
+$green: #4CA55D;
+
+$linkColor: $lightGreen;
+$placeholderText: $tan;
+
+$navbarBackground: $blue;
+$navbarBackgroundHighlight: $darkBlue;
+$navbarBrandColor: $white;
+$navbarText: $white;
+$navbarBrandColor: $white;
+$navbarLinkColor: darken($white, 5%);
+$navbarLinkColorHover: $darkBlue;
+$navbarLinkColorActive: $white;
+$navbarLinkBackgroundHover: $navbarBackground;
+$navbarLinkBackgroundActive: $white;
+
+$btnPrimaryBackground: $linkColor;
+$btnPrimaryBackgroundHighlight: $linkColor;
+
+h1,h2,h3,h4,h5,h6 {
+	font-family: $headerFont;
+}
+
 .login {
 	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
 
@@ -21,9 +57,13 @@
 .dumbPadding {
 	padding: 10px 0px;
 }
+.navbar {
+
+}
 
 .navbar-inner {
 	// height: $baseLineHeight;
+	background-color: $navbarBackground;
 	text-shadow: none;
 	.brand {
 		text-shadow: none;
@@ -50,30 +90,5 @@
 	// position: relative;
 }
 
-// Re-doing the Bootstrap color scheme
-$white: #FFFFFF;
-$blue: #69D2E7;
-$aqua: #A7DBD8;
-$tan: #E0E4CC; 
-$orange: #F38630;
-$red: #FA6900;
 
-$linkColor: $red;
-$placeholderText: $tan;
-
-$navbarBackground: $blue;
-$navbarBackgroundHighlight: $blue;
-$navbarBrandColor: $white;
-$navbarText: $white;
-$navbarBrandColor: $white;
-$navbarLinkColor: darken($white, 5%);
-$navbarLinkColorHover: $white;
-$navbarLinkColorActive: $orange;
-$navbarLinkBackgroundHover: $navbarBackground;
-$navbarLinkBackgroundActive: $white;
-
-
-
-$btnPrimaryBackground: $linkColor;
-$btnPrimaryBackgroundHighlight: $linkColor;
 
