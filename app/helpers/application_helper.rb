@@ -10,7 +10,7 @@ module ApplicationHelper
       # new_object.class.build_child_association
     end
     id = new_object.object_id
-    fields = f.fields_for(association, new_object, child_index: id) do |builder|
+    fields = f.fields_for(association, new_object) do |builder|
       render(association.to_s.singularize + "_fields", f: builder)
     end
     link_to(name, '#', class: "add_fields btn btn-default btn-small", data: {id: id, fields: fields.gsub("\n", "")})

@@ -29,17 +29,24 @@
   </div>
 </div>
 
- <div class="field">
+<div class="field">
   <div class="control-group">
-    <label class="control-label" for="reportName">Choose a report for the message</label>
+    <label class="control-label" for="reportName">Choose a report for the reminder</label>
     <div class="controls">
-      <%= f.collection_select :report_id, Report.all, :id, :report_type %>
+      <%= f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
     </div>
     <span class="help-inline">
     </span>
   </div>
 </div>
-  <%= link_to_add_fields("Add report", f, :report) %>
+
+<div class="field">
+  <div class="control-group">
+    <label class="control-label" for="reportCreate">Create a new report</label>
+    <div class="controls">
+    </div>
+  </div>
+</div>
   
   <div class="field">
       <div class="control-group">
