@@ -35,18 +35,6 @@
       </div>
     </div>
   </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.fields_for :message do |message| %>
-        <div class="control-group">
-        <%= message.label :message_text, "Reminder message text", :class => 'control-label' %>
-          <div class="controls">
-            <%= message.text_area :message_text, :rows=>5 %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
   <div class="actions">
     <%= f.submit :class=>'btn btn-primary' %>
   </div>

@@ -15,6 +15,14 @@
         </div>
       </div> 
     </div>
+    <div class="field">
+      <div class="control-group">
+        <%= f.label :program_id, "Select a program for this report", :class => 'control-label' %>
+        <div class="controls">
+          <%= f.collection_select :program_id, Program.all, :id, :name %>
+        </div>
+      </div>
+    </div>
   </fieldset>
   <div>
     <%= f.hidden_field :_destroy %>

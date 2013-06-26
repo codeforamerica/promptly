@@ -41,8 +41,6 @@ class RemindersController < ApplicationController
   # POST /reminders.json
   def create
     @reminder = Reminder.new(params[:reminder])
-    # @report = Report.find(params[:report_id])
-    # @program = Program.find(params[:program_id])
     
     respond_to do |format|
       if @reminder.save
