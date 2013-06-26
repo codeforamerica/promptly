@@ -25,7 +25,6 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @report = @reminder.build_report
     @program = @reminder.build_program
-    # @message = @reminder.report.message.build
 
     respond_to do |format|
       format.html # new.html.erb

@@ -4,10 +4,14 @@
   <b>Name:</b>
   <%= @reminder.name %>
 </p>
+<p>
+  <b>Reminder text:</b>
+  <%= @reminder.message_text %>
+</p>
 
 <p>
 
-<%= render :partial => "programs", :collection => @programs || "No programs yet." %>
+<%= render :partial => "programs", :collection => @program || "No programs yet." %>
 <%= render "reports" %>
 
 
