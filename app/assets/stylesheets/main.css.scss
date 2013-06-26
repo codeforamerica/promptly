@@ -23,10 +23,10 @@ $btnPrimaryBackgroundHighlight: $darkBlue;
 
 
 h1,h2,h3,h4,h5,h6 {
-	font-family: $headerFont;
+	font-family: $headerFont !important;
 }
 body {
-	font-family: $bodyFont;
+	font-family: $bodyFont !important;
 }
 
 .navbar-inner {
@@ -69,7 +69,7 @@ body {
 .greenHighlight {
 	background: darken($green, 10);
 	color: $white;
-	padding: 5px 15px;
+	padding: 3px 15px;
 	text-transform: uppercase;
 	position: relative;
 	top: 2px;
@@ -80,7 +80,7 @@ body {
 .headerGray {
 	background: darken($lightGray, 40);
 	color: $white;
-	padding: 7px;
+	padding: 6px;
 	margin: -5px;
 }
 
