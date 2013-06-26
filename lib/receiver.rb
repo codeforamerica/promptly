@@ -48,7 +48,7 @@ class Receiver
     # :date_sent => DateTime.now.strftime("%Y-%m-%d")
     # binding.pry
     # Loop over messages sent to our twilio number and only for today
-    @account.sms.messages.list(:to=>"+14154198992").each do |message|
+    @account.sms.messages.list(:to=>"+14154198992", :date_sent => DateTime.now.strftime("%Y-%m-%d")).each do |message|
       if current_user_exists?(message.from).empty?
         Logger.log(message)
         response = client.account.sms.messages.create(
@@ -66,7 +66,7 @@ class Receiver
           response = client.account.sms.messages.create(
             :from => ENV["TWILIO_NUMBER"],
             :to => message.from,
-            :body => "Hi, looks like you are trying to get int touch with us. Give us a call at (877) 366-3076 and we can help you. Thanks.")
+            :body => "Hi, looks like you are trying to get in touch with us. Give us a call at (877) 366-3076 and we can help you. Thanks.")
           Logger.log(response, current_user_exists?(message.from))
         end
       end
