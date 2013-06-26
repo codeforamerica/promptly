@@ -7,7 +7,7 @@ jQuery ->
     options = $(reports).filter("optgroup[label='#{escaped_program}']").html()
     if options
       $('#reminder_report_id').html(options)
-      $('#reminder_report_id').parent().show()
+      $('#reminder_report_id').show()
     else
       $('#reminder_report_id').empty()
       $('#reminder_report_id').hide()
