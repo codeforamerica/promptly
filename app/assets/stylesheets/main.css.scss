@@ -80,8 +80,7 @@ body {
 .headerGray {
 	background: darken($lightGray, 40);
 	color: $white;
-	padding: 6px;
-	margin: -5px;
+	padding: 2px 5px;
 }
 
 .mainHeaderGreen {
@@ -104,7 +103,7 @@ body {
 
 .sidebarHeader {
 	background: darken($lightGray, 20);
-	padding: 5px;
+	// padding: 5px;
 	margin-bottom: 25px;
 	min-height: 15px;
 }
