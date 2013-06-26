@@ -22,7 +22,7 @@
 				</ul>
 				<div class="login pull-right">
 				<% if user_signed_in? %>
-				  <p><%= link_to 'Logged in as '+ current_user.name, edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+				  <p><%= link_to 'Logged in as', edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
 				<% else %>
 				  <p><%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></p>
 				<% end %>
