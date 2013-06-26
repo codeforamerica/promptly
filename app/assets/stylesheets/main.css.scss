@@ -4,7 +4,7 @@
 $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
 
-$linkColor: $lightGreen;
+$linkColor: $blue;
 $placeholderText: $tan;
 
 $navbarBackground: $blue;
@@ -112,7 +112,7 @@ body {
 .tableGreen {
 	border-left: 5px solid $green;
 	tbody {
-		border-bottom: 1px solid $darkGray;
+		border-bottom: 1px solid darken($lightGray, 10);
 	}
 	td, th{
 		border: none !important;
