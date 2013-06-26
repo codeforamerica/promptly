@@ -126,6 +126,7 @@ body {
 		border-radius: 0px;
 		background-image: none;
 		border: none;
+		text-transform: uppercase;
 		&:hover {
 			background: lighten($blue, 10);
 		}
