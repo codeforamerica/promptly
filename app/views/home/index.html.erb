@@ -17,7 +17,12 @@
       <%= render(:partial => 'ataglance') %>
       </div>
     <div class="span8">
-    <%= render(:partial => 'reminders', :collection => @recents, :as => :recents) || 'There are no recent reminders' %>
+      <div class="span12 mainHeaderGreen">
+        <span class="greenHighlight">Sent messages</span>
+      </div>
+      <div class="conversation">
+      <%= render(:partial => 'reminders', :collection => @recents, :as => :recents) || 'There are no recent reminders' %>
+      </div>
     </div>
   </div>
 </div>

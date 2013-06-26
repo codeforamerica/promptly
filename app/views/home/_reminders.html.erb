@@ -1,4 +1,15 @@
-	<dl>
-	    <dt>Sent to <%= link_to recents.to_number, recipient_path(recents.recipient_ids) %> on <%= recents.date.to_s(:date_format) %>:</dt>
-	    <dd><%= recents.message %></dd>
- 	</dl>
+<div>
+	<table class="table tableGreen">
+		<thead>
+			<tr>
+				<th>Message Type</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><p><%= recents.message %></p></td>
+			<td><p>Sent to <%= link_to recents.to_number, recipient_path(recents.recipient_ids) %></p></td>
+			<td><%= recents.date.to_s(:date_format) %></td>
+			<td><i class="icon-pencil"></i></td>
+		</tr>
+	</table>
+</div>

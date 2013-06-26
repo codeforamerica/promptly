@@ -66,6 +66,16 @@ body {
 	padding: 10px 0px;
 }
 
+.greenHighlight {
+	background: darken($green, 20);
+	color: $white;
+	padding: 4px 15px;
+	text-transform: uppercase;
+	position: relative;
+	top: 2px;
+	font-size: 13px;
+}
+
 // This positioning is super hacky. *****************************************
 .headerGray {
 	background: darken($lightGray, 40);
@@ -74,8 +84,16 @@ body {
 	margin: -5px;
 }
 
+.mainHeaderGreen {
+	background: $green;
+	margin-bottom: 2px;
+}
+
 .messageMain {
 	display: none;
+}
+.row-fluid [class*="span"] {
+	min-height: 25px !important;
 }
 
 .sidebar {
@@ -89,6 +107,16 @@ body {
 	padding: 5px;
 	margin-bottom: 25px;
 	min-height: 15px;
+}
+
+.tableGreen {
+	border-left: 5px solid $green;
+	tbody {
+		border-bottom: 1px solid $darkGray;
+	}
+	td, th{
+		border: none !important;
+	}
 }
 
 .upload {
