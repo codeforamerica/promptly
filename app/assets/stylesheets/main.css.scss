@@ -67,13 +67,14 @@ body {
 }
 
 .greenHighlight {
-	background: darken($green, 10);
+	background: $green;
 	color: $white;
 	padding: 3px 15px;
 	text-transform: uppercase;
 	position: relative;
 	top: 2px;
 	font-size: 13px;
+	font-family: $headerFont;
 }
 
 // This positioning is super hacky. *****************************************
@@ -84,7 +85,7 @@ body {
 }
 
 .mainHeaderGreen {
-	background: lighten($green, 10);
+	background: $lightGreen;
 	margin-bottom: 2px;
 }
 
@@ -98,13 +99,14 @@ body {
 .sidebar {
 	background: $lightGray;
 	text-transform: uppercase;
+	font-family: $headerFont;
 	font-size: 12px;
 }
 
 .sidebarHeader {
 	background: darken($lightGray, 20);
 	// padding: 5px;
-	margin-bottom: 25px;
+	margin-bottom: 20px;
 	min-height: 15px;
 }
 
@@ -119,13 +121,17 @@ body {
 }
 
 .upload {
-	padding-bottom: 30px;
+	padding-bottom: 20px;
 	text-align: center;
 	.btn {
 		border-radius: 0px;
 		background-image: none;
 		border: none;
 		text-transform: uppercase;
+		font-family: $headerFont;
+		padding: 5px;
+		font-size: 15px;
+		width: 160px;
 		&:hover {
 			background: lighten($blue, 10);
 		}
