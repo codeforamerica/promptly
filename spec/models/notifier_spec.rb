@@ -4,7 +4,6 @@ include ActionDispatch::TestProcess
 
 describe Notifier do
   before :each do
-     @message = FactoryGirl.create(:message)
      @recipient = FactoryGirl.create(:recipient)
    end
   it "has a valid recipient" do
@@ -20,7 +19,7 @@ describe Notifier do
   end
   it "has a valid message in the body" do
     @recipient.reminders.try(:each) do |reminder|
-      test = Notifier.new(@recipient, Message.find_by_reminder_id(reminder.id).message_text)
+      test = Notifier.new(@recipient, Reminder.find_by_reminder_id(reminder.id).message_text)
       test.attributes[:body].should include(@message.message_text)
     end
   end

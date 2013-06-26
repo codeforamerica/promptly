@@ -56,9 +56,9 @@ class RecipientsController < ApplicationController
         @recipient.reminders.try(:each) do |reminder|
           theDate = @recipient.notifications.last.sent_date
           if theDate < DateTime.now
-            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
           else
-            theJob = Notifier.delay(priority: 1, run_at: theDate.getutc).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
+            theJob = Notifier.delay(priority: 1, run_at: theDate.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
             Notifier.notification_add(@recipient, theDate, theJob.id)
           end
         end
@@ -86,9 +86,9 @@ class RecipientsController < ApplicationController
           end
           # tie this to the params send date
           if @notification_new.sent_date < DateTime.now
-            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
+            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
           else
-            theJob = Notifier.delay(priority: 1, run_at: @notification_new.sent_date.getutc).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
+            theJob = Notifier.delay(priority: 1, run_at: @notification_new.sent_date.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
             Notifier.notification_add(@recipient, @notification_new.sent_date, theJob.id)
           end
         end

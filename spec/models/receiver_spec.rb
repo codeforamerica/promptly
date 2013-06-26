@@ -5,7 +5,6 @@ include ActionDispatch::TestProcess
 
 describe Receiver do
   before :each do
-     @message = FactoryGirl.create(:message)
      @recipient = FactoryGirl.create(:recipient)
    end
   it "has a valid recipient" do

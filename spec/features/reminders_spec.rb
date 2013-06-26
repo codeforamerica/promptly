@@ -21,6 +21,7 @@ describe "Reminders" do
       fill_in 'Name', with: @reminder.name
       select @reminder.program.name, :from => "reminder_program_id"
       select @reminder.report.report_type, :from => "reminder_report_id"
+      fill_in 'Text for this reminder', with: @reminder.name
       click_button "Create Reminder"
     }.to change(Reminder,:count).by(1)
   end
