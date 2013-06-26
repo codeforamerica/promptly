@@ -21,15 +21,15 @@
   </div>
   <div class="field">
     <div class="control-group">
-      <%= f.label :report_ids, "Available reports", :class => 'control-label' %>
+      <%= f.label :reminder_ids, "Available reminders", :class => 'control-label' %>
       <div class="controls">
-        <%= f.collection_select :report_ids, Report.all, :id, :humanname, {:multiple => true, :rows=>5, :prompt => 'Select a report'} %>
+        <%= f.collection_select :reminder_ids, Reminder.all, :id, :name, {:multiple => true, :rows=>5, :prompt => 'Select a reminder'} %>
       </div>
     </div>
   </div>
   <div class="field">
     <div class="control-group">
-      <%= fields_for :notifications do |builder| %>
+      <%= f.fields_for :notifications do |builder| %>
         <%= builder.label :sent_date, :class => 'control-label' %>
         <div class="control-group">
         <%= builder.datetime_select :sent_date,{:start_year => Time.now.year,

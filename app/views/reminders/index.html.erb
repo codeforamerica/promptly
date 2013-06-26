@@ -16,7 +16,7 @@
         <% @reminders.each do |reminder| %>
         <tr>
           <td><%= link_to reminder.name, reminder %></td>
-          <td><%= render(:partial => 'programs', :collection => reminder.programs, :as => :program) || 'No program' %></td>
+          <td><%= reminder.program.try(:name) || 'No program' %> - <%= reminder.report.try(:humanname) || '' %></td>
           <td></td>
           <td></td>
           <td><%= link_to 'Edit', edit_reminder_path(reminder), :class=>'btn btn-mini' %>  <%= link_to 'Delete', reminder, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>

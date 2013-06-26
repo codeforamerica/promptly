@@ -4,16 +4,15 @@
   <b>Name:</b>
   <%= @reminder.name %>
 </p>
-
 <p>
-
-<p>
-  <b>Programs:</b>
-  <%= @reminder.programs.first.id %>
-<p>
-  <b>Reports:</b>
-  <%= @reminder.reports.first.id %>
+  <b>Reminder text:</b>
+  <%= @reminder.message_text %>
 </p>
+
+<p>
+
+<%= render :partial => "programs", :collection => @program || "No programs yet." %>
+<%= render "reports" %>
 
 
 <%= link_to 'Edit', edit_reminder_path(@reminder) %> |

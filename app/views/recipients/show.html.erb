@@ -6,15 +6,13 @@
 </p>
 
   <ul class="unstyled">
-    <%= render(:partial => 'notifications', :collection => notifications, :as => :a) || 'You have no reminders' %>
+    <%= render(:partial => 'notifications', :collection => @recipient.notifications, :as => :notification) || 'You have no reminders' %>
   </ul>
 <p>
-<b>Reports:</b>
-  <% @recipient.reports.each do |report| %>
-    <p><%= report.humanname %></p>
-    <% report.messages.each do |message| %>
-      <p>Reminder message: <%= message.message_text %></p>
-    <% end %>
+<b>Reminders:</b>
+  <% @recipient.reminders.each do |reminder| %>
+    <p><%= reminder.name %></p>
+      <p>Reminder message: <%= reminder.message_text %></p>
   <% end %>
 </p>
   <b>Conversations:</b>

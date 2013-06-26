@@ -1,9 +1,8 @@
 <div class="field">
   <div class="control-group">
-    <label class="control-label" for="reportName">Choose a program for the message</label>
+    <label class="control-label" for="programName">Choose a program for the message</label>
     <div class="controls">
-      <%= collection_select :reminder, :program_ids, Program.all, :id, :name %>
+      <%= p.collection_select :reminder_id, Program.all, :id, :name %>
     </div>
   </div>
-
 </div>

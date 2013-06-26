@@ -5,7 +5,8 @@ class TextController < ApplicationController
   def send_text_message
     number_to_send_to = "+19196361635"
     twilio_phone_number = ENV['TWILIO_NUMBER']
-    
+
+
     # Delayed::Job.enqueue(Notifier.perform(("+1#{twilio_phone_number}", number_to_send_to, "This is an automatic message. It gets sent to #{number_to_send_to}"), 1, '2013-05-14 23:57:11')
     # flash[:notice] = "sending message"
   end
@@ -14,7 +15,7 @@ class TextController < ApplicationController
     message_body = params["Body"]
     from_number = params["From"]
     if from_number
-      verify_recipient(from_number)
+        Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).messages.first.message_text)
     else
       redirect_to(recipients_path)
     end

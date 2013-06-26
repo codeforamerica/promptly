@@ -1,18 +1,18 @@
 class Recipient < ActiveRecord::Base
-  attr_accessible :active, :case, :phone, :reminder_date, :report_attributes, :notification_attributes
+  attr_accessible :active, :case, :phone, :reminder_date, :reports_attributes
   has_and_belongs_to_many :reminders
   has_and_belongs_to_many :reports
   has_and_belongs_to_many :conversations
   has_and_belongs_to_many :programs
   has_many :notifications, :dependent => :destroy
 
-  attr_accessible :report_ids
+  attr_accessible :reminder_ids
   attr_accessible :conversation_ids
   attr_accessible :program_ids
-  attr_accessible :notification_ids
+  attr_accessible :notification_ids, :notifications_attributes
 
   accepts_nested_attributes_for :notifications, :allow_destroy => true
-  accepts_nested_attributes_for :reports
+  accepts_nested_attributes_for :reminders
 
   validates :phone, :presence => true
 
@@ -66,9 +66,9 @@ class Recipient < ActiveRecord::Base
   
   def self.sendNotification(notification, report, recipient)
     if notification < DateTime.now
-      Notifier.perform(recipient, Message.find_by_report_id(report.id).message_text)
+      Notifier.delay(priority: 1, run_at: DateTime.now).perform(recipient, Reminder.find_by_report_id(report.id).message_text)
     else
-      Notifier.delay(priority: 1, run_at: notification).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+      Notifier.delay(priority: 1, run_at: notification).perform(recipient, Reminder.find_by_report_id(report.id).message_text)
     end
   end
 end
