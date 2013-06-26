@@ -67,9 +67,9 @@ body {
 }
 
 .greenHighlight {
-	background: darken($green, 20);
+	background: darken($green, 10);
 	color: $white;
-	padding: 4px 15px;
+	padding: 5px 15px;
 	text-transform: uppercase;
 	position: relative;
 	top: 2px;
@@ -85,7 +85,7 @@ body {
 }
 
 .mainHeaderGreen {
-	background: $green;
+	background: lighten($green, 10);
 	margin-bottom: 2px;
 }
 
