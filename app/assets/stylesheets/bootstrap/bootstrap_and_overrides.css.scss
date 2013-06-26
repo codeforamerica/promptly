@@ -1,29 +1,69 @@
+@import "application";
+
+//Fonts
+$headerFont: 'Open Sans Condensed', sans-serif;
+$bodyFont: 'Open Sans', sans-serif;
+
 // Re-doing the Bootstrap color scheme
 $white: #FFFFFF;
-$blue: #69D2E7;
+$blue: #2E88CC;
+$darkBlue: #116FA8;
 $aqua: #A7DBD8;
 $tan: #E0E4CC; 
 $orange: #F38630;
 $red: #FA6900;
+$lightGreen: #68B6BC;
+$green: #4CA55D;
 
-$linkColor: $red;
+$linkColor: $lightGreen;
 $placeholderText: $tan;
 
 $navbarBackground: $blue;
-$navbarBackgroundHighlight: $blue;
+$navbarBackgroundHighlight: $darkBlue;
 $navbarBrandColor: $white;
 $navbarText: $white;
 $navbarBrandColor: $white;
 $navbarLinkColor: darken($white, 5%);
 $navbarLinkColorHover: $white;
-$navbarLinkColorActive: $orange;
+$navbarLinkColorActive: $white;
 $navbarLinkBackgroundHover: $navbarBackground;
-$navbarLinkBackgroundActive: $white;
+$navbarLinkBackgroundActive: $darkBlue;
+
+$btnPrimaryBackground: $darkBlue;
+$btnPrimaryBackgroundHighlight: $darkBlue;
 
 
+h1,h2,h3,h4,h5,h6 {
+	font-family: $headerFont;
+}
+body {
+	font-family: $bodyFont;
+}
 
-$btnPrimaryBackground: $linkColor;
-$btnPrimaryBackgroundHighlight: $linkColor;
+.navbar {
+	// background-color: $navbarBackground;
+}
+
+.navbar-inner {
+	border-radius: 0px;
+	// height: $baseLineHeight;
+	background-color: $navbarBackground;
+	text-shadow: none;
+	linear-gradient: none;
+	.brand {
+		text-shadow: none;
+		font-weight: 500;
+		font-size: 32px;
+	}
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 70px;
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
+}
 
 @import "bootstrap";
 @import "bootstrap-responsive";
