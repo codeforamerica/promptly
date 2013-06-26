@@ -1,23 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<%= @reminder.inspect %>
-<%= @reminder.program %>
-<%= @reminder.report %>
-
 <p>
   <b>Name:</b>
   <%= @reminder.name %>
 </p>
-
 <p>
-
-<p>
-  <b>Program:</b>
-  <%= @reminder.program.name %>
-<p>
-  <b>Report:</b>
-  <%= @reminder.report.report_type %>
+  <b>Reminder text:</b>
+  <%= @reminder.message_text %>
 </p>
+
+<p>
+
+<%= render :partial => "programs", :collection => @program || "No programs yet." %>
+<%= render "reports" %>
 
 
 <%= link_to 'Edit', edit_reminder_path(@reminder) %> |

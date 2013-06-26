@@ -1,0 +1,9 @@
+<p>
+	<b>Report:</b>
+	<% if @reminder.report.nil? %>
+		No report. <%= link_to "Add one?", edit_reminder_path(@reminder) %>
+	<% else %>
+		<%= @reminder.report.humanname %>
+		<%= @reminder.report.id %>
+	<% end %>
+</p>
