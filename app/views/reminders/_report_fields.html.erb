@@ -15,18 +15,6 @@
         </div>
       </div> 
     </div>
-    <div class="field">
-    <div class="control-group">
-      <%= f.fields_for :messages do |message| %>
-        <div class="control-group">
-        <%= message.label :message_text, "Reminder message text", :class => 'control-label' %>
-          <div class="controls">
-            <%= message.text_area :message_text, :rows=>5 %>
-          </div>
-        </div>
-    <% end %>
-    </div>
-  </div>
   </fieldset>
   <div>
     <%= f.hidden_field :_destroy %>
