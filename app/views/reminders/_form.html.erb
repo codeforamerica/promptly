@@ -33,7 +33,7 @@
   <div class="control-group">
     <label class="control-label" for="reportName">Choose a report for the message</label>
     <div class="controls">
-      <%= f.collection_select :report_id, Report.all, :id, :report_type %>
+      <%= f.grouped_collection_select :reports, :report_id, @programs, :reports, :name, :id, :humanname %>
     </div>
     <span class="help-inline">
     </span>
