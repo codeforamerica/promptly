@@ -20,7 +20,8 @@ class Receiver
         date: DateTime.now,
         message: response.body,
         to_number: response.to,
-        from_number: response.from
+        from_number: response.from,
+        message_id: response.sid
       })
       if @recipient
         @conversation.recipients << @recipient
@@ -47,7 +48,7 @@ class Receiver
     # :date_sent => DateTime.now.strftime("%Y-%m-%d")
     # binding.pry
     # Loop over messages sent to our twilio number and only for today
-    @account.sms.messages.list(:to=>"+14154198992", :from => "+19196361635").each do |message|
+    @account.sms.messages.list(:to=>"+14154198992").each do |message|
       if current_user_exists?(message.from).empty?
         Logger.log(message)
         response = client.account.sms.messages.create(
@@ -60,8 +61,8 @@ class Receiver
         Logger.log(message, current_user_exists?(message.from))
         # should we have a limit here? if we already sent 5 message, send something special or just don't send anything?
         check_datetime = Date.today - 1.day
-        # binding.pry
-        unless Conversation.where("from_number = ? and date >= ? and message = ?", message.from, check_datetime, message.body)
+        unless Conversation.where("from_number = ? and message_id = ?", message.from, message.sid)
+          binding.pry
           response = client.account.sms.messages.create(
             :from => ENV["TWILIO_NUMBER"],
             :to => message.from,

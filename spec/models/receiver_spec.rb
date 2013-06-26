@@ -19,18 +19,13 @@ describe Receiver do
     end
     it "checks the twilio log" do
       # Delayed::Worker.delay_jobs = false
-      Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
-    end
-    it "checks the twilio log every 2 minutes" do
-      expect {
-        Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
-      }.to change(Delayed::Job,:count).by(1)
+      # expect {
+      #   Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
+      # }.to change(Conversation,:count)
     end
     it "logs the conversation" do
       
-      expect {
-        Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
-      }.to change(Conversation,:count)
+      
     end
     it "adds a new delayed job to check for messages"
 
