@@ -1,16 +1,23 @@
 $(function() {
   // Handler adding form fields
 	$('form .add_fields').on('click', function(event) {
+
+		$('form #reminder_report_id').parent().hide();
+
 		time = new Date().getTime();
 		regexp = new RegExp($(this).data('id'), 'g');
 		$(this).before($(this).data('fields').replace(regexp, time));
 		event.preventDefault();
-		$(this).hide()
+		$(this).hide();
+		console.log("added");
+		$('form .cancel').on('click', cancelClicked );
 	});
 
-	$('form .remove_fields').on('click', function(event) {
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('fieldset').hide();
+	function cancelClicked(event) {
+		console.log("cancel");
+    $(this).parent().remove();
+    $('form #reminder_report_id').parent().show();
+
     event.preventDefault();
-	});
+	}
 });
