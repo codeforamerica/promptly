@@ -4,7 +4,7 @@ FactoryGirl.define do
     name "test reminder"
     message_text "test reminder"
 		report { FactoryGirl.create(:report) }
-    	program { FactoryGirl.create(:program) }
+    program { FactoryGirl.create(:program) }
     # recipients {[FactoryGirl.create(:recipient)]}
 
   end

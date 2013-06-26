@@ -27,7 +27,7 @@ class Recipient < ActiveRecord::Base
       recipient = where(phone: row["phone"])
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
-      @notification = Notification.where(report_id: @report.id, recipient_id: recipient.id).first_or_initialize
+      @notification = Notification.where(reminder_id: @report.reminder_id, recipient_id: recipient.id).first_or_initialize
       if recipient.reports.blank?
         recipient.reports <<  @report
       else 
@@ -42,10 +42,10 @@ class Recipient < ActiveRecord::Base
         sendNotification(formatDate, @report, recipient)
       else
         recipient.notifications.each do |notification|
-          if notification.report_id == @report.id && notification.sent_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
+          if notification.reminder_id == @report.id && notification.sent_date.strftime('%m/%d/%Y') != formatDate.strftime('%m/%d/%Y')
             notification.update_column('sent_date', formatDate)
             sendNotification(formatDate, @report, recipient)
-          elsif notification.report_id != @report.id
+          elsif notification.reminder_id != @report.id
             @notification.sent_date = formatDate
             recipient.notifications << @notification
             sendNotification(formatDate, @report, recipient)
@@ -65,10 +65,11 @@ class Recipient < ActiveRecord::Base
 	end
   
   def self.sendNotification(notification, report, recipient)
-    if notification < DateTime.now
-      Notifier.delay(priority: 1, run_at: DateTime.now).perform(recipient, Reminder.find_by_report_id(report.id).message_text)
-    else
-      Notifier.delay(priority: 1, run_at: notification).perform(recipient, Reminder.find_by_report_id(report.id).message_text)
-    end
+    # binding.pry
+    # if notification < DateTime.now
+    #   Notifier.delay(priority: 1, run_at: DateTime.now).perform(recipient, Reminder.find_by_report_id(report.id).message_text)
+    # else
+    #   Notifier.delay(priority: 1, run_at: notification).perform(recipient, Reminder.find_by_report_id(report.id).message_text)
+    # end
   end
 end

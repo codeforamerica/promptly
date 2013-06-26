@@ -19,7 +19,7 @@ describe "Reminders" do
       click_link 'Create reminder'
       # save_and_open_page
       fill_in 'Name', with: @reminder.name
-      select @reminder.program.name, :from => "reminder_program_id"
+      # select @reminder.program.name, :from => "reminder_program_id"
       select @reminder.report.report_type, :from => "reminder_report_id"
       fill_in 'Text for this reminder', with: @reminder.name
       click_button "Create Reminder"
