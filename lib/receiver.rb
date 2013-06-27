@@ -44,33 +44,33 @@ class Receiver
   end
 
   def perform
-    @account = client.account
-    # :date_sent => DateTime.now.strftime("%Y-%m-%d")
-    # binding.pry
-    # Loop over messages sent to our twilio number and only for today
-    @account.sms.messages.list(:to=>"+14154198992", :date_sent => DateTime.now.strftime("%Y-%m-%d")).each do |message|
-      if current_user_exists?(message.from).empty?
-        Logger.log(message)
-        response = client.account.sms.messages.create(
-          :from => ENV["TWILIO_NUMBER"],
-          :to => message.from,
-          :body => "Hi, looks like you are trying to get a hold of us. %0aGive us a call at (877) 366-3076 and we can help you. Thanks.")
-        Logger.log(response)
-      else
-        # hitting the current_user_exists method too many times. ******** NEED TO REFACTOR
-        Logger.log(message, current_user_exists?(message.from))
-        # should we have a limit here? if we already sent 5 message, send something special or just don't send anything?
-        check_datetime = Date.today - 1.day
-        unless Conversation.where("from_number = ? and message_id = ?", message.from, message.sid)
-          response = client.account.sms.messages.create(
-            :from => ENV["TWILIO_NUMBER"],
-            :to => message.from,
-            :body => "Hi, looks like you are trying to get in touch with us. %0aGive us a call at (877) 366-3076 and we can help you. Thanks.")
-          Logger.log(response, current_user_exists?(message.from))
-        end
-      end
-    end
-    Receiver.delay(priority: 5, run_at: 2.minutes.from_now).perform
+    # @account = client.account
+    # # :date_sent => DateTime.now.strftime("%Y-%m-%d")
+    # # binding.pry
+    # # Loop over messages sent to our twilio number and only for today
+    # @account.sms.messages.list(:to=>"+14154198992", :date_sent => DateTime.now.strftime("%Y-%m-%d")).each do |message|
+    #   if current_user_exists?(message.from).empty?
+    #     Logger.log(message)
+    #     response = client.account.sms.messages.create(
+    #       :from => ENV["TWILIO_NUMBER"],
+    #       :to => message.from,
+    #       :body => "Hi, looks like you are trying to get a hold of us. %0aGive us a call at (877) 366-3076 and we can help you. Thanks.")
+    #     Logger.log(response)
+    #   else
+    #     # hitting the current_user_exists method too many times. ******** NEED TO REFACTOR
+    #     Logger.log(message, current_user_exists?(message.from))
+    #     # should we have a limit here? if we already sent 5 message, send something special or just don't send anything?
+    #     check_datetime = Date.today - 1.day
+    #     unless Conversation.where("from_number = ? and message_id = ?", message.from, message.sid)
+    #       response = client.account.sms.messages.create(
+    #         :from => ENV["TWILIO_NUMBER"],
+    #         :to => message.from,
+    #         :body => "Hi, looks like you are trying to get in touch with us. %0aGive us a call at (877) 366-3076 and we can help you. Thanks.")
+    #       Logger.log(response, current_user_exists?(message.from))
+    #     end
+    #   end
+    # end
+    # Receiver.delay(priority: 5, run_at: 2.minutes.from_now).perform
   end
 
   private
