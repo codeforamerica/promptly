@@ -15,12 +15,8 @@ describe "Reminders" do
 
   it "shows all reminders" do
     visit reminders_path
-    ["Name", "Message Text", "Program/Report", "Number of Recipients"].each do |content|
-      expect(page).to have_content content
-    end
-    ["Edit", "Delete"].each do |content|
-      expect(page).to have_selector('.btn-mini', :text => content)
-    end
+    ["Name", "Message Text", "Program/Report", "Number of Recipients"].each { |content| expect(page).to have_content content }
+    ["Edit", "Delete"].each { |content| expect(page).to have_selector('.btn-mini', :text => content) }
   end
 
   it "add a new reminder" do
