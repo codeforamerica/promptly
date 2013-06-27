@@ -30,7 +30,7 @@ class TextController < ApplicationController
        Notifier.perform(recipient, "Your CalFresh (Food Stamps) quarterly report (QR-7) is due #{recipient.reminder_date.to_s(:date_format)}. We will remind you one week before. Text STOP to stop receiving these text messages.")
       end
     else
-      Notifier.perform(phone_number, "Sorry we couldn't verify your number.")
+      Notifier.perform(phone_number, "Sorry, we couldn't verify your number.")
     end
 
   end

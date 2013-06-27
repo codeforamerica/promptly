@@ -14,11 +14,11 @@
 		</thead>
 		<tr>
 			<td>Sent to date</td>
-			<td>#</td>
+			<td><%= countAggregate(Notification.all.count, Conversation.all.count) %></td>
 		</tr>
 		<tr>
 			<td>Recipients</td>
-			<td>#</td>
+			<td><%= Recipient.all.count %></td>
 		</tr>
 		<tr>
 			<td>Not delivered</td>
@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td>Responses</td>
-			<td>#</td>
+			<td><%= Conversation.where(:to_number => '14154198992').count %></td>
 		</tr>
 	</table>
 </div>
