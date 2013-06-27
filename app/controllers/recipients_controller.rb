@@ -74,15 +74,12 @@ class RecipientsController < ApplicationController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
-        @notification_new = Notification.new(params[:notifications])
+        @notification_new = Notification.new(params[:recipient][:notifications_attributes].values.first)
         @recipient.reminders.try(:each) do |reminder|
           @notification = Notification.find_by_reminder_id_and_recipient_id(reminder.id, @recipient.id)
-          notifier_job = Delayed::Job.find_by_id(@notification.job_id)
-          if notifier_job
-            notifier_job.destroy
-          end
           if @notification
              @notification.destroy 
+             Delayed::Job.find_by_id(@notification.job_id).destroy
           end
           # tie this to the params send date
           if @notification_new.sent_date < DateTime.now
