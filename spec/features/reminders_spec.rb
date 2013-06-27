@@ -13,6 +13,16 @@ describe "Reminders" do
     click_button "Sign in"
   end
 
+  it "shows all reminders" do
+    visit reminders_path
+    ["Name", "Message Text", "Program/Report", "Number of Recipients"].each do |content|
+      expect(page).to have_content content
+    end
+    ["Edit", "Delete"].each do |content|
+      expect(page).to have_selector('.btn-mini', :text => content)
+    end
+  end
+
   it "add a new reminder" do
     visit reminders_path
     expect{

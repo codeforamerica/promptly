@@ -6,7 +6,7 @@ describe "Home" do
   before :each do
      FactoryGirl.create(:recipient)
   end
-  context "when shoing home page" do
+  context "when showing home page" do
     it "shows conversations" 
     it "shows upcoming notifications"
   end
