@@ -2,19 +2,19 @@ $(function() {
   // Handler adding form fields
 	$('form .add_fields').on('click', function(event) {
 
-		$('form #reminder_report_id').parent().hide();
+		$('form #reminder_report_id').parent('#field').hide();
 
 		time = new Date().getTime();
 		regexp = new RegExp($(this).data('id'), 'g');
 		$(this).before($(this).data('fields').replace(regexp, time));
 		event.preventDefault();
 		$(this).hide();
-		console.log("added");
+
+		// Lets the cancel button know about the extra fields.
 		$('form .cancel').on('click', cancelClicked );
 	});
 
 	function cancelClicked(event) {
-		console.log("cancel");
     $(this).parent().remove();
     $('form #reminder_report_id').parent().show();
 
