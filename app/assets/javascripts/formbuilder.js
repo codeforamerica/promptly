@@ -2,7 +2,7 @@ $(function() {
   // Handler adding form fields
 	$('form .add_fields').on('click', function(event) {
 
-		$('form #reminder_report_id').parent('#field').hide();
+		$('form #reminder_report_id').parentsUntil('.field').hide();
 
 		time = new Date().getTime();
 		regexp = new RegExp($(this).data('id'), 'g');
@@ -15,8 +15,10 @@ $(function() {
 	});
 
 	function cancelClicked(event) {
-    $(this).parent().remove();
-    $('form #reminder_report_id').parent().show();
+		$(this).hide()
+    $(this).prev('fieldset').remove();
+    $('form #reminder_report_id').parentsUntil('.field').show();
+    $('form .add_fields').show();
 
     event.preventDefault();
 	}
