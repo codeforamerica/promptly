@@ -30,7 +30,6 @@ class ReportsController < ApplicationController
   # GET /reports/new.json
   def new
     @report = Report.new
-    @report.message.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,7 +40,6 @@ class ReportsController < ApplicationController
   # GET /reports/1/edit
   def edit
     @report = Report.find(params[:id])
-    @report.build_message
   end
 
   # POST /reports
