@@ -54,7 +54,7 @@ class Receiver
         response = client.account.sms.messages.create(
           :from => ENV["TWILIO_NUMBER"],
           :to => message.from,
-          :body => "Hi, looks like you are trying to get a hold of us. Give us a call at (877) 366-3076 and we can help you. Thanks.")
+          :body => "Hi, looks like you are trying to get a hold of us. %0aGive us a call at (877) 366-3076 and we can help you. Thanks.")
         Logger.log(response)
       else
         # hitting the current_user_exists method too many times. ******** NEED TO REFACTOR
@@ -65,7 +65,7 @@ class Receiver
           response = client.account.sms.messages.create(
             :from => ENV["TWILIO_NUMBER"],
             :to => message.from,
-            :body => "Hi, looks like you are trying to get in touch with us. Give us a call at (877) 366-3076 and we can help you. Thanks.")
+            :body => "Hi, looks like you are trying to get in touch with us. %0aGive us a call at (877) 366-3076 and we can help you. Thanks.")
           Logger.log(response, current_user_exists?(message.from))
         end
       end
