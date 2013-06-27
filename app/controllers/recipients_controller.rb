@@ -74,7 +74,7 @@ class RecipientsController < ApplicationController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
-        @notification_new = Notification.new(params[:recipient][:notifications_attributes].values.first)
+        @notification_new = params[:recipient][:notifications_attributes].values.first
         @recipient.reminders.try(:each) do |reminder|
           @notification = Notification.find_by_reminder_id_and_recipient_id(reminder.id, @recipient.id)
           if @notification

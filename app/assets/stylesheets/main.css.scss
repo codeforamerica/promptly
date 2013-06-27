@@ -69,11 +69,11 @@ body {
 .greenHighlight {
 	background: $green;
 	color: $white;
-	padding: 3px 15px;
+	padding: 0px 15px;
 	text-transform: uppercase;
 	position: relative;
 	top: 2px;
-	font-size: 13px;
+	font-size: 18px;
 	font-family: $headerFont;
 }
 
@@ -100,7 +100,7 @@ body {
 	background: $lightGray;
 	text-transform: uppercase;
 	font-family: $headerFont;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .sidebarHeader {

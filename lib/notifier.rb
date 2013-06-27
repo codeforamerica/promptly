@@ -56,8 +56,8 @@ class Notifier
       @notification.recipient_id = recipient.id
       @notification.sent_date = sent_date
       @notification.job_id = job_id
-      @notification.save
     end
+      @notification.save
   end
 
   private
