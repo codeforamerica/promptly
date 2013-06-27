@@ -18,6 +18,7 @@ gem 'sass-rails'
 gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
+gem 'pg'
 
 group :development, :test do
   gem 'pry'
@@ -27,7 +28,6 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem 'daemons'
-  gem 'pg'
 end
 
 # Gems used only for assets and not required
