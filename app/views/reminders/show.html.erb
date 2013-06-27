@@ -1,19 +1,23 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row-fluid">
 
-<p>
-  <b>Name:</b>
-  <%= @reminder.name %>
-</p>
-<p>
-  <b>Reminder text:</b>
-  <%= @reminder.message_text %>
-</p>
+		<p id="notice"><%= notice %></p>
 
-<p>
+		<div class="mainHeaderGray">
+			<span class="grayHighlight">Name: <%= @reminder.name %></span>
+		</div>
+		<p>
+		  <b>Reminder text:</b>
+		  <%= @reminder.message_text %>
+		</p>
 
-<%= render :partial => "programs", :collection => @program || "No programs yet." %>
-<%= render "reports" %>
+		<p>
+
+		<%= render :partial => "programs", :collection => @program || "No programs yet." %>
+		<%= render "reports" %>
 
 
-<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
-<%= link_to 'Back', reminders_path %>
+		<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
+		<%= link_to 'Back', reminders_path %>
+	</div>
+</div>
