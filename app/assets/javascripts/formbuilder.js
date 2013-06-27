@@ -15,9 +15,11 @@ $(function() {
 	});
 
 	function cancelClicked(event) {
-    $(this).parent().remove();
-    $('form #reminder_report_id').parent().show();
+		$(this).hide()
+    $(this).prev('fieldset').remove();
+    $('form #reminder_report_id').parentsUntil('.field').show();
+    $('form .add_fields').show();
 
     event.preventDefault();
-	}
+  }
 });
