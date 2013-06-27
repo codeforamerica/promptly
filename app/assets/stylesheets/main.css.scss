@@ -77,6 +77,18 @@ body {
 	font-family: $headerFont;
 }
 
+.aquaHighlight {
+	background: $darkerAqua;
+	color: $white;
+	padding: 3px 15px;
+	text-transform: uppercase;
+	position: relative;
+	top: 2px;
+	font-size: 13px;
+	font-family: $headerFont;
+}
+
+
 // This positioning is super hacky. *****************************************
 .headerGray {
 	background: darken($lightGray, 40);
@@ -86,6 +98,11 @@ body {
 
 .mainHeaderGreen {
 	background: $lightGreen;
+	margin-bottom: 2px;
+}
+
+.mainHeaderAqua {
+	background: $aqua;
 	margin-bottom: 2px;
 }
 
@@ -138,6 +155,9 @@ body {
 	}
 }
 
+.recipient-conversations {
+	background-color: #A2EAAC;
+}
 
 @import "bootstrap";
 @import "bootstrap-responsive";
