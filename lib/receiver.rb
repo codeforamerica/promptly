@@ -62,7 +62,6 @@ class Receiver
         # should we have a limit here? if we already sent 5 message, send something special or just don't send anything?
         check_datetime = Date.today - 1.day
         unless Conversation.where("from_number = ? and message_id = ?", message.from, message.sid)
-          binding.pry
           response = client.account.sms.messages.create(
             :from => ENV["TWILIO_NUMBER"],
             :to => message.from,
