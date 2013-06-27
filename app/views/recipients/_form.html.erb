@@ -1,4 +1,4 @@
-<%= form_for(@recipient) do |f| %>
+<%= simple_form_for @recipient  do |f| %>
   <% if @recipient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
@@ -11,22 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :phone, :class => 'control-label'%>
-      <div class="controls">
-        <%= f.text_field :phone %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :reminder_ids, "Available reminders", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.collection_select :reminder_ids, Reminder.all, :id, :name, {:multiple => true, :rows=>5, :prompt => 'Select a reminder'} %>
-      </div>
-    </div>
-  </div>
+  <%= f.input :phone, required: true %>
+  <%= f.input :reminder_ids, :label => "Available reminders", :collection => Reminder.all, :prompt => "Choose a reminder", :multiple => true %>
+
   <div class="field">
     <div class="control-group">
       <%= f.fields_for :notifications do |builder| %>
@@ -43,7 +30,10 @@
       <% end %>
     </div>
   </div>
+
+
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
+  
 <% end %>

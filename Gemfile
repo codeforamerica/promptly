@@ -19,6 +19,7 @@ gem 'compass'
 gem 'compass-rails'
 gem 'bootstrap-sass'
 gem 'pg'
+gem 'simple_form'
 
 group :development, :test do
   gem 'pry'
