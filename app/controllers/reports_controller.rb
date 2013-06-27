@@ -30,8 +30,6 @@ class ReportsController < ApplicationController
   # GET /reports/new.json
   def new
     @report = Report.new
-    # @report.messages = Message.new
-    @report.messages.build
 
     respond_to do |format|
       format.html # new.html.erb

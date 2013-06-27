@@ -13,14 +13,21 @@ describe "Reminders" do
     click_button "Sign in"
   end
 
+  it "shows all reminders" do
+    visit reminders_path
+    ["Name", "Message Text", "Program/Report", "Number of Recipients"].each { |content| expect(page).to have_content content }
+    ["Edit", "Delete"].each { |content| expect(page).to have_selector('.btn-mini', :text => content) }
+  end
+
   it "add a new reminder" do
     visit reminders_path
     expect{
       click_link 'Create reminder'
       # save_and_open_page
       fill_in 'Name', with: @reminder.name
-      select @reminder.programs.first.name, :from => "reminder_program_ids"
-      select @reminder.reports.first.humanname, :from => "reminder_report_ids"
+      # select @reminder.program.name, :from => "reminder_program_id"
+      select @reminder.report.report_type, :from => "reminder_report_id"
+      fill_in 'Text for this reminder', with: @reminder.name
       click_button "Create Reminder"
     }.to change(Reminder,:count).by(1)
   end

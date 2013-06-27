@@ -1,29 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row-fluid">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Phone:</b>
-  <%= @recipient.phone %>
-</p>
+    <p>
+      <b>Phone:</b>
+      <%= @recipient.phone %>
+    </p>
 
-  <ul class="unstyled">
-    <%= render(:partial => 'notifications', :collection => notifications, :as => :a) || 'You have no reminders' %>
-  </ul>
-<p>
-<b>Reports:</b>
-  <% @recipient.reports.each do |report| %>
-    <p><%= report.humanname %></p>
-    <% report.messages.each do |message| %>
-      <p>Reminder message: <%= message.message_text %></p>
-    <% end %>
-  <% end %>
-</p>
-  <b>Conversations:</b>
-  <% @recipient.conversations.each do |conversation| %>
-    <p>Date sent: <%= conversation.date.to_s(:date_format) %>
-    <p>To number: <%= conversation.to_number %></p>
-    <p>Message: <%= conversation.message %></p>
-  <% end %>
+      <ul class="unstyled">
+        <%= render(:partial => 'notifications', :collection => @recipient.notifications, :as => :notification) || 'You have no reminders' %>
+      </ul>
 
+    <div class="span12">
+      <div class="span12 mainHeaderAqua">
+        <span class="aquaHighlight">Reminders</span>
+      </div>
+        <% @recipient.reminders.each do |reminder| %>
+          <p><%= reminder.name %></p>
+          <p>Reminder message: <%= reminder.message_text %></p>
+        <% end %>
+    </div>
 
-<%= link_to 'Edit', edit_recipient_path(@recipient) %> |
-<%= link_to 'Back', recipients_path %>
+    <div class="span12">
+      <div class="span12 mainHeaderGreen">
+        <span class="greenHighlight">Conversations</span>
+      </div>
+        <% @recipient.conversations.each do |conversation| %>
+          <p>Date sent: <%= conversation.date.to_s(:date_format) %>
+          <p>To number: <%= conversation.to_number %></p>
+          <p>Message: <%= conversation.message %></p>
+        <% end %>
+    </div>
+
+    <p>&nbsp;</p>
+
+    <%= link_to 'Edit', edit_recipient_path(@recipient) %> |
+    <%= link_to 'Back', recipients_path %>
+  </div>
+</div>

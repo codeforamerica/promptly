@@ -6,7 +6,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<%= link_to "Landshark", root_path, :class => 'brand' %>
+			<%= link_to "Promptly", root_path, :class => 'brand' %>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="<%= 'active' if current_page?(root_url)%>">
@@ -22,7 +22,7 @@
 				</ul>
 				<div class="login pull-right">
 				<% if user_signed_in? %>
-				  <p><%= link_to 'Edit profile', edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
+				  <p><%= link_to 'Logged in as '+ current_user.name, edit_user_registration_path %> | <%= link_to "Logout", destroy_user_session_path, method: :delete %></p>
 				<% else %>
 				  <p><%= link_to "Sign up", new_user_registration_path %> | <%= link_to "Login", new_user_session_path %></p>
 				<% end %>
@@ -32,9 +32,3 @@
 		</div>
 	</div>
 </div> <!-- /navbar -->
-<% if user_signed_in? %>
-	<div class="username">
-		<p>Logged in as <strong><%= current_user.email %></strong>.</p>
-	</div>
-<% else %>
-<% end %>

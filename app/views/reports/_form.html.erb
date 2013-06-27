@@ -10,6 +10,14 @@
       </ul>
     </div>
   <% end %>
+  <div class="field">
+    <div class="control-group">
+      <%= f.label :program_id, "Select a program for this report", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.collection_select :program_id, Program.all, :id, :name %>
+      </div>
+    </div>
+  </div>
 
   <div class="field">
     <div class="control-group">
@@ -23,15 +31,7 @@
     <div class="control-group">
       <%= f.label :humanname, "Description of this report", :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_area :humanname %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :program_id, "Select a program for this report", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.collection_select :program_id, Program.all, :id, :name %>
+        <%= f.text_area :humanname, :rows => 5 %>
       </div>
     </div>
   </div>

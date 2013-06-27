@@ -33,6 +33,7 @@ class RecipientsController < ApplicationController
   # GET /recipients/new.json
   def new
     @recipient = Recipient.new
+    @recipient.notifications.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,18 +49,17 @@ class RecipientsController < ApplicationController
   # POST /recipients.json
   def create
     @recipient = Recipient.new(params[:recipient])
-    @notification = Notification.new(params[:notifications])
-
     respond_to do |format|
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-        @recipient.reports.try(:each) do |report|
-          if @notification.sent_date < DateTime.now
-            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+        @recipient.reminders.try(:each) do |reminder|
+          theDate = @recipient.notifications.last.sent_date
+          if theDate < DateTime.now
+            Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
           else
-            theJob = Notifier.delay(priority: 1, run_at: @notification.sent_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).message_text)
-            Notifier.notification_add(@recipient, @notification.sent_date, theJob.id)
+            theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
+            Notifier.notification_add(@recipient, theDate, theJob.id)
           end
         end
       else
@@ -74,21 +74,18 @@ class RecipientsController < ApplicationController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
-        @notification_new = Notification.new(params[:notifications])
-        @recipient.reports.try(:each) do |report|
-          @notification = Notification.find_by_report_id_and_recipient_id(report.id, @recipient.id)
-          notifier_job = Delayed::Job.find_by_id(@notification.job_id)
-          if notifier_job
-            notifier_job.destroy
-          end
+        @notification_new = Notification.new(params[:recipient][:notifications_attributes].values.first)
+        @recipient.reminders.try(:each) do |reminder|
+          @notification = Notification.find_by_reminder_id_and_recipient_id(reminder.id, @recipient.id)
           if @notification
              @notification.destroy 
+             Delayed::Job.find_by_id(@notification.job_id).destroy
           end
           # tie this to the params send date
           if @notification_new.sent_date < DateTime.now
-            Notifier.delay(priority: 1, run_at: DateTime.now).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+            Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
           else
-            theJob = Notifier.delay(priority: 1, run_at: @notification_new.sent_date.getutc).perform(@recipient, Message.find_by_report_id(report.id).message_text)
+            theJob = Notifier.delay(priority: 0, run_at: @notification_new.sent_date.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
             Notifier.notification_add(@recipient, @notification_new.sent_date, theJob.id)
           end
         end
