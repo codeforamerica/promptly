@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe "Recipients" do
   before :each do
-    @report = FactoryGirl.create(:report, :humanname => "the test report")
+    @reminder = FactoryGirl.create(:reminder)
     @user = FactoryGirl.create(:user)
     #sign in
     visit new_user_session_path
@@ -18,12 +18,12 @@ describe "Recipients" do
     expect{
       click_link 'New recipient'
       fill_in 'recipient_phone', with: "9196361635"
-      select @report.humanname, :from => "Available reports"
-      select "Jan", :from => "notifications[sent_date(2i)]"
-      select "1", :from => "notifications[sent_date(3i)]"
-      select "2013", :from => "notifications[sent_date(1i)]"
-      select "12 PM", :from => "notifications[sent_date(4i)]"
-      select "00", :from => "notifications[sent_date(5i)]"
+      select @reminder.name, :from => "Available reminders"
+      select "Jan", :from => "recipient[notifications_attributes][0][sent_date(2i)]"
+      select "1", :from => "recipient[notifications_attributes][0][sent_date(3i)]"
+      select "2013", :from => "recipient[notifications_attributes][0][sent_date(1i)]"
+      select "12 PM", :from => "recipient[notifications_attributes][0][sent_date(4i)]"
+      select "00", :from => "recipient[notifications_attributes][0][sent_date(5i)]"
       click_button "Create Recipient"
     }.to change(Recipient,:count).by(1)
     page.should have_content "Recipient was successfully created."

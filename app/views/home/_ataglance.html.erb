@@ -1,14 +1,11 @@
-<div id="ataglance">
-	
-	<!-- upload button -->
-	<div class="btn btn-large btn-primary" type="button">
-		Upload Recipients
-	</div>
-	<!-- /button -->
-
+<div id="ataglance span12">
 	<!-- at a glance info -->
-	<h4>At a Glance</h4>
-	<table class="table table-bordered table-stiped table-condensed">
+	<div class="span12 sidebarHeader">
+      <span class=" span4 headerGray">
+          <i class="icon-th icon-white offset1"></i>&nbsp;At a glance
+      </span>
+  </div>
+	<table class="table table-condensed span11">
 		<thead>
 			<tr>
 				<th>Stats</th>
@@ -17,11 +14,11 @@
 		</thead>
 		<tr>
 			<td>Sent to date</td>
-			<td>#</td>
+			<td><%= countAggregate(Notification.all.count, Conversation.all.count) %></td>
 		</tr>
 		<tr>
 			<td>Recipients</td>
-			<td>#</td>
+			<td><%= Recipient.all.count %></td>
 		</tr>
 		<tr>
 			<td>Not delivered</td>
@@ -29,7 +26,7 @@
 		</tr>
 		<tr>
 			<td>Responses</td>
-			<td>#</td>
+			<td><%= Conversation.where(:to_number => '14154198992').count %></td>
 		</tr>
 	</table>
 </div>

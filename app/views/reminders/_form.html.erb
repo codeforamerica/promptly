@@ -1,4 +1,4 @@
-<%= semantic_form_for [@reminder] do |f| %>
+<%= form_for [@reminder] do |f| %>
   <% if @reminder.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -20,26 +20,44 @@
       </div>
     </div>
 
-  <%= f.fields_for :programs do |builder| %>
-    <% render 'programSelector', :p => builder %>
-  <% end %>
-  <%= link_to_add_fields "Add program", f, :programs %>
-
-  <%= f.fields_for :reports do |builder| %>
-    <% render 'reportSelector', :r => builder %>
-  <% end %>
-  <%= link_to_add_fields "Add report", f, :reports %>
-
-  <%= f.fields_for :messages do |builder| %>
-  <div class="field" id="<%= :message_text %>">
-    <div class="control-group">
-        <%= builder.label :message_text, "Reminder message text", :class => 'control-label' %>
-        <div class="controls">
-          <%= builder.text_area :message_text, :rows=>5 %>
-        </div>
+  <div class="field">
+  <div class="control-group">
+    <label class="control-label" for="programName">Choose a program for the reminder</label>
+    <div class="controls">
+      <%= f.collection_select :program_id, Program.all, :id, :name %>
     </div>
   </div>
-  <% end %>
+</div>
+
+<div class="field">
+  <div class="control-group">
+    <label class="control-label" for="reportName">Choose a report for the reminder</label>
+    <div class="controls">
+      <%= f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
+    </div>
+    <span class="help-inline">
+    </span>
+  </div>
+</div>
+
+<div class="field">
+  <div class="control-group">
+    <label class="control-label" for="reportCreate">
+      <%= link_to_add_fields "Create a new report", f, :report %></label>
+    <div class="controls">
+    </div>
+  </div>
+</div>
+  
+<div class="field">
+  <div class="control-group">
+    <%= f.label :message_text, "Text for this reminder", :class => 'control-label' %>
+    <div class="controls">
+    <%= f.text_field :message_text %>
+    </div>
+  </div>
+</div>
+  
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>

@@ -19,3 +19,9 @@
 
 # Ignore all environment variables
 /.env*
+
+# Ignore autosave files
+\#*
+
+# Ignore temp files
+*~
