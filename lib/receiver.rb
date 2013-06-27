@@ -70,7 +70,7 @@ class Receiver
         end
       end
     end
-    Receiver.delay(priority: 1, run_at: 2.minutes.from_now).perform
+    Receiver.delay(priority: 5, run_at: 2.minutes.from_now).perform
   end
 
   private
