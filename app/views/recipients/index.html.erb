@@ -27,10 +27,9 @@
       <div class="span5">
         <div class="well">
           <h3>Import users</h3>
-
-          <%= form_tag import_recipients_path, multipart: true do %>
-            <%= file_field_tag :file %>
-            <%= submit_tag "Import", :class=>'btn btn-primary' %>
+          <% form_tag import_recipients_path, multipart: true do %>
+            <% file_field_tag :file %>
+            <% submit_tag "Import", :class=>'btn btn-primary' %>
           <% end %>
         </div>
       </div>

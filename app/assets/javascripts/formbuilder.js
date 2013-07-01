@@ -21,5 +21,5 @@ $(function() {
     $('form .add_fields').show();
 
     event.preventDefault();
-	}
+  }
 });
