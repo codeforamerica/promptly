@@ -4,7 +4,7 @@
 
     <p>
       <b>Phone:</b>
-      <%= @recipient.phone %>
+      <%= number_to_phone(@recipient.phone, :area_code => true) %>
     </p>
 
       <ul class="unstyled">
@@ -27,7 +27,7 @@
       </div>
         <% @recipient.conversations.each do |conversation| %>
           <p>Date sent: <%= conversation.date.to_s(:date_format) %>
-          <p>To number: <%= conversation.to_number %></p>
+          <p>To number: <%= number_to_phone(conversation.to_number) %></p>
           <p>Message: <%= conversation.message %></p>
         <% end %>
     </div>
