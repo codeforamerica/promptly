@@ -1,25 +1,26 @@
-<h1>Listing reports</h1>
+<div class="row-fluid">
+<h3>Reports</h3>
+</div>
 
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Humanname</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
 
-<% @reports.each do |report| %>
-  <tr>
-    <td><%= report.report_type %></td>
-    <td><%= report.humanname %></td>
-    <td><%= link_to 'Show', report %></td>
-    <td><%= link_to 'Edit', edit_report_path(report) %></td>
-    <td><%= link_to 'Destroy', report, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <% @reports.each do |report| %>
+      <tr>
+        <td><%= link_to report.report_type, report %></td>
+        <td><%= report.humanname %></td>
+        <td><%= link_to 'Edit', edit_report_path(report), :class=>'btn btn-mini' %>  <%= link_to 'Delete', report, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
-
-<%= link_to 'New Report', new_report_path %>
+    <div class="dumbPadding"><%= link_to 'New Report', new_report_path, :class=>'btn btn-primary' %></div>
+  </div>
+</div>
