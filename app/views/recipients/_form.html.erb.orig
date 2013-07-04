@@ -14,7 +14,11 @@
   <%= f.input :phone, required: true %>
   <%= f.input :reminder_ids, :label => "Available reminders", :collection => Reminder.all, :prompt => "Choose a reminder", :multiple => true %>
   <%= f.simple_fields_for :notifications do |builder| %>
-    <%= builder.input :sent_date, as: :string, :required => true, :input_html => {:class => "datepicker"} %>
+<<<<<<< Updated upstream
+    <%= builder.input :sent_date, :as => :datetime, required: true %>
+=======
+    <%= builder.input :sent_date, :as => :text, :class => datepicker %>
+>>>>>>> Stashed changes
   <% end %>
 
   <div class="actions">
