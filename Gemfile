@@ -37,6 +37,7 @@ group :assets do
   gem 'uglifier', '1.2.3'
   gem 'font-awesome-sass-rails'
   gem 'coffee-rails'
+  gem 'bootstrap-datepicker-rails'
 end
 
 group :test do

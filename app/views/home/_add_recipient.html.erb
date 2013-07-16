@@ -1,7 +1,7 @@
 <div class="control-group">
 	<h3>Cell Phone Numbers of Recipients</h3>
 	<% @recipient.each do |recipient| %>
-	<p><%= number_to_phone(recipient.phone, :area_code => true) %></p>
+	<p><%= recipient.phone %></p>
 	<% end %>
-	<%= link_to 'New recipeient', new_recipient_path, :class => 'btn btn-primary' %>
+	<%= link_to 'New recipient', new_recipient_path, :class => 'btn btn-primary' %>
 </div>
