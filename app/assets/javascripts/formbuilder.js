@@ -22,4 +22,7 @@ $(function() {
 
     event.preventDefault();
   }
+  $('#recipientDate').datepicker({
+  	format: 'yy-mm-dd'
+  });
 });
