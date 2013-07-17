@@ -17,7 +17,7 @@
       </div>
         <% @recipient.reminders.each do |reminder| %>
           <p><%= reminder.name %></p>
-          <p>Reminder message: <%= reminder.message_text %></p>
+          <p><b>Reminder message:</b> <%= reminder.message_text %></p>
         <% end %>
     </div>
 
@@ -26,9 +26,9 @@
         <span class="greenHighlight">Conversations</span>
       </div>
         <% @recipient.conversations.each do |conversation| %>
-          <p>Date sent: <%= conversation.date.to_s(:date_format) %>
-          <p>To number: <%= number_to_phone(conversation.to_number) %></p>
-          <p>Message: <%= conversation.message %></p>
+          <p><b>Date sent:</b> <%= conversation.date.to_s(:date_format) %>
+          <p><b>To number:</b> <%= number_to_phone(conversation.to_number) %></p>
+          <p><b>Message:</b> <%= conversation.message %></p>
         <% end %>
     </div>
 
