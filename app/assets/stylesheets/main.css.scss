@@ -64,7 +64,7 @@ body {
 	padding: 30px 0;
 	margin-top: 70px;
 	border-top: 1px solid #e5e5e5;
-	background-color: #f5f5f5;
+	background-color: $lightGray;
 }
 
 .dumbPadding {
@@ -139,6 +139,7 @@ body {
 	text-transform: uppercase;
 	font-family: $headerFont;
 	font-size: 12px;
+	margin-bottom: ($baseLineHeight / 2);
 
 	table {
 		font-family: $bodyFont;

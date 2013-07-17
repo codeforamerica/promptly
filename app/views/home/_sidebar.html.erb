@@ -1,19 +1,20 @@
-<div class="span12 sidebarHeader">
-  <span class="span4 headerGray">
-  <i class="icon-upload icon-white offset1"></i>&nbsp;Upload
-  </span>
+<div class="sidebar">
+  <div class="span12 sidebarHeader">
+    <span class="span4 headerGray">
+    <i class="icon-upload icon-white offset1"></i>&nbsp;Upload
+    </span>
+  </div>
+  <div class="upload">
+    <!-- upload button -->
+    <%= link_to 'Create a reminder', new_reminder_path, :class => 'btn btn-primary' %>
+    <%= link_to 'Add new recipient', new_recipient_path, :class => 'btn btn-primary' %>
+    <!-- <button class="btn btn-primary" type="button">
+    Batch Upload
+    </button> -->
+    <!-- /button -->
+  </div>
 </div>
-<div class="upload">
-  <!-- upload button -->
-  <%= link_to 'Create a reminder', new_reminder_path, :class => 'btn btn-primary' %>
-  <%= link_to 'Add new recipient', new_recipient_path, :class => 'btn btn-primary' %>
-  <!-- <button class="btn btn-primary" type="button">
-  Batch Upload
-  </button> -->
-  <!-- /button -->
-</div>
-<div id="ataglance span12">
-  <!-- at a glance info -->
+<div class="sidebar">
   <div class="span12 sidebarHeader">
       <span class=" span4 headerGray">
           <i class="icon-th icon-white offset1"></i>&nbsp;At a glance
