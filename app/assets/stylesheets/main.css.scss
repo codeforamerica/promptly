@@ -44,14 +44,6 @@ body {
 	}
 }
 
-.footer {
-	text-align: center;
-	padding: 30px 0;
-	margin-top: 70px;
-	border-top: 1px solid #e5e5e5;
-	background-color: #f5f5f5;
-}
-
 .login {
 	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
 	height: $loginHeight;
@@ -65,6 +57,14 @@ body {
 .username {
 	display: block;
 	float: right;
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 70px;
+	border-top: 1px solid #e5e5e5;
+	background-color: #f5f5f5;
 }
 
 .dumbPadding {
@@ -148,8 +148,24 @@ body {
 	min-height: 15px;
 }
 
+// Over-riding .span* styles so the positioning works out.
+.conversation {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0 !important;
+}
+
+.recentReminder {
+	padding: 10px 0 10px 0;
+
+	table {
+		margin: 0 0 0 0;
+	}
+}
+
 .tableGreen {
 	border-left: 5px solid $green;
+	margin-bottom: 0px;
+
 	tbody {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
