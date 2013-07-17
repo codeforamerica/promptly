@@ -21,6 +21,10 @@ $navbarLinkBackgroundActive: $darkBlue;
 $btnPrimaryBackground: $darkBlue;
 $btnPrimaryBackgroundHighlight: $darkBlue;
 
+//Sizes
+$navbarHeight: 40px;
+$baseLineHeight: 20px;
+$loginHeight: 20px;
 
 h1,h2,h3,h4,h5,h6 {
 	font-family: $headerFont !important;
@@ -49,7 +53,8 @@ body {
 }
 
 .login {
-	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	height: $loginHeight;
 
 	a {
 		color: darken(#FFF, 5%);
