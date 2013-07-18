@@ -32,6 +32,10 @@ h1,h2,h3,h4,h5,h6 {
 body {
 	font-family: $bodyFont !important;
 }
+.lbl {
+	background-color: $lightGray;
+	font-weight: bold;
+}
 
 .navbar-inner {
 	background-color: $navbarBackground;
@@ -140,9 +144,16 @@ body {
 	font-family: $headerFont;
 	font-size: 12px;
 	margin-bottom: ($baseLineHeight / 2);
+	padding-bottom: ($baseLineHeight / 4);
 
 	table {
 		font-family: $bodyFont;
+	}
+
+	p {
+		margin-left: ($baseLineHeight / 4);
+		font-family: $bodyFont;
+		font-weight: normal;
 	}
 }
 
@@ -196,6 +207,13 @@ body {
 		}
 	}
 }
+
+.messagetext {
+	display: block;
+	margin-top: ($baseLineHeight/2);
+}
+
+
 
 @import "bootstrap";
 @import "bootstrap-responsive";
