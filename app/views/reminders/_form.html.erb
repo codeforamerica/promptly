@@ -18,30 +18,34 @@
       
       
       <%= f.input :name, label: "Reminder name" %>
-      <%= f.association :program %>
-      <%= f.association :report do %>
-        <%=  f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
-      <% end %>
-
-    <div class="field">
-      <div class="control-group">
-        <label class="control-label" for="reportCreate">
-          <%= link_to_add_fields "Create a new report", f, :report %></label>
-        <div class="controls">
-        </div>
-      </div>
-    </div>
 
     <%= f.input :message_text, as: :text, label: "Text for this reminder", input_html: { maxlength: 160, class: 'span12', rows: 5 } %> 
 
   </div>
   <div class="span4">
+    <div class="sidebar">
     
-    <h3>Details</h3>
+      <div class="mainHeaderGray">
+        <span class="grayHighlight">Reminder Details</span>
+      </div>
 
-    <p>Reminder time</p>
+      <p>Reminder time</p>
 
-    <p>Attach recipients</p>
+      <p>Attach program and report</p>
+      <%= f.association :program %>
+      <%= f.association :report do %>
+        <%=  f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
+      <% end %>
+
+      <div class="field">
+        <div class="control-group">
+          <label class="control-label" for="reportCreate">
+            <%= link_to_add_fields "Create a new report", f, :report %></label>
+          <div class="controls">
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
