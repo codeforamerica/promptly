@@ -13,17 +13,17 @@
         </thead>
         <% @recipients.each do |recipient| %>
           <tr>
-            <td><%= link_to number_to_phone(recipient.phone, :area_code => true), recipient %></td>
-            <td><%= render(:partial => 'notifications', :collection => recipient.notifications, :as => :notification) || 'You have no reminders' %></td>
-            <td><%= render(:partial => 'reports', :collection => recipient.reports, :as => :reports) || 'You have no reports' %></td>
-            <td><%= link_to 'Edit', edit_recipient_path(recipient), :class=>'btn btn-mini' %>  <%= link_to 'Delete', recipient, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+            <td><%= link_to recipient.phone, recipient %></td>
+            <td><%= render(:partial => 'notifications', :collection => recipient.notifications.where('sent_date IS NOT NULL'), :as => :notification) || 'You have no reminders' %></td>
+            <td><%= render(:partial => 'reports', :collection => recipient.reminders, :as => :reports) || 'You have no reports' %></td>
+          <td><%= link_to 'Edit', edit_recipient_path(recipient), :class=>'btn btn-mini' %>  <%= link_to 'Delete', recipient, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
           </tr>
           <% end %>
         </table>
         <div class="dumbPadding"><%= link_to 'New recipient', new_recipient_path, :class=>'btn btn-primary' %></div>
       </div>    
     </div>
-    <div class="row-fluid">
+<!--     <div class="row-fluid">
       <div class="span5">
         <div class="well">
           <h3>Import users</h3>
@@ -33,7 +33,7 @@
           <% end %>
         </div>
       </div>
-    </div>
+    </div> -->
   
   
 

@@ -20,3 +20,6 @@
 //= require dateselector
 //= require mainnav_dropdown
 //= require dynamicselector
+//= require bootstrap
+//= require bootstrap-datepicker
+//= require_tree .

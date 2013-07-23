@@ -19,7 +19,11 @@
 //     $(this).prev('fieldset').remove();
 //     $('form #reminder_report_id').parentsUntil('.field').show();
 //     $('form .add_fields').show();
-
 //     event.preventDefault();
 //   }
 // });
+
+  $('#recipientDate').datepicker({
+  	format: 'yy-mm-dd'
+  });
+});

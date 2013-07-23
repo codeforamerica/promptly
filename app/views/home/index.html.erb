@@ -1,26 +1,13 @@
 <div class="container"> <!-- main container -->
   <div class="row-fluid">
-    <div class="span4 sidebar">
-      <div class="span12 sidebarHeader">
-        <span class="span4 headerGray">
-        <i class="icon-upload icon-white offset1"></i>&nbsp;Upload
-        </span>
-        </div>
-      <div class="upload">
-        <!-- upload button -->
-        <%= link_to 'Add new recipient', new_recipient_path, :class => 'btn btn-primary' %>
-        <!-- <button class="btn btn-primary" type="button">
-        Batch Upload
-        </button> -->
-        <!-- /button -->
-        </div>
-      <%= render(:partial => 'ataglance') %>
-      </div>
+    <div class="span4">
+      <%= render 'sidebar' %>
+    </div>
     <div class="span8">
       <div class="span12 mainHeaderGreen">
         <span class="greenHighlight">Sent reminders</span>
       </div>
-      <div class="conversation">
+      <div class="span12 conversation">
       <%= render(:partial => 'reminders', :collection => @recents, :as => :recents) || 'There are no recent reminders' %>
       </div>
     </div>
