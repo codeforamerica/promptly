@@ -1,4 +1,4 @@
-// $(function() {
+ $(function() {
 //   // Handler adding form fields
 // 	$('form .add_fields').on('click', function(event) {
 

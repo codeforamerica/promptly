@@ -1,45 +1,61 @@
-<<<<<<< HEAD
-<%= simple_form_for [@reminder] do |f| %>
-  <% if @reminder.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this report from being saved:</h2>
+<div class="row-fluid">
+  <div class="span8">
 
-      <ul>
-      <% @reminder.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+    <h3>Reminder</h3>
+
+    <%= simple_form_for [@reminder] do |f| %>
+      <% if @reminder.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+          <ul>
+          <% @reminder.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
-  
-  <%= f.input :name, label: "Reminder name" %>
-  <%= f.association :program %>
-  <%= f.association :report do %>
-    <%=  f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
-  <% end %>
+      
+      
+      <%= f.input :name, label: "Reminder name" %>
 
-  <%= link_to 'Add new report', '#new-report-modal', 'data-toggle' => 'modal', 'class' => 'add_fields btn btn-default btn-small' %>
-  <div id="new-report-modal" class="modal hide fade" role="dialog" tabindex="-1" aria-labelledby="New Report" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      <h3 id="myModalLabel">Modal header</h3>
-    </div>
-    <div class="modal-body">
-      <p>Nothing here yet</p>
-    </div>
-    <div class="modal-footer">
-      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-      <button class="btn btn-primary">Save changes</button>
+    <%= f.input :message_text, as: :text, label: "Text for this reminder", input_html: { maxlength: 160, class: 'span12', rows: 5 } %> 
+
+  </div>
+  <div class="span4">
+    <div class="sidebar">
+    
+      <div class="mainHeaderGray">
+        <span class="grayHighlight">Reminder Details</span>
+      </div>
+
+      <p>Reminder time</p>
+
+      <p>Attach program and report</p>
+      <%= f.association :program %>
+      <%= f.association :report do %>
+        <%=  f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
+      <% end %>
+
+      <div class="field">
+        <div class="control-group">
+          <label class="control-label" for="reportCreate">
+            <%= link_to_add_fields "Create a new report", f, :report %></label>
+          <div class="controls">
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
-<div class="field">
-  <div class="control-group">
-    <%= f.label :message_text, "Text for this reminder", :class => 'control-label' %>
-    <div class="controls">
-    <%= f.text_field :message_text %>
-    </div>
+</div>
+<div class="row-fluid">
+  <div class="span">
+     <div class="actions">
+        <%= f.submit 'Save and attach recipients', :class => 'btn btn-primary' %>
+        <%= link_to 'Cancel', reminders_path %>
+      </div>
+    <% end %>
   </div>
 </div>
 
