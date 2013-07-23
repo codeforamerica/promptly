@@ -5,7 +5,7 @@ $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
 
 $linkColor: $blue;
-$placeholderText: $tan;
+$placeholderText: darken($lightGray, 5%);
 
 $navbarBackground: $blue;
 $navbarBackgroundHighlight: $darkBlue;
