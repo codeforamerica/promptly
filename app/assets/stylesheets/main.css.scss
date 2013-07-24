@@ -31,12 +31,17 @@ h1,h2,h3,h4,h5,h6 {
 }
 body {
 	font-family: $bodyFont !important;
+	background-color: $lightGray !important;
 }
+
 .lbl {
 	background-color: $lightGray;
 	font-weight: bold;
 }
 
+.navbar {
+	margin-bottom: 0 !important;
+}
 .navbar-inner {
 	background-color: $navbarBackground;
 	border-radius: 0px !important;
@@ -45,6 +50,8 @@ body {
 		text-shadow: none;
 		font-weight: 500;
 		font-size: 32px;
+		position: relative;
+		top: -3px;
 	}
 	.white-caret {
 		color: $white !important;
@@ -68,12 +75,17 @@ body {
 	float: right;
 }
 
+#main {
+	background-color: $white;
+	padding: 20px 0 70px 0;
+}
+
 .footer {
 	text-align: center;
 	padding: 30px 0;
-	margin-top: 70px;
+	margin-top: 0px;
 	border-top: 1px solid #e5e5e5;
-	background-color: $lightGray;
+	background-color: $white;
 }
 
 .dumbPadding {
