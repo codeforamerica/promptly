@@ -1,5 +1,5 @@
 @import "colors";
-
+@import "placeholder";
 //Fonts
 $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
@@ -31,6 +31,12 @@ h1,h2,h3,h4,h5,h6 {
 }
 body {
 	font-family: $bodyFont !important;
+}
+input {
+	@include input-placeholder {
+		color: #e0e0e0 !important;
+		font-style: italic;
+}
 }
 .lbl {
 	background-color: $lightGray;

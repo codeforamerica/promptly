@@ -17,7 +17,6 @@ class Recipient < ActiveRecord::Base
   validates :phone, :presence => true
 
   def self.import(file)
-    puts file
 	  spreadsheet = open_spreadsheet(file)
 	  header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
@@ -28,6 +27,7 @@ class Recipient < ActiveRecord::Base
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
       @notification = Notification.where(reminder_id: @report.reminder_id, recipient_id: recipient.id).first_or_initialize
+      binding.pry
       if recipient.reports.blank?
         recipient.reports <<  @report
       else 
