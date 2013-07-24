@@ -1,0 +1,31 @@
+// Mixins ---------------------------------------------------------------
+
+=placeholder-style
+  color: #000
+  // add your defaults here.
+  // if you need more than one style-group you can either create several mixins,
+  // or just name the style-groups and take a single style-group-name argument.
+
+=apply-placeholders
+  &::-webkit-input-placeholder
+    +placeholder-style
+  &:-moz-placeholder
+    +placeholder-style
+  &.placeholder 
+    +placeholder-style
+
+// Template --------------------------------------------------------------
+// you can create as many templates as you need for your site
+
+.placeholders
+  +apply-placeholders
+
+// Placeholders --------------------------------------------------------------
+// call the template with @extend when you can
+// or, when fighting the cascade you can call the mixin
+
+input, textarea
+  @extend .placeholders
+
+.something
+  +apply-placeholders
