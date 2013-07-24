@@ -20,7 +20,7 @@
       <%= f.input :name, label: "Reminder name" %>
 
     <%= f.input :message_text, as: :text, label: "Text for this reminder", input_html: { maxlength: 160, class: 'span12', rows: 5 } %> 
-    <div>Characters left: <span id="char-count">160</span></div>
+    <div class="characterCount">Characters left: <span id="char-count">160</span></div>
 
   </div>
   <div class="span4">

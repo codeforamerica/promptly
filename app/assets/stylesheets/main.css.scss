@@ -264,3 +264,8 @@ input {
 	display: block;
 	margin-top: ($baseLineHeight/2);
 }
+
+.characterCount {
+	color: $darkGray;
+	float: right;
+}
