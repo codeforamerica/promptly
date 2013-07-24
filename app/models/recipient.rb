@@ -27,7 +27,7 @@ class Recipient < ActiveRecord::Base
         .first_or_create(row.to_hash.slice(*accessible_attributes))
       #assign related reports to our current report
       @notification = Notification.where(reminder_id: @report.reminder_id, recipient_id: recipient.id).first_or_initialize
-      binding.pry
+      # binding.pry
       if recipient.reports.blank?
         recipient.reports <<  @report
       else 
