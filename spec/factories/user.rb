@@ -3,7 +3,7 @@ FactoryGirl.define do
 	  email                  "user@example.com"
 	  password               "password"
 	  password_confirmation  "password"
-	  roles									 "admin"
-	  name									 "test"
+	  roles					 "admin"
+	  name					 "test"
 	end
 end
