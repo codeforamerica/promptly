@@ -1,7 +1,8 @@
 # spec/factories/program.rb
 FactoryGirl.define do
   factory :program do
-    name "test program"
+    name "test"
 	description "a test"
+	report
   end
 end

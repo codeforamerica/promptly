@@ -25,10 +25,10 @@ describe "Reminders" do
       click_link 'Create reminder'
       # save_and_open_page
       fill_in 'Reminder name', with: @reminder.name
-      # select @reminder.program.name, :from => "reminder_program_id"
+      select @reminder.program.name, :from => "reminder_program_id" rescue Kernel.binding.pry
       select @reminder.report.report_type, :from => "reminder_report_id"
       fill_in 'Text for this reminder', with: @reminder.name
-      click_button "reminderNew"
+      find(:css, "#submit").click
     }.to change(Reminder,:count).by(1)
   end
 
