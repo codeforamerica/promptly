@@ -1,5 +1,7 @@
 @import "colors";
 @import "placeholder";
+@import "bootstrap";
+@import "bootstrap-responsive";
 //Fonts
 $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
@@ -27,16 +29,26 @@ $baseLineHeight: 20px;
 $loginHeight: 20px;
 
 h1,h2,h3,h4,h5,h6 {
-	font-family: $headerFont !important;
+	font-family: $headerFont;
 }
 body {
-	font-family: $bodyFont !important;
+	font-family: $bodyFont;
 }
 input {
 	@include input-placeholder {
-		color: #e0e0e0 !important;
+		color: #e0e0e0;
 		font-style: italic;
+	}
 }
+.controls select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	border-radius: none;
+}
+
+.btn {
+	border-radius: 0px;
+	background-image: none;
+	border: none;
+	text-transform: uppercase;
 }
 .lbl {
 	background-color: $lightGray;
@@ -45,14 +57,48 @@ input {
 
 .navbar-inner {
 	background-color: $navbarBackground;
-	border-radius: 0px !important;
-	background-image: none !important;
+	border-radius: 0px;
+	background-image: none;
 	.brand {
 		text-shadow: none;
 		font-weight: 500;
 		font-size: 32px;
 	}
 }
+.navbar{
+	.brand {
+		float: left;
+		display: block;
+		padding: 10px 20px 10px;
+		margin-left: -20px;
+		font-size: 20px;
+		font-weight: 200;
+		color: #fff;
+		text-shadow: 0 1px 0 #116fa8;
+		}
+	.nav>li>a {
+		float: none;
+		padding: 10px 15px 10px;
+		color: #f2f2f2;
+		text-decoration: none;
+		text-shadow: 0 1px 0 #116fa8;
+		&:hover{
+			color: #fff;
+			text-decoration: none;
+			background-color: lighten($blue, 20);
+		}
+	}
+	.nav>.active>a{
+		color: #fff;
+		text-decoration: none;
+		background-color: #116fa8;
+		&:hover{
+			color: #fff;
+			text-decoration: none;
+			background-color: lighten($blue, 20);
+		}
+	}
+} 
 
 .login {
 	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
@@ -141,7 +187,7 @@ input {
 	display: none;
 }
 .row-fluid [class*="span"] {
-	min-height: 25px !important;
+	min-height: 25px;
 }
 
 .sidebar {
@@ -173,7 +219,7 @@ input {
 // Over-riding .span* styles so the positioning works out.
 .conversation {
 	padding: 0 0 0 0;
-	margin: 0 0 0 0 !important;
+	margin: 0 0 0 0;
 }
 
 .recentReminder {
@@ -192,7 +238,7 @@ input {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
 	td, th{
-		border: none !important;
+		border: none;
 	}
 }
 
@@ -218,8 +264,3 @@ input {
 	display: block;
 	margin-top: ($baseLineHeight/2);
 }
-
-
-
-@import "bootstrap";
-@import "bootstrap-responsive";
