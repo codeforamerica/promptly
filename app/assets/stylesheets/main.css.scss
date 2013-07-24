@@ -5,7 +5,7 @@ $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
 
 $linkColor: $blue;
-$placeholderText: $tan;
+$placeholderText: darken($lightGray, 5%);
 
 $navbarBackground: $blue;
 $navbarBackgroundHighlight: $darkBlue;
@@ -21,14 +21,27 @@ $navbarLinkBackgroundActive: $darkBlue;
 $btnPrimaryBackground: $darkBlue;
 $btnPrimaryBackgroundHighlight: $darkBlue;
 
+//Sizes
+$navbarHeight: 40px;
+$baseLineHeight: 20px;
+$loginHeight: 20px;
 
 h1,h2,h3,h4,h5,h6 {
 	font-family: $headerFont !important;
 }
 body {
 	font-family: $bodyFont !important;
+	background-color: $lightGray !important;
 }
 
+.lbl {
+	background-color: $lightGray;
+	font-weight: bold;
+}
+
+.navbar {
+	margin-bottom: 0 !important;
+}
 .navbar-inner {
 	background-color: $navbarBackground;
 	border-radius: 0px !important;
@@ -37,21 +50,21 @@ body {
 		text-shadow: none;
 		font-weight: 500;
 		font-size: 32px;
+		position: relative;
+		top: -3px;
+	}
+	.white-caret {
+		color: $white !important;
+		border-top-color: $white !important;
+		border-bottom-color: $white !important;
 	}
 }
 
-.footer {
-	text-align: center;
-	padding: 30px 0;
-	margin-top: 70px;
-	border-top: 1px solid #e5e5e5;
-	background-color: #f5f5f5;
-}
-
 .login {
-	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	height: $loginHeight;
 
-	a {
+	p {
 		color: darken(#FFF, 5%);
 		padding: 0 0 0 0;
 	}
@@ -60,6 +73,19 @@ body {
 .username {
 	display: block;
 	float: right;
+}
+
+#main {
+	background-color: $white;
+	padding: 20px 0 70px 0;
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 0px;
+	border-top: 1px solid #e5e5e5;
+	background-color: $white;
 }
 
 .dumbPadding {
@@ -134,6 +160,21 @@ body {
 	text-transform: uppercase;
 	font-family: $headerFont;
 	font-size: 12px;
+	margin-bottom: ($baseLineHeight / 2);
+	padding-bottom: ($baseLineHeight / 4);
+
+	table {
+		font-family: $bodyFont;
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+	}
+
+	p {
+		margin-left: ($baseLineHeight / 4);
+		font-family: $bodyFont;
+		font-weight: normal;
+	}
 }
 
 .sidebarHeader {
@@ -143,8 +184,24 @@ body {
 	min-height: 15px;
 }
 
+// Over-riding .span* styles so the positioning works out.
+.conversation {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0 !important;
+}
+
+.recentReminder {
+	padding: 10px 0 10px 0;
+
+	table {
+		margin: 0 0 0 0;
+	}
+}
+
 .tableGreen {
 	border-left: 5px solid $green;
+	margin-bottom: 0px;
+
 	tbody {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
@@ -170,6 +227,13 @@ body {
 		}
 	}
 }
+
+.messagetext {
+	display: block;
+	margin-top: ($baseLineHeight/2);
+}
+
+
 
 @import "bootstrap";
 @import "bootstrap-responsive";
