@@ -20,4 +20,8 @@ module ApplicationHelper
     return conversations + notifications
   end
 
+  def current_controller?(c)
+    controller.controller_name == c
+  end
+
 end
