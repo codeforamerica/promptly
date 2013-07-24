@@ -1,5 +1,7 @@
 @import "colors";
 @import "placeholder";
+@import "bootstrap";
+@import "bootstrap-responsive";
 //Fonts
 $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
@@ -26,12 +28,36 @@ $navbarHeight: 40px;
 $baseLineHeight: 20px;
 $loginHeight: 20px;
 
+//bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
-	font-family: $headerFont !important;
+	font-family: $headerFont;
 }
+
 body {
-	font-family: $bodyFont !important;
-	background-color: $lightGray !important;
+	font-family: $bodyFont;
+	background-color: $lightGray;
+}
+
+input {
+	@include input-placeholder {
+		color: #e0e0e0;
+		font-style: italic;
+	}
+}
+
+.controls select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	border-radius: 0px;
+}
+
+.btn {
+	border-radius: 0px;
+	background-image: none;
+	border: none;
+	text-transform: uppercase;
+}
+
+.control-group {
+	margin-bottom: 0px;
 }
 
 .lbl {
@@ -40,12 +66,12 @@ body {
 }
 
 .navbar {
-	margin-bottom: 0 !important;
+	margin-bottom: 0;
 }
 .navbar-inner {
 	background-color: $navbarBackground;
-	border-radius: 0px !important;
-	background-image: none !important;
+	border-radius: 0px;
+	background-image: none;
 	.brand {
 		text-shadow: none;
 		font-weight: 500;
@@ -54,11 +80,48 @@ body {
 		top: -3px;
 	}
 	.white-caret {
-		color: $white !important;
-		border-top-color: $white !important;
-		border-bottom-color: $white !important;
+		color: $white;
+		border-top-color: $white;
+		border-bottom-color: $white;
 	}
 }
+
+.navbar{
+	.brand {
+		float: left;
+		display: block;
+		padding: 10px 20px 10px;
+		margin-left: -20px;
+		font-size: 20px;
+		font-weight: 200;
+		color: #fff;
+		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
+		}
+	.nav>li>a {
+		float: none;
+		padding: 10px 15px 10px;
+		color: #f2f2f2;
+		text-decoration: none;
+		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
+		&:hover{
+			color: #fff;
+			text-decoration: none;
+			background-color: $lightBlue;
+		}
+	}
+	.nav>.active>a{
+		color: #fff;
+		text-decoration: none;
+		background-color: $navbarBackgroundHighlight;
+		&:hover{
+			color: #fff;
+			text-decoration: none;
+			background-color: $lightBlue;
+		}
+	}
+} 
+
+//Custom styles
 
 .login {
 	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
@@ -152,7 +215,7 @@ body {
 	display: none;
 }
 .row-fluid [class*="span"] {
-	min-height: 25px !important;
+	min-height: 25px;
 }
 
 .sidebar {
@@ -187,7 +250,7 @@ body {
 // Over-riding .span* styles so the positioning works out.
 .conversation {
 	padding: 0 0 0 0;
-	margin: 0 0 0 0 !important;
+	margin: 0 0 0 0;
 }
 
 .recentReminder {
@@ -206,7 +269,7 @@ body {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
 	td, th{
-		border: none !important;
+		border: none;
 	}
 }
 
@@ -228,19 +291,12 @@ body {
 	}
 }
 
-input {
-	@include input-placeholder {
-		color: #e0e0e0 !important;
-		font-style: italic;
-}
-}
-
 .messagetext {
 	display: block;
 	margin-top: ($baseLineHeight/2);
 }
 
-
-
-@import "bootstrap";
-@import "bootstrap-responsive";
+.characterCount {
+	color: $darkGray;
+	margin-bottom: 20px;
+}

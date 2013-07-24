@@ -1,13 +1,9 @@
 <div class="row-fluid">
   <div class="span8">
-
-    <h3>Reminder</h3>
-
     <%= simple_form_for [@reminder] do |f| %>
       <% if @reminder.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this report from being saved:</h2>
-
           <ul>
           <% @reminder.errors.full_messages.each do |msg| %>
             <li><%= msg %></li>
@@ -15,28 +11,21 @@
           </ul>
         </div>
       <% end %>
-      
-      
-      <%= f.input :name, label: "Reminder name" %>
-
-    <%= f.input :message_text, as: :text, label: "Text for this reminder", input_html: { maxlength: 160, class: 'span12', rows: 5 } %> 
-
+      <%= f.input :name, label: "Name", input_html: { class: 'span6' } %>
+      <%= f.input :message_text, as: :text, label: "Message text", input_html: { maxlength: 160, class: 'span6', rows: 5 } %> 
+    <div class="characterCount offset3 span6">Characters left: <span id="char-count">160</span></div>
   </div>
   <div class="span4">
     <div class="sidebar">
-    
       <div class="mainHeaderGray">
         <span class="grayHighlight">Reminder Details</span>
       </div>
-
       <p>Reminder time</p>
-
       <p>Attach program and report</p>
       <%= f.association :program %>
       <%= f.association :report do %>
         <%=  f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
       <% end %>
-
       <div class="field">
         <div class="control-group">
           <label class="control-label" for="reportCreate">
@@ -46,7 +35,6 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 <div class="row-fluid">
