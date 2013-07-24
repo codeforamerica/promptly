@@ -46,13 +46,18 @@ body {
 		font-weight: 500;
 		font-size: 32px;
 	}
+	.white-caret {
+		color: $white !important;
+		border-top-color: $white !important;
+		border-bottom-color: $white !important;
+	}
 }
 
 .login {
 	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
 	height: $loginHeight;
 
-	a {
+	p {
 		color: darken(#FFF, 5%);
 		padding: 0 0 0 0;
 	}
