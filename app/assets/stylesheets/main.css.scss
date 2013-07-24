@@ -74,28 +74,28 @@ input {
 		font-size: 20px;
 		font-weight: 200;
 		color: #fff;
-		text-shadow: 0 1px 0 #116fa8;
+		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
 		}
 	.nav>li>a {
 		float: none;
 		padding: 10px 15px 10px;
 		color: #f2f2f2;
 		text-decoration: none;
-		text-shadow: 0 1px 0 #116fa8;
+		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
 		&:hover{
 			color: #fff;
 			text-decoration: none;
-			background-color: lighten($blue, 20);
+			background-color: $lightBlue;
 		}
 	}
 	.nav>.active>a{
 		color: #fff;
 		text-decoration: none;
-		background-color: #116fa8;
+		background-color: $navbarBackgroundHighlight;
 		&:hover{
 			color: #fff;
 			text-decoration: none;
-			background-color: lighten($blue, 20);
+			background-color: $lightBlue;
 		}
 	}
 } 
