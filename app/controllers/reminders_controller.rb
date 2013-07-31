@@ -23,8 +23,6 @@ class RemindersController < ApplicationController
   # GET /reminders/new.json
   def new
     @reminder = Reminder.new
-    @report = @reminder.build_report
-    @program = @reminder.build_program
 
     respond_to do |format|
       format.html # new.html.erb
@@ -57,7 +55,6 @@ class RemindersController < ApplicationController
   # PUT /reminders/1.json
   def update
     @reminder = Reminder.find(params[:id])
-
 
     respond_to do |format|
       if @reminder.update_attributes(params[:reminder])

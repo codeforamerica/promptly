@@ -21,19 +21,6 @@
         <span class="grayHighlight">Reminder Details</span>
       </div>
       <p>Reminder time</p>
-      <p>Attach program and report</p>
-      <%= f.association :program %>
-      <%= f.association :report do %>
-        <%= f.grouped_collection_select :report_id, Program.order(:name), :reports, :name, :id, :report_type %>
-      <% end %>
-      <div class="field">
-        <div class="control-group">
-          <label class="control-label" for="reportCreate">
-            <%= link_to_add_fields "Create a new report", f, :report %></label>
-          <div class="controls">
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
