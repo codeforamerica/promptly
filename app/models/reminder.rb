@@ -1,4 +1,4 @@
 class Reminder < ActiveRecord::Base
-  attr_accessible :created_at, :name, :updated_at, :message_text
+  attr_accessible :created_at, :name, :updated_at, :message_text, :description
   has_many :recipients, through: :deliveries
 end
