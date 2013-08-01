@@ -23,7 +23,7 @@
 //   }
 // });
 
-  $('#recipientDate').datepicker({
+  $('.dateSelect').datepicker({
   	format: 'yy-mm-dd'
   });
 

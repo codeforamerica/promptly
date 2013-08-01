@@ -3,7 +3,8 @@ class Recipient < ActiveRecord::Base
   has_and_belongs_to_many :reminders
   has_and_belongs_to_many :conversations
   has_many :notifications, :dependent => :destroy
-  has_many :reminders, through: :deliveries
+  has_many :deliveries
+  has_many :reminders, :through => :deliveries
 
   attr_accessible :reminder_ids
   attr_accessible :conversation_ids
@@ -13,6 +14,10 @@ class Recipient < ActiveRecord::Base
   accepts_nested_attributes_for :reminders
 
   validates :phone, :presence => true
+
+  def phone_or_name
+    name ? "#{name}" : "#{phone}"
+  end
 
   def self.import(file)
 	  spreadsheet = open_spreadsheet(file)

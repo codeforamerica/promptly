@@ -23,6 +23,7 @@ class RemindersController < ApplicationController
   # GET /reminders/new.json
   def new
     @reminder = Reminder.new
+    @reminder.deliveries.build
 
     respond_to do |format|
       format.html # new.html.erb

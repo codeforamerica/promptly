@@ -20,7 +20,18 @@
       <div class="mainHeaderGray">
         <span class="grayHighlight">Reminder Details</span>
       </div>
-      <p>Reminder time</p>
+      <p>Reminder date</p>
+      <div class="field">
+        <div class="control-group">
+          <%= f.simple_fields_for :deliveries do |builder| %>
+            <%= builder.label :send_date %>
+            <%= builder.text_field :send_date, :class => 'dateSelect' %>
+          <% end %>
+        </div>
+      </div>
+      <p>Reminder recipients</p>
+      <%= f.collection_check_boxes :recipient_ids, Recipient.all, :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox")+ b.text}
+      end  %>
     </div>
   </div>
 </div>
