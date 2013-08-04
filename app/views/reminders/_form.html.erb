@@ -20,11 +20,10 @@
       <div class="mainHeaderGray">
         <span class="grayHighlight">Reminder Details</span>
       </div>
-      <p>Reminder date</p>
       <div class="field">
         <div class="control-group">
           <%= f.simple_fields_for :deliveries do |builder| %>
-            <%= builder.label :send_date %>
+            <%= builder.label :send_date, 'Delivery date' %>
             <%= builder.text_field :send_date, :class => 'dateSelect' %>
           <% end %>
         </div>
@@ -38,7 +37,7 @@
 <div class="row-fluid">
   <div class="span">
      <div class="actions">
-        <%= f.submit 'Save and attach recipients', :class => 'btn btn-primary', :id => "reminderNew" %>
+        <%= f.submit :class => 'btn btn-primary'%>
         <%= link_to 'Cancel', reminders_path %>
       </div>
     <% end %>

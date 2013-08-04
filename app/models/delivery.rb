@@ -4,4 +4,9 @@ class Delivery < ActiveRecord::Base
   
   belongs_to :recipient
   belongs_to :reminder
+
+  def date_format(human_date)
+  	human_date.date.to_s(:input_format) 
+  end
+
 end

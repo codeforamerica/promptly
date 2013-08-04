@@ -40,9 +40,18 @@ class RemindersController < ApplicationController
   # POST /reminders.json
   def create
     @reminder = Reminder.new(params[:reminder])
-    
+    # format the date    
+    params[:reminder][:deliveries_attributes].values.each do |delivery|
+      @send_date = delivery[:send_date]
+    end
     respond_to do |format|
       if @reminder.save
+        # Add the date to all the recipients
+        @reminder.deliveries.each do |delivery|
+          delivery.send_date = @send_date
+          b = Helper.createsig(delivery.send_date.to_s + delivery.reminder_id.to_s)
+          delivery.save
+        end
         format.html { redirect_to @reminder, notice: 'Reminder was successfully created.' }
         format.json { render json: @reminder, status: :created, location: @reminder }
       else

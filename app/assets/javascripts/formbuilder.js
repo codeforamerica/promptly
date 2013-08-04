@@ -22,7 +22,7 @@
 //     event.preventDefault();
 //   }
 // });
-
+//https://github.com/Nerian/bootstrap-datepicker-rails
   $('.dateSelect').datepicker({
   	format: 'yy-mm-dd'
   });

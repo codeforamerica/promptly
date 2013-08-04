@@ -5,3 +5,4 @@ require File.expand_path('../application', __FILE__)
 Landshark::Application.initialize!
 
 Time::DATE_FORMATS[:date_format] = "%B %d %Y %H:%M"
+Time::DATE_FORMATS[:input_format] = "%yy %mm %dd %H:%M"
