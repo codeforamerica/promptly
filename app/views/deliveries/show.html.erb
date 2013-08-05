@@ -13,7 +13,7 @@
 		<% @deliveries.each do |delivery| %>
 		<div>
 			<span>
-			<%= delivery.recipient.phone %>
+			<%= link_to number_to_phone(delivery.recipient.phone, :area_code => true), delivery.recipient %>
 			</span>
 		</div>
 			<% end %>

@@ -15,7 +15,7 @@ Landshark::Application.routes.draw do
 
   resources :reminders
 
-   resources :deliveries
+  resources :deliveries
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 
