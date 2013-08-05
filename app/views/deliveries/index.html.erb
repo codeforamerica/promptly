@@ -3,19 +3,18 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Id</th>
+          <th>Number of recipients</th>
           <th>Send date</th>
           <th>Reminder</th>
         </tr>
       </thead>
       <tbody>
-        <% @deliveries.each do |delivery| %>
+        <% @groups.each do |batch, delivery| %>
         <tr>
-          <td><%= link_to delivery.batch_id, delivery_path(delivery.batch_id) %></td>
-          <td><%= delivery.send_date %></td>
-          <td><%= delivery.reminder_id %></td>
+          <td><%= link_to delivery.count, delivery_path(batch) %></td>
+          <td><%= delivery.first.send_date.to_s(:date_format) %></td>
+          <td><%= delivery.first.reminder.message_text || delivery.first.reminder.name %></td>
           <td></td>
-          <td><%= link_to 'Edit', edit_delivery_path(delivery), :class=>'btn btn-mini' %>  <%= link_to 'Delete', delivery, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
         </tr>
         <% end %>
       </tbody>

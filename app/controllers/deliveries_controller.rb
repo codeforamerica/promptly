@@ -6,6 +6,9 @@ class DeliveriesController < ApplicationController
   def index
   	@deliveries = Delivery.all
 
+  @groups = Delivery.all.to_set.classify {
+  |delivery| delivery.batch_id}
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @deliveries }
