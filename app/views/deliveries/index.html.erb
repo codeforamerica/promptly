@@ -11,7 +11,7 @@
       <tbody>
         <% @deliveries.each do |delivery| %>
         <tr>
-          <td><%= link_to delivery.batch_id, delivery %></td>
+          <td><%= link_to delivery.batch_id, delivery_path(delivery.batch_id) %></td>
           <td><%= delivery.send_date %></td>
           <td><%= delivery.reminder_id %></td>
           <td></td>
