@@ -13,11 +13,9 @@ Landshark::Application.routes.draw do
 
   resources :conversations
 
-  resources :reports
-
-  resources :programs
-
   resources :reminders
+
+   resources :deliveries
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 

@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row-fluid dumbPadding">
+		<div class="span12 mainHeaderGreen">
+			<span class="greenHighlight">Delivery</span>
+		</div>
+	</div>
+  <div class="row-fluid">
+  	<div class="span8">
+  		<div class="mainHeaderGray">
+			<span class="grayHighlight">Delivery Date</span>
+		</div>
+		<p><%= @deliveries.first.send_date.to_s(:date_format) %></p>
+		<% @deliveries.each do |delivery| %>
+		<div>
+			<span>
+			<%= delivery.recipient.phone %>
+			</span>
+		</div>
+			<% end %>
+	</div>
+	</div>
+		<div>
+			<%= link_to 'Back', deliveries_path %>
+		</div>
+	</div>
+</div>

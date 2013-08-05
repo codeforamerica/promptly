@@ -1,0 +1,33 @@
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Send date</th>
+          <th>Reminder</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @deliveries.each do |delivery| %>
+        <tr>
+          <td><%= link_to delivery.batch_id, delivery %></td>
+          <td><%= delivery.send_date %></td>
+          <td><%= delivery.reminder_id %></td>
+          <td></td>
+          <td><%= link_to 'Edit', edit_delivery_path(delivery), :class=>'btn btn-mini' %>  <%= link_to 'Delete', delivery, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+
+
+  <%= link_to 'Create delivery', new_delivery_path, :class => 'btn btn-primary' %>
+  </div>
+</div>
+
+<script>
+  $('.dropdown-toggle').dropdown()
+</script>
