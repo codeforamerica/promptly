@@ -19,6 +19,9 @@
 					<li class="<%= 'active' if current_page?(recipients_url)%>">
 						<%= link_to "Recipients", recipients_path %>
 					</li>
+					<li class="<%= 'active' if current_page?(deliveries_url)%>">
+						<%= link_to "Deliveries", deliveries_path %>
+					</li>
 				</ul>
 				<div class="login pull-right">
 				<% if user_signed_in? %>

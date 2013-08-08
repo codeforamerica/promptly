@@ -6,8 +6,8 @@ class DeliveriesController < ApplicationController
   def index
   	@deliveries = Delivery.all
 
-  @groups = @deliveries.to_set.classify {
-  |delivery| delivery.batch_id}
+    @groups = @deliveries.to_set.classify {
+    |delivery| delivery.batch_id}
 
     respond_to do |format|
       format.html # index.html.erb
