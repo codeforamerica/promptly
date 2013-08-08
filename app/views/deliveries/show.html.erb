@@ -9,7 +9,7 @@
   		<div class="mainHeaderGray">
 			<span class="grayHighlight">Delivery Date</span>
 		</div>
-		<p><%= @deliveries.first.send_date.to_s(:date_format) %></p>
+		<p><%= @deliveries.last.send_date.to_s(:date_format) %></p>
 		<% @deliveries.each do |delivery| %>
 		<div>
 			<span>

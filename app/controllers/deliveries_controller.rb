@@ -6,7 +6,7 @@ class DeliveriesController < ApplicationController
   def index
   	@deliveries = Delivery.all
 
-  @groups = Delivery.all.to_set.classify {
+  @groups = @deliveries.to_set.classify {
   |delivery| delivery.batch_id}
 
     respond_to do |format|
@@ -17,10 +17,8 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/1
   # GET /deliveries/1.json
-  def show
-    @deliveries = Delivery.where("batch_id=? AND recipient_id IS NOT NULL", params[:id])
-    # binding.pry
-
+  def show 
+    @deliveries = Delivery.where("batch_id=?", params[:batch_id])
   end
 
   # GET /deliveries/new
@@ -42,16 +40,11 @@ class DeliveriesController < ApplicationController
   # POST /deliveries
   # POST /deliveries.json
   def create
-    @delivery = Delivery.new(params[:delivery])
+    create_new_recipients_deliveries(params)
 
     respond_to do |format|
-      if @delivery.save
-        format.html { redirect_to @delivery, notice: 'Delivery was successfully created.' }
-        format.json { render json: @delivery, status: :created, location: @delivery }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @delivery.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to deliveries_url, notice: 'Delivery was successfully created.' }
+      format.json { render json: @delivery, status: :created, location: @delivery }
     end
   end
 
@@ -62,7 +55,7 @@ class DeliveriesController < ApplicationController
 
     respond_to do |format|
       if @delivery.update_attributes(params[:delivery])
-        format.html { redirect_to @delivery, notice: 'Delivery was successfully updated.' }
+        format.html { redirect_to @deliveries, notice: 'Delivery was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -80,6 +73,17 @@ class DeliveriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to deliveries_url }
       format.json { head :no_content }
+    end
+  end
+
+  def create_new_recipients_deliveries(new_delivery)
+    new_delivery[:delivery][:recipient_id].each do |recipient|
+      unless recipient == ""
+        @delivery = Delivery.new(new_delivery[:delivery])
+        @delivery.recipient_id = recipient
+        @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + @delivery.send_date.to_s) 
+        @delivery.save
+      end
     end
   end
 end

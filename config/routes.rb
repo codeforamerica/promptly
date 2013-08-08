@@ -15,6 +15,7 @@ Landshark::Application.routes.draw do
 
   resources :reminders
 
+  get '/deliveries/:batch_id', to: 'deliveries#show'
   resources :deliveries
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'

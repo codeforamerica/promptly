@@ -51,7 +51,6 @@ class RemindersController < ApplicationController
         # Add the date to all the recipients
         @reminder.deliveries.each do |delivery|
           delivery.send_date = @send_date
-          b = Helper.createsig(delivery.send_date.to_s + delivery.reminder_id.to_s)
           delivery.batch_id = batch_id
           delivery.save
         end

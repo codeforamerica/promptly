@@ -8,9 +8,4 @@ module Helper
   	end
     Recipient.where('phone =?', check_number)
   end
-
-  def self.createsig(body)    
-    Digest::MD5.hexdigest(body)
-  end
-
 end
