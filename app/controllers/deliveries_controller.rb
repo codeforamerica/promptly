@@ -83,7 +83,19 @@ class DeliveriesController < ApplicationController
         @delivery.send_date = delivery_date      
         @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + delivery_date.to_s)
         @delivery.save
+        add_delivery_to_queue(@delivery)
       end
+    end
+  end
+
+  def add_delivery_to_queue(delivery)
+    theDate = delivery.send_date
+    @recipient = Recipient.find(delivery.recipient_id)
+    if theDate < DateTime.now
+      Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
+    else
+      theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
+      Notifier.notification_add(@recipient, theDate, theJob.id)
     end
   end
 end
