@@ -33,7 +33,7 @@ class RecipientsController < ApplicationController
   # GET /recipients/new.json
   def new
     @recipient = Recipient.new
-    @recipient.notifications.build
+    # @recipient.notifications.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -53,15 +53,15 @@ class RecipientsController < ApplicationController
       if @recipient.save
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
-        @recipient.reminders.try(:each) do |reminder|
-          theDate = @recipient.notifications.last.sent_date
-          if theDate < DateTime.now
-            Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
-          else
-            theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
-            Notifier.notification_add(@recipient, theDate, theJob.id)
-          end
-        end
+        # @recipient.reminders.try(:each) do |reminder|
+        #   # theDate = @recipient.notifications.last.sent_date
+        #   if theDate < DateTime.now
+        #     Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
+        #   else
+        #     theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
+        #     # Notifier.notification_add(@recipient, theDate, theJob.id)
+        #   end
+        # end
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
@@ -74,21 +74,21 @@ class RecipientsController < ApplicationController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
-        @notification_new = Notification.new(params[:recipient][:notifications_attributes].values.first)
-        @recipient.reminders.try(:each) do |reminder|
-          @notification = Notification.find_by_reminder_id_and_recipient_id(reminder.id, @recipient.id)
-          if @notification
-             @notification.destroy 
-             Delayed::Job.find_by_id(@notification.job_id).destroy
-          end
-          # tie this to the params send date
-          if @notification_new.sent_date < DateTime.now
-            Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
-          else
-            theJob = Notifier.delay(priority: 0, run_at: @notification_new.sent_date.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
-            Notifier.notification_add(@recipient, @notification_new.sent_date, theJob.id)
-          end
-        end
+        # @notification_new = Notification.new(params[:recipient][:notifications_attributes].values.first)
+        # @recipient.reminders.try(:each) do |reminder|
+        #   @notification = Notification.find_by_reminder_id_and_recipient_id(reminder.id, @recipient.id)
+        #   if @notification
+        #      @notification.destroy 
+        #      Delayed::Job.find_by_id(@notification.job_id).destroy
+        #   end
+        #   # tie this to the params send date
+        #   if @notification_new.sent_date < DateTime.now
+        #     Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(reminder.id).message_text)
+        #   else
+        #     theJob = Notifier.delay(priority: 0, run_at: @notification_new.sent_date.getutc).perform(@recipient, Reminder.find(reminder.id).message_text)
+        #     Notifier.notification_add(@recipient, @notification_new.sent_date, theJob.id)
+        #   end
+        # end
         format.html { redirect_to @recipient, notice: 'Recipient was successfully updated.' }
         format.json { head :no_content }
       else
@@ -117,7 +117,7 @@ class RecipientsController < ApplicationController
   private
 
   def set_recipient!
-    @recipient = Recipient.find(params[:id], include: [:notifications])
+    @recipient = Recipient.find(params[:id])
   end
 
   private 
