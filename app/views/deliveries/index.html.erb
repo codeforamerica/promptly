@@ -12,7 +12,7 @@
         <% @groups.each do |batch, delivery| %>
         <tr>
           <td><%= link_to delivery.count, delivery_path(batch) %></td>
-          <td><%= delivery.first.send_date.utc.strftime('%B %d, %Y %l:%M%p') %></td>
+          <td><%= delivery.first.send_date.to_s(:date_format) %></td>
           <td><%= delivery.first.reminder.message_text || delivery.first.reminder.name %></td>
           <td></td>
         </tr>
