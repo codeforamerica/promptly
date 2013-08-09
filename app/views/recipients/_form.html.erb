@@ -13,10 +13,6 @@
 
   <%= f.input :phone, required: true %>
   <%= f.input :name, required: false %>
-  <%= f.simple_fields_for :notifications do |builder| %>
-    <%= builder.label :sent_date %>
-    <%= builder.text_field :sent_date, :class => 'dateSelect' %>
-  <% end %>
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
