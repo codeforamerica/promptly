@@ -95,7 +95,8 @@ class DeliveriesController < ApplicationController
       Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
     else
       theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
-      Notifier.notification_add(@recipient, theDate, theJob.id)
+      delivery.update_attributes(job_id: theJob.id)
+      # Notifier.notification_add(@recipient, theDate, theJob.id)
     end
   end
 end
