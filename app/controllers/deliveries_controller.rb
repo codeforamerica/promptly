@@ -66,6 +66,8 @@ class DeliveriesController < ApplicationController
   def destroy
     @delivery = Delivery.find(params[:id])
     @delivery.destroy
+    @delay = Delayed::Job.find(@delivery.job_id)
+
 
     respond_to do |format|
       format.html { redirect_to deliveries_url }
@@ -96,7 +98,6 @@ class DeliveriesController < ApplicationController
     else
       theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
       delivery.update_attributes(job_id: theJob.id)
-      # Notifier.notification_add(@recipient, theDate, theJob.id)
     end
   end
 end
