@@ -83,8 +83,8 @@ class DeliveriesController < ApplicationController
         delivery_date = DateTime.parse(new_delivery[:delivery][:send_date]).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
         @delivery = Delivery.new(new_delivery[:delivery])
         @delivery.recipient_id = recipient
-        @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + @delivery.send_date.to_s) 
         @delivery.send_date = delivery_date      
+        @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + delivery_date.to_s)
         @delivery.save
       end
     end
