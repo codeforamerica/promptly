@@ -8,7 +8,6 @@
         <tr>
           <th>Name</th>
           <th>Message Text</th>
-          <th>Program/Report</th>
           <th>Number of Recipients</th>
         </tr>
       </thead>
@@ -17,7 +16,6 @@
         <tr>
           <td><%= link_to reminder.name, reminder %></td>
           <td><%= reminder.message_text %></td>
-          <td><%= reminder.program.try(:name) || 'No program' %> - <%= reminder.report.try(:report_type) || 'No report' %></td>
           <td></td>
           <td><%= link_to 'Edit', edit_reminder_path(reminder), :class=>'btn btn-mini' %>  <%= link_to 'Delete', reminder, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
         </tr>

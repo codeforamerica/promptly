@@ -22,8 +22,8 @@
 //     event.preventDefault();
 //   }
 // });
-
-  $('#recipientDate').datepicker({
+//https://github.com/Nerian/bootstrap-datepicker-rails
+  $('.dateSelect').datepicker({
   	format: 'yy-mm-dd'
   });
 
@@ -32,4 +32,17 @@
 	  var charLeft = maxLen - $(this).val().length;
 	  $('#char-count').html(charLeft);
 	});
+  $('.defaultTime').hover(
+	  function () {
+	    $(this).append($("<span>&nbsp;<a class='editTime btn btn-mini' href='#'>Edit</a></span>"));
+	  },
+	  function () {
+	    $(this).find("span:last").remove();
+	  }
+	);
+  $('.editTime').live("click", function(){
+	$('#delivery_send_time').clone().attr('type','text').insertAfter('#delivery_send_time').prev().remove();
+	$('<label for="delivery_send_date">Delivery time</label>').insertBefore('#delivery_send_time')
+	$('.defaultTime').remove();
+  });
 });

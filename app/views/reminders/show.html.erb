@@ -6,33 +6,6 @@
 	</div>
   <div class="row-fluid">
   	<div class="span8">
-			
-<!-- 			<table class="table table-bordered">
-				<tr>
-					<td>Reminder name</td>
-					<td><%= @reminder.name %></td>
-				</tr>
-				<tr>
-					<td>Reminder Text</td>
-					<td><%= @reminder.message_text %></td>
-				</tr>
-				<tr>
-					<td>Program</td>
-					<td><%= render :partial => "programs", :collection => @program || "No programs yet." %></td>
-				</tr>
-				<tr>
-					<td>Report</td>
-					<td><%= render "reports" %></td>
-				</tr>
-				<tr>
-					<td>Date Created</td>
-					<td><%= @reminder.created_at %></td>
-				</tr>
-				<tr>
-					<td>Date Updated</td>
-					<td><%= @reminder.updated_at || "No updates" %></td>
-				</tr>
-			</table> -->
 
 			<div class="mainHeaderGray">
 				<span class="grayHighlight">Reminder Preview</span>
@@ -41,17 +14,6 @@
 			<p>
 			  <span class="messagetext well"><%= @reminder.message_text %></span>
 			</p>
-
-
-<!-- 		</div>
-
-		<div class="span4">
-			<div class="sidebar"> -->
-				<div class="mainHeaderGray">
-					<span class="grayHighlight">Program and Report</span>
-				</div>
-				<p><%= render :partial => "programs", :collection => @program || "No programs yet." %></p>
-				<%= render "reports" %>
 
 				<div class="mainHeaderGray">
 					<span class="grayHighlight">Date Created</span>

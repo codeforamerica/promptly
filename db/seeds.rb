@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+Reminder.create(name: 'test', message_text: 'Hi, this is a test', description: 'First test reminder')
+
