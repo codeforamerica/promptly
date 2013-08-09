@@ -11,10 +11,10 @@
     </div>
   <% end %>
 
-  <%= f.input :name, required: false %>
   <%= f.label :send_date, "Delivery date" %>
   <%= f.text_field :send_date, :class => 'dateSelect' %>
-  <%= f.text_field :send_time, :value => '12:00pm' %>
+  <div class="defaultTime">Default delivery time <em>12:00pm</em></div>
+  <%= f.hidden_field :send_time, :value => '12:00pm' %>
   
     <div class="field">
     <div class="control-group">
