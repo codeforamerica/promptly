@@ -10,7 +10,10 @@
 			<div class="nav-collapse collapse">
 				<ul class="nav">
 					<li class="<%= 'active' if current_page?(root_url)%>">
-						<%= link_to "Home", root_path %>
+						<% link_to "Home", root_path %>
+					</li>
+					<li class="<%= 'active' if current_page?(deliveries_url)%>">
+						<%= link_to "Deliveries", deliveries_path %>
 					</li>
 					<li class="<%= 'active' if current_controller?("reminders")%> dropdown">
 						<%= link_to reminders_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Reminders <b class="caret white-caret"></b><% end %>

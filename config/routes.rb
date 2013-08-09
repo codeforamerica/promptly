@@ -10,14 +10,13 @@ Landshark::Application.routes.draw do
     collection { post :import }
   end
 
-
   resources :conversations
 
-  resources :reports
-
-  resources :programs
-
   resources :reminders
+
+  match '/deliveries/new' => 'deliveries#new'
+  match '/deliveries/:batch_id' => 'deliveries#show'
+  resources :deliveries
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe "Reminders" do
+describe "Reminders controller" do
   before :each do
     @reminder = FactoryGirl.create(:reminder)
     @user = FactoryGirl.create(:user)

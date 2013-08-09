@@ -49,17 +49,6 @@ class Notifier
     }
   end
 
-   def self.notification_add(recipient, sent_date, job_id)
-    recipient.reminders.each do |reminder|
-      @notification = Notification.new
-      @notification.reminder_id = reminder.id
-      @notification.recipient_id = recipient.id
-      @notification.sent_date = sent_date
-      @notification.job_id = job_id
-      @notification.save
-    end
-  end
-
   private
 
   attr_reader :recipient

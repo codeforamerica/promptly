@@ -4,11 +4,21 @@
       <%= render 'sidebar' %>
     </div>
     <div class="span8">
-      <div class="span12 mainHeaderGreen">
-        <span class="greenHighlight">Sent reminders</span>
+      <div class="row-fluid">
+        <div class="span12 mainHeaderGreen">
+          <span class="greenHighlight">Upcoming deliveries</span>
+        </div>
+        <div class="span12 conversation">
+          <%= render(:partial => 'deliveries', object: @upcoming) || 'There are no upcoming deliveries' %>
+        </div>
       </div>
-      <div class="span12 conversation">
-      <%= render(:partial => 'reminders', :collection => @recents, :as => :recents) || 'There are no recent reminders' %>
+      <div class="row-fluid">
+        <div class="span12 mainHeaderAqua">
+          <span class="aquaHighlight">Recent conversations</span>
+        </div>
+        <div class="span12 conversation">
+          <%= render(:partial => 'reminders', :collection => @recents, :as => :recents) || 'There are no recent conversations' %>
+        </div>
       </div>
     </div>
   </div>
