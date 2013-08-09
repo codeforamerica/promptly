@@ -8,8 +8,15 @@
         <span class="greenHighlight">Sent reminders</span>
       </div>
       <div class="span12 conversation">
+      <%= render(:partial => 'deliveries', object: @upcoming) || 'There are no upcoming deliveries' %>
+      </div>
+      <div class="span12 mainHeaderGreen">
+        <span class="greenHighlight">Recent conversations</span>
+      </div>
+      <div class="span12 conversation">
       <%= render(:partial => 'reminders', :collection => @recents, :as => :recents) || 'There are no recent reminders' %>
       </div>
+      
     </div>
   </div>
 </div>

@@ -9,4 +9,8 @@ class Delivery < ActiveRecord::Base
   	human_date.date.to_s(:input_format) 
   end
 
+  def self.grouped_deliveries
+    Delivery.all.to_set.classify {|delivery| delivery.batch_id}
+  end
+
 end

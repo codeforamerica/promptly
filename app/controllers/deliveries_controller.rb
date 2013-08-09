@@ -4,10 +4,7 @@ class DeliveriesController < ApplicationController
   load_and_authorize_resource
   
   def index
-  	@deliveries = Delivery.all
-
-    @groups = @deliveries.to_set.classify {
-    |delivery| delivery.batch_id}
+  	@groups = Delivery.grouped_deliveries
 
     respond_to do |format|
       format.html # index.html.erb
