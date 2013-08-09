@@ -177,7 +177,6 @@ input {
 
 .sidebarHeader {
 	background: darken($lightGray, 20);
-	// padding: 5px;
 	margin-bottom: 20px;
 	min-height: 15px;
 }
@@ -204,7 +203,7 @@ input {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
 	td, th{
-		border: none;
+		// border: none;
 	}
 }
 
