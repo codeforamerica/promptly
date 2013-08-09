@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130805182026) do
+ActiveRecord::Schema.define(:version => 20130808224214) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130805182026) do
     t.integer  "recipient_id"
     t.integer  "reminder_id"
     t.integer  "batch_id"
+    t.time     "send_time"
   end
 
   create_table "notifications", :force => true do |t|

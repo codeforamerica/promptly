@@ -79,9 +79,12 @@ class DeliveriesController < ApplicationController
   def create_new_recipients_deliveries(new_delivery)
     new_delivery[:delivery][:recipient_id].each do |recipient|
       unless recipient == ""
+        delivery_time = Time.parse(new_delivery[:delivery][:send_time])
+        delivery_date = DateTime.parse(new_delivery[:delivery][:send_date]).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
         @delivery = Delivery.new(new_delivery[:delivery])
         @delivery.recipient_id = recipient
         @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + @delivery.send_date.to_s) 
+        @delivery.send_date = delivery_date      
         @delivery.save
       end
     end
