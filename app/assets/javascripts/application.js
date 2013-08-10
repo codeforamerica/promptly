@@ -21,4 +21,5 @@
 //= require dynamicselector
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require formbuilder
 //= require_tree .
