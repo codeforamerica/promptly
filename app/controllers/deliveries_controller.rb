@@ -68,7 +68,6 @@ class DeliveriesController < ApplicationController
     @delivery.destroy
     @delay = Delayed::Job.find(@delivery.job_id)
 
-
     respond_to do |format|
       format.html { redirect_to deliveries_url }
       format.json { head :no_content }
