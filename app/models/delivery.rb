@@ -10,7 +10,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def self.grouped_deliveries
-    Delivery.find(:all, :order => "send_date").to_set.classify {|delivery| delivery.batch_id}
+    Delivery.where('send_date IS NOT NULL', :order => "send_date").to_set.classify {|delivery| delivery.batch_id}
   end
 
 end
