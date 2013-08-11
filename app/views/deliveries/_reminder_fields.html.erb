@@ -1,0 +1,14 @@
+<%= fields_for :reminder do |builder| %>
+    <div class="control-group">
+      <%= builder.label :name, "Reminder name", :class => 'control-label' %>
+      <div class="controls">
+      <%= builder.text_field :name %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= builder.label :message_text, "Reminder message", :class => 'control-label' %>
+      <div class="controls">
+        <%= builder.text_area :message_text, :rows=>3 %>
+      </div>
+    </div>
+  <% end %>
