@@ -78,6 +78,7 @@ class DeliveriesController < ApplicationController
     new_delivery[:delivery][:recipient_id].each do |recipient|
       unless recipient == ""
         delivery_time = Time.parse(new_delivery[:delivery][:send_time])
+        delivery_time = delivery_time.getutc
         delivery_date = DateTime.parse(new_delivery[:delivery][:send_date]).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
         @delivery = Delivery.new(new_delivery[:delivery])
         @delivery.recipient_id = recipient
@@ -95,7 +96,7 @@ class DeliveriesController < ApplicationController
     if theDate < DateTime.now
       Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
     else
-      theJob = Notifier.delay(priority: 0, run_at: theDate.getutc).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
       delivery.update_attributes(job_id: theJob.id)
     end
   end
