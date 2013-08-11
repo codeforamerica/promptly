@@ -78,7 +78,9 @@ class DeliveriesController < ApplicationController
     new_delivery[:delivery][:recipient_id].each do |recipient|
       unless recipient == ""
         delivery_time = Time.parse(new_delivery[:delivery][:send_time])
+        puts delivery_time
         delivery_time = delivery_time.getutc
+        puts delivery_time
         delivery_date = DateTime.parse(new_delivery[:delivery][:send_date]).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
         @delivery = Delivery.new(new_delivery[:delivery])
         @delivery.recipient_id = recipient
