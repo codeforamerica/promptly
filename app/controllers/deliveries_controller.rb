@@ -40,10 +40,7 @@ class DeliveriesController < ApplicationController
   def create
     if params[:reminder]
       @reminder = Reminder.new(params[:reminder])
-      # @reminder.name = params[:delivery][:reminder][:name]
-      # @reminder.message_text = params[:delivery][:reminder][:message_text]
       @reminder.save
-      binding.pry
       params[:delivery][:reminder_id] = @reminder.id
     end
     create_new_recipients_deliveries(params)
