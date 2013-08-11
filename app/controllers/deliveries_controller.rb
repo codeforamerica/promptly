@@ -77,7 +77,7 @@ class DeliveriesController < ApplicationController
   def create_new_recipients_deliveries(new_delivery)
     new_delivery[:delivery][:recipient_id].each do |recipient|
       unless recipient == ""
-        delivery_time = Time.parse(new_delivery[:delivery][:send_time])
+        delivery_time = Time.zone.parse(new_delivery[:delivery][:send_time])
         puts delivery_time
         delivery_time = delivery_time.getutc
         puts delivery_time
