@@ -196,15 +196,19 @@ input {
 	}
 }
 
-.tableGreen {
-	border-left: 5px solid $green;
+.tableAqua {
+	border-left: 5px solid $aqua;
 	margin-bottom: 0px;
-
 	tbody {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
-	td, th{
-		// border: none;
+}
+
+.tableGreen {
+	border-left: 5px solid $green;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
 	}
 }
 
