@@ -1,6 +1,7 @@
 class DeliveryImportsController < ApplicationController
   def new
     @delivery_import = DeliveryImport.new
+    @reminders = Delivery.new.build_reminder
   end
 
   def create
