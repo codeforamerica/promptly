@@ -14,12 +14,10 @@ Landshark::Application.routes.draw do
 
   resources :reminders
 
-  match '/deliveries/upload' => 'deliveries#upload'
+  resources :delivery_imports
   match '/deliveries/new' => 'deliveries#new'
   match '/deliveries/:batch_id' => 'deliveries#show'
-  resources :deliveries do
-    collection { post :import }
-  end
+  resources :deliveries
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 

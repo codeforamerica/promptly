@@ -81,11 +81,6 @@ class DeliveriesController < ApplicationController
     end
   end
 
-  def upload
-    @delivery = Delivery.new
-    @reminders = @delivery.build_reminder
-  end
-
   def import
     Delivery.import(params[:file], params[:reminder])
     redirect_to root_url, notice: "Delivery created."

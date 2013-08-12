@@ -18,6 +18,7 @@ class Delivery < ActiveRecord::Base
   end
 
   def self.import(file, reminder)
+    binding.pry
     spreadsheet = open_spreadsheet(file)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
