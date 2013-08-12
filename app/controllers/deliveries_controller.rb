@@ -43,8 +43,9 @@ class DeliveriesController < ApplicationController
       @reminder.save
       params[:delivery][:reminder_id] = @reminder.id.to_s
     end
-    binding.pry
-    create_new_recipients_deliveries(params)
+    params[:delivery][:recipient_id].each do |recipient|
+      Delivery.create_new_recipients_deliveries(recipient, params[:delivery][:send_date], params[:delivery][:send_time], params[:delivery])
+    end
 
     respond_to do |format|
       format.html { redirect_to deliveries_url, notice: 'Delivery was successfully created.' }
@@ -84,32 +85,5 @@ class DeliveriesController < ApplicationController
   def import
     Delivery.import(params[:file], params[:reminder])
     redirect_to root_url, notice: "Delivery created."
-  end
-
-  def create_new_recipients_deliveries(new_delivery)
-    new_delivery[:delivery][:recipient_id].each do |recipient|
-      unless recipient == ""
-        delivery_time = Time.zone.parse(new_delivery[:delivery][:send_time])
-        delivery_time = delivery_time.getutc
-        delivery_date = DateTime.parse(new_delivery[:delivery][:send_date]).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
-        @delivery = Delivery.new(new_delivery[:delivery])
-        @delivery.recipient_id = recipient
-        @delivery.send_date = delivery_date      
-        @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + delivery_date.to_s)
-        @delivery.save
-        add_delivery_to_queue(@delivery)
-      end
-    end
-  end
-
-  def add_delivery_to_queue(delivery)
-    theDate = delivery.send_date
-    @recipient = Recipient.find(delivery.recipient_id)
-    if theDate < DateTime.now
-      Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
-    else
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
-      delivery.update_attributes(job_id: theJob.id)
-    end
   end
 end
