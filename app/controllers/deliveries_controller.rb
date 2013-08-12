@@ -41,8 +41,9 @@ class DeliveriesController < ApplicationController
     if params[:reminder]
       @reminder = Reminder.new(params[:reminder])
       @reminder.save
-      params[:delivery][:reminder_id] = @reminder.id
+      params[:delivery][:reminder_id] = @reminder.id.to_s
     end
+    binding.pry
     create_new_recipients_deliveries(params)
 
     respond_to do |format|
@@ -80,13 +81,16 @@ class DeliveriesController < ApplicationController
     end
   end
 
+  def import
+    Delivery.import(params[:file], params[:reminder])
+    redirect_to root_url, notice: "Delivery created."
+  end
+
   def create_new_recipients_deliveries(new_delivery)
     new_delivery[:delivery][:recipient_id].each do |recipient|
       unless recipient == ""
         delivery_time = Time.zone.parse(new_delivery[:delivery][:send_time])
-        puts delivery_time
         delivery_time = delivery_time.getutc
-        puts delivery_time
         delivery_date = DateTime.parse(new_delivery[:delivery][:send_date]).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
         @delivery = Delivery.new(new_delivery[:delivery])
         @delivery.recipient_id = recipient
