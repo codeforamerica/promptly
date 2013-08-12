@@ -18,7 +18,9 @@
         <% end %>
       </tbody>
     </table>
-  <%= link_to 'Create delivery', new_delivery_path, :class => 'btn btn-primary' %>
+    <div><%= link_to 'Create delivery', new_delivery_path, :class => 'btn btn-primary' %> <strong>OR</strong>
+    <%= link_to 'Use the batch import', new_delivery_import_path, :class => 'btn btn-primary' %>
+    </div>
   </div>
 </div>
 

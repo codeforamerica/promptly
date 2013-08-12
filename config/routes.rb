@@ -14,6 +14,7 @@ Landshark::Application.routes.draw do
 
   resources :reminders
 
+  resources :delivery_imports
   match '/deliveries/new' => 'deliveries#new'
   match '/deliveries/:batch_id' => 'deliveries#show'
   resources :deliveries
