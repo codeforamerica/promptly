@@ -1,0 +1,41 @@
+<h1>Delivery Import</h1>
+
+<p>A CSV or Excel file can be used to import records. The first row should be the column name. The following columns are allowed.</p>
+
+<ul>
+  <li>
+    <strong>phone</strong>
+    Integer Type (1112223333)
+  </li>
+  <li>
+    <strong>send_date</strong>
+    String Type (12/25/2013)
+  </li>
+</ul>
+
+<%= form_for @delivery_import do |f| %>
+  <% if @delivery_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delivery_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <ul>
+      <% @delivery_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <div class="control-group">
+      <%= label @reminders, :reminder_id, "Available reminders", :class => 'control-label' %>
+      <div class="controls">
+        <%= collection_select @reminder, :reminder_id, Reminder.all, :id, :name, {:prompt => 'Select a reminder'} %>
+      </div>
+    </div>
+  </div>
+
+    <div class="field">
+    <%= f.file_field :file %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

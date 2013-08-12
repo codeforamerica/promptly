@@ -14,11 +14,6 @@ gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'jquery-ui-rails'
 gem 'role_model'
-gem 'sass'
-gem 'sass-rails'
-gem 'compass'
-gem 'compass-rails'
-gem 'bootstrap-sass'
 gem 'pg'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
@@ -39,6 +34,11 @@ group :assets do
   gem 'uglifier', '1.2.3'
   gem 'font-awesome-sass-rails'
   gem 'coffee-rails'
+  gem 'sass'
+  gem 'sass-rails'
+  gem 'compass'
+  gem 'compass-rails'
+  gem 'bootstrap-sass'
 end
 
 group :test do

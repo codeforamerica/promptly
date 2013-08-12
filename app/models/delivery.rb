@@ -1,6 +1,7 @@
 class Delivery < ActiveRecord::Base
   attr_accessible :recipient_id, :reminder_id, :send_date, :job_id, :name, :reminder, :recipient
   attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id
+  attr_accessible :id, :created_at, :updated_at
   validates :reminder_id, presence: true
   validates :recipient_id, presence: true
   validates :send_date, presence: true
@@ -17,24 +18,30 @@ class Delivery < ActiveRecord::Base
     Delivery.where('send_date IS NOT NULL', :order => "send_date").to_set.classify {|delivery| delivery.batch_id}
   end
 
-  def self.import(file, reminder)
-    spreadsheet = open_spreadsheet(file)
-    header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      formatDate = Date.strptime(row["reminder_date"], '%m/%d/%Y')
-      recipient = where(phone: row["phone"])
-        .first_or_create(row.to_hash.slice(*accessible_attributes))
+  def self.create_new_recipients_deliveries(recipient, send_date, send_time = '12:00pm', delivery)
+    unless recipient == ""
+      delivery_time = Time.zone.parse(send_time)
+      delivery_time = delivery_time.getutc
+      delivery_date = DateTime.parse(send_date).change(hour: delivery_time.strftime('%H').to_i, min: delivery_time.strftime('%M').to_i)
+      @delivery = Delivery.new(:recipient_id => delivery.recipient_id, :reminder_id => delivery.reminder_id)
+      # @delivery.recipient_id = recipient
+      @delivery.send_date = delivery_date 
+      @delivery.send_time = delivery_time     
+      @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + @delivery.send_date.to_s)
+      binding.pry
+      @delivery.save
+      add_delivery_to_queue(@delivery)
     end
   end
 
-  def self.open_spreadsheet(file)
-    case File.extname(file.original_filename)
-      when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
-      when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
-      when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
-      else raise "Unknown file type: #{file.original_filename}"
+  def self.add_delivery_to_queue(delivery)
+    theDate = delivery.send_date
+    @recipient = Recipient.find(delivery.recipient_id)
+    if theDate < DateTime.now
+      Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
+    else
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(@recipient, Reminder.find(delivery.reminder_id).message_text)
+      delivery.update_attributes(job_id: theJob.id)
     end
   end
-
 end
