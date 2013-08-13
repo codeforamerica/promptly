@@ -49,8 +49,7 @@ class DeliveryImport
       else
         delivery_time = '12:00pm'
       end
-      # binding.pry
-      Delivery.create_new_recipients_deliveries(recipient, delivery.attributes['send_date'].strftime('%Y,%M,%d'), delivery_time, delivery)
+      Delivery.create_new_recipients_deliveries(recipient, delivery.attributes['send_date'].strftime('%Y,%M,%d'), delivery_time, delivery.reminder)
     end
   end
 

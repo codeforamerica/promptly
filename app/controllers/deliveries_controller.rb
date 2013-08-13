@@ -44,7 +44,10 @@ class DeliveriesController < ApplicationController
       params[:delivery][:reminder_id] = @reminder.id.to_s
     end
     params[:delivery][:recipient_id].each do |recipient|
-      Delivery.create_new_recipients_deliveries(recipient, params[:delivery][:send_date], params[:delivery][:send_time], params[:delivery])
+      # for some reason there is always a null recipient. fix this
+      if recipient !=""
+        Delivery.create_new_recipients_deliveries(Recipient.find(recipient), params[:delivery][:send_date], params[:delivery][:send_time], Reminder.find(params[:delivery][:reminder_id]))
+      end
     end
 
     respond_to do |format|
