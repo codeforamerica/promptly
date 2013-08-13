@@ -3,4 +3,5 @@ class Reminder < ActiveRecord::Base
   has_many :deliveries
   has_many :recipients, :through => :deliveries
   accepts_nested_attributes_for :deliveries
+  validates :message_text, presence: true
 end
