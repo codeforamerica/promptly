@@ -2,9 +2,9 @@ class Delivery < ActiveRecord::Base
   attr_accessible :recipient_id, :reminder_id, :send_date, :job_id, :name, :reminder, :recipient
   attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id
   attr_accessible :id, :created_at, :updated_at
-  validates :reminder_id, presence: true
-  validates :recipient_id, presence: true
-  validates :send_date, presence: true
+  # validates :reminder_id, presence: true
+  # validates :recipient_id, presence: true
+  # validates :send_date, presence: true
   
   belongs_to :recipient
   belongs_to :reminder
