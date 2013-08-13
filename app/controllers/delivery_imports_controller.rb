@@ -8,7 +8,7 @@ class DeliveryImportsController < ApplicationController
   def create
     @delivery_import = DeliveryImport.new(params[:delivery_import], params[:reminder_id])
     if @delivery_import.save
-      redirect_to root_url, notice: "Imported deliveries successfully."
+      redirect_to deliveries_path, notice: "Imported deliveries successfully."
     else
       render :new
     end
