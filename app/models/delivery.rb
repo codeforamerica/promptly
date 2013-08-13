@@ -29,6 +29,7 @@ class Delivery < ActiveRecord::Base
       @delivery.batch_id = Digest::MD5.hexdigest(@delivery.reminder_id.to_s + @delivery.send_date.to_s)
       @delivery.save
       add_delivery_to_queue(@delivery)
+      @delivery
     end
   end
 

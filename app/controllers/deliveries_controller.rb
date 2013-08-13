@@ -87,6 +87,6 @@ class DeliveriesController < ApplicationController
 
   def import
     Delivery.import(params[:file], params[:reminder])
-    redirect_to root_url, notice: "Delivery created."
+    redirect_to deliveries_url, notice: "Delivery created."
   end
 end

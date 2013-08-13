@@ -2,15 +2,12 @@ class Recipient < ActiveRecord::Base
   attr_accessible :name, :phone
   has_and_belongs_to_many :reminders
   has_and_belongs_to_many :conversations
-  has_many :notifications, :dependent => :destroy
   has_many :deliveries
   has_many :reminders, :through => :deliveries
 
   attr_accessible :reminder_ids
   attr_accessible :conversation_ids
-  attr_accessible :notification_ids, :notifications_attributes
 
-  accepts_nested_attributes_for :notifications, :allow_destroy => true
   accepts_nested_attributes_for :reminders
 
   validates :phone, :presence => true

@@ -40,7 +40,7 @@ class DeliveryImport
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       delivery = Delivery.find_by_id(row["id"]) || Delivery.new
-      recipient = Recipient.find_by_phone(row["phone"]) || Recipient.new
+      recipient = Recipient.where(phone: row['phone']).first_or_create
       delivery.attributes = row.to_hash.slice(*Delivery.accessible_attributes)
       delivery.recipient = recipient
       delivery.reminder = Reminder.find(reminder)
