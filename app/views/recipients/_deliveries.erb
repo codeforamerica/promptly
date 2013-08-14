@@ -1,1 +1,1 @@
- <%= delivery.send_date.to_s(:date_format) %>
+ <%= link_to delivery.send_date.to_s(:date_format), delivery_path(delivery.batch_id) %><br />
