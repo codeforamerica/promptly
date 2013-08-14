@@ -43,4 +43,8 @@ class Delivery < ActiveRecord::Base
       delivery.update_attributes(job_id: theJob.id)
     end
   end
+
+  def self.check_for_valid_date(the_date)
+    
+  end
 end
