@@ -41,7 +41,7 @@ class RemindersController < ApplicationController
     params[:reminder][:recipient_id].each do |recipient|
       # for some reason there is always a null recipient. fix this
       if recipient !=""
-        Reminder.create_new_recipients_deliveries(Recipient.find(recipient), params[:reminder][:send_date], params[:reminder][:send_time], Message.find(params[:reminder][:message_id]))
+        Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:reminder][:send_date], params[:reminder][:send_time], Message.find(params[:reminder][:message_id]))
       end
     end
 

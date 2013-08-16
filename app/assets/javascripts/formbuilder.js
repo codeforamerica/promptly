@@ -1,9 +1,7 @@
  $(function() {
 //   // Handler adding form fields
 	$('form .add_fields').on('click', function(event) {
-
 		// $('form #reminder_report_id').parentsUntil('.field').hide();
-
 		time = new Date().getTime();
 		regexp = new RegExp($(this).data('id'), 'g');
 		$(this).before($(this).data('fields').replace(regexp, time));

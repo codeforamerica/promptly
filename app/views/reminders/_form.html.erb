@@ -13,10 +13,10 @@
         </div>
       <% end %>
 
-      <%= f.label :send_date, "reminder date" %>
+      <%= f.label :send_date, "Reminder date" %>
       <%= f.text_field :send_date, :class => 'dateSelect' %>
-      <div class="defaultTime">Default reminder time <em>12:00pm</em></div>
-      <%= f.hidden_field :send_time, :value => '12:00pm' %>
+      <%= f.label :send_time, "Reminder time" %>
+      <%= f.text_field :send_time, :value => '12:00pm' %>
       
         <div class="field">
         <div class="control-group">
