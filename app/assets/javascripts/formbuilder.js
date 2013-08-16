@@ -7,7 +7,6 @@
 		$(this).before($(this).data('fields').replace(regexp, time));
 		event.preventDefault();
 		$(this).hide();
-
 		// Lets the cancel button know about the extra fields.
 		$('form .cancel').on('click', cancelClicked );
 	});
