@@ -12,12 +12,12 @@
 					<li class="<%= 'active' if current_page?(root_url)%>">
 						<% link_to "Home", root_path %>
 					</li>
-					<li class="<%= 'active' if current_page?(deliveries_url)%>">
-						<%= link_to "Deliveries", deliveries_path %>
+					<li class="<%= 'active' if current_page?(reminders_url)%>">
+						<%= link_to "Reminders", reminders_path %>
 					</li>
-					<li class="<%= 'active' if current_controller?("reminders")%> dropdown">
-						<%= link_to reminders_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Reminders <b class="caret white-caret"></b><% end %>
-						<%= render 'layouts/reminders_dropdown' %>
+					<li class="<%= 'active' if current_controller?("messages")%> dropdown">
+						<%= link_to messages_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Messages <b class="caret white-caret"></b><% end %>
+						<%= render 'layouts/messages_dropdown' %>
 					</li>
 					<li class="<%= 'active' if current_page?(recipients_url)%>">
 						<%= link_to "Recipients", recipients_path %>

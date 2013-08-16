@@ -1,12 +1,12 @@
-<%= fields_for :reminder do |builder| %>
+<%= fields_for :message do |builder| %>
     <div class="control-group">
-      <%= builder.label :name, "Reminder name", :class => 'control-label' %>
+      <%= builder.label :name, "Message name", :class => 'control-label' %>
       <div class="controls">
       <%= builder.text_field :name %>
       </div>
     </div>
     <div class="control-group">
-      <%= builder.label :message_text, "Reminder message", :class => 'control-label' %>
+      <%= builder.label :message_text, "Message text", :class => 'control-label' %>
       <div class="controls">
         <%= builder.text_area :message_text, :rows=>3 %>
       </div>

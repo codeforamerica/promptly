@@ -1,4 +1,4 @@
-class DeliveryImport
+class ReminderImport
   # https://github.com/railscasts/396-importing-csv-and-excel/blob/master/
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -6,9 +6,9 @@ class DeliveryImport
 
   attr_accessor :file
 
-  def initialize(attributes = {}, reminder = '')
+  def initialize(attributes = {}, message = '')
     attributes.each { |name, value| send("#{name}=", value) }
-    @reminder = reminder
+    @message = message
   end
 
   def persisted?
@@ -16,12 +16,12 @@ class DeliveryImport
   end
 
   def save
-    if imported_delivery.map(&:valid?).all?
-      imported_delivery.each(&:save!)
+    if imported_reminder.map(&:valid?).all?
+      imported_reminder.each(&:save!)
       true
     else
-      imported_delivery.each_with_index do |delivery, index|
-        delivery.errors.full_messages.each do |message|
+      imported_reminder.each_with_index do |reminder, index|
+        reminder.errors.full_messages.each do |message|
           errors.add :base, "Row #{index+2}: #{message}"
         end
       end
@@ -29,27 +29,28 @@ class DeliveryImport
     end
   end
 
-  def imported_delivery
-    @imported_delivery ||= load_imported_delivery
+  def imported_reminder
+    @imported_reminder ||= load_imported_reminder
   end
 
-  def load_imported_delivery
-    reminder = reminder_id
+  def load_imported_reminder
+    message = message_id
     spreadsheet = open_spreadsheet
      header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      delivery = Delivery.find_by_id(row["id"]) || Delivery.new
+      reminder = Reminder.find_by_id(row["id"]) || Reminder.new
       recipient = Recipient.where(phone: row['phone']).first_or_create
-      delivery.attributes = row.to_hash.slice(*Delivery.accessible_attributes)
-      delivery.recipient = recipient
-      delivery.reminder = Reminder.find(reminder)
-      if delivery.attributes['send_time'] 
-        delivery_time = delivery.attributes['send_time']
+      reminder.attributes = row.to_hash.slice(*Reminder.accessible_attributes)
+      # reminder.attributes['send_date'] = Reminder.check_for_valid_date(row["send_date"].gsub!("'",""))
+      reminder.recipient = recipient
+      reminder.message = Message.find(message)
+      if reminder.attributes['send_time'] 
+        reminder_time = reminder.attributes['send_time']
       else
-        delivery_time = '12:00pm'
+        reminder_time = '12:00pm'
       end
-      Delivery.create_new_recipients_deliveries(recipient, delivery.attributes['send_date'].strftime('%m-%d-%Y'), delivery_time, delivery.reminder)
+      Reminder.create_new_recipients_reminders(recipient, reminder.attributes['send_date'].strftime('%m-%d-%Y'), reminder_time, reminder.message)
     end
   end
 
@@ -65,8 +66,8 @@ class DeliveryImport
   private
 
   attr_reader :reminder
-  def reminder_id
-    @reminder
+  def message_id
+    @message
   end
 
 end

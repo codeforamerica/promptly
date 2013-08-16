@@ -1,32 +1,26 @@
-<%= render 'breadcrumb' %>
-<% render 'sorting' %>
-
 <div class="row-fluid">
   <div class="span12">
     <table class="table table-striped">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Message Text</th>
-          <th>Number of Recipients</th>
+          <th>Number of recipients</th>
+          <th>Send date</th>
+          <th>Reminder</th>
         </tr>
       </thead>
       <tbody>
-        <% @reminders.each do |reminder| %>
+        <% @groups.each do |batch, reminder| %>
         <tr>
-          <td><%= link_to reminder.name, reminder %></td>
-          <td><%= reminder.message_text %></td>
-          <td></td>
-          <td><%= link_to 'Edit', edit_reminder_path(reminder), :class=>'btn btn-mini' %>  <%= link_to 'Delete', reminder, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+          <td><%= link_to reminder.count, reminder_path(batch) %></td>
+          <td><%= reminder.first.send_date.to_s(:date_format) %></td>
+          <td><%= reminder.first.message.message_text || reminder.first.reminder.name %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
-
-
-
-
-  <%= link_to 'Create reminder', new_reminder_path, :class => 'btn btn-primary' %>
+    <div><%= link_to 'Create reminder', new_reminder_path, :class => 'btn btn-primary' %> <strong>OR</strong>
+    <%= link_to 'Use the batch import', new_reminder_import_path, :class => 'btn btn-primary' %>
+    </div>
   </div>
 </div>
 

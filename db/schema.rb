@@ -43,14 +43,22 @@ ActiveRecord::Schema.define(:version => 20130812234103) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+  
+  create_table "messages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "message_text"
+    t.text     "description"
+  end
 
-  create_table "deliveries", :force => true do |t|
+  create_table "reminders", :force => true do |t|
     t.string   "name"
     t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "recipient_id"
-    t.integer  "reminder_id"
+    t.integer  "message_id"
     t.string   "batch_id"
     t.time     "send_time"
     t.integer  "job_id"
@@ -63,13 +71,6 @@ ActiveRecord::Schema.define(:version => 20130812234103) do
     t.string   "name"
   end
 
-  create_table "reminders", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.string   "message_text"
-    t.text     "description"
-  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

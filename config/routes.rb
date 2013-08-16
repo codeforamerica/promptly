@@ -1,8 +1,6 @@
 Landshark::Application.routes.draw do
   devise_for :users
 
-  resources :messages
-
   get "home/index"
   root :to => 'home#index'
 
@@ -12,12 +10,12 @@ Landshark::Application.routes.draw do
 
   resources :conversations
 
-  resources :reminders
+  resources :messages
 
-  resources :delivery_imports
-  match '/deliveries/new' => 'deliveries#new'
-  match '/deliveries/:batch_id' => 'deliveries#show'
-  resources :deliveries
+  resources :reminder_imports
+  match '/reminders/new' => 'reminders#new'
+  match '/reminders/:batch_id' => 'reminders#show'
+  resources :reminders
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 

@@ -1,13 +1,19 @@
 <div class="recentReminder">
-	<table class="table tableAqua">
+	<table class="table tableGreen">
 		<thead>
 			<tr>
-				<th>Reminder</th>
+				<th>Number of recipients</th>
+				<th>Send date</th>
+				<th>Reminder text message</th>
 			</tr>
 		</thead>
-		<tr>
-			<td><p><%= recents.message %></p></td>
-			<td><%= recents.date.to_s(:date_format) %></td>
-		</tr>
+		<% reminders.each do |batch, reminder| %>
+        <tr>
+          <td><%= link_to reminder.count, reminder_path(batch) %></td>
+          <td><%= reminder.first.send_date.to_s(:date_format) %></td>
+          <td><%= reminder.first.message.message_text || reminder.first.message.name %></td>
+          <td></td>
+        </tr>
+        <% end %>
 	</table>
 </div>

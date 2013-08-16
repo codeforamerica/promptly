@@ -13,12 +13,12 @@
   </li>
 </ul>
 
-<%= form_for @delivery_import do |f| %>
-  <% if @delivery_import.errors.any? %>
+<%= form_for @reminder_import do |f| %>
+  <% if @reminder_import.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@delivery_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <h2><%= pluralize(@reminder_import.errors.count, "error") %> prohibited this import from completing:</h2>
       <ul>
-      <% @delivery_import.errors.full_messages.each do |msg| %>
+      <% @reminder_import.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -27,9 +27,9 @@
   
   <div class="field">
     <div class="control-group">
-      <%= label @reminders, :reminder_id, "Available reminders", :class => 'control-label' %>
+      <%= label @messages, :reminder_id, "Available messages", :class => 'control-label' %>
       <div class="controls">
-        <%= collection_select @reminder, :reminder_id, Reminder.all, :id, :name, {:prompt => 'Select a reminder'} %>
+        <%= collection_select @message, :message_id, Message.all, :id, :name, {:prompt => 'Select a message'} %>
       </div>
     </div>
   </div>
