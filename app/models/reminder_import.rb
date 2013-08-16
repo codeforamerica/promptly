@@ -42,16 +42,15 @@ class ReminderImport
       reminder = Reminder.find_by_id(row["id"]) || Reminder.new
       recipient = Recipient.where(phone: row['phone']).first_or_create
       reminder.attributes = row.to_hash.slice(*Reminder.accessible_attributes)
-      reminder.attributes['send_date'] = Reminder.check_for_valid_date(row["send_date"].gsub!("'","").strip)
-      binding.pry
+      # reminder.attributes['send_date'] = Reminder.check_for_valid_date(row["send_date"].gsub!("'",""))
       reminder.recipient = recipient
-      reminder.reminder = Reminder.find(reminder)
+      reminder.message = Message.find(message)
       if reminder.attributes['send_time'] 
         reminder_time = reminder.attributes['send_time']
       else
         reminder_time = '12:00pm'
       end
-      Reminder.create_new_recipients_deliveries(recipient, reminder.attributes['send_date'].strftime('%m-%d-%Y'), reminder_time, reminder.reminder)
+      Reminder.create_new_recipients_reminders(recipient, reminder.attributes['send_date'].strftime('%m-%d-%Y'), reminder_time, reminder.message)
     end
   end
 

@@ -11,7 +11,7 @@
         <tr>
           <td><%= link_to reminder.count, reminder_path(batch) %></td>
           <td><%= reminder.first.send_date.to_s(:date_format) %></td>
-          <td><%= reminder.first.reminder.message_text || reminder.first.reminder.name %></td>
+          <td><%= reminder.first.message.message_text || reminder.first.message.name %></td>
           <td></td>
         </tr>
         <% end %>

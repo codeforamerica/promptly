@@ -18,7 +18,7 @@ class Reminder < ActiveRecord::Base
     Reminder.where('send_date IS NOT NULL', :order => "send_date").to_set.classify {|reminder| reminder.batch_id}
   end
 
-  def self.create_new_recipients_deliveries(recipient, send_date, send_time = '12:00pm', message)
+  def self.create_new_recipients_reminders(recipient, send_date, send_time = '12:00pm', message)
     unless recipient == ""
       reminder_time = Time.zone.parse(send_time)
       reminder_time = reminder_time.getutc
