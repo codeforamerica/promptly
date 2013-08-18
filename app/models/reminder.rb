@@ -23,13 +23,20 @@ class Reminder < ActiveRecord::Base
       reminder_time = Time.zone.parse(send_time)
       reminder_time = reminder_time.getutc
       reminder_date = DateTime.parse(send_date).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
-      @reminder = Reminder.new(:recipient_id => recipient.id, :message_id => message.id)
-      @reminder.send_date = reminder_date 
-      @reminder.send_time = reminder_time     
-      @reminder.batch_id = Digest::MD5.hexdigest(@reminder.message_id.to_s + @reminder.send_date.to_s)
-      @reminder.save
-      add_reminder_to_queue(@reminder)
-      @reminder
+      batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
+      exist_test = check_for_existing_reminder(recipient.id, batch_id)
+      if check_for_existing_reminder(recipient.id, batch_id)
+      	# flash[:notice] = "Reminder already exists!"
+        # errors.add :base, "Reminder already exists!"
+	    else
+	      @reminder = Reminder.new(:recipient_id => recipient.id, :message_id => message.id)
+	      @reminder.send_date = reminder_date 
+	      @reminder.send_time = reminder_time     
+	      @reminder.batch_id = batch_id
+	      @reminder.save
+	      add_reminder_to_queue(@reminder)
+	      @reminder
+	    end
     end
   end
 
@@ -46,5 +53,10 @@ class Reminder < ActiveRecord::Base
 
   def self.check_for_valid_date(the_date)
     DateTime.parse(the_date)
+  end
+
+  def self.check_for_existing_reminder(recipient_check, batch_id_check)
+    phone_check = Recipient.find(recipient_check)
+    Reminder.where('batch_id = ? AND recipient_id = ?', batch_id_check, phone_check.id).exists?
   end
 end
