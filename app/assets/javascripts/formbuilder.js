@@ -21,7 +21,7 @@
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
   $('.dateSelect').datepicker({
-  	format: 'yy-mm-dd'
+  	format: 'mm/dd/yyyy'
   });
 
   $('#reminder_message_text').live('keyup keydown', function(e) {

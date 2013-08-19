@@ -39,18 +39,14 @@ class ReminderImport
      header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      reminder = Reminder.find_by_id(row["id"]) || Reminder.new
       recipient = Recipient.where(phone: row['phone']).first_or_create
-      reminder.attributes = row.to_hash.slice(*Reminder.accessible_attributes)
-      # reminder.attributes['send_date'] = Reminder.check_for_valid_date(row["send_date"].gsub!("'",""))
-      reminder.recipient = recipient
-      reminder.message = Message.find(message)
-      if reminder.attributes['send_time'] 
-        reminder_time = reminder.attributes['send_time']
+      text_message = Message.find(message)
+      if row['send_time'] 
+        reminder_time = row['send_time']
       else
         reminder_time = '12:00pm'
       end
-      Reminder.create_new_recipients_reminders(recipient, reminder.attributes['send_date'].strftime('%m-%d-%Y'), reminder_time, reminder.message)
+      Reminder.create_new_recipients_reminders(recipient, row['send_date'], reminder_time, text_message)
     end
   end
 
