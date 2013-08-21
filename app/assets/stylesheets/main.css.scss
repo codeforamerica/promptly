@@ -1,0 +1,241 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "colors";
+@import "placeholder";
+@import "navbar";
+//Fonts
+$headerFont: 'Open Sans Condensed', sans-serif;
+$bodyFont: 'Open Sans', sans-serif;
+
+$linkColor: $blue;
+$placeholderText: darken($lightGray, 5%);
+
+
+$btnPrimaryBackground: $darkBlue;
+$btnPrimaryBackgroundHighlight: $darkBlue;
+
+//Sizes
+$navbarHeight: 40px;
+$baseLineHeight: 20px;
+$loginHeight: 20px;
+
+//bootstrap overrides
+h1,h2,h3,h4,h5,h6 {
+	font-family: $headerFont;
+}
+
+body {
+	font-family: $bodyFont;
+	background-color: $lightGray;
+}
+
+input {
+	@include input-placeholder {
+		color: #e0e0e0;
+		font-style: italic;
+	}
+}
+
+.controls select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	border-radius: 0px;
+}
+
+.btn {
+	border-radius: 0px;
+	background-image: none;
+	border: none;
+	text-transform: uppercase;
+}
+
+.control-group {
+	margin-bottom: 0px;
+}
+
+.lbl {
+	background-color: $lightGray;
+	font-weight: bold;
+}
+
+//Custom styles
+
+.login {
+	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	height: $loginHeight;
+
+	p {
+		color: darken(#FFF, 5%);
+		padding: 0 0 0 0;
+	}
+}
+
+.username {
+	display: block;
+	float: right;
+}
+
+#main {
+	background-color: $white;
+	padding-bottom: 70px;
+	padding-top: 20px;
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 0px;
+	border-top: 1px solid #e5e5e5;
+	background-color: $white;
+}
+
+.dumbPadding {
+	padding: 10px 0px;
+}
+
+.greenHighlight {
+	background: $green;
+	color: $white;
+	padding: 3px 15px;
+	text-transform: uppercase;
+	position: relative;
+	top: 2px;
+	font-size: 13px;
+	font-family: $headerFont;
+}
+
+.aquaHighlight {
+	background: $darkerAqua;
+	color: $white;
+	padding: 3px 15px;
+	text-transform: uppercase;
+	position: relative;
+	top: 2px;
+	font-size: 13px;
+	font-family: $headerFont;
+}
+
+.grayHighlight {
+	background: $lightGray;
+	color: darken($lightGray, 40);
+	padding: 3px 15px;
+	text-transform: uppercase;
+	position: relative;
+	font-size: 16px;
+	font-family: $headerFont;
+}
+
+
+// This positioning is super hacky. *****************************************
+.headerGray {
+	background: darken($lightGray, 40);
+	color: $white;
+	padding: 2px 5px;
+}
+
+.mainHeaderGreen {
+	background: $lightGreen;
+	margin-bottom: 2px;
+}
+
+.mainHeaderAqua {
+	background: $aqua;
+	margin-bottom: 2px;
+}
+
+.mainHeaderGray {
+	background: darken($lightGray, 20);
+	padding: 4px 0;
+	margin-bottom: 10px;
+}
+
+.messageMain {
+	display: none;
+}
+.row-fluid [class*="span"] {
+	min-height: 25px;
+}
+
+.sidebar {
+	background: $lightGray;
+	text-transform: uppercase;
+	font-family: $headerFont;
+	font-size: 12px;
+	margin-bottom: ($baseLineHeight / 2);
+	padding-bottom: ($baseLineHeight / 4);
+
+	table {
+		font-family: $bodyFont;
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+	}
+
+	p {
+		margin-left: ($baseLineHeight / 4);
+		font-family: $bodyFont;
+		font-weight: normal;
+	}
+}
+
+.sidebarHeader {
+	background: darken($lightGray, 20);
+	margin-bottom: 20px;
+	min-height: 15px;
+}
+
+// Over-riding .span* styles so the positioning works out.
+.conversation {
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+.recentReminder {
+	padding: 10px 0 10px 0;
+
+	table {
+		margin: 0 0 0 0;
+	}
+}
+
+.tableAqua {
+	border-left: 5px solid $aqua;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
+}
+
+.tableGreen {
+	border-left: 5px solid $green;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
+}
+
+.upload {
+	padding-bottom: 20px;
+	text-align: center;
+	.btn {
+		border-radius: 0px;
+		background-image: none;
+		border: none;
+		text-transform: uppercase;
+		font-family: $headerFont;
+		padding: 5px;
+		font-size: 15px;
+		width: 160px;
+		&:hover {
+			background: lighten($blue, 10);
+		}
+	}
+}
+
+.messagetext {
+	display: block;
+	margin-top: ($baseLineHeight/2);
+}
+
+.characterCount {
+	color: $darkGray;
+	margin-bottom: 20px;
+}
