@@ -20,8 +20,8 @@ class ReminderImport
   end
 
   def save
+      binding.pry
     imported_reminder.each do |reminder|
-      # binding.pry
       begin
         if reminder.instance_of? Reminder
           if imported_reminder.map(&:valid?).all?
@@ -56,30 +56,16 @@ class ReminderImport
     if !header.include?('send_date')
       'You must have a column with named "send_date".'
     else
-      create_imported_data_hash(spreadsheet, header)
+      create_imported_data_hash(spreadsheet, header, message)
     end
   end
 
-  def create_imported_data_hash(data, header)
+  def create_imported_data_hash(data, header, message)
     (2..data.last_row).map do |i|
       row = Hash[[header, data.row(i)].transpose]
       row['errors'] = []
       row['errors'] = log_validation_errors("send_date", row["send_date"])
-      # row.each do |key, value|
-      # end
-      # binding.pry
-      # recipient = Recipient.where(phone: row['phone']).first_or_create
-      # text_message = Message.find(message)
-      # if row['send_time'] 
-      #   reminder_time = row['send_time']
-      # else
-      #   reminder_time = '12:00pm'
-      # end
-      # @new_reminder = Reminder.create_new_recipients_reminders(recipient, row['send_date'], reminder_time, text_message)
-      # unless @new_reminder.instance_of? Reminder
-      #   @new_reminder = 'Row #{i+2} has an error '+@new_reminder
-      # end
-      # imported_reminder = 'Sorry something went wrong. Row '+i+': '+$!.message
+      row['message'] = message
       row
     end
     

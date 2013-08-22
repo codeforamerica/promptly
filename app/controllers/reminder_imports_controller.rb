@@ -12,14 +12,17 @@ class ReminderImportsController < ApplicationController
   end
 
   def create
-    # @reminder_import = ReminderImport.new(params[:reminder_import], params[:message_id])
-    # binding.pry
-    # @reminder_import.review
-    if @reminder_import.save
-      redirect_to reminders_url, notice: "Imported reminders successfully."
-    else
-      render :new
+    @reminder_import = params[:reminder_import]
+    @reminder_import.map do |r|
+      save_new_reminders(r[1])
     end
+    redirect_to reminders_url, notice: "Imported reminders successfully."
+  end
+
+  def save_new_reminders(reminders)
+    recipient = Recipient.where(phone: reminders['phone']).first_or_create
+    text_message = Message.find(reminders['message'])
+    Reminder.create_new_recipients_reminders(recipient, reminders['send_date'], send_time = '12:00pm', text_message)    
   end
 
 end

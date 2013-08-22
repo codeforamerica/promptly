@@ -20,12 +20,12 @@
         <% end %>
       </tr>
     </thead>
-      <% @reminder_import.imported_reminder.each do |reminder| %>
+      <% @reminder_import.imported_reminder.each_with_index do |reminder, index| %>
       <tr>
-        <td></td>
+        <td><%= index +1  %></td>
         <% reminder.each do |key, value| %>
           <% if key != 'errors' %>
-            <td><%= f.text_field :key, :value => value %></td>
+            <td><%= f.text_field "#{index}][#{key}", :value => value %></td>
           <% else %>
           <td><%= value %></td>
           <% end %>

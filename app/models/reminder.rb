@@ -28,8 +28,6 @@ class Reminder < ActiveRecord::Base
 	      batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
 	      exist_test = check_for_existing_reminder(recipient.id, batch_id)
 	      if check_for_existing_reminder(recipient.id, batch_id)
-	      	# flash[:notice] = "Reminder already exists!"
-	        # errors.add :base, "Reminder already exists!"
 	        raise ArgumentError.new("Reminder already exists!")
 		    else
 		      @reminder = Reminder.new(:recipient_id => recipient.id, :message_id => message.id)
