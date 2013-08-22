@@ -2,7 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#main {
+  overflow: hidden;
+}
 .text-container {
   margin: 0 auto;
   max-width: 700px;
+}
+
+.phone {
+  max-width: 300px;
+  float: right;
+  margin-right: -120px;
 }
