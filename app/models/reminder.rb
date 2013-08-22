@@ -63,7 +63,7 @@ class Reminder < ActiveRecord::Base
 			valid_date = DateTime.strptime(the_date, '%m/%d/%Y')
 			DateTime.parse(valid_date.to_s)
 		rescue
-			'something is wrong with the send_date:'+$!.message
+			'There is an error with the send_date: '+$!.message
 		end
   end
 

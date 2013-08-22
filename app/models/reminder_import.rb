@@ -87,10 +87,11 @@ class ReminderImport
   end
 
   def log_validation_errors(key, value)
-    if key == 'send_date'
-      Reminder.check_for_valid_date(value)
+    @error = Reminder.check_for_valid_date(value)
+    if @error.acts_like?(:string)
+      @error
     else
-      'No date errors'
+      ''
     end
   end
 
