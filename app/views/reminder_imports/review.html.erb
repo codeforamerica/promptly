@@ -15,7 +15,7 @@
     <thead>
       <tr>
         <th>Row number</th>
-        <% @reminder_import.imported_reminder.first.each do |key, reminder| %>
+        <% @reminder_import.imported_reminder.last.each do |key, reminder| %>
           <th><%= key %></th>
         <% end %>
       </tr>

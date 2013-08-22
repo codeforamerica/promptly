@@ -16,8 +16,8 @@ class ReminderImport
   end
 
   def review
-    puts "i'm the review method!!"
     @imported_reminder ||= load_uploaded_data
+    binding.pry
   end
 
   def save
@@ -53,13 +53,22 @@ class ReminderImport
   def load_uploaded_data
     message = message_id
     spreadsheet = open_spreadsheet
-     header = spreadsheet.row(1)
-     # spreadsheet
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      # if !row['send_date']
-      #   raise ArgumentError.new('Row #{i+2}: You must have a column named "send_date"')
+    header = spreadsheet.row(1)
+    if !header.include?('send_date')
+      'You must have a column with named "send_date".'
+    else
+      create_imported_data_hash(spreadsheet, header)
+    end
+  end
+
+  def create_imported_data_hash(data, header)
+    (2..data.last_row).map do |i|
+      row = Hash[[header, data.row(i)].transpose]
+      row['errors'] = []
+      row['errors'] = log_validation_errors("send_date", row["send_date"])
+      # row.each do |key, value|
       # end
+      # binding.pry
       # recipient = Recipient.where(phone: row['phone']).first_or_create
       # text_message = Message.find(message)
       # if row['send_time'] 
@@ -72,6 +81,16 @@ class ReminderImport
       #   @new_reminder = 'Row #{i+2} has an error '+@new_reminder
       # end
       # imported_reminder = 'Sorry something went wrong. Row '+i+': '+$!.message
+      row
+    end
+    
+  end
+
+  def log_validation_errors(key, value)
+    if key == 'send_date'
+      Reminder.check_for_valid_date(value)
+    else
+      'No date errors'
     end
   end
 
