@@ -15,22 +15,64 @@ class ReminderImport
     false
   end
 
+  def review
+    puts "i'm the review method!!"
+    @imported_reminder ||= load_uploaded_data
+  end
+
   def save
-    if imported_reminder.map(&:valid?).all?
-      imported_reminder.each(&:save!)
-      true
-    else
-      imported_reminder.each_with_index do |reminder, index|
-        reminder.errors.full_messages.each do |message|
-          errors.add :base, "Row #{index+2}: #{message}"
+    imported_reminder.each do |reminder|
+      # binding.pry
+      begin
+        if reminder.instance_of? Reminder
+          if imported_reminder.map(&:valid?).all?
+            imported_reminder.each(&:save!)
+            true
+          else
+            imported_reminder.each_with_index do |reminder, index|
+              reminder.errors.full_messages.each do |message|
+                errors.add :base, "Row #{index+2}: #{message}"
+              end
+            end
+            false
+          end
+        else
+          @errors.add reminder
         end
+      rescue
+        # raise ArgumentError.new('Something went wrong. '+$!.message)
+        next
       end
-      false
     end
   end
 
   def imported_reminder
     @imported_reminder ||= load_imported_reminder
+  end
+
+  def load_uploaded_data
+    message = message_id
+    spreadsheet = open_spreadsheet
+     header = spreadsheet.row(1)
+     # spreadsheet
+    (2..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      # if !row['send_date']
+      #   raise ArgumentError.new('Row #{i+2}: You must have a column named "send_date"')
+      # end
+      # recipient = Recipient.where(phone: row['phone']).first_or_create
+      # text_message = Message.find(message)
+      # if row['send_time'] 
+      #   reminder_time = row['send_time']
+      # else
+      #   reminder_time = '12:00pm'
+      # end
+      # @new_reminder = Reminder.create_new_recipients_reminders(recipient, row['send_date'], reminder_time, text_message)
+      # unless @new_reminder.instance_of? Reminder
+      #   @new_reminder = 'Row #{i+2} has an error '+@new_reminder
+      # end
+      # imported_reminder = 'Sorry something went wrong. Row '+i+': '+$!.message
+    end
   end
 
   def load_imported_reminder
@@ -39,6 +81,9 @@ class ReminderImport
      header = spreadsheet.row(1)
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
+      if !row['send_date']
+        raise ArgumentError.new('Row #{i+2}: You must have a column named "send_date"')
+      end
       recipient = Recipient.where(phone: row['phone']).first_or_create
       text_message = Message.find(message)
       if row['send_time'] 
@@ -46,7 +91,11 @@ class ReminderImport
       else
         reminder_time = '12:00pm'
       end
-      Reminder.create_new_recipients_reminders(recipient, row['send_date'], reminder_time, text_message)
+      @new_reminder = Reminder.create_new_recipients_reminders(recipient, row['send_date'], reminder_time, text_message)
+      unless @new_reminder.instance_of? Reminder
+        @new_reminder = 'Row #{i+2} has an error '+@new_reminder
+      end
+      # imported_reminder = 'Sorry something went wrong. Row '+i+': '+$!.message
     end
   end
 
