@@ -17,7 +17,6 @@ class ReminderImport
 
   def review
     @imported_reminder ||= load_uploaded_data
-    binding.pry
   end
 
   def save

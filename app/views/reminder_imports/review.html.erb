@@ -24,7 +24,11 @@
       <tr>
         <td></td>
         <% reminder.each do |key, value| %>
+          <% if key != 'errors' %>
+            <td><%= f.text_field :key, :value => value %></td>
+          <% else %>
           <td><%= value %></td>
+          <% end %>
          <% end %>
       <% end %>
       </tr>
