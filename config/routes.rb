@@ -1,4 +1,6 @@
 Landshark::Application.routes.draw do
+  get "pages_controller/about"
+
   devise_for :users
 
   get "home/index"
@@ -18,6 +20,11 @@ Landshark::Application.routes.draw do
   resources :reminders
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
+
+  #project page
+  match '/about' => 'pages#about'
+  match '/agreement' => 'pages#agreement'
+  match '/faq' => 'pages#faq'
 
 
   # The priority is based upon order of creation:

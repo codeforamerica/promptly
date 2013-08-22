@@ -17,6 +17,7 @@ gem 'role_model'
 gem 'pg'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
+gem 'whenever'
 
 group :development, :test do
   gem 'pry'
