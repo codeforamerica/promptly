@@ -1,4 +1,5 @@
 class ReminderImportsController < ApplicationController
+  include ActionView::Helpers::TextHelper
 
   def new
     @reminder_import = ReminderImport.new
@@ -12,11 +13,19 @@ class ReminderImportsController < ApplicationController
   end
 
   def create
+    success = 0
+    fail = 0
     @reminder_import = params[:reminder_import]
     @reminder_import.map do |r|
-      save_new_reminders(r[1])
+      if save_new_reminders(r[1]).is_a? Reminder
+        success = success + 1
+      else
+        fail = fail + 1
+      end
     end
-    redirect_to reminders_url, notice: "Imported reminders successfully."
+    @success = success
+    @fail = fail
+    redirect_to reminders_url, notice: "Imported #{pluralize(success, 'reminder')} successfully. #{pluralize(fail, 'failure')}"
   end
 
   def save_new_reminders(reminders)

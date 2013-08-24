@@ -4,7 +4,7 @@ class ReminderImport
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :file
+  attr_accessor :file, :valid, :error
 
   def initialize(attributes = {}, message = '')
     attributes.each { |name, value| send("#{name}=", value) }
@@ -16,37 +16,7 @@ class ReminderImport
   end
 
   def review
-    @imported_reminder ||= load_uploaded_data
-  end
-
-  def save
-      binding.pry
-    imported_reminder.each do |reminder|
-      begin
-        if reminder.instance_of? Reminder
-          if imported_reminder.map(&:valid?).all?
-            imported_reminder.each(&:save!)
-            true
-          else
-            imported_reminder.each_with_index do |reminder, index|
-              reminder.errors.full_messages.each do |message|
-                errors.add :base, "Row #{index+2}: #{message}"
-              end
-            end
-            false
-          end
-        else
-          @errors.add reminder
-        end
-      rescue
-        # raise ArgumentError.new('Something went wrong. '+$!.message)
-        next
-      end
-    end
-  end
-
-  def imported_reminder
-    @imported_reminder ||= load_imported_reminder
+    load_uploaded_data
   end
 
   def load_uploaded_data
@@ -61,46 +31,30 @@ class ReminderImport
   end
 
   def create_imported_data_hash(data, header, message)
+      self.valid = Hash.new()
+      self.error = Hash.new()
     (2..data.last_row).map do |i|
       row = Hash[[header, data.row(i)].transpose]
+      row_valid = Hash.new()
+      row_error = Hash.new()
       row['errors'] = []
       row['errors'] = log_validation_errors("send_date", row["send_date"])
       row['message'] = message
-      row
+      if row['errors'] == false
+        self.valid[i] = Hash[row]
+      else
+        self.error[i] = Hash[row]
+      end
     end
-    
   end
 
   def log_validation_errors(key, value)
-    @error = Reminder.check_for_valid_date(value)
-    if @error.acts_like?(:string)
-      @error
+    @validation = Reminder.check_for_valid_date(value)
+    if @validation.acts_like?(:string)
+      @validation
     else
       ''
-    end
-  end
-
-  def load_imported_reminder
-    message = message_id
-    spreadsheet = open_spreadsheet
-     header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      if !row['send_date']
-        raise ArgumentError.new('Row #{i+2}: You must have a column named "send_date"')
-      end
-      recipient = Recipient.where(phone: row['phone']).first_or_create
-      text_message = Message.find(message)
-      if row['send_time'] 
-        reminder_time = row['send_time']
-      else
-        reminder_time = '12:00pm'
-      end
-      @new_reminder = Reminder.create_new_recipients_reminders(recipient, row['send_date'], reminder_time, text_message)
-      unless @new_reminder.instance_of? Reminder
-        @new_reminder = 'Row #{i+2} has an error '+@new_reminder
-      end
-      # imported_reminder = 'Sorry something went wrong. Row '+i+': '+$!.message
+      false
     end
   end
 

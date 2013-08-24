@@ -15,12 +15,12 @@
     <thead>
       <tr>
         <th>Row number</th>
-        <% @reminder_import.imported_reminder.last.each do |key, reminder| %>
-          <th><%= key %></th>
+        <% @reminder_import.error.first[1].keys.each do |key| %>
+            <th><%= key %></th>
         <% end %>
       </tr>
     </thead>
-      <% @reminder_import.imported_reminder.each_with_index do |reminder, index| %>
+      <% @reminder_import.error.each do |index, reminder| %>
       <tr>
         <td><%= index +1  %></td>
         <% reminder.each do |key, value| %>
