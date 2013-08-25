@@ -15,7 +15,8 @@ class Notifier
         date: DateTime.now,
         message: response[:body],
         to_number: response[:to],
-        from_number: response[:from]
+        from_number: response[:from],
+        status: response[:status]
       })
       @conversation.recipients << @recipient
       @conversation.save
