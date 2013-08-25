@@ -38,8 +38,8 @@ class Notifier
   end
 
   def perform
-    the_message = client.account.sms.messages.create(attributes)
-    Logger.log(the_message, recipient)
+    client.account.sms.messages.create(attributes)
+    Logger.log(attributes, recipient)
   end
 
   def attributes
