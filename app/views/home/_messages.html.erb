@@ -6,7 +6,7 @@
 			</tr>
 		</thead>
 		<tr>
-			<td><p><%= recents.message_text %></p></td>
+			<td><p><%= Message.find(recents.message_id).message_text %></p></td>
 			<td><%= recents.date.to_s(:date_format) %></td>
 		</tr>
 	</table>
