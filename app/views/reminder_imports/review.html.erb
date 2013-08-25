@@ -1,0 +1,37 @@
+<h1>Import Review</h1>
+
+<%= form_for @reminder_import do |f| %>
+  <% if @reminder_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reminder_import.errors.count, "error") %> prohibited this import from completing:</h2>
+      <ul>
+      <% @reminder_import.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table class="table tableAqua">
+    <thead>
+      <tr>
+        <th>Row number</th>
+        <% @reminder_import.error.first[1].keys.each do |key| %>
+            <th><%= key %></th>
+        <% end %>
+      </tr>
+    </thead>
+      <% @reminder_import.error.each do |index, reminder| %>
+      <tr>
+        <td><%= index +1  %></td>
+        <% reminder.each do |key, value| %>
+          <% if key != 'errors' %>
+            <td><%= f.text_field "#{index}][#{key}", :value => value %></td>
+          <% else %>
+          <td><%= value %></td>
+          <% end %>
+         <% end %>
+      <% end %>
+      </tr>
+  </table>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

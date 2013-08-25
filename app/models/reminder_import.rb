@@ -4,7 +4,7 @@ class ReminderImport
   include ActiveModel::Conversion
   include ActiveModel::Validations
 
-  attr_accessor :file
+  attr_accessor :file, :valid, :error
 
   def initialize(attributes = {}, message = '')
     attributes.each { |name, value| send("#{name}=", value) }
@@ -15,42 +15,46 @@ class ReminderImport
     false
   end
 
-  def save
-    if imported_reminder.map(&:valid?).all?
-      imported_reminder.each(&:save!)
-      true
+  def review
+    load_uploaded_data
+  end
+
+  def load_uploaded_data
+    message = message_id
+    spreadsheet = open_spreadsheet
+    header = spreadsheet.row(1)
+    if !header.include?('send_date')
+      'You must have a column with named "send_date".'
     else
-      imported_reminder.each_with_index do |reminder, index|
-        reminder.errors.full_messages.each do |message|
-          errors.add :base, "Row #{index+2}: #{message}"
-        end
-      end
-      false
+      create_imported_data_hash(spreadsheet, header, message)
     end
   end
 
-  def imported_reminder
-    @imported_reminder ||= load_imported_reminder
+  def create_imported_data_hash(data, header, message)
+      self.valid = Hash.new()
+      self.error = Hash.new()
+    (2..data.last_row).map do |i|
+      row = Hash[[header, data.row(i)].transpose]
+      row_valid = Hash.new()
+      row_error = Hash.new()
+      row['errors'] = []
+      row['errors'] = log_validation_errors("send_date", row["send_date"])
+      row['message'] = message
+      if row['errors'] == false
+        self.valid[i] = Hash[row]
+      else
+        self.error[i] = Hash[row]
+      end
+    end
   end
 
-  def load_imported_reminder
-    message = message_id
-    spreadsheet = open_spreadsheet
-     header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).map do |i|
-      row = Hash[[header, spreadsheet.row(i)].transpose]
-      reminder = Reminder.find_by_id(row["id"]) || Reminder.new
-      recipient = Recipient.where(phone: row['phone']).first_or_create
-      reminder.attributes = row.to_hash.slice(*Reminder.accessible_attributes)
-      # reminder.attributes['send_date'] = Reminder.check_for_valid_date(row["send_date"].gsub!("'",""))
-      reminder.recipient = recipient
-      reminder.message = Message.find(message)
-      if reminder.attributes['send_time'] 
-        reminder_time = reminder.attributes['send_time']
-      else
-        reminder_time = '12:00pm'
-      end
-      Reminder.create_new_recipients_reminders(recipient, reminder.attributes['send_date'].strftime('%m-%d-%Y'), reminder_time, reminder.message)
+  def log_validation_errors(key, value)
+    @validation = Reminder.check_for_valid_date(value)
+    if @validation.acts_like?(:string)
+      @validation
+    else
+      ''
+      false
     end
   end
 

@@ -22,14 +22,24 @@ class Reminder < ActiveRecord::Base
     unless recipient == ""
       reminder_time = Time.zone.parse(send_time)
       reminder_time = reminder_time.getutc
-      reminder_date = DateTime.parse(send_date).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
-      @reminder = Reminder.new(:recipient_id => recipient.id, :message_id => message.id)
-      @reminder.send_date = reminder_date 
-      @reminder.send_time = reminder_time     
-      @reminder.batch_id = Digest::MD5.hexdigest(@reminder.message_id.to_s + @reminder.send_date.to_s)
-      @reminder.save
-      add_reminder_to_queue(@reminder)
-      @reminder
+      send_date = check_for_valid_date(send_date)
+      begin
+	      reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
+	      batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
+	      if check_for_existing_reminder(recipient.id, batch_id)
+	        raise ArgumentError.new("Reminder already exists!")
+		    else
+		      @reminder = Reminder.new(:recipient_id => recipient.id, :message_id => message.id)
+		      @reminder.send_date = reminder_date 
+		      @reminder.send_time = reminder_time     
+		      @reminder.batch_id = batch_id
+		      @reminder.save
+		      add_reminder_to_queue(@reminder)
+		      @reminder
+		    end
+		  rescue
+		  	$!.message
+		  end
     end
   end
 
@@ -45,6 +55,17 @@ class Reminder < ActiveRecord::Base
   end
 
   def self.check_for_valid_date(the_date)
-    DateTime.parse(the_date)
+  	begin
+	  	the_date.respond_to?('strip') ? the_date = the_date.gsub("'","").strip : the_date
+			valid_date = DateTime.strptime(the_date, '%m/%d/%Y')
+			DateTime.parse(valid_date.to_s)
+		rescue
+			'There is an error with the send_date: '+$!.message
+		end
+  end
+
+  def self.check_for_existing_reminder(recipient_check, batch_id_check)
+    phone_check = Recipient.find(recipient_check)
+    Reminder.where('batch_id = ? AND recipient_id = ?', batch_id_check, phone_check.id).exists?
   end
 end
