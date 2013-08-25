@@ -17,7 +17,7 @@
           <span class="aquaHighlight">Recent conversations</span>
         </div>
         <div class="span12 conversation">
-          <%= render(:partial => 'messages', :collection => @conversations, :as => :conversations) || 'There are no recent conversations' %>
+          <%= render(:partial => 'messages', :collection => @conversations, :as => :recents) || 'There are no recent conversations' %>
         </div>
       </div>
     </div>
