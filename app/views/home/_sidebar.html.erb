@@ -37,7 +37,7 @@
     </tr>
     <tr>
       <td>Not delivered</td>
-      <td>#</td>
+      <td><%= link_to Conversation.where('status !=?', "sent").count, conversations_path %></td>
     </tr>
     <tr>
       <td>Responses</td>
