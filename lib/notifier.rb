@@ -14,7 +14,7 @@ class Notifier
       @conversation = Conversation.new({
         date: DateTime.now,
         message: response.body,
-        to_number: response.to
+        to_number: response.to,
         from_number: response.from,
         status: response.status
       })
