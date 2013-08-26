@@ -16,6 +16,7 @@ class Notifier
         message: response.body,
         to_number: response.to,
         from_number: response.from,
+        message_id: response.sid,
         status: response.status
       })
       @conversation.recipients << @recipient
