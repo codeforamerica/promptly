@@ -22,6 +22,8 @@
               <thead>
                 <tr>
                   <th>Message</th>
+                  <th>Date sent</th>
+                  <th>Message status</th>
                 </tr>
               </thead>
               <%= render(:partial => 'messages', :collection => @conversations, :as => :recents) || 'There are no recent conversations' %>
