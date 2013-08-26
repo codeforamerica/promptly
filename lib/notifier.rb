@@ -13,10 +13,10 @@ class Notifier
     def log
       @conversation = Conversation.new({
         date: DateTime.now,
-        message: response[:body],
-        to_number: response[:to],
-        from_number: response[:from],
-        status: response[:status]
+        message: response.body,
+        to_number: response.to
+        from_number: response.from,
+        status: response.status
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -38,8 +38,8 @@ class Notifier
   end
 
   def perform
-    client.account.sms.messages.create(attributes)
-    Logger.log(attributes, recipient)
+    the_message = client.account.sms.messages.create(attributes)
+    Logger.log(the_message, recipient)
   end
 
   def attributes
