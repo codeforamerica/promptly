@@ -8,6 +8,8 @@
           <li>Sent to: <%= link_to conversation.to_number, conversation %></li>
           <li>Sent on: <%= conversation.date.to_s(:date_format) %></li>
           <li><%= conversation.message %></li>
+          <li><%= conversation.status %></li>
+          <li><%= conversation.message_id %></li>
           <li><%= link_to 'Show', conversation %> | <%= link_to 'Delete', conversation, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
       </div>    
