@@ -16,6 +16,11 @@
   <ol>
     <li><b>Opt-in agreement.</b> Text messaging is not confidential, so Promptly is an opt-in service. Before clients can begin receiving text messages, they must sign the <%= link_to "agreement form", controller: "pages", action: "agreement" %>.</li>
     <br><li><b>CalWin special indicator.</b> Once a client agrees to receive text messages, HSA staff must add the "Text messages OK" case special indicator. This allows HSA to begin text messaging.</li>
+    
+    <%= image_tag "cell_field.png", :class => "calwin_screenshot" %>
+    
+    <%= image_tag "special_indicator.png", :class => "calwin_screenshot" %>
+
     <br><li><b>Monitoring.</b> As a best practice, HSA staff should monitor <%= link_to "Promptly", '/' %> for incoming messages, to make sure clients don't need help. However, Promptly will automatically respond to incoming messages with: "We can't reply back by text right now. If you need help, give us a call at (415) XXX-XXXX. If you don't want these messages, reply with STOP."</li>
     <br><li><b>Opt-out.</b> Clients can stop receiving text messages at any time by replying STOP to any message. Alternatively, HSA staff can stop messages on a client's behalf by removing the "Text messages OK" special indicator in CalWin.</li>
   </ol>
