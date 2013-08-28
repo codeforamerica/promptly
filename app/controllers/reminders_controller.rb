@@ -27,7 +27,7 @@ class RemindersController < ApplicationController
 
   # GET /deliveries/1/edit
   def edit
-    @reminder = Reminder.find(params[:id])
+    @reminder = Reminder.where("batch_id=?", params[:batch_id])
   end
 
   # POST /deliveries
@@ -52,7 +52,7 @@ class RemindersController < ApplicationController
   end
 
   def update
-    @reminder = Reminder.find(params[:id])
+    @reminder = Reminder.where("batch_id=?", params[:batch_id])
 
     respond_to do |format|
       if @reminder.update_attributes(params[:reminder])
