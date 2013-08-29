@@ -5,7 +5,7 @@
     <% if @reminder_import.error.any? %>
       <%= render(:partial => 'import_errors', :object => @reminder_import, as: 'reminder', :f => f ) %>
       <% else %>
-      <span>Yay! No errors here.</span>
+      <div class="label label-success">Yay! No errors here.</div>
     <% end %>
   </div>
   <div class="buttons"><%= f.submit "Import" %></div>

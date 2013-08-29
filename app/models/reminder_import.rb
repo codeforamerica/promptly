@@ -47,7 +47,6 @@ class ReminderImport
         self.error[i] = Hash[row]
       end
     end
-    # binding.pry
   end
 
   def log_validation_errors(key, value)
@@ -79,7 +78,6 @@ class ReminderImport
       new_reminder.save
       new_reminder
     end
-    # binding.pry
   end
 
   private

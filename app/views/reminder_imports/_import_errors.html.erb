@@ -1,3 +1,4 @@
+<div class="label label-warning">Oops. Looks like we've got some errors. You can fix them below.</div>
 <table class="table tableAqua">
     <thead>
       <tr>
@@ -12,7 +13,7 @@
         <td><%= index +1  %></td>
         <% r.each do |key, value| %>
           <% if key != 'errors' %>
-            <%= fields_for :error do |t| %>
+            <%= fields_for :reminder_import do |t| %>
               <td><%= t.text_field "#{index}][#{key}", :value => value %></td>
             <% end %>
           <% else %>
