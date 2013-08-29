@@ -1,4 +1,5 @@
-<%= simple_fields_for @recipients do |recipients_form| %>
-	<%= recipients_form.tel :phone %>
-	<%= recipients_form.text :send_date %>
+<%= fields_for @recipients do |recipients_form| %>
+  <%= recipients_form.text_field :phone %>
+  <%= text_field_tag 'recipient_send_date', '', class: 'dateSelect' %>
+  <%= text_field_tag 'recipient_send_time', '12:00pm' %>
 <% end %>

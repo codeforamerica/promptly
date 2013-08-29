@@ -13,47 +13,14 @@
         </div>
       <% end %>
       
-     <%= fields_for :message do |builder| %>
-    <div class="control-group">
-      <%= builder.label :name, "Message name", :class => 'control-label' %>
-      <div class="controls">
-      <%= builder.text_field :name %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= builder.label :message_text, "Message text", :class => 'control-label' %>
-      <div class="controls">
-        <%= builder.text_area :message_text, :rows=>3 %>
-      </div>
-    </div>
-<% end %>
-
-
-<p>Reminder recipients</p>
-          <%= f.collection_check_boxes :recipient_id, Recipient.all, :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox")+ b.text}
-          end  %>
-
-<%= fields_for @recipients do |recipients_form| %>
-  <%= recipients_form.text_field :phone %>
-  <%= text_field_tag 'recipient_send_date', '', class: 'dateSelect' %>
-  <%= text_field_tag 'recipient_send_time', '12:00pm' %>
-<% end %>
+      <%= render 'message_fields' %>
+      <%= render 'add_existing_recipients' %>
+      <%= render 'manual_add_recipients' %>
 
       <div class="actions">
         <%= f.submit :class => 'btn btn-primary' %>
       </div>  
     </div>
-    <div class="span4">
-      <div class="sidebar">
-        <div class="mainHeaderGray">
-          <span class="grayHighlight">Batch import</span>
-        </div>
-        <div class="field">
-          <div class="control-group">
-            <%= link_to 'Use the batch import', new_reminder_import_path, :class => 'btn btn-primary' %>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render 'batch_import' %>
   <% end %>
   </div>

@@ -1,3 +1,3 @@
-      <p>Reminder recipients</p>
+<p>Reminder recipients</p>
           <%= f.collection_check_boxes :recipient_id, Recipient.all, :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox")+ b.text}
           end  %>
