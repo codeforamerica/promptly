@@ -6,9 +6,10 @@ class ReminderImport
 
   attr_accessor :file, :valid, :error
 
-  def initialize(attributes = {}, message = '')
+  def initialize(attributes = {}, message = '', session = '')
     attributes.each { |name, value| send("#{name}=", value) }
     @message = message
+    @session = session
   end
 
   def persisted?
@@ -41,7 +42,7 @@ class ReminderImport
       row['errors'] = log_validation_errors("send_date", row["send_date"])
       row['message'] = message
       if row['errors'] == false
-        self.valid[i] = Hash[row]
+        save_new_reminders(row, "processing")
       else
         self.error[i] = Hash[row]
       end
@@ -64,6 +65,18 @@ class ReminderImport
     when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
     when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
     else raise "Unknown file type: #{file.original_filename}"
+    end
+  end
+
+  def save_new_reminders(reminders, state)
+    recipient = Recipient.where(phone: reminders['phone']).first_or_create
+    text_message = Message.find(reminders['message'])
+    new_reminder = Reminder.create_new_recipients_reminders(recipient, reminders['send_date'], send_time = '12:00pm', text_message)    
+    if new_reminder.is_a? Reminder
+      new_reminder.state = state
+      new_reminder.session_id = Digest::MD5.hexdigest(Reminder.last.send_date.to_s + @session[:session_id].to_s)
+      new_reminder.save
+      new_reminder
     end
   end
 
