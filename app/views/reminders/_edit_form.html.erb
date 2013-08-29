@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <div class="span8">
     <%= form_for @reminder.first do |f| %>
-
+    
       <%= f.label :send_date, "Reminder date" %>
       <%= f.text_field :send_date, :class => 'dateSelect' %>
       <%= f.label :send_time, "Reminder time" %>

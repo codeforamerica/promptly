@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130825171935) do
+ActiveRecord::Schema.define(:version => 20130829205602) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(:version => 20130825171935) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "deliveries", :force => true do |t|
+    t.string   "name"
+    t.datetime "send_date"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "recipient_id"
+    t.integer  "reminder_id"
+    t.string   "batch_id"
+    t.time     "send_time"
+    t.integer  "job_id"
+  end
+
   create_table "messages", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",   :null => false
@@ -60,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20130825171935) do
     t.string   "name"
   end
 
- create_table "reminders", :force => true do |t|
+  create_table "reminders", :force => true do |t|
     t.string   "name"
     t.datetime "send_date"
     t.datetime "created_at",   :null => false
@@ -70,6 +82,8 @@ ActiveRecord::Schema.define(:version => 20130825171935) do
     t.string   "batch_id"
     t.time     "send_time"
     t.integer  "job_id"
+    t.string   "state"
+    t.string   "session_id"
   end
 
   create_table "users", :force => true do |t|
