@@ -1,14 +1,8 @@
-<%= fields_for :message do |builder| %>
-    <div class="control-group">
-      <%= builder.label :name, "Message name", :class => 'control-label' %>
-      <div class="controls">
-      <%= builder.text_field :name %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= builder.label :message_text, "Message text", :class => 'control-label' %>
-      <div class="controls">
-        <%= builder.text_area :message_text, :rows=>3 %>
+<div id="message" class="span12">
+  <%= simple_fields_for :message do |message_form| %>
+    <%= message_form.input :name, label: "Message name" %>
+    <%= message_form.input :message_text, label: "Message text", as: :text, input_html: { rows: 3 } %>
       </div>
     </div>
   <% end %>
+</div>

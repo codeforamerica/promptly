@@ -1,0 +1,20 @@
+<p>Reminder recipients</p>
+
+<div id="existing-recipients" class="span12">
+	<table class="table table-striped">
+	  <tr>
+	  	<th></th>
+	    <th>Recipient Phone Number</th>
+	    <th>Send Date</th>
+	    <th>Send Time</th>
+	  </tr>
+	  <% f.collection_check_boxes :recipient_id, Recipient.all, :id, :phone_or_name do |b| %>
+	  <tr>
+			<td><%= b.label(class: "checkbox") { b.check_box } %></td>
+			<td><%= b.text %></td>
+			<td><%= text_field_tag('recipient_send_date', '', class: 'dateSelect') %></td>
+			<td><%= text_field_tag('recipient_send_time', '12:00pm') %></td>
+	    <% end %>
+	  </tr>
+	</table>
+</div>
