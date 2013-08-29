@@ -40,7 +40,7 @@ class ReminderImportsController < ApplicationController
     new_reminder = Reminder.create_new_recipients_reminders(recipient, reminders['send_date'], send_time = '12:00pm', text_message)    
     if new_reminder.is_a? Reminder
       new_reminder.state = state
-      new_reminder.session_id = Digest::MD5.hexdigest(Reminder.last.send_date.to_s + @session[:session_id].to_s)
+      new_reminder.session_id = Digest::MD5.hexdigest(Reminder.last.send_date.to_s + session[:session_id].to_s)
       new_reminder.save
       new_reminder
     end
