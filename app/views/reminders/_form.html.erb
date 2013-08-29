@@ -14,7 +14,7 @@
       <% end %>
       
       <%= render 'message_fields' %>
-      <%= render 'add_existing_recipients' %>
+      <%= render :partial => 'add_existing_recipients', :locals => {:f => f} %>
       <%= render 'manual_add_recipients' %>
 
       <div class="actions">
