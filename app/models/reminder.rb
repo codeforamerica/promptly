@@ -8,7 +8,7 @@ class Reminder < ActiveRecord::Base
   
   belongs_to :recipient
   belongs_to :message
-  accepts_nested_attributes_for :message
+  accepts_nested_attributes_for :message, :recipient
 
   def date_format(human_date)
   	human_date.date.to_s(:input_format) 
@@ -34,6 +34,7 @@ class Reminder < ActiveRecord::Base
 		      @reminder.send_time = reminder_time     
 		      @reminder.batch_id = batch_id
 		      @reminder.save
+          puts 'saved'
 		      add_reminder_to_queue(@reminder)
 		      @reminder
 		    end
