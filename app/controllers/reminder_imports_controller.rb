@@ -17,17 +17,21 @@ class ReminderImportsController < ApplicationController
   def create
     success = 0
     fail = 0
-    @reminder_import = params[:reminder_import]
-    @reminder_import.map do |r|
-      if save_new_valid_reminders(r[1], "complete").is_a? Reminder
-        success += 1
-      else
-        fail += 1
+    if params[:reminder_import]
+      @reminder_import = params[:reminder_import]
+      @reminder_import.map do |r|
+        if save_new_valid_reminders(r[1], "complete").is_a? Reminder
+          success += 1
+        else
+          fail += 1
+        end
       end
+      @success = success
+      @fail = fail
+      redirect_to reminders_url, notice: "Imported #{pluralize(success, 'reminder')} successfully. #{pluralize(fail, 'failure')}"
+    else
+      redirect_to reminders_url, notice: "Imported successfully."
     end
-    @success = success
-    @fail = fail
-    redirect_to reminders_url, notice: "Imported #{pluralize(success, 'reminder')} successfully. #{pluralize(fail, 'failure')}"
   end
 
   def save_new_valid_reminders(reminders, state)
