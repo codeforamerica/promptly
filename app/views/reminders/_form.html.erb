@@ -28,9 +28,11 @@
     </div>
 <% end %>
 
-<%= fields_for @recipients do |recipients_form| %>
-  <%= recipients_form.text_field :phone %>
+<%= simple_fields_for @recipients do |recipients_form| %>
+  <%= recipients_form.input :phone, :label => "Recipient Phone Number", as: :tel %>
+  <%= label_tag 'Date to Send Reminder' %>
   <%= text_field_tag 'recipient_send_date', '', class: 'dateSelect' %>
+  <%= label_tag 'Time to Send Reminder' %>
   <%= text_field_tag 'recipient_send_time', '12:00pm' %>
 <% end %>
 
