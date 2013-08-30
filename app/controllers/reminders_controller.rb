@@ -55,8 +55,6 @@ class RemindersController < ApplicationController
       end
     end
 
-    puts params
-
     params[:reminder][:recipient_id].each do |recipient|
       # for some reason there is always a null recipient. fix this
       if recipient !=""
