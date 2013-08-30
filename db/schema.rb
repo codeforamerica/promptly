@@ -45,18 +45,6 @@ ActiveRecord::Schema.define(:version => 20130829205602) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "deliveries", :force => true do |t|
-    t.string   "name"
-    t.datetime "send_date"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "recipient_id"
-    t.integer  "reminder_id"
-    t.string   "batch_id"
-    t.time     "send_time"
-    t.integer  "job_id"
-  end
-
   create_table "messages", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",   :null => false
@@ -65,11 +53,39 @@ ActiveRecord::Schema.define(:version => 20130829205602) do
     t.text     "description"
   end
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "report_id"
+    t.integer  "recipient_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "job_id"
+    t.datetime "sent_date"
+    t.integer  "reminder_id"
+  end
+
+  create_table "programs", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "reminder_id"
+  end
+
+  create_table "programs_recipients", :id => false, :force => true do |t|
+    t.integer "recipient_id"
+    t.integer "program_id"
+  end
+
   create_table "recipients", :force => true do |t|
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
+  end
+
+  create_table "recipients_reports", :id => false, :force => true do |t|
+    t.integer "recipient_id"
+    t.integer "report_id"
   end
 
   create_table "reminders", :force => true do |t|
@@ -84,6 +100,16 @@ ActiveRecord::Schema.define(:version => 20130829205602) do
     t.integer  "job_id"
     t.string   "state"
     t.string   "session_id"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.text     "humanname"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "reminder_id"
+    t.integer  "program_id"
+    t.string   "report_type"
+    t.integer  "message_id"
   end
 
   create_table "users", :force => true do |t|
