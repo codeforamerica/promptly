@@ -32,7 +32,6 @@ class ReminderImport
   end
 
   def create_imported_data_hash(data, header, message)
-      self.valid = Hash.new()
       self.error = Hash.new()
     (2..data.last_row).map do |i|
       row = Hash[[header, data.row(i)].transpose]
