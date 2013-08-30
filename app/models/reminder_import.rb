@@ -25,7 +25,7 @@ class ReminderImport
     spreadsheet = open_spreadsheet
     header = spreadsheet.row(1)
     if !header.include?('send_date')
-      'You must have a column with named "send_date".'
+      'You must have a column named "send_date".'
     else
       create_imported_data_hash(spreadsheet, header, message)
     end
@@ -70,7 +70,12 @@ class ReminderImport
   def save_new_reminders(reminders, state)
     recipient = Recipient.where(phone: reminders['phone']).first_or_create
     text_message = Message.find(reminders['message'])
-    new_reminder = Reminder.create_new_recipients_reminders(recipient, reminders['send_date'], send_time = '12:00pm', text_message)    
+    if reminders["send_time"]
+      send_time = reminders["send_time"]
+    else
+      send_time = '12:00pm'
+    end
+    new_reminder = Reminder.create_new_recipients_reminders(recipient, reminders['send_date'], send_time, text_message)    
     if new_reminder.is_a? Reminder
       new_reminder.state = state
       new_reminder.session_id = Digest::MD5.hexdigest(Reminder.last.send_date.to_s + @session[:session_id].to_s)
