@@ -24,7 +24,7 @@
   	format: 'mm/dd/yyyy'
   });
 
-  $('#reminder_message_text').live('keyup keydown', function(e) {
+  $('#message_message_text').live('keyup keydown', function(e) {
 	  var maxLen = 160;
 	  var charLeft = maxLen - $(this).val().length;
 	  $('#char-count').html(charLeft);
