@@ -1,0 +1,6 @@
+<div id="<%= which_class(conversation.from_number) %>">
+
+<p><b>Date sent:</b> <%= conversation.date.to_s(:date_format) %></p>
+<p><b>To number:</b> <%= number_to_phone(conversation.to_number) %></p>
+<p><b>Message:</b> <%= conversation.message %></p>
+</div>
