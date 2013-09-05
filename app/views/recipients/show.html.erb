@@ -21,7 +21,9 @@
     <div class="span12 mainHeaderAqua">
       <span class="aquaHighlight">Queued Reminders</span>
     </div>
-    <%= render(:partial => 'reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+    <div class="queued">
+      <%= render(:partial => 'queued_reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+    </div>
   </div>
 
 </div>

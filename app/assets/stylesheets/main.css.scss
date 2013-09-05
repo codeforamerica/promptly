@@ -157,9 +157,6 @@ input {
 
 .sidebar {
 	background: $lightGray;
-	text-transform: uppercase;
-	font-family: $headerFont;
-	font-size: 12px;
 	margin-bottom: ($baseLineHeight / 2);
 	padding-bottom: ($baseLineHeight / 4);
 
@@ -177,6 +174,12 @@ input {
 	}
 }
 
+#homepage-sidebar {
+	text-transform: uppercase;
+	font-family: $headerFont;
+	font-size: 12px;
+}
+
 .sidebarHeader {
 	background: darken($lightGray, 20);
 	margin-bottom: 20px;
@@ -185,10 +188,6 @@ input {
 
 
 // Over-riding .span* styles so the positioning works out.
-.conversation {
-	padding: 0 0 0 0;
-	margin: 0 0 0 0;
-}
 
 .recentReminder {
 	padding: 10px 0 10px 0;
@@ -288,3 +287,6 @@ input {
 	}
 }
 
+.queued {
+	padding-top: $baseLineHeight*2;
+}
