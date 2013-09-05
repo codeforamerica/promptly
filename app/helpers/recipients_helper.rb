@@ -3,13 +3,14 @@ module RecipientsHelper
 		@recipient.notifications
 	end
 
-	def which_class(phone_number)
+	def which_sender(phone_number)
 		self_phone = ENV["TWILIO_NUMBER"]
 		if phone_number[-10..-1] != self_phone
-			css_class = "conversation-recipient"
+			sender = "recipient"
 		else
-			css_class = "conversation-self"
+			sender = "self"
 		end
 	end 
+
 
 end

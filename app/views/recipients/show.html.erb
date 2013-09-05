@@ -1,26 +1,27 @@
-<div class="container">
-  <div class="row-fluid">
-    <p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <p id="notice"><%= notice %></p>
 
-    <p>
-      <b>Phone:</b>
-      <%= number_to_phone(@recipient.phone, :area_code => true) %>
-    </p>
+  <h1>
+    <%= number_to_phone(@recipient.phone, :area_code => true) %>
+  </h1>
+</div>
 
+<div class="row-fluid">
 
-    <div class="span7">
-      <div class="span12 mainHeaderAqua">
-        <span class="aquaHighlight">Recipient History</span>
-      </div>
+  <div class="span8">
+    <div class="span12 mainHeaderAqua">
+      <span class="aquaHighlight">Recipient History</span>
+    </div>
+    <div class="conversation">
       <%= render(:partial => 'show_conversation', :collection => @recipient.conversations, :as => :conversation) || 'No messages.' %>
     </div>
-
-    <div class="span4">
-      <div class="span12 mainHeaderAqua">
-        <span class="aquaHighlight">Queued Reminders</span>
-      </div>
-      <%= render(:partial => 'reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
-    </div>
-
   </div>
+
+  <div class="span4 sidebar">
+    <div class="span12 mainHeaderAqua">
+      <span class="aquaHighlight">Queued Reminders</span>
+    </div>
+    <%= render(:partial => 'reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+  </div>
+
 </div>
