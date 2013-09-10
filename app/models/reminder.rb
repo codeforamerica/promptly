@@ -14,8 +14,12 @@ class Reminder < ActiveRecord::Base
   	human_date.date.to_s(:input_format) 
   end
 
-  def self.grouped_reminders
-    Reminder.where('send_date IS NOT NULL', :order => "send_date").to_set.classify {|reminder| reminder.batch_id}
+  def self.grouped_reminders(limit = 0)
+    if limit != 0
+      Reminder.where('send_date IS NOT NULL', :order => "send_date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
+    else
+      Reminder.where('send_date IS NOT NULL', :order => "send_date").to_set.classify {|reminder| reminder.batch_id}
+    end
   end
 
   def self.create_new_recipients_reminders(recipient, send_date, send_time = '12:00pm', message)
