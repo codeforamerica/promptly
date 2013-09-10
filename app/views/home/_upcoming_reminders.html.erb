@@ -7,7 +7,7 @@
 				<th>Reminder text message</th>
 			</tr>
 		</thead>
-		<% reminders.each do |batch, reminder| %>
+		<% upcoming_reminders.each do |batch, reminder| %>
         <tr>
           <td><%= link_to reminder.count, reminder_path(batch) %></td>
           <td><%= reminder.first.send_date.to_s(:date_format) %></td>
