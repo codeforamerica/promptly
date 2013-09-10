@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
+
+	layout "splash"
+	
   def about
   end
 

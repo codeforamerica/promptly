@@ -1,5 +1,21 @@
-<%= image_tag "phone.jpg", :class => "phone" %>
-<div class="text-container">
+<div class="splash-hero">
+  <div class="container">
+  <%= image_tag "phone.jpg", :class => "phone" %>
+  </div>
+</div>
+
+<div class="splash-subnav">
+  <div class="container">
+    <ul class="nav">
+    <li>About</li>
+    <li>Team</li>
+    <li>Use Promptly</li>
+    </ul>
+  </div>
+</div>
+
+<div id="about">
+  <div class="container">
   <h1>About</h1>
 
   <p>Promptly text messages HSA clients with important information to keep them enrolled in services.</p>
@@ -20,5 +36,6 @@
     <br><li><b>Opt-out.</b> Clients can stop receiving text messages at any time by replying STOP to any message. Alternatively, HSA staff can stop messages on a client's behalf by removing the Text messages OK special indicator in CalWin.</li>
   </ol>
 
-  <h1>Questions? <span class="muted">See the <%= link_to "FAQ", controller: "pages", action: "faq"%> or <a href="mailto://sf@codeforamerica.org">email us</a>.</span></h1> 
+  <h1>Questions? <span class="muted">See the <%= link_to "FAQ", controller: "pages", action: "faq"%> or <a href="mailto://sf@codeforamerica.org">email us</a>.</span></h1>
+  </div> 
 </div>

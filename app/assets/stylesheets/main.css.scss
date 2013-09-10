@@ -3,21 +3,7 @@
 @import "colors";
 @import "placeholder";
 @import "navbar";
-//Fonts
-$headerFont: 'Open Sans Condensed', sans-serif;
-$bodyFont: 'Open Sans', sans-serif;
-
-$linkColor: $blue;
-$placeholderText: darken($lightGray, 5%);
-
-
-$btnPrimaryBackground: $darkBlue;
-$btnPrimaryBackgroundHighlight: $darkBlue;
-
-//Sizes
-$navbarHeight: 40px;
-$baseLineHeight: 20px;
-$loginHeight: 20px;
+@import "constants";
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {

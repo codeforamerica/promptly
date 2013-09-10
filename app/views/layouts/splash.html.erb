@@ -2,23 +2,17 @@
 <html>
 <head>
   <title>Promptly</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "splash", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-
 </head>
-
 <body>
-  <%= render 'shared/mainnav' %>
-  <div class="container-fluid" id="main">
-  	<div class="notice">
-      <div><%= notice %></div>
-      <div><%= alert %></div>
-    </div>
-    <%= yield %>
-  </div>
-  <%= render 'shared/footer' %>
+	<div class="wrapper">
+		<%= render 'shared/splash/splash_mainnav' %>
+			<%= yield %>
+		<%= render 'shared/splash/splash_footer' %>
+	</div>
 </body>
 </html>
