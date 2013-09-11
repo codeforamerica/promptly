@@ -1,7 +1,7 @@
 Landshark::Application.routes.draw do
   get "pages_controller/about"
 
-  devise_for :users
+  devise_for :users, :controllers => {:registrations => "registrations"}
 
   get "home/index"
   root :to => 'home#index'
