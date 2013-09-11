@@ -5,7 +5,7 @@
     <div class="span12">
       <div class="span8 offset1">
         <ul class="unstyled">
-          <li><%= link_to_if(can?(:read, User), "#{u.name}", edit_user_registration_path(u.id)) {} %></li>
+          <li><%= link_to_if(can?(:read, User), "#{u.name}", edit_user_registration_path){} %></li>
           <li><%= "#{u.email}" %></li>
           <li><%= link_to_if(can?(:edit, User), image_tag("/images/edit_icon.gif"), edit_user_registration_path) {} %></li>
         </ul>
