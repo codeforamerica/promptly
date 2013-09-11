@@ -1,25 +1,23 @@
 <div class="row-fluid">
   <div class="span8">
-    <%= form_for @reminder.first do |f| %>
+    <%= form_for :reminder do |f| %>
     
       <%= f.label :send_date, "Reminder date" %>
-      <%= f.text_field :send_date, :class => 'dateSelect' %>
+      <%= f.text_field :send_date, :class => 'dateSelect', :value => @reminders.first.send_time %>
       <%= f.label :send_time, "Reminder time" %>
-      <%= f.text_field :send_time, :value => '12:00pm' %>
+      <%= f.text_field :send_time, :value => @reminders.first.send_time %>
       
         <div class="field">
         <div class="control-group">
           <%= f.label :message_id, "Available reminders", :class => 'control-label' %>
           <div class="controls">
-            <%= f.collection_select :message_id, Message.all, :id, :name, {:prompt => 'Select a text message'} %>
+            <%= f.collection_select :message_id, Message.all, :id, :name, {:prompt => 'Select a text message', :selected => @reminders.first.message_id.to_i} %>
           </div>
         </div>
       </div>
-      <h4>or</h4>
-      <div><%= link_to_add_fields "Create a new text message", f, :message %></div>
       <p>Reminder recipients</p>
-        <% @reminder.each do |reminder| %>
-          <%= f.collection_check_boxes :recipient_id, Recipient.where("id = ?", reminder.recipient.id), :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox")+ b.text}
+        <% @reminders.each do |reminder| %>
+          <%= f.collection_check_boxes :recipient_id, Recipient.where("id = ?", reminder.recipient.id), :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox", checked: true)+ b.text}
           end  %>
         <% end %>
       <div class="actions">

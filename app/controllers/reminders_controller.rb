@@ -12,7 +12,7 @@ class RemindersController < ApplicationController
   end
 
   def show 
-    @reminders = Reminder.where("batch_id=?", params[:batch_id])
+    @reminder = Reminder.where("batch_id=?", params[:batch_id])
   end
 
 
@@ -29,7 +29,7 @@ class RemindersController < ApplicationController
 
   # GET /deliveries/1/edit
   def edit
-    @reminder = Reminder.where("batch_id=?", params[:batch_id])
+    @reminders = Reminder.where("batch_id=?", params[:batch_id])
   end
 
   # POST /deliveries
@@ -70,10 +70,11 @@ class RemindersController < ApplicationController
 
   def update
     @reminder = Reminder.where("batch_id=?", params[:batch_id])
+    binding.pry
 
     respond_to do |format|
       if @reminder.update_attributes(params[:reminder])
-        format.html { redirect_to @reminders, notice: 'Reminder was successfully updated.' }
+        format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
