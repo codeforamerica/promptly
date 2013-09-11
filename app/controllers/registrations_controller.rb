@@ -5,9 +5,5 @@ class RegistrationsController < Devise::RegistrationsController
 	def check_permissions
 		authorize! :create, User
 	end
-
-	def update
-		@user_roles = User.valid_roles
-	end
 	
 end
