@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <h2>All users</h2>
+  <% @users.each do |u| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="span8 offset1">
+        <ul class="unstyled">
+          <li><%= link_to_if(can?(:read, User), "#{u.name}", edit_user_registration_path(u.id)) {} %></li>
+          <li><%= "#{u.email}" %></li>
+          <li><%= link_to_if(can?(:edit, User), image_tag("/images/edit_icon.gif"), edit_user_registration_path) {} %></li>
+        </ul>
+      </div>    
+    </div>
+  </div>
+  <% end %>
+</div>
