@@ -1,11 +1,10 @@
 <div class="row-fluid">
   <div class="span8">
     <%= form_for :reminder do |f| %>
-    
       <%= f.label :send_date, "Reminder date" %>
-      <%= f.text_field :send_date, :class => 'dateSelect', :value => @reminders.first.send_time %>
+      <%= f.text_field :send_date, :class => 'dateSelect', :value => @reminders.first.send_date.to_date %>
       <%= f.label :send_time, "Reminder time" %>
-      <%= f.text_field :send_time, :value => @reminders.first.send_time %>
+      <%= f.text_field :send_time, :value => @reminders.first.send_time.getlocal.strftime('%l:%M%p') %>
       
         <div class="field">
         <div class="control-group">
