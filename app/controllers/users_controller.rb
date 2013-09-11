@@ -22,10 +22,10 @@ class UsersController < ApplicationController
   # GET /users/new.json                                    HTML AND AJAX
   #-------------------------------------------------------------------
   def new
+  	@user = User.new
     respond_to do |format|
-      format.json { render :json => @user }   
-      format.xml  { render :xml => @user }
-      format.html
+      format.html # new.html.erb
+      format.json { render json: @user }
     end
   end
  
@@ -64,12 +64,11 @@ class UsersController < ApplicationController
   # DELETE /users/1.json                                  HTML AND AJAX
   #-------------------------------------------------------------------
   def destroy
-    @user.destroy!
+  	@user = User.find(params[:id])
+    @user.destroy
  
     respond_to do |format|
-      format.json { respond_to_destroy(:ajax) }
-      format.xml  { head :ok }
-      format.html { respond_to_destroy(:html) }      
+      redirect_to user_path
     end
  
   rescue ActiveRecord::RecordNotFound
@@ -82,6 +81,7 @@ class UsersController < ApplicationController
   #-----------------------------------------------------------------
   def create
     @user = User.new(params[:user])
+    binding.pry
  
     if @user.save
       respond_to do |format|
@@ -96,6 +96,30 @@ class UsersController < ApplicationController
         format.html { render :action => :new, :status => :unprocessable_entity }
       end
     end
+  end
+
+   def update
+    if params[:user][:password].blank?
+      [:password,:password_confirmation,:current_password].collect{|p| params[:user].delete(p) }
+    else
+      @user.errors[:base] << "The password you entered is incorrect" unless @user.valid_password?(params[:user][:current_password])
+    end
+ 
+    respond_to do |format|
+      if @user.errors[:base].empty? and @user.update_attributes(params[:user])
+        flash[:notice] = "Your account has been updated"
+        format.json { render :json => @user.to_json, :status => 200 }
+        format.xml  { head :ok }
+        format.html { render :action => :edit }
+      else
+        format.json { render :text => "Could not update user", :status => :unprocessable_entity } #placeholder
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.html { render :action => :edit, :status => :unprocessable_entity }
+      end
+    end
+ 
+  rescue ActiveRecord::RecordNotFound
+    respond_to_not_found(:js, :xml, :html)
   end
 
   # Get roles accessible by the current user

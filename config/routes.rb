@@ -1,8 +1,6 @@
 Landshark::Application.routes.draw do
   get "pages_controller/about"
 
-  match 'users' => 'users#index'
-
   devise_for :users, :controllers => {:registrations => "registrations"}
 
   scope "/admin" do
