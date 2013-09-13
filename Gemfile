@@ -27,6 +27,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem 'daemons'
+  gem 'simplecov'
 end
 
 # Gems used only for assets and not required

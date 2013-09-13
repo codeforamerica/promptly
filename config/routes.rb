@@ -21,8 +21,10 @@ Landshark::Application.routes.draw do
   match '/reminder_imports/review' => 'reminder_imports#review'
   resources :reminder_imports
   match '/reminders/new' => 'reminders#new'
-  match '/reminders/:batch_id' => 'reminders#show'
-  match '/reminders/:batch_id/edit' => 'reminders#edit'
+  get '/reminders/:batch_id/edit' => 'reminders#edit'
+  get '/reminders/:batch_id' => 'reminders#show' 
+  put '/reminders/:batch_id/edit' => 'reminders#update'
+  post '/reminders/:batch_id/edit' => 'reminders#update'
   resources :reminders
 
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
