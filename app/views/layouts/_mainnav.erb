@@ -14,13 +14,14 @@
 					<li class="<%= 'active' if current_page?(root_url)%>">
 						<% link_to "Home", root_path %>
 					</li>
+					<li class="dropdown <%= 'active' if current_page?(new_reminder_url)%>">
+						<%= link_to "Schedule a Reminder", new_reminder_path %>
+					</li>
 					<li class="dropdown <%= 'active' if current_page?(reminders_url)%>">
-						<%= link_to reminders_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Reminders <b class="caret white-caret"></b><% end %>
-						<%= render 'layouts/reminders_dropdown' %>
+						<%= link_to "All Reminders", reminders_path %>
 					</li>
 					<li class="dropdown <%= 'active' if current_page?(recipients_url)%>">
-						<%= link_to recipients_path, :id => "recipientsdrop", :data => {:toggle => "dropdown"} do %>Recipients <b class="caret white-caret"></b><% end %>
-						<%= render 'layouts/recipients_dropdown' %>
+						<%= link_to "Recipients", recipients_path %>
 					</li>
 				</ul>
 
