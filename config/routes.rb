@@ -27,7 +27,7 @@ Landshark::Application.routes.draw do
   match '/about' => 'pages#about'
   match '/agreement' => 'pages#agreement'
   match '/faq' => 'pages#faq'
-
+  match '/splash' => 'pages#splash'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
