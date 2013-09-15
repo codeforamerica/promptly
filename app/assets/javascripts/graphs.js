@@ -9,7 +9,7 @@ function upcomingMessages(){
     element: 'upcoming_chart',
     data: $('#upcoming_chart').data('upcoming'),
     // The name of the data record attribute that contains x-values.
-    xkey: 'send_date',
+    xkey: 'sent_date',
     // A list of names of data record attributes that contain y-values.
     ykeys: ['number_sent'],
     // Labels for the ykeys -- will be displayed when you hover over the

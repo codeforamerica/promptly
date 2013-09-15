@@ -1,5 +1,5 @@
 <div class="recentReminder">
-	<%= content_tag :div, "",class: "chart", id: "upcoming_chart", data: {upcoming: upcoming_chart_data} %>
+	<%= content_tag :div, "",class: "chart", id: "upcoming_chart", data: {upcoming: chart_data(Date.today, Date.today+2.weeks, "send_date", Reminder)} %>
 	<table class="table tableGreen">
 		<thead>
 			<tr>
