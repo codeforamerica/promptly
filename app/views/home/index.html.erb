@@ -10,7 +10,7 @@
         </div>
         <div class="span5">
           <div class="mainHeaderGreen">
-            <span class="greenHighlight">Upcoming deliveries</span>
+            <span class="greenHighlight">Upcoming reminders</span>
           </div>
           <div class="conversation">
             <%= render(:partial => 'upcoming_reminders', object: @upcoming) || 'There are no upcoming reminders' %>
@@ -29,10 +29,10 @@
         <div class="row-fluid">
           <div class="span5">
             <div class="mainHeaderGreen">
-              <span class="greenHighlight">Upcoming deliveries</span>
+              <span class="greenHighlight">Sent deliveries</span>
             </div>
             <div class="conversation">
-              <%= render(:partial => 'upcoming_reminders', object: @upcoming) || 'There are no upcoming reminders' %>
+              <%= render(:partial => 'sent_reminders') || 'There are no upcoming reminders' %>
             </div>
           </div>
           <div class="span5">

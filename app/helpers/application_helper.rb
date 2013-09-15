@@ -24,4 +24,22 @@ module ApplicationHelper
     controller.controller_name == c
   end
 
+  def upcoming_chart_data
+    (Date.today..Date.today+2.weeks).map do |date|
+      {
+        send_date: date.to_s(:date_format),
+        number_sent: Reminder.where("date(send_date) = ?", date).count
+      }
+    end
+  end
+
+  def sent_chart_data
+    (2.weeks.ago.to_date..Date.today).map do |date|
+      {
+        sent_date: date.to_s(:date_format),
+        number_sent: Conversation.where("date(date) = ?", date).count
+      }
+    end
+  end
+
 end
