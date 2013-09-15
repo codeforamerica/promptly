@@ -27,7 +27,7 @@ module ApplicationHelper
   def chart_data(start_date, end_date = Date.today, date_field, model)
     (start_date..end_date).map do |date|
       {
-        sent_date: date.to_s(:date_format),
+        date: date.to_s(:date_format),
         number_sent: model.where("date(#{date_field}) = ?", date).count
       }
     end

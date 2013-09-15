@@ -1,28 +1,28 @@
-<div class="container"> <!-- main container -->
   <div class="row-fluid">
-    <div class="span2">
-        <%= render(:partial => 'sidebar') %>
-    </div>
     <div class="span10">
       <div class="row-fluid">
-        <div class="well">
-          <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'offset2 btn btn-primary' %>
+        <div class="pageHeader">
+          <h2>Dashboard</h2>
+          <div>
+            <span>Schedule new reminders and view statistics</span>
+            <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'offset1 btn btn-primary' %>
+          </div>
         </div>
         <div class="span5">
-          <div class="mainHeaderGreen">
-            <span class="greenHighlight">Upcoming reminders</span>
+          <div class="mainHeaderAqua">
+            <span class="aquaHighlight">Upcoming reminders</span>
           </div>
           <div class="conversation">
             <%= render(:partial => 'upcoming_reminders', object: @upcoming) || 'There are no upcoming reminders' %>
           </div>
+        </div>
+        <div class="span5">
+          <div class="mainHeaderGreen">
+            <span class="greenHighlight">Sent reminders</span>
           </div>
-          <div class="span5">
-            <div class="mainHeaderGreen">
-              <span class="greenHighlight">Upcoming deliveries</span>
-            </div>
-            <div class="conversation">
-              <%= render(:partial => 'upcoming_reminders', object: @upcoming) || 'There are no upcoming reminders' %>
-            </div>
+          <div class="conversation">
+            <%= render(:partial => 'sent_reminders') || 'There are no sent reminders' %>
+          </div>
         </div>
       </div>
       <div class="span10>"
@@ -47,4 +47,3 @@
       </div>
     </div>
   </div>
-</div>

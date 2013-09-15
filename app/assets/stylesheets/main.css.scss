@@ -95,29 +95,29 @@ input {
 .greenHighlight {
 	background: $green;
 	color: $white;
-	padding: 3px 15px;
+	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
-	top: 2px;
-	font-size: 13px;
+	top: 0px;
+	font-size: 16px;
 	font-family: $headerFont;
 }
 
 .aquaHighlight {
 	background: $darkerAqua;
 	color: $white;
-	padding: 3px 15px;
+	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
-	top: 2px;
-	font-size: 13px;
+	top: 0px;
+	font-size: 16px;
 	font-family: $headerFont;
 }
 
 .grayHighlight {
 	background: $lightGray;
 	color: darken($lightGray, 40);
-	padding: 3px 15px;
+	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
 	font-size: 16px;
@@ -127,21 +127,23 @@ input {
 
 // This positioning is super hacky. *****************************************
 .headerGray {
-	background: $lightGray;
-	color: $white;
-	padding: 20px 0px;
+	background: $darkGray;
+	color: $lightGray;
+	padding: 10px 15px 10px;;
 	margin: 0px 0px;
-	border-bottom: 1px solid $darkGray;
+	border-bottom: 1px solid $lightGray;
 }
 
 .mainHeaderGreen {
 	background: $lightGreen;
 	margin-bottom: 2px;
+	padding: 2px 0px;
 }
 
 .mainHeaderAqua {
 	background: $aqua;
 	margin-bottom: 2px;
+	padding: 2px 0px;
 }
 
 .mainHeaderGray {
@@ -153,17 +155,30 @@ input {
 .messageMain {
 	display: none;
 }
+
+.pageHeader {
+	// fix this positioning 
+	margin: -18px 25px 35px;
+}
+
 .row-fluid [class*="span"] {
 	min-height: 25px;
 }
 
 .sidebar {
-	background: $lightGray;
 	text-transform: uppercase;
 	font-family: $headerFont;
-	font-size: 16px;
+	font-size: 18px;
 	margin-bottom: ($baseLineHeight / 2);
 	padding-bottom: ($baseLineHeight / 4);
+
+	.nav {
+		background: $lightGray;
+		color: $lightGray;
+		padding: 10px 15px 10px;;
+		margin: 0px 0px;
+		border-bottom: 1px solid $darkGray;
+	}
 
 	table {
 		font-family: $bodyFont;

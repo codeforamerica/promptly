@@ -8,18 +8,6 @@
 			</button>
 			<%= link_to "Promptly", root_path, :class => 'brand' %>
 			<div class="nav-collapse collapse">
-				<ul class="nav">
-					<li class="<%= 'active' if current_page?(root_url)%>">
-						<% link_to "Home", root_path %>
-					</li>
-					<li class="dropdown <%= 'active' if current_page?(reminders_url)%>">
-						<%= link_to reminders_path, :id => "drop1", :data => {:toggle => "dropdown"} do %>Reminders <b class="caret white-caret"></b><% end %>
-						<%= render 'layouts/reminders_dropdown' %>
-					</li>
-					<li class="<%= 'active' if current_page?(recipients_url)%>">
-						<%= link_to "Recipients", recipients_path %>
-					</li>
-				</ul>
 				<div class="login pull-right">
 				<% if user_signed_in? %>
 				  <p><%= link_to "Welcome, #{current_user.name}!", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %></p>
