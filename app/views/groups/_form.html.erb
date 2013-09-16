@@ -1,0 +1,27 @@
+<%= simple_form_for @group  do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :name, required: true %>
+  <%= fields_for :recipient do |builder| %>
+    <div class="control-group">
+      <%= builder.label :name, "Enter a list of phone numbers", :class => 'control-label' %>
+      <div class="controls">
+      <%= builder.text_area :phone %>
+      </div>
+    </div>
+<% end %>
+
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>  
+<% end %>

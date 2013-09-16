@@ -15,7 +15,7 @@ Landshark::Application.routes.draw do
   end
 
   resources :conversations
-
+  resources :groups
   resources :messages
 
   match '/reminder_imports/review' => 'reminder_imports#review'

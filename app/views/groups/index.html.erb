@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <h2>All groups</h2>
+  <% @groups.each do |g| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="span8 offset1">
+        <ul class="unstyled">
+              <li><%= link_to_if(can?(:read, Group), "#{g.name}", group_path(g.id)) {} %></li>
+    <li><%= "#{u.email}" %></li>
+    <li><%= link_to_if(can?(:edit, Group), "Edit", edit_grup_path(g.id), :class => 'btn btn-default') %></li>
+    <li><%= link_to_if(can?(:delete, g), "Delete", g, :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger') %></li>
+        </ul>
+      </div>    
+    </div>
+  </div>
+  <% end %>
+</div>

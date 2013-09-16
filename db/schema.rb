@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130829205602) do
+ActiveRecord::Schema.define(:version => 20130916221049) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20130829205602) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "group_name_id"
+    t.text     "description"
+    t.boolean  "editable"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", :force => true do |t|
     t.string   "name"
