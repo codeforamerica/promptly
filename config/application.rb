@@ -62,6 +62,6 @@ module Landshark
     config.assets.version = '1.0'
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.assets.initialize_on_precompile = true
+    config.assets.initialize_on_precompile = false
   end
 end
