@@ -41,14 +41,12 @@ class GroupsController < ApplicationController
   # POST /Groups.json
   def create
     @group = Group.new(params[:group])
-    phones = params[:recipient][:phone]
-    phones.split("\r\n").each do |phone_number|
-    binding.pry
-    	Recipient.where(phone: phone_number).first_or_create
-	  end
+    @group.group_name_id = params[:group][:name].downcase.tr(' ', '_')
 
     respond_to do |format|
       if @group.save
+		    phones = params[:recipient][:phone]
+		    add_phone_numbers_to_group(phones, @group)
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
@@ -85,4 +83,18 @@ class GroupsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_phone_numbers_to_group(phone_numbers, the_group)
+  	phones_to_group = []
+	  phone_numbers.split("\r\n").each do |phone_number|
+    	recipient = Recipient.where(phone: phone_number).first_or_create
+    	recipient.save
+    	unless recipient == ""
+    	  phones_to_group << recipient.id
+	    end
+	  end
+	  the_group.recipient_ids = phones_to_group
+  end
+
+
 end
