@@ -26,18 +26,18 @@
 <div class="row-fluid">
   <div class="span5">
     <div class="mainHeaderGreen">
-      <span class="greenHighlight">Sent deliveries</span>
+      <span class="greenHighlight">Responses</span>
     </div>
     <div class="conversation">
-      <% render(:partial => 'sent_reminders') || 'There are no upcoming reminders' %>
+      <% render(:partial => 'responses') || 'There are no responses' %>
     </div>
   </div>
   <div class="span5">
     <div class="mainHeaderGreen">
-      <span class="greenHighlight">Upcoming deliveries</span>
+      <span class="greenHighlight">Undelivered reminders</span>
     </div>
     <div class="conversation">
-      <% render(:partial => 'upcoming_reminders', object: @upcoming) || 'There are no upcoming reminders' %>
+      <% render(:partial => 'undelivered', object: @conversation) || 'There are no upcoming reminders' %>
     </div>
   </div>
 </div>
