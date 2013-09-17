@@ -20,8 +20,8 @@ class RecipientsController < ApplicationController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    # @conversations = Conversation.all
-    # binding.pry
+    # @recipient = Recipient.find(params[:id])
+    # @conversations = @recipient.conversations.group("date")
 
     respond_to do |format|
       format.html # show.html.erb

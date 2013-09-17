@@ -1,4 +1,9 @@
 <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+	<li class="nav-header">Reminders</li>
 	<li role="presentation"><%= link_to "Reminders", reminders_path %></li>
-    <li role="presentation"><%= link_to "New Reminder", new_reminder_path %></li>
+	<li role="presentation"><%= link_to "Create a Reminder", new_reminder_path %></li>
+	<li class="divider"></li>
+	<li class="nav-header">Text Messages</li>
+	<li role="presentation"><%= link_to "Messages", messages_path %></li>
+	<li role="presentation"><%= link_to "Create a Message", new_message_path %></li>
 </ul>
