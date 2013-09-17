@@ -18,8 +18,12 @@
       <div><%= notice %></div>
       <div><%= alert %></div>
     </div>
-    <%= render 'layouts/sidebar' %>
-    <%= yield %>
+    <div class="span2">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="span10">
+      <%= yield %>
+    </div>
   </div>
   <%= render 'layouts/footer' %>
 </body>

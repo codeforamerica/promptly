@@ -1,0 +1,21 @@
+<div class="row-fluid">
+	<div class="mainHeaderGreen">
+		<span class="greenHighlight"><%= @group.name %></span>
+		</div>
+		<div class="span8">
+			<table>
+				<thead>
+				<tr>Recipient Phone</tr>
+				</thead>
+				<% @group.recipients.each do |recipient| %>
+					<tr>
+						<td><%= link_to number_to_phone(recipient.phone, :area_code => true), recipient %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+	<div>
+	<%= link_to 'Back', groups_path %>
+	</div>
+</div>

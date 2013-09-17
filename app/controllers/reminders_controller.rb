@@ -70,7 +70,6 @@ class RemindersController < ApplicationController
   def update
     @reminder = Reminder.where("batch_id=?", params[:batch_id])
     @reminder.each do |r|
-    binding.pry
       r.update_attributes(params[:reminder])
     end
     respond_to do |format|

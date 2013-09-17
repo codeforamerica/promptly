@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130829205602) do
+ActiveRecord::Schema.define(:version => 20130917001612) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -44,6 +44,30 @@ ActiveRecord::Schema.define(:version => 20130829205602) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "group_name_id"
+    t.text     "description"
+    t.boolean  "editable"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_recipients", :id => false, :force => true do |t|
+    t.integer "group_id",     :null => false
+    t.integer "recipient_id", :null => false
+  end
+
+  add_index "groups_recipients", ["group_id", "recipient_id"], :name => "index_groups_recipients_on_group_id_and_recipient_id", :unique => true
+
+  create_table "groups_reminders", :id => false, :force => true do |t|
+    t.integer "group_id",    :null => false
+    t.integer "reminder_id", :null => false
+  end
+
+  add_index "groups_reminders", ["group_id", "reminder_id"], :name => "index_groups_reminders_on_group_id_and_reminder_id", :unique => true
 
   create_table "messages", :force => true do |t|
     t.string   "name"
