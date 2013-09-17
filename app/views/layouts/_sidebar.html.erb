@@ -1,14 +1,22 @@
 <span class="sidebar">
 	<div class="nav">
-		<i class="icon-home icon"></i>&nbsp;<%= link_to "Home", root_path %>
+		<%= link_to root_path do %>
+			<i class="icon-home icon"></i>&nbsp;Home
+		<% end %>
 	</div>
 	<div class="nav">
-		<i class="icon-tasks icon"></i>&nbsp;<%= link_to "Reminders", reminders_path %>
+		<%= link_to reminders_path do %>
+			<i class="icon-tasks icon"></i>&nbsp;Reminders
+		<% end %>
 	</div>
 	<div class="nav">
-		<i class="icon-user icon"></i>&nbsp;<%= link_to "Groups", groups_path %>
+		<%= link_to groups_path do %>
+			<i class="icon-user icon"></i>&nbsp;Groups
+		<% end %>
 	</div>
 	<div class="nav">
-		<i class="icon-envelope icon"></i>&nbsp;<%= link_to "Messages", messages_path %>
+		<%= link_to messages_path do %>
+			<i class="icon-envelope icon"></i>&nbsp;Messages
+		<% end %>
 	</div>
 </span>

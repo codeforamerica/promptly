@@ -4,10 +4,9 @@
 @import "placeholder";
 @import "navbar";
 @import "charts";
-
-//Fonts
-$headerFont: 'Open Sans Condensed', sans-serif;
-$bodyFont: 'Open Sans', sans-serif;
+@import "buttons";
+@import "sidebar";
+@import "fonts";
 
 $linkColor: $blue;
 $placeholderText: darken($lightGray, 5%);
@@ -42,13 +41,6 @@ input {
 	border-radius: 0px;
 }
 
-.btn {
-	border-radius: 0px;
-	background-image: none;
-	border: none;
-	text-transform: uppercase;
-}
-
 .control-group {
 	margin-bottom: 0px;
 }
@@ -63,6 +55,10 @@ input {
 .login {
 	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
 	height: $loginHeight;
+
+	a {
+		color: #fff;
+	}
 
 	p {
 		color: darken(#FFF, 5%);
@@ -165,50 +161,6 @@ input {
 .row-fluid [class*="span"] {
 	min-height: 25px;
 }
-
-.sidebar {
-	text-transform: uppercase;
-	font-family: $headerFont;
-	font-size: 18px;
-	background: $lightGray;
-	margin-bottom: ($baseLineHeight / 2);
-	padding-bottom: ($baseLineHeight / 4);
-
-	.nav {
-		background: $lightGray;
-		color: $lightGray;
-		padding: 10px 15px 10px;;
-		margin: 0px 0px;
-		border-bottom: 1px solid $darkGray;
-	}
-
-	table {
-		font-family: $bodyFont;
-		margin-left: auto;
-		margin-right: auto;
-		width: 90%;
-	}
-
-	p {
-		margin-left: ($baseLineHeight / 4);
-		font-family: $bodyFont;
-		font-weight: normal;
-	}
-}
-
-#homepage-sidebar {
-	text-transform: uppercase;
-	font-family: $headerFont;
-	font-size: 12px;
-}
-
-.sidebarHeader {
-	background: darken($lightGray, 20);
-	margin-bottom: 20px;
-	min-height: 15px;
-}
-
-
 // Over-riding .span* styles so the positioning works out.
 
 .recentReminder {

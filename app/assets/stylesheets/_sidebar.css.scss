@@ -1,0 +1,60 @@
+@import "colors";
+@import "fonts";
+@import "compass/css3/transition";
+
+//Sizes
+$navbarHeight: 40px;
+$baseLineHeight: 20px;
+$loginHeight: 20px;
+
+.sidebar {
+	text-transform: uppercase;
+	font-family: $headerFont;
+	font-size: 18px;
+	background: $lightGray;
+	margin-bottom: ($baseLineHeight / 2);
+	padding-bottom: ($baseLineHeight / 4);
+
+	.nav {
+		background: $lightGray;
+		color: $lightGray;
+		border-bottom: 1px solid $darkGray;
+		margin: 0px;
+
+		a {
+			margin: 0px 0px;
+			padding: 10px 15px 10px;
+			display: block;
+			&:focus, &:hover { 
+				text-decoration: none;
+				background: darken($lightGray, 10);
+				@include transition(background, 0.25s, linear, 0.25s); 
+			}
+		}
+	}
+
+
+	table {
+		font-family: $bodyFont;
+		margin-left: auto;
+		margin-right: auto;
+		width: 90%;
+	}
+
+	p {
+		margin-left: ($baseLineHeight / 4);
+		font-family: $bodyFont;
+		font-weight: normal;
+	}
+}
+
+#homepage-sidebar {
+	text-transform: uppercase;
+	font-family: $headerFont;
+	font-size: 12px;
+}
+
+.sidebarHeader {
+	background: darken($lightGray, 20);
+	min-height: 15px;
+}

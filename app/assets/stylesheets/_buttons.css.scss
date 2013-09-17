@@ -1,0 +1,17 @@
+@import "colors";
+@import "compass/css3/transition";
+
+.btn {
+	border-radius: 0px;
+	background-image: none;
+	border: none;
+	text-transform: uppercase;
+}
+
+.btn-primary{
+	background: $blue;
+	&:focus, &:hover { 
+		background: darken($blue, 10);
+		@include transition(background, 0.25s, linear, 0.25s); 
+	}
+}
