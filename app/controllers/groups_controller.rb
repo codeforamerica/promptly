@@ -95,6 +95,4 @@ class GroupsController < ApplicationController
 	  end
 	  the_group.recipient_ids = phones_to_group
   end
-
-
 end
