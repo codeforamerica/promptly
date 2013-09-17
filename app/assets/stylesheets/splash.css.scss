@@ -1,27 +1,23 @@
+//Splash page colors
+$blue: #116FA8;
+$lightBlue: #2E88CC;
+$gray: #8E9EA8;
+$white: #FFFCFC;
+$red: #D84848;
+
+// Regular imports
+
 @import "bootstrap";
 @import "bootstrap-responsive";
-@import "colors";
 @import "constants";
 
-
-.navbar {
-  background-color: white;
+.navbar.transparent {
+  background: rgb(255, 255, 255) transparent; //default fallback
+  background: rgba(255, 255, 255, 0.4); //nice browsers
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF); //IE6-7
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF, endColorstr=#CCFFFFFF)"; //IE8
   margin-bottom: 0;
   min-height: $navbarHeight;
-
-  a.navbar-brand {
-    color: #000;
-    background: transparent left 0 no-repeat;
-    text-indent: -999999px;
-    height: 70px;
-    min-width: 300px;
-    margin-top: 5px;
-    @include background-size(contain);
-
-    &:hover {
-      color: #444;
-    }
-	}
 }
 
 .navbar > .container,
@@ -33,6 +29,24 @@
 .wrapper {
   min-height: 100%;
   min-width: 100%;
+}
+
+/***********
+  Hero Unit
+ ************/
+
+.splash-hero {
+
+  background: url('images/greyzz.gif');
+
+  h1 {}
+
+  > p {}
+
+  .phone {
+    height: 300px;
+  }
+
 }
 
 .subnav {
