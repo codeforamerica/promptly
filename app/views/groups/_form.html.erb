@@ -11,15 +11,26 @@
     </div>
   <% end %>
 
-  <%= f.input :name, required: true %>
-  <%= fields_for :recipient do |builder| %>
-    <div class="control-group">
-      <%= builder.label :name, "Enter a list of phone numbers", :class => 'control-label' %>
-      <div class="controls">
-      <%= builder.text_area :phone %>
-      </div>
+  <div class="control-group">
+    <div class="controls">
+      <%= f.input :name, required: true %>
     </div>
-<% end %>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :description, "Group description" %>
+    <div class="controls">
+      <%= f.text_area :description, rows: 3 %>
+    </div>
+  </div>
+  <%= fields_for :recipient do |builder| %>
+  <div class="control-group">
+    <%= builder.label :phone, "Enter a list of phone numbers", :class => 'control-label' %>
+    <div class="controls">
+    <%= builder.text_area :phone, rows: 10 %>
+    </div>
+  </div>
+  <% end %>
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
