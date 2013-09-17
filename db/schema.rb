@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(:version => 20130917001612) do
 
   add_index "groups_recipients", ["group_id", "recipient_id"], :name => "index_groups_recipients_on_group_id_and_recipient_id", :unique => true
 
+  create_table "groups_reminders", :id => false, :force => true do |t|
+    t.integer "group_id",    :null => false
+    t.integer "reminder_id", :null => false
+  end
+
+  add_index "groups_reminders", ["group_id", "reminder_id"], :name => "index_groups_reminders_on_group_id_and_reminder_id", :unique => true
+
   create_table "messages", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",   :null => false
