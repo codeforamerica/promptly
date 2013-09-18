@@ -8,9 +8,7 @@ class PagesController < ApplicationController
   def hsa
   end
 
-  def agreement
+  def documents
   end
 
-  def faq
-  end
 end
