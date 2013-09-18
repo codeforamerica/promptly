@@ -1,9 +1,7 @@
-<% render "shared/splash/splash_mainnav" %>
+<%= render "shared/splash/splash_mainnav" %>
 
-<div id="about">
+<div class="section" id="agreement">
   <div class="container">
-  <h1>Agreement</h1>
-    <div id="agreement" class="section">
         <h3>Agreement to Receive Optional Email & Text Messaging Service</h3>
 
         <p>The Human Services Agency (HSA) is the city agency in charge of public assistance programs as well as child and adult protective services. HSA is offering a reminder service for several programs by email and/or by text message to your cell phone. These services are optional. You will continue to get notices by mail whether or not you choose to receive emails or text messages. </p>
@@ -18,19 +16,45 @@
 
         <hr> 
 
-        <form>
-          <fieldset>
-            <label class="checkbox">
-              <input type="checkbox"> I would like to receive <b>email</b> from HSA.
-            </label>
-            <label class="checkbox">
-              <input type="checkbox"> I would like to receive <b>text messages</b> from HSA.
-            </label>
-            <input type="text" placeholder="Name"><br>
-            <input type="text" placeholder="Signature & date"><br>
-            <input type="text" placeholder="Cell phone number"><br>
-            <input type="text" placeholder="Email address">
-          </fieldset>
+        <form class="form-horizontal">
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox"> I would like to receive <strong>email</strong> from HSA.
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <label class="checkbox">
+                <input type="checkbox"> I would like to receive <strong>text messages</strong> from HSA.
+              </label>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" id="" for="">Name:</label>
+            <div class="controls">
+              <input type="text" placeholder="Name">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" id="" for="">Signature:</label>
+            <div class="controls">
+              <input type="text" placeholder="Signature & date">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" id="" for="">Cell phone number:</label>
+            <div class="controls">
+              <input type="text" placeholder="Cell phone number">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" id="" for="">Email address:</label>
+            <div class="controls">
+              <input type="text" placeholder="Email address">
+            </div>
+          </div>
         </form>
     </div>
   </div>
