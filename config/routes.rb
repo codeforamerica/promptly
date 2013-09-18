@@ -4,8 +4,8 @@ Landshark::Application.routes.draw do
   root :to => 'pages#splash'
   
   devise_for :users, :controllers => {:registrations => "registrations"}
+    get '/admin' => 'home#index'
 
-  get '/admin' => 'home#index'
   scope "/admin" do
     resources :users
     get '/dashboard' => 'home#index'
@@ -25,10 +25,7 @@ Landshark::Application.routes.draw do
 
   #project page
   match '/hsa' => 'pages#hsa'
-  match '/agreement' => 'pages#agreement'
-  match '/faq' => 'pages#faq'
-  match '/splash' => 'pages#splash'
-  match '/about' => 'pages#about'
+  match '/documents' => 'pages#documents'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
