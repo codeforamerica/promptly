@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
-  def about
+
+	layout "splash"
+
+	def splash
+	end
+	
+  def hsa
   end
 
   def agreement

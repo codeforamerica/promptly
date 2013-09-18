@@ -1,8 +1,9 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
-@import "colors";
+@import "constants";
 @import "placeholder";
 @import "navbar";
+<<<<<<< HEAD
 @import "charts";
 @import "buttons";
 @import "sidebar";
@@ -19,6 +20,8 @@ $btnPrimaryBackgroundHighlight: $darkBlue;
 $navbarHeight: 40px;
 $baseLineHeight: 20px;
 $loginHeight: 20px;
+=======
+>>>>>>> static-pages
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
