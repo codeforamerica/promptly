@@ -1,0 +1,74 @@
+@import "colors";
+
+$navbarBackground: $blue;
+$navbarBackgroundHighlight: $darkBlue;
+$navbarBrandColor: $white;
+$navbarText: $white;
+$navbarBrandColor: $white;
+$navbarLinkColor: darken($white, 5%);
+$navbarLinkColorHover: $white;
+$navbarLinkColorActive: $white;
+$navbarLinkBackgroundHover: $navbarBackground;
+$navbarLinkBackgroundActive: $darkBlue;
+	
+.navbar-inner {
+	background-color: $navbarBackground;
+	border-radius: 0px;
+	background-image: none;
+	.brand {
+		text-shadow: none;
+		font-weight: 500;
+		font-size: 32px;
+		position: relative;
+		top: -3px;
+	}
+	.white-caret {
+		color: $white;
+		border-top-color: $white;
+		border-bottom-color: $white;
+	}
+}
+
+.navbar{
+	margin-bottom: 0;
+	.brand {
+		float: left;
+		display: block;
+		padding: 10px 20px 10px;
+		margin-left: -20px;
+		// font-size: 26px;
+		font-weight: 200;
+		color: #fff;
+		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
+		}
+	.nav>li>a {
+		float: none;
+		padding: 10px 15px 10px;
+		color: #f2f2f2;
+		text-decoration: none;
+		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
+		&:hover{
+			color: #fff;
+			text-decoration: none;
+			background-color: $lightBlue;
+			box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+		}
+	}
+	.nav>.active>a{
+		color: #fff;
+		text-decoration: none;
+		background-color: $navbarBackgroundHighlight;
+		&:hover{
+			color: #fff;
+			text-decoration: none;
+			background-color: $lightBlue;
+			box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+		}
+	}
+	.nav>.dropdown.open>a {
+		color: #fff;
+		text-decoration: none;
+		background-color: $lightBlue;
+		box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.125);
+	}
+} 

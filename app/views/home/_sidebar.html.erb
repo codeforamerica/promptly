@@ -1,4 +1,4 @@
-<div class="sidebar">
+<div class="sidebar" id="homepage-sidebar">
   <div class="span12 sidebarHeader">
     <span class="span4 headerGray">
     <i class="icon-upload icon-white offset1"></i>&nbsp;Upload
@@ -14,9 +14,9 @@
     <!-- /button -->
   </div>
 </div>
-<div class="sidebar">
+<div class="sidebar" id="homepage-sidebar">
   <div class="span12 sidebarHeader">
-      <span class=" span4 headerGray">
+      <span class="span4 headerGray">
           <i class="icon-th icon-white offset1"></i>&nbsp;At a glance
       </span>
   </div>
@@ -37,7 +37,7 @@
     </tr>
     <tr>
       <td>Not delivered</td>
-      <td>#</td>
+      <td><%= link_to Conversation.where('status !=?', "sent").count, conversations_path %></td>
     </tr>
     <tr>
       <td>Responses</td>

@@ -1,26 +1,35 @@
 Landshark::Application.routes.draw do
-  devise_for :users
-
-  resources :messages
 
   get "home/index"
-  root :to => 'home#index'
+  root :to => 'pages#splash'
+  
+  get "pages/splash"
 
-  resources :recipients do
-    collection { post :import }
+  devise_for :users, :controllers => {:registrations => "registrations"}
+
+    get '/admin' => 'home#index'
+  scope "/admin" do
+    resources :users
+    get '/dashboard' => 'home#index'
+    resources :recipients
+    resources :conversations
+    resources :groups
+    resources :messages
+    match '/reminder_imports/review' => 'reminder_imports#review'
+    resources :reminder_imports
+    match '/reminders/new' => 'reminders#new'
+    get '/reminders/:batch_id/edit' => 'reminders#edit'
+    get '/reminders/:batch_id' => 'reminders#show' 
+    put '/reminders/:batch_id/edit' => 'reminders#update'
+    post '/reminders/:batch_id/edit' => 'reminders#update'
+    resources :reminders
   end
 
-
-  resources :conversations
-
-  resources :reports
-
-  resources :programs
-
-  resources :reminders
-
-  match 'text' => 'text#receive_text_message', :as => 'receive_message'
-
+  #project page
+  match '/hsa' => 'pages#hsa'
+  match '/agreement' => 'pages#agreement'
+  match '/faq' => 'pages#faq'
+  match '/splash' => 'pages#splash'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

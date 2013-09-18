@@ -13,9 +13,11 @@ class Notifier
     def log
       @conversation = Conversation.new({
         date: DateTime.now,
-        message: response[:body],
-        to_number: response[:to],
-        from_number: response[:from]
+        message: response.body,
+        to_number: response.to,
+        from_number: response.from,
+        message_id: response.sid,
+        status: response.status
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -37,8 +39,8 @@ class Notifier
   end
 
   def perform
-    Logger.log(attributes, recipient)
-    client.account.sms.messages.create(attributes)
+    the_message = client.account.sms.messages.create(attributes)
+    Logger.log(the_message, recipient)
   end
 
   def attributes
@@ -47,17 +49,6 @@ class Notifier
       to: to,
       body: body
     }
-  end
-
-   def self.notification_add(recipient, sent_date, job_id)
-    recipient.reminders.each do |reminder|
-      @notification = Notification.new
-      @notification.reminder_id = reminder.id
-      @notification.recipient_id = recipient.id
-      @notification.sent_date = sent_date
-      @notification.job_id = job_id
-      @notification.save
-    end
   end
 
   private

@@ -1,13 +1,5 @@
-<div class="row-fluid">
-  <div class="span12">
-		<div class="mainHeaderGray">
-			<span class="grayHighlight">Editing reminder</span>
-		</div>
-	</div>
-</div>
-	<form>
-		<%= render 'form' %>
-	</form>
-	<%= link_to 'Show', @reminder %> |
-	<%= link_to 'Back', reminders_path %>
-</div>
+<h1>Editing reminder</h1>
+
+<%= render 'edit_form' %>
+
+<%= link_to 'Back', reminders_path %>

@@ -1,0 +1,12 @@
+<h1>Import Review</h1>
+
+<%= form_for @reminder_import do |f| %>
+  <div class="span12">
+    <% if @reminder_import.error.any? %>
+      <%= render(:partial => 'import_errors', :object => @reminder_import, as: 'reminder', :f => f ) %>
+      <% else %>
+      <div class="label label-success">Yay! No errors here.</div>
+    <% end %>
+  </div>
+  <div class="buttons"><%= f.submit "Import" %></div>
+<% end %>

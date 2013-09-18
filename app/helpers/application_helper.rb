@@ -20,4 +20,18 @@ module ApplicationHelper
     return conversations + notifications
   end
 
+  def current_controller?(c)
+    controller.controller_name == c
+  end
+
+  def chart_data(start_date, end_date = Date.today, date_field, model)
+    # binding.pry
+    (start_date..end_date).map do |date|
+      {
+        date: date.to_s(:date_format),
+        number_sent: model.where("date(#{date_field}) = ?", date).count
+      }
+    end
+  end
+
 end

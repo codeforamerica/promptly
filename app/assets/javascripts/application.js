@@ -12,13 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-modal
-//= require bootstrap-popover
-//= require bootstrap-transition
-//= require bootstrap-alert
-//= require dateselector
-//= require mainnav_dropdown
-//= require dynamicselector
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
 //= require_tree .
