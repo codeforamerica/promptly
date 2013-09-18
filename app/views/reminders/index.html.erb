@@ -1,26 +1,24 @@
 <div class="row-fluid">
   <div class="span12">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Number of recipients</th>
-          <th>Send date</th>
-          <th>Reminder</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @groups.each do |batch, reminder| %>
-        <tr>
-          <td><%= link_to reminder.count, reminder_path(batch) %></td>
-          <td><%= reminder.first.send_date.to_s(:date_format) %></td>
-          <td><%= reminder.first.message.message_text || reminder.first.reminder.name %></td>
-          <td><%= link_to 'Edit', edit_reminder_path(reminder.first.batch_id) %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <div><%= link_to 'Create reminder', new_reminder_path, :class => 'btn btn-primary' %>
+    <div>
+      <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'btn btn-primary' %>
     </div>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#upcoming" data-toggle="tab">Upcoming</a></li>
+        <li><a href="#sent" data-toggle="tab">Sent</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="upcoming">
+          <%= render(:partial => 'upcoming', :local => @groups) || 'There are no upcoming reminders.' %>
+        </div>
+        <div class="tab-pane" id="sent">
+          <p>Howdy, I'm in Section 2.</p>
+        </div>
+      </div>
+    </div>
+    
+    
   </div>
 </div>
 

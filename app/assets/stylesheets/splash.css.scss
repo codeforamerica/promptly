@@ -6,10 +6,10 @@ $white: #FFFCFC;
 $red: #D84848;
 
 // Regular imports
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "constants.css.scss";
 
-@import "bootstrap/bootstrap.min.css";
-@import "bootstrap/bootstrap-responsive.min.css";
-@import "constants";
 
 body {
   background-color: $white;

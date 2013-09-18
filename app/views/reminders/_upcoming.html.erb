@@ -1,0 +1,19 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Number of recipients</th>
+      <th>Send date</th>
+      <th>Reminder</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @groups.each do |batch, reminder| %>
+    <tr>
+      <td><%= link_to reminder.count, reminder_path(batch) %></td>
+      <td><%= reminder.first.send_date.to_s(:date_format) %></td>
+      <td><%= reminder.first.message.message_text || reminder.first.reminder.name %></td>
+      <td><%= link_to 'Edit', edit_reminder_path(reminder.first.batch_id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
