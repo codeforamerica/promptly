@@ -9,7 +9,7 @@ $red: #D84848;
 
 @import "bootstrap/bootstrap.min.css";
 @import "bootstrap/bootstrap-responsive.min.css";
-@import "constants.css.scss";
+@import "constants";
 
 body {
   background-color: $white;
@@ -62,7 +62,6 @@ h1, h2, h3, h4 {
   
   > .container {
     padding: 50px 0 0 0;
-    width: 900px;
 
     .span6 {
       width: 445px !important;
