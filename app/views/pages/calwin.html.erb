@@ -1,0 +1,89 @@
+<%= render "shared/splash/splash_mainnav" %>
+
+<div class="section" id="faqs">
+  <div class="container">
+    <h1>FAQ</h1>
+    <ul class="nav nav-pills">
+      <li><a href="#promptly-and-clients">Promptly and Your Clients</a></li>
+      <li><a href="#technical-details">Technical Details about Text Messages</a></li>
+      <li><a href="#promptly-and-calwin">Promptly and Calwin</a></li>
+    </ul>
+
+    <p>Text messages and email will not replace the sending of Notices of Actions; it is a supplemental reminder.  The purpose is to provide an additional communication option and improve customer service to clients. Information will be sent to the cell phone number and/or email given, whatever the client chooses.</p>
+
+    <p>Clients may choose to opt out of the messaging program at any time by either contacting the call center office directly or responding to instructions in the text or email to opt out.</p>
+
+    <h3 id="promptly-and-clients">Promptly and your clients</h3>
+    <p class="question">Does Promptly cost clients money?</p>
+    <p class="answer">Sometimes. While Promptly is a free HSA service, it may cost clients a few cents to receive each text message, depending on their service plan.</p>
+
+    <p class="question">What about privacy? Are text messages confidential?</p>
+    <p class="answer">No. Text messages are not confidential. That's why we won't send any messages to clients without their explicit permission. Clients must sign the <%= link_to "agreement form", controller: "pages", action: "documents" %> to begin the service.</p>
+
+    <p class="question">Does Promptly replace mailed NOAs?</p>
+    <p class="answer">No. Clients will receive all regular mailed NOAs whether or not they choose to receive text messages.</p>
+
+    <p class="question">Who, exactly, will get text messages?</p>
+    <p class="answer">For now, we will be text messaging clients who are about to be discontinued from aid. We plan to send emails and other types of reminders in the future.</p>
+
+    <p class="question">What languages are available?</p>
+    <p class="answer">English and Spanish right now but we're working hard to add Chinese, Vietnamese, Tagalog, and Russian. Please collect cell phone numbers from all clients, regardless of their primary language.</p>
+
+    <p class="question">What if clients refuse to participate?</p>
+    <p class="answer">No problem! This is an optional service. Please don't pressure them.</p>
+
+    <h3 id="technical-details">Technical Details</h3>
+    <p class="question">How can clients unsubscribe?</p>
+    <p class="answer">Clients can unsubscribe by replying STOP to any text message. Alternatively, you can unsubscribe a client on their behalf by removing the 'Text messages OK' special indicator in CalWin.</p>
+
+    <p class="question">What phone number will text messages come from?</p>
+    <p class="answer">HSA clients will only receive text messages from (415) 944-4301.</p>
+
+    <p class="question">What if a client's phone is disconnected?</p>
+    <p class="answer">The client will stop receiving text messages. If a cell phone is disconnected, just remove the number from the Messages field on the Case Summary Details window and we won't send anymore messages.</p>
+
+    <h3 id="promptly-and-calwin">Promptly and Calwin</h3>
+
+    <p class="question">Where should I enter the client's cell phone number in CalWin?</p>
+    <p class="answer">In the Messages field on the Case Summary Details window. The Demographics window will <strong>not</strong> work. See <%= link_to "our detailed how-to", controller: "pages", action: "calwin", anchor: 'calwin' %>.</p>
+
+    <p class="question">Do I have to run EBDC?</p>
+    <p class="answer">No. You can just click <strong>save</strong>.</p>
+
+    <p class="question">When do I provide the client with the <%= link_to "agreement form", controller: "pages", action: "documents" %>?</p>
+    <p class="answer">For now, just during face-to-face intake and RRRs. Not over the phone.</p>
+
+    <p class="question">Should I collect information even if the case isn’t immediately approved?</p>
+    <p class="answer">Yes, please collect this info at intake whether or not the case is immediately approved.</p>
+
+    <p class="question">Do clients need to provide both text and email consent?</p>
+    <p class="answer">No. Clients can choose to receive either, both, or neither. They should also be informed that HSA is only sending text messages at this time.</p>
+
+    <p class="question">I still have questions...</p>
+    <p class="answer">Get in touch! <a href="mailto://sf@codeforamerica.org">sf@codeforamerica.org</a></p>
+  </div>
+</div>
+
+<div class="section" id="calwin">
+  <div class="container">
+    <h1>CalWin Instructions</h1>
+    <ol>
+      <li><p>Explain at intake about optional Text & Email messaging service.</p></li>
+      <li><p>Ask clients to sign Agreement to Receive Optional Text Messaging & Email Service form to indicate that the process was explained; if they consent to one or both parts, collect information.  Give client a copy of the form and keep a copy to send to I-Files.</p></li>
+      <li><p>Update CalWIN’s...</p>
+        <ul>
+          <li><p>Case Information: In the Case Summary Information tab, add the client’s cell phone number in the Message Number field. Add email in the E-mail field. <strong>If this is done in Demographics tab of CalWIN, then clients will NOT receive the messages.</strong></p></li>
+          <li><p>Add Case Special Indicators: In the Display Demographic Summary Tab > Collect Individual Demographics Detail, add the following special indicators that apply:
+            <ol>
+              <li><p>Text Messages OK <strong>and/or</strong></p></li>
+              <li><p>B) Email Ok.</p></li>
+            </ol>
+          If a client wishes to terminate messages, update effective end date with the current date.</p></li>
+        </ul>
+      <li><p>Please send that paper copy to I-Files!</p></li>
+    </ol>
+
+    <p class="thanks">Special thanks to Michelle Berry at Medi-Cal for putting most of this together.</p>
+
+  </div>
+</div>

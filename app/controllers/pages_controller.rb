@@ -11,4 +11,7 @@ class PagesController < ApplicationController
   def documents
   end
 
+  def calwin
+  end
+
 end

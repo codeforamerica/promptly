@@ -26,6 +26,7 @@ Landshark::Application.routes.draw do
   #project page
   match '/hsa' => 'pages#hsa'
   match '/documents' => 'pages#documents'
+  match '/calwin' => 'pages#calwin'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
