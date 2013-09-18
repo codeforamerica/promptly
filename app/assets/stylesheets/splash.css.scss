@@ -1,196 +1,214 @@
-// Splash css is messing up the regular app.
+//Splash page colors
+$blue: #116FA8;
+$lightBlue: #2E88CC;
+$gray: #8E9EA8;
+$white: #FFFCFC;
+$red: #D84848;
 
-// //Splash page colors
-// $blue: #116FA8;
-// $lightBlue: #2E88CC;
-// $gray: #8E9EA8;
-// $white: #FFFCFC;
-// $red: #D84848;
+// Regular imports
 
-// // Regular imports
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "constants";
 
-// @import "bootstrap";
-// @import "bootstrap-responsive";
-// @import "constants";
+body {
+  background-color: $white;
+}
 
-// body, p, a {
-//   font-family: $bodyFont;
-//   font-size: 16px;
-//   line-height: 22px;
-//   background-color: $white;
-// }
+body, p, a {
+  font-family: $bodyFont;
+  font-size: 16px;
+  line-height: 22px;
+}
 
-// h1, h2, h3, h4 {
-//   font-family: $headerFont;
-// }
+h1, h2, h3, h4 {
+  font-family: $headerFont;
+}
 
-// .navbar.transparent {
-//   opacity: 0.6;
-//   margin-bottom: 0;
-//   min-height: $navbarHeight;
-// }
+.navbar.transparent {
+  opacity: 0.6;
+  margin-bottom: 0;
+  min-height: $navbarHeight;
+}
 
-// .container {
-//   max-width: 900px;
-//   margin: 0 auto;
-// }
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-// .login {
-//   padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
-//   height: $loginHeight;
+.login {
+  padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+  height: $loginHeight;
 
-//   p {
-//     color: darken(#FFF, 5%);
-//     padding: 0 0 0 0;
-//     font-weight: bold;
-//   }
-// }
+  p {
+    color: darken(#FFF, 5%);
+    padding: 0 0 0 0;
+    font-weight: bold;
+  }
+}
 
-// .wrapper {
-//   min-height: 100%;
-//   min-width: 100%;
-// }
+.wrapper {
+  min-height: 100%;
+  min-width: 100%;
+}
 
-// /***********
-//   Hero Unit
-//  ************/
+/***********
+  Hero Unit
+ ************/
 
-// .splash-hero {
-//   // background: image-url("greyzz.gif") $lightBlue ;
-//   background-color: $white;
+.splash-hero {
+  // background: image-url("greyzz.gif") $lightBlue ;
+  background-color: $white;
   
-//   > .container {
-//     padding: 50px 0 0 0;
-//     width: 900px;
+  > .container {
+    padding: 50px 0 0 0;
+    width: 900px;
 
-//     .span6 {
-//       width: 445px !important;
-//     }
+    .span6 {
+      width: 445px !important;
+    }
 
-//     .span6.pic {
-//       margin-left: 5px;
-//       margin-bottom: 0;
-//       width: 445px !important;
-//     }
+    .span6.pic {
+      margin-left: 5px;
+      margin-bottom: 0;
+      width: 445px !important;
+    }
 
-//     h1 {
-//       color: $red;
-//       font-size: $splashHeader;
-//       line-height: $splashHeader * 2;
-//     }
-//     p {
-//       color: $red;
-//       font-size: $splashHeroP;
-//       line-height: $splashHeroP;
-//     }
+    h1 {
+      color: $red;
+      font-size: $splashHeader;
+      line-height: $splashHeader * 2;
+    }
+    p {
+      color: $red;
+      font-size: $splashHeroP;
+      line-height: $splashHeroP;
+    }
 
-//     .phone {
-//       width: 350px;
-//       padding-bottom: 0;
-//       margin-right: 0;
-//     }
-//   }
-// }
+    img {
+      display: inline;
+      float: right;
+      width: 350px;
+      padding-bottom: 0;
+      margin-right: 20px;
+    }
+  }
+}
 
-// ********
-//   Subnav
-//  ********
+/*********
+  Subnav
+ *********/
 
-// .splash-subnav {
-// 	background-color: $white;
-//   border-top: 2px solid darken($lightGray, 10%);
-//   border-bottom: 2px solid darken($lightGray, 10%);
+.splash-subnav {
+	background-color: $white;
+  border-top: 2px solid darken($lightGray, 10%);
+  border-bottom: 2px solid darken($lightGray, 10%);
 
-//   .nav {
-//     margin: 0;
-//     display: table;
-//     width: 100%;
-//     padding: 10px 15px;
-//     font-weight: bold;
-//     font-size: 150%;
+  .nav {
+    margin: 0;
+    display: table;
+    width: 100%;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 150%;
 
-//     > li {
-//       position: relative;
-//       display: table-cell;
-//       float: none;
+    > li {
+      position: relative;
+      display: table-cell;
+      float: none;
 
-//       > a {
-//         position: relative;
-//         text-align: center;
-//         padding: 10px 15px;
-//         color: $red;
-//         &:hover,
-//         &:focus {
-//           text-decoration: none;
-//           color: darken($red, 20%);
-//         }
-//       }
+      > a {
+        position: relative;
+        text-align: center;
+        padding: 10px 15px;
+        color: $red;
+        &:hover,
+        &:focus {
+          text-decoration: none;
+          color: darken($red, 20%);
+          background-color: $white;
+        }
+      }
 
-//       &:first-child a {
-//         text-align: left;
-//       }
+      &:first-child a {
+        text-align: left;
+      }
 
-//       &:last-child a {
-//         text-align: right;
-//       }
-//     }
-//   }
-// }
+      &:last-child a {
+        text-align: right;
+      }
+    }
+  }
+}
 
-// /***********
-//  Sections
-//  ***********/
+/***********
+ Sections
+ ***********/
 
-// .section {
+.section {
 
-//   p {
-//     font-size: 16px;
-//   }
-//   .container {
-//     padding: 40px 0;
-//   }
-// }
+  p {
+    font-size: 16px;
+  }
+  .container {
+    padding: 40px 0;
+  }
+}
 
 
-// #what {
-//   background-color: darken($blue, 20%);
-//   color: darken($lightGray, 10%);
+#what {
+  background-color: darken($blue, 20%);
+  color: darken($lightGray, 10%);
   
-//   .big-icons {
-//      margin: 30px auto;
-//      display: block;
-//   }
-//   .caption {
-//     text-align: center;
-//   }
-// }
+  .big-icons {
+     margin: 30px auto;
+     display: block;
+  }
+  .caption {
+    text-align: center;
+  }
+}
 
-// #story {
-//   border-top: 3px solid $blue;
-//   background-color: darken($lightGray, 10%);
+#story {
+  border-top: 3px solid $blue;
+  background-color: darken($lightGray, 10%);
 
-//   p {
-//     vertical-align: middle;
-//   }
-//   img {
-//     padding-top: 40px;
-//     position: relative;
-//     top: 50%;
-//   }
+  p {
+    vertical-align: middle;
+  }
+  img {
+    padding-top: 40px;
+    position: relative;
+    top: 50%;
+  }
 
-// }
+}
 
-// #team {
-//   background-color: lighten($lightBlue, 20%);
-// }
-// #questions {
-//   background-color: $white;
+#team {
+  background-color: lighten($lightBlue, 20%);
+}
+#questions {
+  background-color: $white;
 
-//   .question {
-//     font-weight: bold;
-//   }
+  .question {
+    padding-top: $baseLineHeight;
+    font-weight: bold;
+    font-size: 120%;
+  }
 
-//   .answer {
-//     font-weight: normal;
-//   }
-// }
+  .answer {
+    font-weight: normal;
+  }
+}
+
+/***************
+ Footer
+ ***************/
+
+ .footer {
+  text-align: center;
+  padding: 30px 0;
+  margin-top: 0px;
+  border-top: 1px solid #e5e5e5;
+  background-color: $white;
+}
