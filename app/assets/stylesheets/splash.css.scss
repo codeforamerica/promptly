@@ -6,10 +6,10 @@ $white: #FFFCFC;
 $red: #D84848;
 
 // Regular imports
-
 @import "bootstrap";
 @import "bootstrap-responsive";
 @import "constants.css.scss";
+
 
 body {
   background-color: $white;
@@ -62,7 +62,6 @@ h1, h2, h3, h4 {
   
   > .container {
     padding: 50px 0 0 0;
-    width: 900px;
 
     .span6 {
       width: 445px !important;
