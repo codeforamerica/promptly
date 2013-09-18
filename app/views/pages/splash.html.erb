@@ -1,67 +1,17 @@
-<div class="splash-hero">
-  <div class="container">
-    <div class="row">
-      <div class="span6">
-        <h1>Promptly</h1>
-        <p>Promptly helps clients.</p>
-      </div>
-      <div class="span6">
-        <%= image_tag "phone.png", :class => "phone" %>
-      </div>
-  </div>
-</div>
+<%= render 'splash_hero' %>
 
 <div class="splash-subnav">
   <div class="container">
-    <ul class="nav">
-    <li>About</li>
-    <li>Team</li>
-    <li>Use Promptly</li>
+    <ul class="nav nav-justified">
+    <li><a href="#what">What is Promptly</a></li>
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#questions">Questions?</a></li>
     </ul>
   </div>
 </div>
 
-<div id="why">
-  <div class="container span12">
-    <div class="row">
-      <div class="span6">
-        <p>Promptly is a text messaging notification system. It was created because the language of government correspondence is often legally mandated, resulting in long and confusing mailed notices and reminders to clients. Promptly aims to improve client experience through clear and timely text messages.</p>
-      </div>
-      <div class="span6">
-        <p>Placeholder</p>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'splash_what' %>
 
-<div id="how">
-  <div class="container span12">
-    <div class="row">
-      <div class="span12">
-        <h1>How it works</h1>
-        <div class="row">
-          <div class="span3">
-            Craft a message in 160 characters.
-          </div>
-          <div class="span3">
-            Upload a spreadsheet or CSV file with two columns: names and numbers. 
-          </div>
-          <div class="span3">
-            Choose a date and time to send the message.
-          </div>
-          <div class="span3">
-            Push send!
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'splash_story' %>
 
-<div id="team">
-
-
-<div id="questions">
-  <h1>Questions? <span class="muted">See the <%= link_to "FAQ", controller: "pages", action: "faq"%> or <a href="mailto://sf@codeforamerica.org">email us</a>.</span>
-  </h1>
-</div>
+<%= render 'splash_questions' %>

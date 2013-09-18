@@ -1,5 +1,5 @@
 Landshark::Application.routes.draw do
-  get "pages_controller/about"
+  get "pages_controller/splash"
 
   devise_for :users
 
@@ -24,7 +24,7 @@ Landshark::Application.routes.draw do
   match 'text' => 'text#receive_text_message', :as => 'receive_message'
 
   #project page
-  match '/about' => 'pages#about'
+  match '/hsa' => 'pages#hsa'
   match '/agreement' => 'pages#agreement'
   match '/faq' => 'pages#faq'
   match '/splash' => 'pages#splash'

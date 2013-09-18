@@ -5,7 +5,7 @@ class PagesController < ApplicationController
 	def splash
 	end
 	
-  def about
+  def hsa
   end
 
   def agreement
