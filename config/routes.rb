@@ -3,8 +3,6 @@ Landshark::Application.routes.draw do
   get "home/index"
   root :to => 'pages#splash'
   
-  get "pages/splash"
-
   devise_for :users, :controllers => {:registrations => "registrations"}
     get '/admin' => 'home#index'
 
