@@ -5,15 +5,15 @@
     </div>
     <div class="tabbable"> <!-- Only required for left/right tabs -->
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#upcoming" data-toggle="tab">Upcoming</a></li>
-        <li><a href="#sent" data-toggle="tab">Sent</a></li>
+        <li class="active"><a href="#upcoming" data-toggle="tab">Scheduled reminders</a></li>
+        <li><a href="#sent" data-toggle="tab">Sent reminders</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="upcoming">
           <%= render(:partial => 'upcoming', :local => @groups) || 'There are no upcoming reminders.' %>
         </div>
         <div class="tab-pane" id="sent">
-          <p>Howdy, I'm in Section 2.</p>
+          <%= render(:partial => 'sent', :local => @sent) || 'There are no sent reminders.' %>
         </div>
       </div>
     </div>
