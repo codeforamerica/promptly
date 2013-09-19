@@ -17,7 +17,8 @@ class Notifier
         to_number: response.to,
         from_number: response.from,
         message_id: response.sid,
-        status: response.status
+        status: response.status,
+        batch_id: response.batch_id
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -30,12 +31,12 @@ class Notifier
     
   end
 
-  def initialize(recipient, smsmessage)
-    @recipient, @smsmessage = recipient, smsmessage
+  def initialize(recipient, smsmessage, batch_id)
+    @recipient, @smsmessage, @batch_id = recipient, smsmessage, batch_id
   end
 
-  def self.perform(recipient, smsmessage)
-    new(recipient, smsmessage).perform
+  def self.perform(recipient, smsmessage, batch_id)
+    new(recipient, smsmessage, batch_id).perform
   end
 
   def perform
@@ -47,7 +48,8 @@ class Notifier
     {
       from: from,
       to: to,
-      body: body
+      body: body,
+      batch_id: batch_id
     }
   end
 
@@ -68,6 +70,9 @@ class Notifier
     @smsmessage
   end
 
+  def batch_id
+    @batch_id
+  end
 
   def account_sid
     ENV["TWILIO_SID"]

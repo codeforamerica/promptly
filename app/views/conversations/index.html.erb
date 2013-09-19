@@ -1,17 +1,21 @@
-<div class="container-fluid">
-  <h2>All conversations</h2>
-  <% @conversations.each do |conversation| %>
-  <div class="row-fluid">
-    <div class="span8 offset1">
-      <ul class="unstyled">
-        <li>Sent to: <%= link_to conversation.to_number, conversation %></li>
-        <li>Sent on: <%= conversation.date.to_s(:date_format) %></li>
-        <li><%= conversation.message %></li>
-        <li><%= conversation.status %></li>
-        <li><%= conversation.message_id %></li>
-        <li><%= link_to 'Show', conversation %> | <%= link_to 'Delete', conversation, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+<div class="row-fluid">
+  <div class="span12">
+    <div class="pageHeader">
+      <h2>All conversations</h2>
+    </div>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#response" data-toggle="tab">Responses</a></li>
+        <li><a href="#undelivered" data-toggle="tab">Undelivered</a></li>
       </ul>
-    </div>    
+      <div class="tab-content">
+        <div class="tab-pane active" id="response">
+          <%= render 'response', :collection => @responses || 'There are no responses.'%>
+        </div>
+        <div class="tab-pane" id="undelivered">
+          <%= render 'undelivered', :collection => @undelivered || 'There are no undelivered reminders.' %>
+        </div>
+      </div>
+    </div>
   </div>
-  <% end %>
 </div>
