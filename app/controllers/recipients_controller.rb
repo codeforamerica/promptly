@@ -96,12 +96,6 @@ class RecipientsController < ApplicationController
     @recipient = Recipient.find(params[:id])
   end
 
-  private 
-
-  # Intercepts the params hash and formats the phone number
-  def standardize_numbers
-    params[:recipient][:phone].gsub!(/[^0-9]/, "")
-  end
 end
 
 
