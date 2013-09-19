@@ -1,6 +1,7 @@
 <div class="row-fluid">
-  <div class="span8">
+  <div class="span8" id="message">
     <%= simple_form_for @reminder  do |f| %>
+      
       <% if @reminder.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
@@ -12,38 +13,58 @@
           </ul>
         </div>
       <% end %>
-      
-  <%= fields_for :message do |builder| %>
-    <div class="control-group">
-      <%= builder.label :name, "Message name", :class => 'control-label' %>
-      <div class="controls">
-      <%= builder.text_field :name %>
-      </div>
-    </div>
-    <div class="control-group">
-      <%= builder.label :message_text, "Message text", :class => 'control-label' %>
-      <div class="controls">
-        <%= builder.text_area :message_text, :rows=>3 %>
-      </div>
-      <div class="characterCount">Characters left:&nbsp;<span id="char-count">160</span></div>
-    </div>
-<% end %>
 
-<div id="existing-recipients">
-<p>Reminder recipients</p>
-          <%= f.collection_check_boxes :recipient_id, Recipient.all, :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox")+ b.text}
-          end  %>
-</div>
-
-<%= fields_for @recipients do |recipients_form| %>
-  <%= recipients_form.text_field :phone %>
-  <%= text_field_tag 'recipient_send_date', '', class: 'dateSelect' %>
-  <%= text_field_tag 'recipient_send_time', '12:00pm' %>
-<% end %>
-
-      <div class="actions">
-        <%= f.submit :class => 'btn btn-primary' %>
-      </div>  
+    <div class="mainHeaderAqua">
+      <span class="aquaHighlight">Message</span>
     </div>
-  <% end %>
+
+    <table class="tbl">
+      <tr>
+        <th>Message text</th>
+        <th>Date Created</th>
+        <th>Date Updated</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </table>
+
+    <p>Need a new message? <a class="btn">Create new message</a>
+
+  </div>
+</div><!-- message -->
+
+
+<div class="row-fluid" id="recipients">
+  <div class="span8">
+    <div class="mainHeaderAqua">
+      <span class="aquaHighlight">Recipients</span>
+    </div>
+
+    <p>Recipient groups</p>
+    <table class="tbl">
+      <tr>
+        <td></td>
+      </tr>
+    </table>
+
+    <p>Need to add different recipients? <a class="btn">Add Recipients</a></p>
+  </div>
+</div><!-- recipients -->
+
+<div class="row-fluid" id="date-and-time">
+  <div class="span8">
+
+    <div class="mainHeaderAqua">
+      <span class="aquaHighlight">Date and Time</span>
+    </div>
+
+    <input type="date">
+    <input type="text">
+
+
+    <% end %> <!-- /form -->
+  </div>
 </div>
