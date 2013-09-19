@@ -19,7 +19,7 @@ class RemindersController < ApplicationController
 
   def new
     @reminder = Reminder.new
-    @reminders = @reminder.build_message
+    @message = @reminder.build_message
     @recipients = @reminder.build_recipient
 
     respond_to do |format|
@@ -33,26 +33,12 @@ class RemindersController < ApplicationController
     @reminders = Reminder.where("batch_id=?", params[:batch_id])
   end
 
-  # POST /deliveries
-  # POST /deliveries.json
+
   def create
     if params[:message]
       @message = Message.new(params[:message])
       @message.save
       params[:reminder][:message_id] = @message.id.to_s
-    end
-
-    recipients_to_add = Array.new
-    recipients_to_add << params[:recipient][:phone]
-    recipients_to_add.each do |recipient|
-      if current_user_exists?(recipient).empty?
-        @recipient = Recipient.new(params[:recipient])
-        @recipient.save
-        params[:reminder][:recipient_id] << @recipient.id.to_s
-      else
-        @recipient = Recipient.where('phone=?', recipients_to_add).first
-        params[:reminder][:recipient_id] << @recipient.id.to_s
-      end
     end
 
     params[:reminder][:recipient_id].each do |recipient|
@@ -101,4 +87,11 @@ class RemindersController < ApplicationController
     Reminder.import(params[:file], params[:reminder])
     redirect_to reminders_url, notice: "Reminder created."
   end
+
+
+  private
+  def add_indiv_recipients
+    
+  end
+
 end
