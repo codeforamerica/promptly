@@ -13,10 +13,10 @@
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="upcoming">
-          <%= render(:partial => 'upcoming', :local => @groups) || 'There are no upcoming reminders.'%>
+          <%= render('upcoming', :collection => @groups) || 'There are no upcoming reminders.'%>
         </div>
         <div class="tab-pane" id="sent">
-          <%= render(:partial => 'sent', :local => @sent) || 'There are no sent reminders.' %>
+          <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
         </div>
       </div>
     </div>

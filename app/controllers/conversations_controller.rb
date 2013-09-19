@@ -3,6 +3,10 @@ class ConversationsController < ApplicationController
   # GET /conversations.json
   def index
     @conversations = Conversation.all
+    @responses = Conversation.where('status = ?', 'received')
+    @undelivered = Conversation.where('status = ?', 'failed')
+    @sent_count = Conversation.grouped_sent_conversations
+    
 
     respond_to do |format|
       format.html # index.html.erb

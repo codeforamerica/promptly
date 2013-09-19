@@ -52,9 +52,9 @@ class Reminder < ActiveRecord::Base
     theDate = reminder.send_date
     @recipient = Recipient.find(reminder.recipient_id)
     if theDate < DateTime.now
-      Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Message.find(reminder.message_id).message_text)
+      Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Message.find(reminder.message_id).message_text, reminder.batch_id)
     else
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(@recipient, Message.find(reminder.message_id).message_text)
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(@recipient, Message.find(reminder.message_id).message_text, reminder.batch_id)
       reminder.update_attributes(job_id: theJob.id)
     end
   end

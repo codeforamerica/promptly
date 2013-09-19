@@ -6,4 +6,13 @@ class Conversation < ActiveRecord::Base
 
   attr_accessible :recipient_ids
   attr_accessible :conversation_ids
+
+  def self.grouped_sent_conversations(limit = 0)
+    if limit != 0
+      Conversation.where('date IS NOT NULL and status = "sent"', :order => "date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
+    else
+      Conversation.where('date IS NOT NULL and status = "sent"', :order => "date").to_set.classify {|reminder| reminder.batch_id}
+    end
+  end
+
 end
