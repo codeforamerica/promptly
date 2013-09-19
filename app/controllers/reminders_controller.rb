@@ -35,10 +35,16 @@ class RemindersController < ApplicationController
 
 
   def create
+    binding.pry
     if params[:message]
       @message = Message.new(params[:message])
       @message.save
       params[:reminder][:message_id] = @message.id.to_s
+    end
+
+    if params[:individual_recipients]
+      individual_recipients = parse_and_add_phone_numbers(params[:individual_recipients])
+      individual_recipients.each { |ir| params[:recipient_id] = ir }
     end
 
     params[:reminder][:recipient_id].each do |recipient|

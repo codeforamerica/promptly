@@ -18,7 +18,9 @@
       <span class="aquaHighlight">Message</span>
     </div>
 
-    <table class="tbl">
+    <%= f.input :message_id, collection: Message.all, as: :radio_buttons %>
+
+<!--     <table class="tbl">
       <tr>
         <th>Message text</th>
         <th>Date Created</th>
@@ -29,7 +31,7 @@
         <td></td>
         <td></td>
       </tr>
-    </table>
+    </table> -->
 
     <p>Need a new message? <a class="btn">Create new message</a>
 
@@ -44,6 +46,7 @@
     </div>
 
     <p>Recipient groups</p>
+    <%= f.input :recipient_id, collection: Recipient.all %>
     <table class="tbl">
       <tr>
         <td></td>
@@ -60,11 +63,11 @@
     <div class="mainHeaderAqua">
       <span class="aquaHighlight">Date and Time</span>
     </div>
-
+    
     <input type="date">
     <input type="text">
 
-
+    <%= f.submit %>
     <% end %> <!-- /form -->
   </div>
 </div>

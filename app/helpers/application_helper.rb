@@ -11,7 +11,7 @@ module ApplicationHelper
 
   # Returns an array of recipient IDs.
   def parse_and_add_phone_numbers(phone_numbers_text)
-    phones_to_add = []
+    recipients_to_add = []
     phone_numbers_text.split("\r\n").each do |phone_number|
       #phone number normalization
       phone_number = standardize_numbers(phone_number)
@@ -22,7 +22,7 @@ module ApplicationHelper
       unless recipient == ""
       end
 
-      phones_to_add << @recipient.id
+      recipients_to_add << @recipient.id
     end
   end
 
