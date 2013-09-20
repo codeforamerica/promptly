@@ -10,7 +10,7 @@ module ApplicationHelper
   end
 
   # Returns an array of recipient IDs.
-  def parse_and_add_phone_numbers(phone_numbers_text)
+def parse_phone_numbers(phone_numbers_text)
     recipients_to_add = []
     phone_numbers_text.split("\r\n").each do |phone_number|
       #phone number normalization
@@ -18,16 +18,23 @@ module ApplicationHelper
 
       #save the recipients
       @recipient = Recipient.where(phone: phone_number).first_or_create
+      @recipient.inspect
       @recipient.save
-      unless recipient == ""
+      unless phone_number == ""
       end
 
       recipients_to_add << @recipient.id
     end
+    return recipients_to_add
   end
 
-
   def link_to_add_fields(name, f, association, child_association = nil)
+    puts f
+    puts f.object.inspect
+    puts f.object.class.inspect
+    puts f.object.class.reflect_on_association(association).inspect
+    puts f.object.class.reflect_on_association(association).klass.inspect
+
     new_object = f.object.class.reflect_on_association(association).klass.new
 
     if child_association

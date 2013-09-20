@@ -35,7 +35,6 @@ class RemindersController < ApplicationController
 
 
   def create
-    binding.pry
     if params[:message]
       @message = Message.new(params[:message])
       @message.save
@@ -43,16 +42,16 @@ class RemindersController < ApplicationController
     end
 
     if params[:individual_recipients]
-      individual_recipients = parse_and_add_phone_numbers(params[:individual_recipients])
-      individual_recipients.each { |ir| params[:recipient_id] = ir }
+      recipients = parse_phone_numbers(params[:individual_recipients])
+      binding.pry
     end
 
-    params[:reminder][:recipient_id].each do |recipient|
-      # for some reason there is always a null recipient. fix this
-      if recipient !=""
-        Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:recipient_send_date], params[:recipient_send_time], Message.find(params[:reminder][:message_id]))
-      end
-    end
+    # params[:reminder][:recipient_id].each do |recipient|
+    #   # for some reason there is always a null recipient. fix this
+    #   if recipient !=""
+    #     Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:recipient_send_date], params[:recipient_send_time], Message.find(params[:reminder][:message_id]))
+    #   end
+    # end
 
     respond_to do |format|
       format.html { redirect_to reminders_url, notice: 'Reminder was successfully created.' }
@@ -92,12 +91,6 @@ class RemindersController < ApplicationController
   def import
     Reminder.import(params[:file], params[:reminder])
     redirect_to reminders_url, notice: "Reminder created."
-  end
-
-
-  private
-  def add_indiv_recipients
-    
   end
 
 end
