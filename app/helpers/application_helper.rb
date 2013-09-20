@@ -1,4 +1,9 @@
 module ApplicationHelper
+
+  def is_active?(page_name)
+    # binding.pry
+    "active" if params[:action] == page_name
+  end
   
   # Standardizes the phone number
   def standardize_numbers(phone_number)
