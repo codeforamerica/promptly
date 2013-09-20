@@ -19,6 +19,7 @@
     <div class="mainHeaderGreen">
       <span class="greenHighlight">Sent reminders</span>
     </div>
+    <div><%= link_to 'View all', reminders_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'sent_reminders' || 'There are no sent reminders' %>
     </div>
@@ -29,6 +30,7 @@
     <div class="mainHeaderGreen">
       <span class="greenHighlight">Responses</span>
     </div>
+    <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'responses' || 'There are no responses' %>
     </div>
@@ -37,6 +39,7 @@
     <div class="mainHeaderGreen">
       <span class="greenHighlight">Undelivered reminders</span>
     </div>
+    <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'sent_reminders', object: @conversation || 'There are no upcoming reminders' %>
     </div>
