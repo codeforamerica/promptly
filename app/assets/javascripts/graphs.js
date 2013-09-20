@@ -3,7 +3,8 @@ $(function(){
   graphs = [
   'upcoming',
   'sent',
-  'response'
+  'response',
+  'undelivered'
   ]
 
   createGraphs(graphs)

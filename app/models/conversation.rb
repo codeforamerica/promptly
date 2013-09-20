@@ -19,4 +19,8 @@ class Conversation < ActiveRecord::Base
     Conversation.where(:status => 'received')
   end
 
+  def self.undelivered
+    Conversation.where(:status => 'failed')
+  end
+
 end

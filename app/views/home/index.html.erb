@@ -41,7 +41,7 @@
     </div>
     <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <%= render 'sent_reminders', object: @conversation || 'There are no upcoming reminders' %>
+      <%= render 'undelivered' || 'There are no upcoming reminders' %>
     </div>
   </div>
 </div>
