@@ -38,7 +38,7 @@
       <span class="greenHighlight">Undelivered reminders</span>
     </div>
     <div class="conversation">
-      <%= render 'undelivered', object: @conversation || 'There are no upcoming reminders' %>
+      <%= render 'sent_reminders', object: @conversation || 'There are no upcoming reminders' %>
     </div>
   </div>
 </div>

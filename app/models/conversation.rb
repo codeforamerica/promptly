@@ -15,4 +15,8 @@ class Conversation < ActiveRecord::Base
     end
   end
 
+  def self.all_responses
+    Conversation.where(:status => 'received')
+  end
+
 end

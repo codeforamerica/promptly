@@ -1,47 +1,23 @@
-function upcomingMessages(){
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'upcoming_chart',
-    data: $('#upcoming_chart').data('upcoming'),
-    // The name of the data record attribute that contains x-values.
-    xkey: 'date',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['number_sent'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['Number of Recipients'],
-    smooth: false
-  });
-};
+graphs = [
+'upcoming',
+'sent',
+'response'
+]
 
-function sentMessages(){
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'sent_chart',
-    data: $('#sent_chart').data('sent'),
-    // The name of the data record attribute that contains x-values.
-    xkey: 'date',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['number_sent'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['Number of Recipients'],
-    smooth: false
-  });
-};
-
-function responses(){
-  new Morris.Line({
-    // ID of the element in which to draw the chart.
-    element: 'response_chart',
-    data: $('#response_chart').data('response'),
-    // The name of the data record attribute that contains x-values.
-    xkey: 'date',
-    // A list of names of data record attributes that contain y-values.
-    ykeys: ['number_sent'],
-    // Labels for the ykeys -- will be displayed when you hover over the
-    // chart.
-    labels: ['Number of Recipients'],
-    smooth: false
-  });
+function createGraphs(graphs){
+  graphs.forEach(function (graph) {
+    new Morris.Line({
+      // ID of the element in which to draw the chart.
+      element: graph+'_chart',
+      data: $('#'+graph+'_chart').data(graph),
+      // The name of the data record attribute that contains x-values.
+      xkey: 'date',
+      // A list of names of data record attributes that contain y-values.
+      ykeys: ['number_sent'],
+      // Labels for the ykeys -- will be displayed when you hover over the
+      // chart.
+      labels: ['Number of Recipients'],
+      smooth: false
+    });
+  })
 };
