@@ -10,16 +10,18 @@
     <div class="mainHeaderAqua">
       <span class="aquaHighlight">Upcoming reminders</span>
     </div>
+      <div><%= link_to 'View all', reminders_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <%= render(:partial => 'upcoming_reminders', object: @upcoming) || 'There are no upcoming reminders' %>
+      <%= render 'upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
     </div>
   </div>
   <div class="span5">
     <div class="mainHeaderGreen">
       <span class="greenHighlight">Sent reminders</span>
     </div>
+    <div><%= link_to 'View all', reminders_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <%= render(:partial => 'sent_reminders') || 'There are no sent reminders' %>
+      <%= render 'sent_reminders' || 'There are no sent reminders' %>
     </div>
   </div>
 </div>
@@ -28,16 +30,18 @@
     <div class="mainHeaderGreen">
       <span class="greenHighlight">Responses</span>
     </div>
+    <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <% render(:partial => 'responses') || 'There are no responses' %>
+      <%= render 'responses' || 'There are no responses' %>
     </div>
   </div>
   <div class="span5">
     <div class="mainHeaderGreen">
       <span class="greenHighlight">Undelivered reminders</span>
     </div>
+    <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <% render(:partial => 'undelivered', object: @conversation) || 'There are no upcoming reminders' %>
+      <%= render 'sent_reminders', object: @conversation || 'There are no upcoming reminders' %>
     </div>
   </div>
 </div>
