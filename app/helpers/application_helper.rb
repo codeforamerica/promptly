@@ -52,7 +52,6 @@ module ApplicationHelper
   end
 
   def chart_data(start_date, end_date = Date.today, date_field, model)
-    # binding.pry
     (start_date..end_date).map do |date|
       {
         date: date.to_s(:date_format),
