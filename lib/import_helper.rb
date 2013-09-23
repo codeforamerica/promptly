@@ -39,7 +39,10 @@ class ImportHelper < ActiveRecord::Base
       :editable => 0
       )
     g.save
-    puts "Modifying group: #{g.group_name_id}"
+    puts "Modifying group: #{g.group_name_id}, #{g.id}"
+
+    g.recipients.clear
+    puts "removing existing recipients from group"
 
     # Save phone numbers to group
     puts "Adding phone numbers: #{phone_numbers}"
