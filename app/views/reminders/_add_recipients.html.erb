@@ -3,17 +3,19 @@
 </div>
 
 <%= f.input :id, collection: Group.all, label: "Recipient Groups", as: :check_boxes %>
-<table class="tbl">
+<%= f.input :recipient_id, as: :hidden %>
+
+<!-- <table class="tbl">
   <tr>
     <td></td>
   </tr>
-</table>
+</table> -->
 
 <p>Need to add different recipients?
 <a class="btn" data-toggle="modal" href="#individual-recipients">Add Recipients</a></p>
 
 <%= label_tag "Add individual recipients:" %>
-<p>Add recipient phone numbers one to a line.</p>
+<p class="text-info">Add recipient phone numbers one to a line.</p>
 <%= text_area_tag 'individual_recipients', nil, rows: 15, class: "span12", id: "individual-recipients-text-area" %>
 
 

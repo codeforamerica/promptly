@@ -35,28 +35,33 @@ class RemindersController < ApplicationController
 
 
   def create
-    if params[:message]
-      @message = Message.new(params[:message])
-      @message.save
-      params[:reminder][:message_id] = @message.id.to_s
-    end
 
-    if params[:individual_recipients]
-      recipients = parse_phone_numbers(params[:individual_recipients])
+    case
+      when params[:message]
+        @message = Message.new(params[:message])
+        @message.save
+        params[:reminder][:message_id] = @message.id.to_s
 
-      # adding individual recipients to the [:recipient_id] param.
-      recipients.each do |recipient|
-        binding.pry
-        params[:reminder][:recipient_id] << recipient
-      end
-    end
+      when params[:individual_recipients] != ""
+        recipients = parse_phone_numbers(params[:individual_recipients])
 
-    params[:reminder][:recipient_id].each do |recipient|
-      # for some reason there is always a null recipient. fix this
-      if recipient !=""
-        Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:recipient_send_date], params[:recipient_send_time], Message.find(params[:reminder][:message_id]))
-      end
+        # adding individual recipients to the [:recipient_id] param.
+        recipients.each do |recipient|
+          params[:reminder][:recipient_id] << recipient.to_s
+          puts params[:reminder][:recipient_id].class
+        end
+        params[:reminder][:recipient_id].each do |recipient|
+          Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
+        end
+
+      when params[:group_id]
+        if params[:group_id] != ""
+          # get recipients
+          # params[:reminder][:recipient_id] << recipient
+        end
+
     end
+    puts params
 
     respond_to do |format|
       format.html { redirect_to reminders_url, notice: 'Reminder was successfully created.' }
