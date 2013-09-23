@@ -32,7 +32,7 @@ class ImportHelper < ActiveRecord::Base
     end
 
     # Find or create group
-    g = Group.where(group_name_id: group_name_id).first
+    # g = Group.where(group_name_id: group_name_id).first
     g ||= Group.new(
       :group_name_id => group_name_id,
       :name => group_name_id,
