@@ -1,0 +1,22 @@
+<div class="mainHeaderAqua">
+  <span class="aquaHighlight">Message</span>
+</div>
+
+<table class="table table-bordered">
+  <tr>
+    <th></th>
+    <th>Message text</th>
+    <th>Date Created</th>
+    <th>Date Updated</th>
+  </tr>
+  <% Message.all.each do |message| %>
+  <tr>
+    <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-checkbox' %></td>
+    <td><%= message.message_text %></td>
+    <td><%= message.created_at %></td>
+    <td><%= message.updated_at %></td>
+  </tr>
+  <% end %>
+</table>
+
+<p>Need a new message? <a class="btn">Create new message</a>

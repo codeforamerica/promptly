@@ -14,6 +14,7 @@ class GroupsController < ApplicationController
   # GET /Groups/1.json
   def show
     @group = Group.find(params[:id])
+    @group_reminders = @group.reminders
 
     respond_to do |format|
       format.html # show.html.erb

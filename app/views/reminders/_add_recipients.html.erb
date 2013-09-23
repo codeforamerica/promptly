@@ -1,0 +1,45 @@
+<div class="mainHeaderAqua">
+  <span class="aquaHighlight">Recipients</span>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Group Name</th>
+      <th>Recipients</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+    <% Group.all.each do |group| %>
+    <tr>
+      <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
+      <td><%= group.name %></td>
+      <td><%= group.recipients.count %></td>
+      <td><%= group.created_at %></td>
+      <td><%= group.updated_at %></td>
+    </tr>
+    <% end %>
+</table>
+
+<p>Need to add different recipients?
+<a class="btn" data-toggle="modal" href="#individual-recipients">Add Recipients</a></p>
+
+<%= label_tag "Add individual recipients:" %>
+<p class="text-info">Add recipient phone numbers one to a line.</p>
+<%= text_area_tag 'individual_recipients', nil, rows: 15, class: "span12", id: "individual-recipients-text-area" %>
+
+
+<div class="modal hide" id="individual-recipients">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Add Individual Recipients</h3>
+  </div>
+  <div class="modal-body">
+    <!-- text area goes here -->
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-primary" id="individual-recipients-submit">Add Recipients</a>
+    <a href="#" class="btn">Cancel</a>
+  </div>
+</div>
