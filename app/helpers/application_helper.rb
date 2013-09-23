@@ -1,32 +1,4 @@
 module ApplicationHelper
-  
-  # Standardizes the phone number
-  def standardize_numbers(phone_number)
-    unless phone_number == ""
-      phone_number.phony_formatted!(:normalize => :US, :spaces => '')
-    else
-      phone_number = ""
-    end
-  end
-
-  # Returns an array of recipient IDs.
-def parse_phone_numbers(phone_numbers_text)
-    recipients_to_add = []
-    phone_numbers_text.split("\r\n").each do |phone_number|
-      #phone number normalization
-      phone_number = standardize_numbers(phone_number)
-
-      #save the recipients
-      @recipient = Recipient.where(phone: phone_number).first_or_create
-      @recipient.inspect
-      @recipient.save
-      unless phone_number == ""
-      end
-
-      recipients_to_add << @recipient.id
-    end
-    return recipients_to_add
-  end
 
   def link_to_add_fields(name, f, association, child_association = nil)
     puts f
