@@ -13,6 +13,9 @@
           </ul>
         </div>
       <% end %>
+  <%= f.input :recipient_id, as: :hidden %><!-- adds the recipient_id as a param so we can add it manually -->
+
+
   <%= render 'add_message', :f => f %>
 </div><!-- message -->
 

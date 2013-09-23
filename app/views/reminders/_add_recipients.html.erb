@@ -2,14 +2,25 @@
   <span class="aquaHighlight">Recipients</span>
 </div>
 
-<%= f.input :id, collection: Group.all, label: "Recipient Groups", as: :check_boxes %>
-<%= f.input :recipient_id, as: :hidden %>
-
-<!-- <table class="tbl">
-  <tr>
-    <td></td>
-  </tr>
-</table> -->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Group Name</th>
+      <th>Recipients</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+    <% Group.all.each do |group| %>
+    <tr>
+      <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
+      <td><%= group.name %></td>
+      <td><%= group.recipients.count %></td>
+      <td><%= group.created_at %></td>
+      <td><%= group.updated_at %></td>
+    </tr>
+    <% end %>
+</table>
 
 <p>Need to add different recipients?
 <a class="btn" data-toggle="modal" href="#individual-recipients">Add Recipients</a></p>
