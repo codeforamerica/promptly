@@ -1,24 +1,25 @@
 <div class="row-fluid">
   <div class="span12">
-    <div>
-      <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'btn btn-primary' %>
+    <div class="pageHeader">
+      <h2>All reminders</h2>
+      <div>
+        <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'btn btn-primary pull-right' %>
+      </div>
     </div>
     <div class="tabbable"> <!-- Only required for left/right tabs -->
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#upcoming" data-toggle="tab">Upcoming</a></li>
-        <li><a href="#sent" data-toggle="tab">Sent</a></li>
+        <li class="active"><a href="#upcoming" data-toggle="tab">Scheduled reminders</a></li>
+        <li><a href="#sent" data-toggle="tab">Sent reminders</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="upcoming">
-          <%= render(:partial => 'upcoming', :local => @groups) || 'There are no upcoming reminders.' %>
+          <%= render('upcoming', :collection => @groups) || 'There are no upcoming reminders.'%>
         </div>
         <div class="tab-pane" id="sent">
-          <p>Howdy, I'm in Section 2.</p>
+          <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
         </div>
       </div>
     </div>
-    
-    
   </div>
 </div>
 

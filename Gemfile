@@ -28,6 +28,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'daemons'
   gem 'simplecov'
+  gem 'phony_rails'
 end
 
 # Gems used only for assets and not required

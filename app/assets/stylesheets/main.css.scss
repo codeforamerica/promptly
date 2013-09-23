@@ -143,7 +143,7 @@ input {
 
 .pageHeader {
 	// fix this positioning 
-	margin: -18px 25px 35px;
+	margin: -5px 25px 35px;
 }
 
 .row-fluid [class*="span"] {
@@ -219,8 +219,7 @@ input {
 }
 
 .conversation {
-	margin-top: 40px; // in order to clear the heading bar
-
+	margin-top: 20px; // in order to clear the heading bar
 	strong {
 		color: $darkGray;
 		font-weight: bold;

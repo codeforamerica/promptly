@@ -9,14 +9,17 @@
 			<%= link_to "Promptly", root_path, :class => 'brand' %>
 			<div class="nav-collapse collapse">
 				<ul class="nav">
-					<li class="<%= 'active' if current_page?(root_url)%>">
+					<li class="<%= 'active' if current_page?(root_url) %>">
 						<% link_to "Home", root_path %>
 					</li>
-					<li class="dropdown <%= 'active' if current_page?(reminders_url)%>">
+					<li class="<%= 'active' if current_page?(hsa_url) %>">
 						<%= link_to "HSA", controller: "pages", action: "hsa" %>
 					</li>
-					<li class="<%= 'active' if current_page?(recipients_url)%>">
-						<%= link_to "Sample Documents", recipients_path %>
+					<li class="<%= 'active' if current_page?(documents_url) %>">
+						<%= link_to "Sample Documents", controller: "pages", action: "documents" %>
+					</li>
+					<li class="<%= 'active' if current_page?(calwin_url) %>">
+						<%= link_to "CalWin How-To", controller: "pages", action: "calwin" %>
 					</li>
 				</ul>
 				<div class="login pull-right">

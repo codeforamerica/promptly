@@ -16,18 +16,25 @@ $loginHeight: 20px;
 	padding-bottom: ($baseLineHeight / 4);
 
 	.nav {
-		background: $lightGray;
+		background: none;
 		color: $lightGray;
-		border-bottom: 1px solid $darkGray;
 		margin: 0px;
+		.typcn {
+			font-size: 1.5em;
+		}
 		a {
 			margin: 0px 0px;
 			padding: 10px 15px 10px;
 			display: block;
 			&:focus, &:hover { 
 				text-decoration: none;
-				background: darken($lightGray, 10);
+				background: $lightGray;
 				@include transition(background, 0.25s, linear, 0.25s); 
+			}
+			.active { 
+				text-decoration: none;
+				background: $blue;
+				color: #fff;
 			}
 		}
 	}

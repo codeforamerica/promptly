@@ -1,0 +1,19 @@
+<% if @sent != [] %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Reminder message</th>
+      <th>Sent date</th>
+      <th>Reminder</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sent.each do |reminder| %>
+    <tr>
+      <td><%= reminder.message %></td>
+      <td><%= reminder.date.to_s(:date_format) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

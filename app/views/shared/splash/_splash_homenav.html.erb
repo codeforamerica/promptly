@@ -8,7 +8,7 @@
 			</button>
 			
 				<% if user_signed_in? %>
-					<span><%= link_to "Admin", dashboard_path %></span>					
+					<span><%= link_to "Admin", dashboard_path, class: 'btn btn-success' %></span>					
 					<div class="login pull-right">
 				  <span><%= link_to "Welcome, #{current_user.name}!", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %></span>
 				<% else %>

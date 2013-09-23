@@ -25,6 +25,20 @@ h1, h2, h3, h4 {
   font-family: $headerFont;
 }
 
+.question {
+    padding-top: $baseLineHeight;
+    font-weight: bold;
+    font-size: 120%;
+}
+
+.answer {
+    font-weight: normal;
+}
+
+.thanks {
+  font-size: 8px;
+}
+
 .navbar.transparent {
   opacity: 0.6;
   margin-bottom: 0;
@@ -188,15 +202,11 @@ h1, h2, h3, h4 {
 }
 #questions {
   background-color: $white;
+}
 
-  .question {
-    padding-top: $baseLineHeight;
-    font-weight: bold;
-    font-size: 120%;
-  }
-
-  .answer {
-    font-weight: normal;
+#agreement {
+  > .container {
+    max-width: 700px;
   }
 }
 
