@@ -37,5 +37,23 @@ module Helper
       phone_number = ""
     end
   end
+
+  def group_to_recipient_ids(group_ids)
+    recipients_to_add = []
+    @groups = Group.where(:id => group_ids)
+      @groups.each do |group|
+      group.recipients.each do |recipient|
+        recipients_to_add << recipient.id
+      end
+    end
+
+    return recipients_to_add
+  end
+
+  def create_group_from_individual_recipients(individual_recipients)
+    @group = Group.new
+    @group.recipient_ids = phones_to_group
+    @group.save
+  end
   
 end

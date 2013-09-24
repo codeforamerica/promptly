@@ -33,35 +33,41 @@ class RemindersController < ApplicationController
     @reminders = Reminder.where("batch_id=?", params[:batch_id])
   end
 
+  def confirm
+    @params = params
+
+    if params[:message]
+      @message = Message.new(params[:message])
+      @message.save
+      params[:reminder][:message_id] = @message.id.to_s
+    end
+
+    if params[:individual_recipients] != ""
+      recipients = parse_phone_numbers(params[:individual_recipients])
+      if params[:create_group] == true
+        create_group_from_individual_recipients(recipients)
+      end
+      recipients.each do |recipient|
+        params[:reminder][:recipient_id] << recipient.to_s
+      end
+    end
+
+    if params[:group_ids] != "" 
+      recipients = group_to_recipient_ids(params[:group_ids])
+      puts recipients
+      recipients.each do |recipient|
+        params[:reminder][:recipient_id] << recipient.to_s
+      end
+    end
+
+  end
 
   def create
-
-    case
-      when params[:message]
-        @message = Message.new(params[:message])
-        @message.save
-        params[:reminder][:message_id] = @message.id.to_s
-
-      when params[:individual_recipients] != ""
-        recipients = parse_phone_numbers(params[:individual_recipients])
-
-        # adding individual recipients to the [:recipient_id] param.
-        recipients.each do |recipient|
-          params[:reminder][:recipient_id] << recipient.to_s
-          puts params[:reminder][:recipient_id].class
-        end
-        params[:reminder][:recipient_id].each do |recipient|
-          Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
-        end
-
-      when params[:group_id]
-        if params[:group_id] != ""
-          # get recipients
-          # params[:reminder][:recipient_id] << recipient
-        end
-
-    end
     puts params
+
+    params[:reminder][:recipient_id].each do |recipient|
+      Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
+    end
 
     respond_to do |format|
       format.html { redirect_to reminders_url, notice: 'Reminder was successfully created.' }
