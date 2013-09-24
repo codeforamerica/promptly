@@ -49,5 +49,11 @@ module Helper
 
     return recipients_to_add
   end
+
+  def create_group_from_individual_recipients(individual_recipients)
+    @group = Group.new
+    @group.recipient_ids = phones_to_group
+    @group.save
+  end
   
 end
