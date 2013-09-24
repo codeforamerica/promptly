@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12" id="message">
-    <%= simple_form_for @reminder  do |f| %>
+    <%= simple_form_for @reminder, url: { action: "confirm" }  do |f| %>
       
       <% if @reminder.errors.any? %>
         <div id="error_explanation">
