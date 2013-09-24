@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    <Gather action="handle-input" timeout="7" numDigits="1" method="POST">
+        <Say voice="woman" language="en-US">For English, press 1 or stay on the line.</Say>
+        <Say voice="woman" language="es-MX">Para español, oprima dos.</Say>
+        <Say voice="woman" language="zh-HK">For Cantonese, press 3.</Say>
+    </Gather>
+    <!-- Probably want to redirect to English or back to this menu -->
+    <Redirect>english-response</Redirect>
+</Response>

@@ -29,6 +29,14 @@ Landshark::Application.routes.draw do
   match '/documents' => 'pages#documents'
   match '/calwin' => 'pages#calwin'
 
+  #autoresponse
+  match '/handle-incoming-sms' => 'auto_response#handle_incoming_sms'
+  match '/handle-incoming-call' => 'auto_response#handle_incoming_call'
+  match '/handle-input' => 'auto_response#handle_input'
+  match '/english-response' => 'auto_response#english_response'
+  match '/spanish-response' => 'auto_response#spanish_response'
+  match '/cantonese-response' => 'auto_response#cantonese_response'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
