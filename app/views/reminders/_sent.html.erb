@@ -4,14 +4,15 @@
     <tr>
       <th>Reminder message</th>
       <th>Sent date</th>
-      <th>Reminder</th>
+      <th>Number of recipients</th>
     </tr>
   </thead>
   <tbody>
-    <% @sent.each do |reminder| %>
+    <% @sent.each do |batch, reminder|  %>
     <tr>
-      <td><%= reminder.message %></td>
-      <td><%= reminder.date.to_s(:date_format) %></td>
+      <td><%= reminder.first.message %></td>
+      <td><%= reminder.first.date.to_s(:date_format) %></td>
+      <td><%= reminder.count %></td>
     </tr>
     <% end %>
   </tbody>

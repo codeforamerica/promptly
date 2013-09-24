@@ -4,7 +4,7 @@ class RemindersController < ApplicationController
   
   def index
     @groups = Reminder.grouped_reminders
-    @sent = Conversation.all
+    @sent = Conversation.grouped_sent_conversations
 
     respond_to do |format|
       format.html # index.html.erb
