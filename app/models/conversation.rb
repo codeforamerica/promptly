@@ -6,4 +6,21 @@ class Conversation < ActiveRecord::Base
 
   attr_accessible :recipient_ids
   attr_accessible :conversation_ids
+
+  def self.grouped_sent_conversations(limit = 0)
+    if limit != 0
+      Conversation.where('status = ?', 'sent').order("date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
+    else
+      Conversation.where('status = ?', 'sent').order("date").to_set.classify {|reminder| reminder.batch_id}
+    end
+  end
+
+  def self.all_responses
+    Conversation.where(:status => 'received')
+  end
+
+  def self.undelivered
+    Conversation.where(:status => 'failed')
+  end
+
 end
