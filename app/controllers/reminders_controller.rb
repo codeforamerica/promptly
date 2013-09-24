@@ -48,20 +48,25 @@ class RemindersController < ApplicationController
         # adding individual recipients to the [:recipient_id] param.
         recipients.each do |recipient|
           params[:reminder][:recipient_id] << recipient.to_s
-          puts params[:reminder][:recipient_id].class
-        end
-        params[:reminder][:recipient_id].each do |recipient|
-          Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
         end
 
-      when params[:group_id]
-        if params[:group_id] != ""
+      when params[:group_ids]
+        if params[:group_ids] != ""
           # get recipients
+          recipients = group_to_recipient_ids(params[:group_ids])
+          puts recipients
           # params[:reminder][:recipient_id] << recipient
+          recipients.each do |recipient|
+            params[:reminder][:recipient_id] << recipient.to_s
+          end
         end
 
     end
     puts params
+
+    params[:reminder][:recipient_id].each do |recipient|
+      Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
+    end
 
     respond_to do |format|
       format.html { redirect_to reminders_url, notice: 'Reminder was successfully created.' }
