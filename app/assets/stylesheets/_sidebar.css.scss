@@ -24,14 +24,14 @@ $loginHeight: 20px;
 		}
 		a {
 			margin: 0px 0px;
-			padding: 10px 15px 10px;
+			padding: 8px 15px;
 			display: block;
 			&:focus, &:hover { 
 				text-decoration: none;
 				background: $lightGray;
 				@include transition(background, 0.25s, linear, 0.25s); 
 			}
-			.active { 
+			&.active { 
 				text-decoration: none;
 				background: $blue;
 				color: #fff;
