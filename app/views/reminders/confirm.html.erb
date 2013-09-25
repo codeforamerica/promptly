@@ -1,15 +1,44 @@
 <div class="container">
 	<div class="row-fluid dumbPadding">
 		<div class="span12 mainHeaderGreen">
-			<span class="greenHighlight">Reminder</span>
+			<span class="greenHighlight">Confirm</span>
 		</div>
 	</div>
-  <div class="row-fluid">
-  	<div class="span8">
-  		<div class="mainHeaderGray">
-			<span class="grayHighlight">Reminder Date</span>
-		</div>
-		<p><%= params %></p>
+	<div class="row-fluid">
+		<div class="span12">
+			
+			<p> We're sending</p>
+			<div class="well">
+				<%= Message.find(params[:message_id]).message_text %>
+			</div>
+
+			<% if params[:group_ids] != "" %>
+				<p>To</p>
+				<% @groups.each do |group| %>
+					<div class="well">
+						<%= group.name %>
+					</div>
+				<% end %>
+			<% end %>
+
+			<% if @individual_recipients.length > 1 %>
+				<p>And</p>
+				<div class="well">
+					<% @individual_recipients.each do |recipient| %>
+						<%= Recipient.find(recipient).phone %>,
+					<% end %>
+				<div>
+			<% elsif @individual_recipients.length == 1 %>
+				<p>And</p>
+				<div class="well">
+					<% @individual_recipients.each do |recipient| %>
+						<%= Recipient.find(recipient).phone %>
+					<% end %>
+				</div>
+			<% end %>
+
+			<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
+
 		</div>
 	</div>
 </div>
