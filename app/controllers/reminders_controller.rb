@@ -4,7 +4,7 @@ class RemindersController < ApplicationController
   
   def index
     @groups = Reminder.grouped_reminders
-    @sent = Conversation.all
+    @sent = Conversation.grouped_sent_conversations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,20 +83,16 @@ class RemindersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
-      # if @reminder.update_attributes(params[:reminder])
-      #   format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
-      #   format.json { head :no_content }
-      # else
-      #   format.html { render action: "edit" }
-      #   format.json { render json: @reminder.errors, status: :unprocessable_entity }
-      # end
     end
   end
 
   def destroy
-    @reminder = Reminder.find(params[:id])
-    @reminder.destroy
-    @delay = Delayed::Job.find(@reminder.job_id)
+    @reminders = Reminder.where('batch_id=?', params[:batch_id])
+    @reminders.each do |reminder|
+      @delay = Delayed::Job.find(reminder.job_id)
+      @delay.destroy      
+      reminder.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to reminders_url }
