@@ -6,7 +6,7 @@
 	</div>
   <div class="row-fluid">
   	<div class="span8">
-		<p>On <%= @reminders.first.send_date.to_s(:date_format) %> the message: </p>
+		<p>On <%= @reminders.first.send_date.to_s(:date_only) %> at <%= @reminders.first.send_date.to_s(:time_only) %> the message: </p>
 		<blockquote><%= Message.find(@reminders.first.message_id).message_text %></blockquote>
 		<p>will be sent to <%= pluralize(@reminders.count, 'recipient') %>.</p>
 		<h5>Recipient list</h5>
