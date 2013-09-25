@@ -23,27 +23,27 @@
 </table>
 
 <p>Need to add different recipients?
-<a class="btn" data-toggle="modal" href="#individual-recipients">Add Recipients</a></p>
+<a class="btn" data-toggle="modal" data-target="#individual-recipients" href="#individual-recipients">Add Recipients</a></p>
 
-<%= label_tag "Add individual recipients:" %>
-<p class="text-info">Add recipient phone numbers one to a line.</p>
-<%= text_area_tag 'individual_recipients', nil, rows: 15, class: "span12", id: "individual-recipients-text-area" %>
 
-<div class="control-group">
-  <div class="controls">
-    <label class="checkbox">
-      <%= check_box_tag 'create_group' %> Create Group
-    </label>
-  </div>
-</div>
 
-<div class="modal hide" id="individual-recipients">
+<div class="modal hide fade" id="individual-recipients" tab-index="-1" role="dialog" aria-labelledby="individual-recipients-modal" aria-hidden="true">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
     <h3>Add Individual Recipients</h3>
   </div>
   <div class="modal-body">
-    <!-- text area goes here -->
+    <%= label_tag "Add individual recipients:" %>
+    <p class="text-info">Add recipient phone numbers one to a line.</p>
+    <%= text_area_tag 'individual_recipients', nil, rows: 15, class: "span12", id: "individual-recipients-text-area" %>
+
+    <div class="control-group">
+      <div class="controls">
+        <label class="checkbox">
+          <%= check_box_tag 'create_group' %> Create Group
+        </label>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <a class="btn btn-primary" id="individual-recipients-submit">Add Recipients</a>

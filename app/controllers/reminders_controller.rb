@@ -38,6 +38,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @groups = Group.where(:id => params[:group_ids])
     @individual_recipients = parse_phone_numbers(params[:individual_recipients])
+    @params = params
     
     if params[:message]
       message = Message.new(params[:message])
@@ -104,5 +105,7 @@ class RemindersController < ApplicationController
     Reminder.import(params[:file], params[:reminder])
     redirect_to reminders_url, notice: "Reminder created."
   end
+
+
 
 end
