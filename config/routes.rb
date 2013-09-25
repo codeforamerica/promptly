@@ -20,6 +20,7 @@ Landshark::Application.routes.draw do
     get '/reminders/:batch_id' => 'reminders#show' 
     put '/reminders/:batch_id/edit' => 'reminders#update'
     post '/reminders/:batch_id/edit' => 'reminders#update'
+    delete '/reminders/:batch_id' => 'reminders#destroy'
     resources :reminders
   end
 
