@@ -13,7 +13,7 @@ class RemindersController < ApplicationController
   end
 
   def show 
-    @reminder = Reminder.where("batch_id=?", params[:batch_id])
+    @reminders = Reminder.where("batch_id=?", params[:batch_id])
   end
 
 

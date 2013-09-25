@@ -15,7 +15,7 @@ class Ability
       can :read, :all
     elsif user.has_role? :guest
         #guest can only sign up for the site
-      # can :read, [User]
+      can :read, [User]
     end
     #
     # The first argument to `can` is the action you are giving the user 

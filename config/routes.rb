@@ -3,7 +3,9 @@ Landshark::Application.routes.draw do
   root :to => 'pages#splash'
   
   devise_for :users, :controllers => {:registrations => "registrations"}
-    get '/admin' => 'home#index'
+  get '/admin' => 'home#index'
+  # get '/admin/users/new' => 'users#new'
+  # get '/users/sign_up' => 'registrations#new'
 
   scope "/admin" do
     resources :users

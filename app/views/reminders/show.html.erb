@@ -1,15 +1,15 @@
 <div class="container">
 	<div class="row-fluid dumbPadding">
 		<div class="span12 mainHeaderGreen">
-			<span class="greenHighlight">Reminder</span>
+			<span class="greenHighlight">Reminder <%= @reminders.first.name %></span>
 		</div>
 	</div>
   <div class="row-fluid">
   	<div class="span8">
-  		<div class="mainHeaderGray">
-			<span class="grayHighlight">Reminder Date</span>
-		</div>
-		<p><%= @reminders.first.send_date.to_s(:date_format) %></p>
+		<p>On <%= @reminders.first.send_date.to_s(:date_format) %> the message: </p>
+		<blockquote><%= Message.find(@reminders.first.message_id).message_text %></blockquote>
+		<p>will be sent to <%= pluralize(@reminders.count, 'recipient') %>.</p>
+		<h5>Recipient list</h5>
 		<% @reminders.each do |reminder| %>
 		<div>
 			<span>
@@ -20,7 +20,7 @@
 	</div>
 	</div>
 		<div>
-			<%= link_to 'Back', reminders_path %>
+			<%= link_to 'Back', reminders_path, class: 'btn btn-default' %>
 		</div>
 	</div>
 </div>
