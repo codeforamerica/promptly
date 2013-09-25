@@ -21,7 +21,7 @@ desc "This task is called by the Heroku scheduler add-on"
 	else
 		 @conversation.each do |c|
 			# Loop over messages and print out a property for each one
-			@client.account.sms.messages.list(:from => env['TWILIO_NUMBER']).each do |message|
+			@client.account.sms.messages.list.each do |message|
 		    if c.message_id = message.sid
 			    c.status = message.status
 			    c.save!
