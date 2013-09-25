@@ -24,10 +24,18 @@ class ImportHelper < ActiveRecord::Base
     #save as array of phone number
     puts "Converting phone numbers to array."
     phone_numbers = []
+    phone_key = ""
+    test_keys = ["phone", "phone_number", "phone number", "number", "contact"]
+    test_keys.each do |key|
+      if result.first.keys.include?(key)
+        phone_key = key
+        puts "Found a phone_key: #{phone_key}"
+      end
+    end
     result.each do |p_hash|
-      val = p_hash.values.first
+      val = p_hash[phone_key]
       if val
-        phone_numbers << p_hash.values.first
+        phone_numbers << val
       end
     end
 
