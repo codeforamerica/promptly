@@ -27,16 +27,11 @@ Hi, this is CalFresh, or Food Stamps. We sent you a text message because you enr
 To stop receiving these text messages or for help, call (415) 558-4159. Thanks and have a splendid day.
 
 ## Spanish (different than English)
-- Need to make sure Twilio reads stop 'S T O P'
-- Confirm accents
-
 Hola, este es la Agencia de Servicios Humanos de San Francisco. Le mandamos un mensaje de texto acerca de sus beneficios porque usted se inscribó para nuestro servicio de mensajería de texto. Si usted no quiere recibir más mensajes, mándenos un mensaje de texto con la palabra S T O P. Si tiene preguntas de CalFresh o Estampillas para Comida llámenos al (415) 558-1001. Una vez más, el teléfono de CalFresh es (415) 558-1001.
 
 Este mensaje se repetirá. Gracias.
 
 ## Chinese
-- Need to make sure Twilio reads stop 'S T O P' in english? How will unsubscribing work in other languages?
-
 你好，這是舊金山福利局。我們寄給你一個關於你福利的電子短信是因為你報名參加我們的短信服務。如果你不想收到任何電子短信，請回复電子短信要求停止服務。如果您有任何關於糧食券的問題，請致電（415）558-1001。重複一次，糧食券的電話號碼是（415）558-1001。
 
 這個信息將會重複。謝謝。
