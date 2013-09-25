@@ -28,11 +28,14 @@
 <%= label_tag "Add individual recipients:" %>
 <p class="text-info">Add recipient phone numbers one to a line.</p>
 <%= text_area_tag 'individual_recipients', nil, rows: 15, class: "span12", id: "individual-recipients-text-area" %>
-<%= label_tag do %>
-<%= check_box_tag 'create_group'  %>
 
-
-<% end %>
+<div class="control-group">
+  <div class="controls">
+    <label class="checkbox">
+      <%= check_box_tag 'create_group' %> Create Group
+    </label>
+  </div>
+</div>
 
 <div class="modal hide" id="individual-recipients">
   <div class="modal-header">

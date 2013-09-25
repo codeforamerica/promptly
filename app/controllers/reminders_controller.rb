@@ -34,10 +34,13 @@ class RemindersController < ApplicationController
   end
 
   def confirm
+    @reminder = Reminder.new
     @params = params
     @groups = Group.where(:id => params[:group_ids])
     @individual_recipients = parse_phone_numbers(params[:individual_recipients])
 
+    binding.pry
+    
     if params[:message]
       @message = Message.new(params[:message])
       @message.save

@@ -7,37 +7,48 @@
 	<div class="row-fluid">
 		<div class="span12">
 			
-			<p> We're sending</p>
-			<div class="well">
-				<%= Message.find(params[:message_id]).message_text %>
-			</div>
+			<%= simple_form_for @reminder do |f| %>
+      
+      <% if @reminder.errors.any? %>
+        <%= render 'form_errors' %>
+      <% end %>
 
-			<% if params[:group_ids] != "" %>
-				<p>To</p>
-				<% @groups.each do |group| %>
+				<p> We're sending</p>
+				<div class="well">
+					<%= Message.find(params[:message_id]).message_text %>
+				</div>
+
+				<% if params[:group_ids] != "" %>
+					<p>To</p>
+					<% @groups.each do |group| %>
+						<div class="well">
+							<%= group.name %>
+						</div>
+					<% end %>
+				<% end %>
+
+				<% if @individual_recipients.length > 1 %>
+					<p>And</p>
 					<div class="well">
-						<%= group.name %>
+						<% @individual_recipients.each do |recipient| %>
+							<%= Recipient.find(recipient).phone %>,
+						<% end %>
+					<div>
+				<% elsif @individual_recipients.length == 1 %>
+					<p>And</p>
+					<div class="well">
+						<% @individual_recipients.each do |recipient| %>
+							<%= Recipient.find(recipient).phone %>
+						<% end %>
 					</div>
 				<% end %>
-			<% end %>
 
-			<% if @individual_recipients.length > 1 %>
-				<p>And</p>
-				<div class="well">
-					<% @individual_recipients.each do |recipient| %>
-						<%= Recipient.find(recipient).phone %>,
-					<% end %>
-				<div>
-			<% elsif @individual_recipients.length == 1 %>
-				<p>And</p>
-				<div class="well">
-					<% @individual_recipients.each do |recipient| %>
-						<%= Recipient.find(recipient).phone %>
-					<% end %>
-				</div>
-			<% end %>
+				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
 
-			<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
+				<%= f.submit %>
+			
+			<% end %><!-- /form -->
+
 
 		</div>
 	</div>
