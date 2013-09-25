@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span12" id="message">
-    <%= simple_form_for @reminder, url: { action: "confirm" }  do |f| %>
+    <%= simple_form_for @reminder, :url => reminders_new_confirm_path  do |f| %>
       
       <% if @reminder.errors.any? %>
         <%= render 'form_errors' %>

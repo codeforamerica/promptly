@@ -21,6 +21,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @message = @reminder.build_message
     @recipients = @reminder.build_recipient
+    @group = Group.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,40 +36,30 @@ class RemindersController < ApplicationController
 
   def confirm
     @reminder = Reminder.new
-    @params = params
     @groups = Group.where(:id => params[:group_ids])
     @individual_recipients = parse_phone_numbers(params[:individual_recipients])
-
-    binding.pry
     
     if params[:message]
-      @message = Message.new(params[:message])
-      @message.save
-      params[:reminder][:message_id] = @message.id.to_s
+      message = Message.new(params[:message])
+      message.save
+      params[:reminder][:message_id] = message.id.to_s
     end
 
     if params[:individual_recipients] != ""
       recipients = parse_phone_numbers(params[:individual_recipients])
       if params[:create_group] == true
-        create_group_from_individual_recipients(recipients)
-      end
-      recipients.each do |recipient|
-        params[:reminder][:recipient_id] << recipient.to_s
+        create_group_from_individual_recipients(recipients) # No group name yet
       end
     end
 
     if params[:group_ids] != "" 
       recipients = group_to_recipient_ids(params[:group_ids])
-      puts recipients
-      recipients.each do |recipient|
-        params[:reminder][:recipient_id] << recipient.to_s
-      end
     end
 
   end
 
   def create
-    puts params
+    @reminder = Reminder.new
 
     params[:reminder][:recipient_id].each do |recipient|
       Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
