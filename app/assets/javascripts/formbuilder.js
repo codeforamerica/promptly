@@ -13,7 +13,26 @@
 
 	function cancelClicked(event) {
 		$(this).hide()
-    $(this).prev('fieldset').remove();
+    $(this).('fieldset').remove();
+    // $('form #reminder_report_id').parentsUntil('.field').show();
+    // $('form .add_fields').show();
+    event.preventDefault();
+  }
+
+  // For creating modal fields.
+	$('form .add_modal').on('click', function(event) {
+		time = new Date().getTime();
+		regexp = new RegExp($(this).data('id'), 'g');
+		$(this).before($(this).data('fields').replace(regexp, time));
+		event.preventDefault();
+		$(this).hide();
+		// Lets the cancel button know about the extra fields.
+		$('form .cancel').on('click', cancelModal );
+	});
+
+	function cancelModal(event) {
+		$(this).hide()
+    $(this).prev('.modal').remove();
     // $('form #reminder_report_id').parentsUntil('.field').show();
     // $('form .add_fields').show();
     event.preventDefault();
