@@ -11,6 +11,7 @@ class Ability
       can :manage, :all
     elsif user.has_role? :user
       # an user can read everything
+      can :manage, [Reminder, Conversation, Message, Recipient]
       can :read, :all
     elsif user.has_role? :guest
         #guest can only sign up for the site

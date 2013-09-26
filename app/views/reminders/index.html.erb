@@ -1,34 +1,25 @@
-<%= render 'breadcrumb' %>
-<% render 'sorting' %>
-
 <div class="row-fluid">
   <div class="span12">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Message Text</th>
-          <th>Program/Report</th>
-          <th>Number of Recipients</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @reminders.each do |reminder| %>
-        <tr>
-          <td><%= link_to reminder.name, reminder %></td>
-          <td><%= reminder.message_text %></td>
-          <td><%= reminder.program.try(:name) || 'No program' %> - <%= reminder.report.try(:report_type) || 'No report' %></td>
-          <td></td>
-          <td><%= link_to 'Edit', edit_reminder_path(reminder), :class=>'btn btn-mini' %>  <%= link_to 'Delete', reminder, method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-
-
-
-
-  <%= link_to 'Create reminder', new_reminder_path, :class => 'btn btn-primary' %>
+    <div class="pageHeader">
+      <h2>All reminders</h2>
+      <div>
+        <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'btn btn-primary pull-right' %>
+      </div>
+    </div>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#upcoming" data-toggle="tab">Scheduled reminders</a></li>
+        <li><a href="#sent" data-toggle="tab">Sent reminders</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="upcoming">
+          <%= render('upcoming', :collection => @groups) || 'There are no upcoming reminders.'%>
+        </div>
+        <div class="tab-pane" id="sent">
+          <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

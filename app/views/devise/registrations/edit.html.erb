@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-  
+  <% if current_user.is_admin? %>
   <div class="field">
     <div class="control-group">
       <%= f.label :roles, 'Select a role' %>
@@ -60,6 +60,7 @@
       </div>
     </div>
   </div>
+  <% end %>
 
   <div><%= f.submit "Update", :class => 'btn btn-primary' %></div>
 <% end %>

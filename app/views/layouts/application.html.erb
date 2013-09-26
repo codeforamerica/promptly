@@ -7,18 +7,24 @@
   <%= csrf_meta_tags %>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 
 </head>
 
 <body>
-  <%= render 'layouts/mainnav' %>
-  <div class="container-fluid">
+  <%= render 'shared/mainnav' %>
+  <div class="container-fluid" id="main">
   	<div class="notice">
       <div><%= notice %></div>
       <div><%= alert %></div>
     </div>
-    <%= yield %>
+    <div class="span2">
+      <%= render 'layouts/sidebar' %>
+    </div>
+    <div class="span10">
+      <%= yield %>
+    </div>
   </div>
-  <%= render 'layouts/footer' %>
+  <%= render 'shared/footer' %>
 </body>
 </html>

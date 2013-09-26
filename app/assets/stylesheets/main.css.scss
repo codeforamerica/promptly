@@ -1,32 +1,12 @@
-@import "colors";
-@import "placeholder";
 @import "bootstrap";
 @import "bootstrap-responsive";
-//Fonts
-$headerFont: 'Open Sans Condensed', sans-serif;
-$bodyFont: 'Open Sans', sans-serif;
-
-$linkColor: $blue;
-$placeholderText: $tan;
-
-$navbarBackground: $blue;
-$navbarBackgroundHighlight: $darkBlue;
-$navbarBrandColor: $white;
-$navbarText: $white;
-$navbarBrandColor: $white;
-$navbarLinkColor: darken($white, 5%);
-$navbarLinkColorHover: $white;
-$navbarLinkColorActive: $white;
-$navbarLinkBackgroundHover: $navbarBackground;
-$navbarLinkBackgroundActive: $darkBlue;
-
-$btnPrimaryBackground: $darkBlue;
-$btnPrimaryBackgroundHighlight: $darkBlue;
-
-//Sizes
-$navbarHeight: 40px;
-$baseLineHeight: 20px;
-$loginHeight: 20px;
+@import "constants";
+@import "placeholder";
+@import "navbar";
+@import "charts";
+@import "buttons";
+@import "sidebar";
+@import "fonts";
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
@@ -35,6 +15,7 @@ h1,h2,h3,h4,h5,h6 {
 
 body {
 	font-family: $bodyFont;
+	background-color: $lightGray;
 }
 
 input {
@@ -48,13 +29,6 @@ input {
 	border-radius: 0px;
 }
 
-.btn {
-	border-radius: 0px;
-	background-image: none;
-	border: none;
-	text-transform: uppercase;
-}
-
 .control-group {
 	margin-bottom: 0px;
 }
@@ -64,52 +38,6 @@ input {
 	font-weight: bold;
 }
 
-.navbar-inner {
-	background-color: $navbarBackground;
-	border-radius: 0px;
-	background-image: none;
-	.brand {
-		text-shadow: none;
-		font-weight: 500;
-		font-size: 32px;
-	}
-}
-
-.navbar{
-	.brand {
-		float: left;
-		display: block;
-		padding: 10px 20px 10px;
-		margin-left: -20px;
-		font-size: 20px;
-		font-weight: 200;
-		color: #fff;
-		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
-		}
-	.nav>li>a {
-		float: none;
-		padding: 10px 15px 10px;
-		color: #f2f2f2;
-		text-decoration: none;
-		text-shadow: 0 1px 0 $navbarBackgroundHighlight;
-		&:hover{
-			color: #fff;
-			text-decoration: none;
-			background-color: $lightBlue;
-		}
-	}
-	.nav>.active>a{
-		color: #fff;
-		text-decoration: none;
-		background-color: $navbarBackgroundHighlight;
-		&:hover{
-			color: #fff;
-			text-decoration: none;
-			background-color: $lightBlue;
-		}
-	}
-} 
-
 //Custom styles
 
 .login {
@@ -117,6 +45,10 @@ input {
 	height: $loginHeight;
 
 	a {
+		color: #fff;
+	}
+
+	p {
 		color: darken(#FFF, 5%);
 		padding: 0 0 0 0;
 	}
@@ -127,12 +59,18 @@ input {
 	float: right;
 }
 
+#main {
+	background-color: $white;
+	padding-bottom: 70px;
+	padding-top: 20px;
+}
+
 .footer {
 	text-align: center;
 	padding: 30px 0;
-	margin-top: 70px;
+	margin-top: 0px;
 	border-top: 1px solid #e5e5e5;
-	background-color: $lightGray;
+	background-color: $white;
 }
 
 .dumbPadding {
@@ -142,29 +80,29 @@ input {
 .greenHighlight {
 	background: $green;
 	color: $white;
-	padding: 3px 15px;
+	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
-	top: 2px;
-	font-size: 13px;
+	top: 0px;
+	font-size: 16px;
 	font-family: $headerFont;
 }
 
 .aquaHighlight {
 	background: $darkerAqua;
 	color: $white;
-	padding: 3px 15px;
+	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
-	top: 2px;
-	font-size: 13px;
+	top: 0px;
+	font-size: 16px;
 	font-family: $headerFont;
 }
 
 .grayHighlight {
 	background: $lightGray;
 	color: darken($lightGray, 40);
-	padding: 3px 15px;
+	padding: 4px 15px;
 	text-transform: uppercase;
 	position: relative;
 	font-size: 16px;
@@ -174,19 +112,23 @@ input {
 
 // This positioning is super hacky. *****************************************
 .headerGray {
-	background: darken($lightGray, 40);
-	color: $white;
-	padding: 2px 5px;
+	background: $darkGray;
+	color: $lightGray;
+	padding: 10px 15px 10px;;
+	margin: 0px 0px;
+	border-bottom: 1px solid $lightGray;
 }
 
 .mainHeaderGreen {
 	background: $lightGreen;
 	margin-bottom: 2px;
+	padding: 2px 0px;
 }
 
 .mainHeaderAqua {
 	background: $aqua;
 	margin-bottom: 2px;
+	padding: 2px 0px;
 }
 
 .mainHeaderGray {
@@ -198,41 +140,16 @@ input {
 .messageMain {
 	display: none;
 }
+
+.pageHeader {
+	// fix this positioning 
+	margin: -5px 25px 35px;
+}
+
 .row-fluid [class*="span"] {
 	min-height: 25px;
 }
-
-.sidebar {
-	background: $lightGray;
-	text-transform: uppercase;
-	font-family: $headerFont;
-	font-size: 12px;
-	margin-bottom: ($baseLineHeight / 2);
-	padding-bottom: ($baseLineHeight / 4);
-
-	table {
-		font-family: $bodyFont;
-	}
-
-	p {
-		margin-left: ($baseLineHeight / 4);
-		font-family: $bodyFont;
-		font-weight: normal;
-	}
-}
-
-.sidebarHeader {
-	background: darken($lightGray, 20);
-	// padding: 5px;
-	margin-bottom: 20px;
-	min-height: 15px;
-}
-
 // Over-riding .span* styles so the positioning works out.
-.conversation {
-	padding: 0 0 0 0;
-	margin: 0 0 0 0;
-}
 
 .recentReminder {
 	padding: 10px 0 10px 0;
@@ -242,15 +159,19 @@ input {
 	}
 }
 
-.tableGreen {
-	border-left: 5px solid $green;
+.tableAqua {
+	border-left: 5px solid $aqua;
 	margin-bottom: 0px;
-
 	tbody {
 		border-bottom: 1px solid darken($lightGray, 10);
 	}
-	td, th{
-		border: none;
+}
+
+.tableGreen {
+	border-left: 5px solid $green;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
 	}
 }
 
@@ -280,4 +201,53 @@ input {
 .characterCount {
 	color: $darkGray;
 	margin-bottom: 20px;
+}
+
+
+//******************
+// Recipient Page
+//******************
+
+@mixin conversations {
+	padding: ($baseLineHeight/2);
+	margin: $baseLineHeight/4 0;
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.conversation {
+	margin-top: 20px; // in order to clear the heading bar
+	strong {
+		color: $darkGray;
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+.conversation-self {	
+	background-color: $lightGray;
+	@include conversations;
+
+	> .avatar {
+	float: left !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight $baseLineHeight/2 $baseLineHeight/2;
+	overflow: hidden;
+	}
+}
+
+.conversation-recipient {
+	> .avatar {
+	float: right !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight;
+	overflow: hidden;
+	}
+}
+
+.queued {
+	padding-top: $baseLineHeight*2;
 }

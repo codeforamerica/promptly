@@ -12,13 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-modal
-//= require bootstrap-popover
-//= require bootstrap-transition
-//= require bootstrap-alert
-//= require dateselector
-//= require mainnav_dropdown
-//= require dynamicselector
 //= require bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require dateselector
+//= require reminders
+//= require morris.min
+//= require graphs
 //= require_tree .

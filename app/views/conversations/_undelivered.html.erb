@@ -1,0 +1,18 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Message content</th>
+      <th>From phone</th>
+      <th>Send date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @undelivered.each do |batch, undelivered| %>
+    <tr>
+      <td><%= undelivered.message %></td>
+      <td><%= number_to_phone(undelivered.from_number, :area_code => true) %></td>
+      <td><%= undelivered.date.to_s(:date_format) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,59 @@
+<div class="container">
+	<div class="row-fluid dumbPadding">
+		<div class="span12 mainHeaderGreen">
+			<span class="greenHighlight">Confirm</span>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="span12">
+			
+			<%= simple_form_for @reminder do |f| %>
+      
+      <% if @reminder.errors.any? %>
+        <%= render 'form_errors' %>
+      <% end %>
+
+				<p> We're sending</p>
+				<div class="well">
+					<%= Message.find(params[:message_id]).message_text %>
+					<%= f.hidden_field :message_id, :value => Message.find(params[:message_id]).id %>
+				</div>
+
+				<% if params[:group_ids] != "" %>
+					<p>To</p>
+					<% @groups.each do |group| %>
+						<div class="well">
+							<%= group.name %>
+							<%= f.hidden_field :group_ids, :multiple => true, :value => group.id %>
+						</div>
+					<% end %>
+				<% end %>
+
+				<% if @individual_recipients.length > 1 %>
+					<p>And</p>
+					<div class="well">
+						<% @individual_recipients.each do |recipient| %>
+							<%= Recipient.find(recipient).phone %>,
+						<% end %>
+					<div>
+				<% elsif @individual_recipients.length == 1 %>
+					<p>And</p>
+					<div class="well">
+						<% @individual_recipients.each do |recipient| %>
+							<%= Recipient.find(recipient).phone %>
+						<% end %>
+					</div>
+				<% end %>
+				<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
+
+				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
+				<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
+				<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
+				<%= f.submit %>
+			
+			<% end %><!-- /form -->
+
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="label label-warning">Oops. Looks like we've got some errors. You can fix them below.</div>
+<table class="table tableAqua">
+    <thead>
+      <tr>
+        <th>Row number</th>
+        <% reminder.error.first[1].keys.each do |key| %>
+            <th><%= key %></th>
+        <% end %>
+      </tr>
+    </thead>
+      <% reminder.error.each do |index, r| %>
+      <tr>
+        <td><%= index +1  %></td>
+        <% r.each do |key, value| %>
+          <% if key != 'errors' %>
+            <%= fields_for :reminder_import do |t| %>
+              <td><%= t.text_field "#{index}][#{key}", :value => value %></td>
+            <% end %>
+          <% else %>
+          <td><%= value %></td>
+          <% end %>
+         <% end %>
+      <% end %>
+      </tr>
+  </table>

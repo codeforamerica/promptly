@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130627180448) do
+ActiveRecord::Schema.define(:version => 20130923214540) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130627180448) do
     t.string   "to_number"
     t.string   "from_number"
     t.string   "message_id"
+    t.string   "status"
+    t.string   "batch_id"
   end
 
   create_table "conversations_recipients", :id => false, :force => true do |t|
@@ -44,9 +46,36 @@ ActiveRecord::Schema.define(:version => 20130627180448) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
-  create_table "messages_reminders", :id => false, :force => true do |t|
-    t.integer "reminder_id"
-    t.integer "message_id"
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.string   "group_name_id"
+    t.text     "description"
+    t.boolean  "editable"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "groups_recipients", :id => false, :force => true do |t|
+    t.integer "group_id",     :null => false
+    t.integer "recipient_id", :null => false
+  end
+
+  add_index "groups_recipients", ["group_id", "recipient_id"], :name => "index_groups_recipients_on_group_id_and_recipient_id", :unique => true
+
+  create_table "groups_reminders", :id => false, :force => true do |t|
+    t.integer "group_id",    :null => false
+    t.integer "reminder_id", :null => false
+  end
+
+  add_index "groups_reminders", ["group_id", "reminder_id"], :name => "index_groups_reminders_on_group_id_and_reminder_id", :unique => true
+
+  create_table "messages", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "message_text"
+    t.text     "description"
   end
 
   create_table "notifications", :force => true do |t|
@@ -72,23 +101,11 @@ ActiveRecord::Schema.define(:version => 20130627180448) do
     t.integer "program_id"
   end
 
-  create_table "programs_reminders", :id => false, :force => true do |t|
-    t.integer "reminder_id"
-    t.integer "program_id"
-  end
-
   create_table "recipients", :force => true do |t|
     t.string   "phone"
-    t.integer  "case"
-    t.boolean  "active"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.datetime "reminder_date"
-  end
-
-  create_table "recipients_reminders", :id => false, :force => true do |t|
-    t.integer "reminder_id"
-    t.integer "recipient_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "recipients_reports", :id => false, :force => true do |t|
@@ -98,18 +115,16 @@ ActiveRecord::Schema.define(:version => 20130627180448) do
 
   create_table "reminders", :force => true do |t|
     t.string   "name"
+    t.datetime "send_date"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "report_id"
-    t.integer  "message_id"
     t.integer  "recipient_id"
-    t.integer  "program_id"
-    t.string   "message_text"
-  end
-
-  create_table "reminders_reports", :id => false, :force => true do |t|
-    t.integer "reminder_id"
-    t.integer "report_id"
+    t.integer  "message_id"
+    t.string   "batch_id"
+    t.time     "send_time"
+    t.integer  "job_id"
+    t.string   "state"
+    t.string   "session_id"
   end
 
   create_table "reports", :force => true do |t|
