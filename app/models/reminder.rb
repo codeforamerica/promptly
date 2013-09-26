@@ -1,6 +1,6 @@
 class Reminder < ActiveRecord::Base
   attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text
-  attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id, :state, :session_id
+  attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id
   attr_accessible :id, :created_at, :updated_at
   # validates :reminder_id, presence: true
   # validates :recipient_id, presence: true
@@ -8,6 +8,7 @@ class Reminder < ActiveRecord::Base
   
   belongs_to :recipient
   belongs_to :message
+  has_and_belongs_to_many :groups
   accepts_nested_attributes_for :message, :recipient
 
   def date_format(human_date)

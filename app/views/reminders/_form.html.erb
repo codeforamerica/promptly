@@ -1,17 +1,9 @@
 <div class="row-fluid">
   <div class="span12" id="message">
-    <%= simple_form_for @reminder, url: { action: "confirm" }  do |f| %>
+    <%= simple_form_for @reminder, :url => reminders_new_confirm_path  do |f| %>
       
       <% if @reminder.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
-
-          <ul>
-          <% @reminder.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-          </ul>
-        </div>
+        <%= render 'form_errors' %>
       <% end %>
   <%= f.input :recipient_id, as: :hidden %><!-- adds the recipient_id as a param so we can add it manually -->
 
