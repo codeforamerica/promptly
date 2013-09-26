@@ -12,6 +12,7 @@ class Notifier
     end
 
     def log
+      binding.pry
       @conversation = Conversation.new({
         date: DateTime.now,
         message: response.body,
@@ -19,7 +20,7 @@ class Notifier
         from_number: response.from,
         message_id: response.sid,
         status: response.status,
-        batch_id: batch_id
+        batch_id: @batch_id
       })
       @conversation.recipients << @recipient
       @conversation.save
