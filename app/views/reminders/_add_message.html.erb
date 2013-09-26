@@ -2,22 +2,28 @@
   <span class="aquaHighlight">Message</span>
 </div>
 
-<table class="table table-bordered">
-  <tr>
-    <th></th>
-    <th>Message text</th>
-    <th>Date Created</th>
-    <th>Date Updated</th>
-  </tr>
-  <% Message.all.each do |message| %>
-  <tr>
-    <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-checkbox' %></td>
-    <td><%= message.message_text %></td>
-    <td><%= message.created_at %></td>
-    <td><%= message.updated_at %></td>
-  </tr>
-  <% end %>
-</table>
+<div class="span12">
+  <table class="table table-bordered datatable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Message text</th>
+        <th>Date Created</th>
+        <th>Date Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Message.all.each do |message| %>
+      <tr>
+        <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-checkbox' %></td>
+        <td><%= message.message_text %></td>
+        <td><%= message.created_at %></td>
+        <td><%= message.updated_at %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <p>Need a new message? <a class="btn" data-toggle="modal" data-target="#new-message" href="#new-message">Create new message</a>
 
