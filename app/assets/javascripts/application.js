@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker/core
+//= require dataTables/jquery.dataTables
 //= require morris.min
 //= require graphs
 //= require_tree .

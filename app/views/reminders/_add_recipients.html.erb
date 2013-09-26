@@ -2,7 +2,7 @@
   <span class="aquaHighlight">Recipients</span>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered datatable">
   <thead>
     <tr>
       <th></th>
@@ -11,6 +11,8 @@
       <th>Created</th>
       <th>Updated</th>
     </tr>
+  </thead>
+  <tbody>
     <% Group.all.each do |group| %>
     <tr>
       <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
@@ -20,6 +22,7 @@
       <td><%= group.updated_at %></td>
     </tr>
     <% end %>
+  </tbody>
 </table>
 
 <p>Need to add different recipients?
