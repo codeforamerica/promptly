@@ -1,21 +1,26 @@
 class Notifier
 
   class Logger
-    def initialize(response, recipient)
+    def initialize(response, recipient, batch_id)
       @response = response
       @recipient = recipient
+      @batch_id = batch_id
     end
 
-    def self.log(response, recipient)
-      new(response, recipient).log
+    def self.log(response, recipient, batch_id)
+      new(response, recipient, batch_id).log
     end
 
     def log
+      binding.pry
       @conversation = Conversation.new({
         date: DateTime.now,
-        message: response[:body],
-        to_number: response[:to],
-        from_number: response[:from]
+        message: response.body,
+        to_number: response.to,
+        from_number: response.from,
+        message_id: response.sid,
+        status: response.status,
+        batch_id: @batch_id
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -28,36 +33,25 @@ class Notifier
     
   end
 
-  def initialize(recipient, smsmessage)
-    @recipient, @smsmessage = recipient, smsmessage
+  def initialize(recipient, smsmessage, batch_id)
+    @recipient, @smsmessage, @batch_id = recipient, smsmessage, batch_id
   end
 
-  def self.perform(recipient, smsmessage)
-    new(recipient, smsmessage).perform
+  def self.perform(recipient, smsmessage, batch_id)
+    new(recipient, smsmessage, batch_id).perform
   end
 
   def perform
-    Logger.log(attributes, recipient)
-    client.account.sms.messages.create(attributes)
+    the_message = client.account.sms.messages.create(attributes)
+    Logger.log(the_message, recipient, batch_id)
   end
 
   def attributes
     {
       from: from,
       to: to,
-      body: body
+      body: body,
     }
-  end
-
-   def self.notification_add(recipient, sent_date, job_id)
-    recipient.reminders.each do |reminder|
-      @notification = Notification.new
-      @notification.reminder_id = reminder.id
-      @notification.recipient_id = recipient.id
-      @notification.sent_date = sent_date
-      @notification.job_id = job_id
-    end
-      @notification.save
   end
 
   private
@@ -77,6 +71,9 @@ class Notifier
     @smsmessage
   end
 
+  def batch_id
+    @batch_id
+  end
 
   def account_sid
     ENV["TWILIO_SID"]

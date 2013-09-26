@@ -1,57 +1,54 @@
-@import "colors";
+@import "bootstrap";
+@import "bootstrap-responsive";
+@import "constants";
+@import "placeholder";
+@import "navbar";
+@import "charts";
+@import "buttons";
+@import "sidebar";
+@import "fonts";
 
-//Fonts
-$headerFont: 'Open Sans Condensed', sans-serif;
-$bodyFont: 'Open Sans', sans-serif;
-
-$linkColor: $blue;
-$placeholderText: $tan;
-
-$navbarBackground: $blue;
-$navbarBackgroundHighlight: $darkBlue;
-$navbarBrandColor: $white;
-$navbarText: $white;
-$navbarBrandColor: $white;
-$navbarLinkColor: darken($white, 5%);
-$navbarLinkColorHover: $white;
-$navbarLinkColorActive: $white;
-$navbarLinkBackgroundHover: $navbarBackground;
-$navbarLinkBackgroundActive: $darkBlue;
-
-$btnPrimaryBackground: $darkBlue;
-$btnPrimaryBackgroundHighlight: $darkBlue;
-
-
+//bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
-	font-family: $headerFont !important;
-}
-body {
-	font-family: $bodyFont !important;
+	font-family: $headerFont;
 }
 
-.navbar-inner {
-	background-color: $navbarBackground;
-	border-radius: 0px !important;
-	background-image: none !important;
-	.brand {
-		text-shadow: none;
-		font-weight: 500;
-		font-size: 32px;
+body {
+	font-family: $bodyFont;
+	background-color: $lightGray;
+}
+
+input {
+	@include input-placeholder {
+		color: #e0e0e0;
+		font-style: italic;
 	}
 }
 
-.footer {
-	text-align: center;
-	padding: 30px 0;
-	margin-top: 70px;
-	border-top: 1px solid #e5e5e5;
-	background-color: #f5f5f5;
+.controls select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	border-radius: 0px;
 }
 
+.control-group {
+	margin-bottom: 0px;
+}
+
+.lbl {
+	background-color: $lightGray;
+	font-weight: bold;
+}
+
+//Custom styles
+
 .login {
-	// padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
+	height: $loginHeight;
 
 	a {
+		color: #fff;
+	}
+
+	p {
 		color: darken(#FFF, 5%);
 		padding: 0 0 0 0;
 	}
@@ -62,6 +59,20 @@ body {
 	float: right;
 }
 
+#main {
+	background-color: $white;
+	padding-bottom: 70px;
+	padding-top: 20px;
+}
+
+.footer {
+	text-align: center;
+	padding: 30px 0;
+	margin-top: 0px;
+	border-top: 1px solid #e5e5e5;
+	background-color: $white;
+}
+
 .dumbPadding {
 	padding: 10px 0px;
 }
@@ -69,54 +80,99 @@ body {
 .greenHighlight {
 	background: $green;
 	color: $white;
-	padding: 0px 15px;
+	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
-	top: 2px;
-	font-size: 18px;
+	top: 0px;
+	font-size: 16px;
 	font-family: $headerFont;
 }
 
+.aquaHighlight {
+	background: $darkerAqua;
+	color: $white;
+	padding: 1px 15px;
+	text-transform: uppercase;
+	position: relative;
+	top: 0px;
+	font-size: 16px;
+>>>>>>> develop
+	font-family: $headerFont;
+}
+
+.grayHighlight {
+	background: $lightGray;
+	color: darken($lightGray, 40);
+	padding: 4px 15px;
+	text-transform: uppercase;
+	position: relative;
+	font-size: 16px;
+	font-family: $headerFont;
+}
+
+
 // This positioning is super hacky. *****************************************
 .headerGray {
-	background: darken($lightGray, 40);
-	color: $white;
-	padding: 2px 5px;
+	background: $darkGray;
+	color: $lightGray;
+	padding: 10px 15px 10px;;
+	margin: 0px 0px;
+	border-bottom: 1px solid $lightGray;
 }
 
 .mainHeaderGreen {
 	background: $lightGreen;
 	margin-bottom: 2px;
+	padding: 2px 0px;
+}
+
+.mainHeaderAqua {
+	background: $aqua;
+	margin-bottom: 2px;
+	padding: 2px 0px;
+}
+
+.mainHeaderGray {
+	background: darken($lightGray, 20);
+	padding: 4px 0;
+	margin-bottom: 10px;
 }
 
 .messageMain {
 	display: none;
 }
+
+.pageHeader {
+	// fix this positioning 
+	margin: -5px 25px 35px;
+}
+
 .row-fluid [class*="span"] {
-	min-height: 25px !important;
+	min-height: 25px;
+}
+// Over-riding .span* styles so the positioning works out.
+
+.recentReminder {
+	padding: 10px 0 10px 0;
+
+	table {
+		margin: 0 0 0 0;
+	}
 }
 
-.sidebar {
-	background: $lightGray;
-	text-transform: uppercase;
-	font-family: $headerFont;
-	font-size: 14px;
-}
-
-.sidebarHeader {
-	background: darken($lightGray, 20);
-	// padding: 5px;
-	margin-bottom: 20px;
-	min-height: 15px;
+.tableAqua {
+	border-left: 5px solid $aqua;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
 }
 
 .tableGreen {
 	border-left: 5px solid $green;
+	margin-bottom: 0px;
 	tbody {
 		border-bottom: 1px solid darken($lightGray, 10);
-	}
-	td, th{
-		border: none !important;
 	}
 }
 
@@ -138,6 +194,61 @@ body {
 	}
 }
 
+.messagetext {
+	display: block;
+	margin-top: ($baseLineHeight/2);
+}
 
-@import "bootstrap";
-@import "bootstrap-responsive";
+.characterCount {
+	color: $darkGray;
+	margin-bottom: 20px;
+}
+
+
+//******************
+// Recipient Page
+//******************
+
+@mixin conversations {
+	padding: ($baseLineHeight/2);
+	margin: $baseLineHeight/4 0;
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.conversation {
+	margin-top: 20px; // in order to clear the heading bar
+	strong {
+		color: $darkGray;
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+.conversation-self {	
+	background-color: $lightGray;
+	@include conversations;
+
+	> .avatar {
+	float: left !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight $baseLineHeight/2 $baseLineHeight/2;
+	overflow: hidden;
+	}
+}
+
+.conversation-recipient {
+	> .avatar {
+	float: right !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight;
+	overflow: hidden;
+	}
+}
+
+.queued {
+	padding-top: $baseLineHeight*2;
+}

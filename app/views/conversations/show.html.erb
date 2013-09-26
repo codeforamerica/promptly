@@ -18,6 +18,11 @@
   <%= @conversation.from_number %>
 </p>
 
+<p>
+	<b>Status:</b>
+  <%= @conversation.status %>
+</p>
+
 
 <%= link_to 'Edit', edit_conversation_path(@conversation) %> |
 <%= link_to 'Back', conversations_path %>

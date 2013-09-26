@@ -1,5 +1,7 @@
 RACK_ENV=development
-TWILIO_NUMBER=?
-TWILIO_SID=?
-TWILIO_TOKEN=?
-DATABASE_URL=postgres://<username>@localhost/landshark
+TWILIO_NUMBER=[your twilio phone number here]
+TWILIO_SID=[your twilio secret id here]
+TWILIO_TOKEN=[your twilio token here]
+DATABASE_URL=[your database url here]
+DEVISE_EMAIL=[the email you want to be used in Devise::Mailer]
+SECRET_TOKEN=[your devise secret token here]

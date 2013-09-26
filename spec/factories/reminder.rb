@@ -3,9 +3,6 @@ FactoryGirl.define do
   factory :reminder do
     name "test reminder"
     message_text "test reminder"
-		report { FactoryGirl.create(:report) }
-    program { FactoryGirl.create(:program) }
-    # recipients {[FactoryGirl.create(:recipient)]}
-
+    recipients {|t| [t.association(:recipient)] }
   end
 end

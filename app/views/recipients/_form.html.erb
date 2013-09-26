@@ -1,4 +1,4 @@
-<%= form_for(@recipient) do |f| %>
+<%= simple_form_for @recipient  do |f| %>
   <% if @recipient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
@@ -11,39 +11,10 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :phone, :class => 'control-label'%>
-      <div class="controls">
-        <%= f.text_field :phone %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.label :reminder_ids, "Available reminders", :class => 'control-label' %>
-      <div class="controls">
-        <%= f.collection_select :reminder_ids, Reminder.all, :id, :name, {:multiple => true, :rows=>5, :prompt => 'Select a reminder'} %>
-      </div>
-    </div>
-  </div>
-  <div class="field">
-    <div class="control-group">
-      <%= f.fields_for :notifications do |builder| %>
-        <%= builder.label :sent_date, :class => 'control-label' %>
-        <div class="control-group">
-        <%= builder.datetime_select :sent_date,{:start_year => Time.now.year,
-          :use_short_month => false,
-          :ampm => true,
-          :order => [:month, :day, :year],
-          :prompt => {:month => 'Month', :day => 'Day', :year => 'Year', :hour => 'Hour', :minute => 'Minute'}},
-          {:class => 'year',
-          :id => 'sent_date'} %>
-        </div>
-      <% end %>
-    </div>
-  </div>
+  <%= f.input :phone, required: true %>
+  <%= f.input :name, required: false %>
+
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
-  </div>
+  </div>  
 <% end %>

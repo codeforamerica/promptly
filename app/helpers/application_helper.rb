@@ -1,6 +1,22 @@
 module ApplicationHelper
+
+  def is_active?(page_name)
+    # binding.pry
+    "active" if current_controller?(page_name)
+  end
   
+  def link_to_add_form_tags(param_name, tag_type)
+    fields = tag_type 
+    link_to(name, '#', class: "add_fields btn btn-default btn-small", data: {id: id, fields: fields.gsub("\n", "")})
+  end
+
   def link_to_add_fields(name, f, association, child_association = nil)
+    puts f
+    puts f.object.inspect
+    puts f.object.class.inspect
+    puts f.object.class.reflect_on_association(association).inspect
+    puts f.object.class.reflect_on_association(association).klass.inspect
+
     new_object = f.object.class.reflect_on_association(association).klass.new
 
     if child_association
@@ -15,4 +31,22 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields btn btn-default btn-small", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def countAggregateMessages(conversations, notifications)
+    return conversations + notifications
+  end
+
+  def current_controller?(c)
+    controller.controller_name == c
+  end
+
+  def chart_data(start_date, end_date = Date.today, date_field, model)
+    (start_date..end_date).map do |date|
+      {
+        date: date.to_s(:date_format),
+        number_sent: model.where("#{date_field} = ?", date).count
+      }
+    end
+  end
+
 end

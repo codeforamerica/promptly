@@ -1,27 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="row-fluid">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Phone:</b>
-  <%= @recipient.phone %>
-</p>
+  <h1>
+    <%= number_to_phone(@recipient.phone, :area_code => true) %>
+  </h1>
+</div>
 
-  <ul class="unstyled">
-    <%= render(:partial => 'notifications', :collection => @recipient.notifications, :as => :notification) || 'You have no reminders' %>
-  </ul>
-<p>
-<b>Reminders:</b>
-  <% @recipient.reminders.each do |reminder| %>
-    <p><%= reminder.name %></p>
-      <p>Reminder message: <%= reminder.message_text %></p>
-  <% end %>
-</p>
-  <b>Conversations:</b>
-  <% @recipient.conversations.each do |conversation| %>
-    <p>Date sent: <%= conversation.date.to_s(:date_format) %>
-    <p>To number: <%= conversation.to_number %></p>
-    <p>Message: <%= conversation.message %></p>
-  <% end %>
+<div class="row-fluid">
 
+  <div class="span8">
+    <div class="span12 mainHeaderAqua">
+      <span class="aquaHighlight">Recipient History</span>
+    </div>
+    <div class="conversation">
+      <%= render(:partial => 'show_conversation', :collection => @recipient.conversations, :as => :conversation) || 'No messages.' %>
+    </div>
+  </div>
 
-<%= link_to 'Edit', edit_recipient_path(@recipient) %> |
-<%= link_to 'Back', recipients_path %>
+  <div class="span4 sidebar">
+    <div class="span12 mainHeaderAqua">
+      <span class="aquaHighlight">Queued Reminders</span>
+    </div>
+    <div class="queued">
+      <%= render(:partial => 'queued_reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,44 @@
+<div class="mainHeaderAqua">
+  <span class="aquaHighlight">Message</span>
+</div>
+
+<div class="span12">
+  <table class="table table-bordered datatable">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Message text</th>
+        <th>Date Created</th>
+        <th>Date Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Message.all.each do |message| %>
+      <tr>
+        <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-checkbox' %></td>
+        <td><%= message.message_text %></td>
+        <td><%= message.created_at %></td>
+        <td><%= message.updated_at %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<p>Need a new message? <a class="btn" data-toggle="modal" data-target="#new-message" href="#new-message">Create new message</a>
+
+<div class="modal hide fade" id="new-message" tab-index="-1" role="dialog" aria-labelledby="new-message-modal" aria-hidden="true">
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h3>Create New Message</h3>
+  </div>
+  <div class="modal-body">
+    <%= label_tag "Add New Message:" %>
+    <%= text_area_tag 'message', nil, rows: 15, class: "span12", id: "new-message-text-area" %>
+
+  </div>
+  <div class="modal-footer">
+    <a class="btn btn-primary" id="individual-recipients-submit">Save Message</a>
+    <a href="#" class="btn">Cancel</a>
+  </div>
+</div>

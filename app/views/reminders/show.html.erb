@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Name:</b>
-  <%= @reminder.name %>
-</p>
-<p>
-  <b>Reminder text:</b>
-  <%= @reminder.message_text %>
-</p>
-
-<p>
-
-<%= render :partial => "programs", :collection => @program || "No programs yet." %>
-<%= render "reports" %>
-
-
-<%= link_to 'Edit', edit_reminder_path(@reminder) %> |
-<%= link_to 'Back', reminders_path %>
+<div class="container">
+	<div class="row-fluid dumbPadding">
+		<div class="span12 mainHeaderGreen">
+			<span class="greenHighlight">Reminder <%= @reminders.first.name %></span>
+		</div>
+	</div>
+  <div class="row-fluid">
+  	<div class="span8">
+		<p>On <%= @reminders.first.send_date.to_s(:date_only) %> at <%= @reminders.first.send_date.to_s(:time_only) %> the message: </p>
+		<blockquote><%= Message.find(@reminders.first.message_id).message_text %></blockquote>
+		<p>will be sent to <%= pluralize(@reminders.count, 'recipient') %>.</p>
+		<h5>Recipient list</h5>
+		<% @reminders.each do |reminder| %>
+		<div>
+			<span>
+			<%= link_to number_to_phone(reminder.recipient.phone, :area_code => true), reminder.recipient %>
+			</span>
+		</div>
+			<% end %>
+	</div>
+	</div>
+		<div>
+			<%= link_to 'Back', reminders_path, class: 'btn btn-default' %>
+		</div>
+	</div>
+</div>

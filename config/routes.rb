@@ -1,26 +1,43 @@
 Landshark::Application.routes.draw do
-  devise_for :users
 
-  resources :messages
+  root :to => 'pages#splash'
+  
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  get '/admin' => 'home#index'
+  # get '/admin/users/new' => 'users#new'
+  # get '/users/sign_up' => 'registrations#new'
 
-  get "home/index"
-  root :to => 'home#index'
-
-  resources :recipients do
-    collection { post :import }
+  scope "/admin" do
+    resources :users
+    get '/dashboard' => 'home#index'
+    resources :recipients
+    resources :conversations
+    resources :groups
+    resources :messages
+    match '/reminder_imports/review' => 'reminder_imports#review'
+    resources :reminder_imports
+    match '/reminders/new' => 'reminders#new'
+    post '/reminders/new/confirm' => 'reminders#confirm'
+    get '/reminders/:batch_id/edit' => 'reminders#edit'
+    get '/reminders/:batch_id' => 'reminders#show' 
+    put '/reminders/:batch_id/edit' => 'reminders#update'
+    post '/reminders/:batch_id/edit' => 'reminders#update'
+    delete '/reminders/:batch_id' => 'reminders#destroy'
+    resources :reminders
   end
 
+  #project page
+  match '/hsa' => 'pages#hsa'
+  match '/documents' => 'pages#documents'
+  match '/calwin' => 'pages#calwin'
 
-  resources :conversations
-
-  resources :reports
-
-  resources :programs
-
-  resources :reminders
-
-  match 'text' => 'text#receive_text_message', :as => 'receive_message'
-
+  #autoresponse
+  match '/handle-incoming-sms' => 'auto_response#handle_incoming_sms'
+  match '/handle-incoming-call' => 'auto_response#handle_incoming_call'
+  match '/handle-input' => 'auto_response#handle_input'
+  match '/english-response' => 'auto_response#english_response'
+  match '/spanish-response' => 'auto_response#spanish_response'
+  match '/cantonese-response' => 'auto_response#cantonese_response'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
