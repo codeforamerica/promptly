@@ -1,0 +1,14 @@
+<h2>Register User</h2>
+ 
+<%= form_for(@user) do |f| %>
+ 
+  <%= render :partial => 'user_fields', :locals => { :f => f } %>
+ 
+  <p><%= f.label :password %></p>
+  <p><%= f.password_field :password %></p>
+ 
+  <p><%= f.label :password_confirmation %></p>
+  <p><%= f.password_field :password_confirmation %></p>
+ 
+  <p><%= f.submit "Register" %></p>
+<% end %>

@@ -25,3 +25,6 @@
 
 # Ignore temp files
 *~
+
+# Ignore test coverage
+/coverage

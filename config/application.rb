@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'csv'
 require 'rails/all'
+require 'digest/md5'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -62,5 +63,6 @@ module Landshark
 
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.initialize_on_precompile = false
+    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
   end
 end

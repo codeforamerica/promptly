@@ -14,13 +14,11 @@ gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'jquery-ui-rails'
 gem 'role_model'
-gem 'sass'
-gem 'sass-rails'
-gem 'compass'
-gem 'compass-rails'
-gem 'bootstrap-sass'
 gem 'pg'
 gem 'simple_form'
+gem 'bootstrap-datepicker-rails'
+gem 'whenever'
+gem 'phony_rails'
 
 group :development, :test do
   gem 'pry'
@@ -30,6 +28,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'database_cleaner'
   gem 'daemons'
+  gem 'simplecov'
 end
 
 # Gems used only for assets and not required
@@ -38,7 +37,12 @@ group :assets do
   gem 'uglifier', '1.2.3'
   gem 'font-awesome-sass-rails'
   gem 'coffee-rails'
-  gem 'bootstrap-datepicker-rails'
+  gem 'sass'
+  gem 'sass-rails'
+  gem 'compass'
+  gem 'compass-rails'
+  gem 'bootstrap-sass'
+  gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
 end
 
 group :test do
@@ -51,10 +55,8 @@ group :test do
 end
 
 # Only try to install these gems on staging/prod servers
-if ENV['RACK_ENV'] == 'staging' or ENV['RACK_ENV'] == 'production'
-  group :production do
+  # group :production do
     # gem 'tiny_tds'
     # gem 'activerecord-sqlserver-adapter'
     # gem 'therubyracer'
-  end
-end
+  # end

@@ -1,74 +1,26 @@
 <div class="container">
 	<div class="row-fluid dumbPadding">
 		<div class="span12 mainHeaderGreen">
-			<span class="greenHighlight">Reminder</span>
+			<span class="greenHighlight">Reminder <%= @reminders.first.name %></span>
 		</div>
 	</div>
   <div class="row-fluid">
   	<div class="span8">
-			
-<!-- 			<table class="table table-bordered">
-				<tr>
-					<td>Reminder name</td>
-					<td><%= @reminder.name %></td>
-				</tr>
-				<tr>
-					<td>Reminder Text</td>
-					<td><%= @reminder.message_text %></td>
-				</tr>
-				<tr>
-					<td>Program</td>
-					<td><%= render :partial => "programs", :collection => @program || "No programs yet." %></td>
-				</tr>
-				<tr>
-					<td>Report</td>
-					<td><%= render "reports" %></td>
-				</tr>
-				<tr>
-					<td>Date Created</td>
-					<td><%= @reminder.created_at %></td>
-				</tr>
-				<tr>
-					<td>Date Updated</td>
-					<td><%= @reminder.updated_at || "No updates" %></td>
-				</tr>
-			</table> -->
-
-			<div class="mainHeaderGray">
-				<span class="grayHighlight">Reminder Preview</span>
-			</div>
-			<p><b><%= @reminder.name %></b></p>
-			<p>
-			  <span class="messagetext well"><%= @reminder.message_text %></span>
-			</p>
-
-
-<!-- 		</div>
-
-		<div class="span4">
-			<div class="sidebar"> -->
-				<div class="mainHeaderGray">
-					<span class="grayHighlight">Program and Report</span>
-				</div>
-				<p><%= render :partial => "programs", :collection => @program || "No programs yet." %></p>
-				<%= render "reports" %>
-
-				<div class="mainHeaderGray">
-					<span class="grayHighlight">Date Created</span>
-				</div>
-				<p><%= @reminder.created_at %></p>
-
-				<div class="mainHeaderGray">
-					<span class="grayHighlight">Date Updated</span>
-				</div>
-				<p><%= @reminder.updated_at || "No updates" %></p>
-			</div>
-
-			</div>
-			<div>
-				<%= link_to 'Edit Reminder', edit_reminder_path(@reminder), :class => 'btn btn-primary' %>
-				<%= link_to 'Back', reminders_path %>
-			</div>
+		<p>On <%= @reminders.first.send_date.to_s(:date_only) %> at <%= @reminders.first.send_date.to_s(:time_only) %> the message: </p>
+		<blockquote><%= Message.find(@reminders.first.message_id).message_text %></blockquote>
+		<p>will be sent to <%= pluralize(@reminders.count, 'recipient') %>.</p>
+		<h5>Recipient list</h5>
+		<% @reminders.each do |reminder| %>
+		<div>
+			<span>
+			<%= link_to number_to_phone(reminder.recipient.phone, :area_code => true), reminder.recipient %>
+			</span>
+		</div>
+			<% end %>
 	</div>
-
+	</div>
+		<div>
+			<%= link_to 'Back', reminders_path, class: 'btn btn-default' %>
+		</div>
+	</div>
 </div>

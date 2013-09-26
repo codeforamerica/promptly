@@ -1,0 +1,13 @@
+<div class="conversation-<%= which_sender(conversation.from_number) %>">
+	<% if which_sender(conversation.from_number) == "self" %>
+		<div class="avatar">
+			<i class="icon-fire"></i>
+		</div>
+	<% else %>
+		<div class="avatar">
+			<i class="icon-user"></i>
+		</div>
+	<% end %>
+	<p><strong><%= conversation.date.to_s(:date_format) %></strong></p>
+	<p><%= conversation.message %></p>
+</div>

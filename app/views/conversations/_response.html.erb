@@ -1,0 +1,20 @@
+<% if @responses != [] %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Message content</th>
+      <th>From phone</th>
+      <th>Sent date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @responses.each do |response| %>
+    <tr>
+      <td><%= response.message %></td>
+      <td><%= number_to_phone(response.from_number, :area_code => true) %></td>
+      <td><%= response.date.to_s(:date_format) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

@@ -12,10 +12,7 @@
   <% end %>
 
   <%= f.input :phone, required: true %>
-  <%= f.input :reminder_ids, :label => "Available reminders", :collection => Reminder.all, :prompt => "Choose a reminder", :multiple => true %>
-  <%= f.simple_fields_for :notifications do |builder| %>
-    <%= builder.text_field :sent_date, :id => 'recipientDate' %>
-  <% end %>
+  <%= f.input :name, required: false %>
 
   <div class="actions">
     <%= f.submit :class => 'btn btn-primary' %>
