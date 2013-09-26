@@ -9,7 +9,7 @@
 CalFresh (Food Stamps): Your CalFresh benefits may stop at the end of this month. Questions? Call (415) 558-1001.
 
 ## Spanish
-CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinuarse al final de este mes. ¿Preguntas? Llame al (415) 558-4159.
+CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinuarse al final de este mes. ¿Preguntas? Llame al (415) 558-1001.
 
 ## Chinese
 （糧食券）：你的糧食券福利可能會在本月底停止。有問題嗎？請致電 (415) 558-1001。
@@ -17,14 +17,14 @@ CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinu
 # Auto sms response
 
 ## English (only)
-We can't reply back by text right now. If you need help, give us a call at (415) 558-4159. If you don't want these messages, reply with STOP.
+We can't reply back by text right now. If you need help, give us a call at (415) 558-1001. If you don't want these messages, reply with STOP.
 
 # Auto voice response
 
 ## English
 Hi, this is CalFresh, or Food Stamps. We sent you a text message because you enrolled in our text message service. If you do not want to receive any more messages, reply with STOP to the text message, or give us a call at (415) 558-4159. If you need help, please call CalFresh at (415) 558-4159. We will repeat the numbers, so grab a pen.
 
-To stop receiving these text messages or for help, call (415) 558-4159. Thanks and have a splendid day.
+To stop receiving these text messages or for help, call (415) 558-1001. Thanks and have a splendid day.
 
 ## Spanish (different than English)
 Hola, este es la Agencia de Servicios Humanos de San Francisco. Le mandamos un mensaje de texto acerca de sus beneficios porque usted se inscribó para nuestro servicio de mensajería de texto. Si usted no quiere recibir más mensajes, mándenos un mensaje de texto con la palabra S T O P. Si tiene preguntas de CalFresh o Estampillas para Comida llámenos al (415) 558-1001. Una vez más, el teléfono de CalFresh es (415) 558-1001.
