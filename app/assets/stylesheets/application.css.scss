@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap-datepicker/core
- *= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+ *= require bootstrap-datepicker
  *= require morris
  *= require typicons/typicons.min
  *= require dataTables/jquery.dataTables.bootstrap
