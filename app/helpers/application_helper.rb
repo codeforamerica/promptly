@@ -5,6 +5,11 @@ module ApplicationHelper
     "active" if current_controller?(page_name)
   end
   
+  def link_to_add_form_tags(param_name, tag_type)
+    fields = tag_type 
+    link_to(name, '#', class: "add_fields btn btn-default btn-small", data: {id: id, fields: fields.gsub("\n", "")})
+  end
+
   def link_to_add_fields(name, f, association, child_association = nil)
     puts f
     puts f.object.inspect
