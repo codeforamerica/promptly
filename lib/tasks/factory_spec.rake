@@ -1,15 +1,8 @@
-require 'spec_helper'
+# if defined?(RSpec)
+#   desc 'Run factory specs.'
+#   RSpec::Core::RakeTask.new(:factory_specs) do |t|
+#     t.pattern = './spec/factories_spec.rb'
+#   end
+# end
 
-describe FactoryGirl do
-  EXCEPTIONS = %w(base_address base_batch bad_shipping_address shipping_method_rate bad_billing_address)
-  FactoryGirl.factories.each do |factory|
-    next if EXCEPTIONS.include?(factory.name.to_s)
-    describe "The #{factory.name} factory" do
-
-      it 'is valid' do
-        instance = build(factory.name)
-        instance.must_be :valid?
-      end
-    end
-  end
-end
+# task spec: :factory_specs
