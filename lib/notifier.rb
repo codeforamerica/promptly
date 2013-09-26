@@ -1,13 +1,14 @@
 class Notifier
 
   class Logger
-    def initialize(response, recipient)
+    def initialize(response, recipient, batch_id)
       @response = response
       @recipient = recipient
+      @batch_id = batch_id
     end
 
-    def self.log(response, recipient)
-      new(response, recipient).log
+    def self.log(response, recipient, batch_id)
+      new(response, recipient, batch_id).log
     end
 
     def log
@@ -18,7 +19,7 @@ class Notifier
         from_number: response.from,
         message_id: response.sid,
         status: response.status,
-        batch_id: response.batch_id
+        batch_id: batch_id
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -41,7 +42,7 @@ class Notifier
 
   def perform
     the_message = client.account.sms.messages.create(attributes)
-    Logger.log(the_message, recipient)
+    Logger.log(the_message, recipient, batch_id)
   end
 
   def attributes
@@ -49,7 +50,6 @@ class Notifier
       from: from,
       to: to,
       body: body,
-      batch_id: batch_id
     }
   end
 
