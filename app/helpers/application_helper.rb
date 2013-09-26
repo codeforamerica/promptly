@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def is_active?(page_name)
     # binding.pry
-    "active" if params[:action] == page_name
+    "active" if current_controller?(page_name)
   end
   
   def link_to_add_form_tags(param_name, tag_type)

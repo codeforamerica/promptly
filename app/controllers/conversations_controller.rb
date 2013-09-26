@@ -5,8 +5,9 @@ class ConversationsController < ApplicationController
     @conversations = Conversation.all
     @responses = Conversation.where('status = ?', 'received')
     @undelivered = Conversation.where('status = ?', 'failed')
+    unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
+    @unsubscribed = Conversation.where('message = ?', unsubscribed)
     @sent_count = Conversation.grouped_sent_conversations
-    
 
     respond_to do |format|
       format.html # index.html.erb

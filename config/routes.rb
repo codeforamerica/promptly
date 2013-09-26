@@ -1,10 +1,11 @@
 Landshark::Application.routes.draw do
 
-  get "home/index"
   root :to => 'pages#splash'
   
   devise_for :users, :controllers => {:registrations => "registrations"}
-    get '/admin' => 'home#index'
+  get '/admin' => 'home#index'
+  # get '/admin/users/new' => 'users#new'
+  # get '/users/sign_up' => 'registrations#new'
 
   scope "/admin" do
     resources :users
@@ -21,6 +22,7 @@ Landshark::Application.routes.draw do
     get '/reminders/:batch_id' => 'reminders#show' 
     put '/reminders/:batch_id/edit' => 'reminders#update'
     post '/reminders/:batch_id/edit' => 'reminders#update'
+    delete '/reminders/:batch_id' => 'reminders#destroy'
     resources :reminders
   end
 
@@ -28,6 +30,14 @@ Landshark::Application.routes.draw do
   match '/hsa' => 'pages#hsa'
   match '/documents' => 'pages#documents'
   match '/calwin' => 'pages#calwin'
+
+  #autoresponse
+  match '/handle-incoming-sms' => 'auto_response#handle_incoming_sms'
+  match '/handle-incoming-call' => 'auto_response#handle_incoming_call'
+  match '/handle-input' => 'auto_response#handle_input'
+  match '/english-response' => 'auto_response#english_response'
+  match '/spanish-response' => 'auto_response#spanish_response'
+  match '/cantonese-response' => 'auto_response#cantonese_response'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

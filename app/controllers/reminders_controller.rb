@@ -4,7 +4,7 @@ class RemindersController < ApplicationController
   
   def index
     @groups = Reminder.grouped_reminders
-    @sent = Conversation.all
+    @sent = Conversation.grouped_sent_conversations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class RemindersController < ApplicationController
   end
 
   def show 
-    @reminder = Reminder.where("batch_id=?", params[:batch_id])
+    @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:batch_id], DateTime.now)
   end
 
 
@@ -38,7 +38,6 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @groups = Group.where(:id => params[:group_ids])
     @individual_recipients = parse_phone_numbers(params[:individual_recipients])
-    @params = params
     
     if params[:message]
       message = Message.new(params[:message])
@@ -56,14 +55,16 @@ class RemindersController < ApplicationController
     if params[:group_ids] != "" 
       recipients = group_to_recipient_ids(params[:group_ids])
     end
-
   end
 
   def create
     @reminder = Reminder.new
 
-    params[:reminder][:recipient_id].each do |recipient|
-      Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
+    params[:reminder][:group_ids].each do |group|
+      @recipients = Group.find(group).recipients
+      @recipients.each do |recipient|
+        Reminder.create_new_recipients_reminders(recipient, params[:reminder][:send_date], params[:reminder][:send_time], Message.find(params[:reminder][:message_id]))
+      end
     end
 
     respond_to do |format|
@@ -80,20 +81,16 @@ class RemindersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
-      # if @reminder.update_attributes(params[:reminder])
-      #   format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
-      #   format.json { head :no_content }
-      # else
-      #   format.html { render action: "edit" }
-      #   format.json { render json: @reminder.errors, status: :unprocessable_entity }
-      # end
     end
   end
 
   def destroy
-    @reminder = Reminder.find(params[:id])
-    @reminder.destroy
-    @delay = Delayed::Job.find(@reminder.job_id)
+    @reminders = Reminder.where('batch_id=?', params[:batch_id])
+    @reminders.each do |reminder|
+      @delay = Delayed::Job.find(reminder.job_id)
+      @delay.destroy      
+      reminder.destroy
+    end
 
     respond_to do |format|
       format.html { redirect_to reminders_url }

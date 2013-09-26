@@ -16,6 +16,7 @@
 				<p> We're sending</p>
 				<div class="well">
 					<%= Message.find(params[:message_id]).message_text %>
+					<%= f.hidden_field :message_id, :value => Message.find(params[:message_id]).id %>
 				</div>
 
 				<% if params[:group_ids] != "" %>
@@ -23,6 +24,7 @@
 					<% @groups.each do |group| %>
 						<div class="well">
 							<%= group.name %>
+							<%= f.hidden_field :group_ids, :multiple => true, :value => group.id %>
 						</div>
 					<% end %>
 				<% end %>
@@ -42,9 +44,11 @@
 						<% end %>
 					</div>
 				<% end %>
+				<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
 
 				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
-
+				<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
+				<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 				<%= f.submit %>
 			
 			<% end %><!-- /form -->
