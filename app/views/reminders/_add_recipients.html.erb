@@ -2,28 +2,28 @@
   <span class="aquaHighlight">Recipients</span>
 </div>
 
-<table class="table table-bordered datatable" id="add-groups">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Group Name</th>
-      <th>Recipients</th>
-      <th>Created</th>
-      <th>Updated</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% Group.all.each do |group| %>
-    <tr>
-      <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
-      <td><%= group.name %></td>
-      <td><%= group.recipients.count %></td>
-      <td><%= group.created_at %></td>
-      <td><%= group.updated_at %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+  <table class="table table-bordered datatable" id="add-groups">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Group Name</th>
+        <th>Recipients</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Group.all.each do |group| %>
+      <tr>
+        <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
+        <td><%= group.name %></td>
+        <td><%= group.recipients.count %></td>
+        <td><%= group.created_at %></td>
+        <td><%= group.updated_at %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <p>Need to add different recipients?
 <a class="btn" data-toggle="modal" data-target="#individual-recipients" href="#individual-recipients">Add Recipients</a></p>
