@@ -55,10 +55,8 @@ group :test do
 end
 
 # Only try to install these gems on staging/prod servers
-if ENV['RACK_ENV'] == 'staging' or ENV['RACK_ENV'] == 'production'
-  group :production do
+  # group :production do
     # gem 'tiny_tds'
     # gem 'activerecord-sqlserver-adapter'
     # gem 'therubyracer'
-  end
-end
+  # end
