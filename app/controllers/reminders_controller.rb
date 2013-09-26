@@ -38,7 +38,6 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new
     @groups = Group.where(:id => params[:group_ids])
     @individual_recipients = parse_phone_numbers(params[:individual_recipients])
-    @params = params
     
     if params[:message]
       message = Message.new(params[:message])
@@ -59,11 +58,14 @@ class RemindersController < ApplicationController
   end
 
   def create
-    binding.pry
     @reminder = Reminder.new
 
-    params[:reminder][:recipient_id].each do |recipient|
-      Reminder.create_new_recipients_reminders(Recipient.find(recipient), params[:send_date], params[:send_time], Message.find(params[:reminder][:message_id]))
+    params[:reminder][:group_ids].each do |group|
+      @recipients = Group.find(group).recipients
+      @recipients.each do |recipient|
+      binding.pry
+        Reminder.create_new_recipients_reminders(recipient, params[:reminder][:send_date], params[:reminder][:send_time], Message.find(params[:reminder][:message_id]))
+      end
     end
 
     respond_to do |format|

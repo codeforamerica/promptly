@@ -20,13 +20,14 @@
 				</div>
 
 				<% if params[:group_ids] != "" %>
+				<% group_test =[] %>
 					<p>To</p>
 					<% @groups.each do |group| %>
 						<div class="well">
 							<%= group.name %>
+							<%= f.hidden_field :group_ids, :multiple => true, :value => group.id %>
 						</div>
 					<% end %>
-					<%= hidden_field :group_ids, :value => params[:group_ids] %>
 				<% end %>
 
 				<% if @individual_recipients.length > 1 %>
@@ -44,7 +45,7 @@
 						<% end %>
 					</div>
 				<% end %>
-				<%= f.hidden_field :recipient_ids, :value => params[:individual_recipients] %>
+				<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
 
 				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
 				<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
