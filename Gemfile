@@ -18,6 +18,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'whenever'
+gem 'phony_rails'
 
 group :development, :test do
   gem 'pry'
@@ -28,7 +29,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'daemons'
   gem 'simplecov'
-  gem 'phony_rails'
 end
 
 # Gems used only for assets and not required

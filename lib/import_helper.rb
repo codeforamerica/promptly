@@ -1,14 +1,14 @@
 class ImportHelper < ActiveRecord::Base
   
-  def self.update_or_create_group_from_db_table(db_url, table, group_name_id)
+  def self.update_or_create_group_from_db_table(db_url = "", table, group_name_id)
     puts "#{Time.now.to_formatted_s} - STARTING GROUP IMPORT
     Group: #{group_name_id}
     From DB: #{db_url}
     From table: #{table}"
     
     #connect to DB
-    puts "Connecting to external source."
-    establish_connection(ENV[db_url])
+    # puts "Connecting to external source."
+    # establish_connection(ENV[db_url])
     con = connection()
 
     #get SQL result
@@ -17,9 +17,9 @@ class ImportHelper < ActiveRecord::Base
     result = con.select_all(sql)
 
     #reconnect to rails DB
-    puts "Reconnecting to rails DB."
-    remove_connection
-    establish_connection(ENV['DATABASE_URL'])
+    # puts "Reconnecting to rails DB."
+    # remove_connection
+    # establish_connection(ENV['DATABASE_URL'])
 
     #save as array of phone number
     puts "Converting phone numbers to array."
