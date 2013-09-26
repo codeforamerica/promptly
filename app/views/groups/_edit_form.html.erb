@@ -23,7 +23,7 @@
       <%= f.text_area :description, rows: 3 %>
     </div>
   </div>
-    <%= f.text_area :phone, rows: 10, value: @group.recipients.each do |recipient| binding.pry recipient.phone end%>
+    <%= f.text_area :phone, rows: 10, value: phone_numbers %>
 
   <%= fields_for :recipient do |builder| %>
   <div class="control-group">
