@@ -14,8 +14,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker/core
-//= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require dateselector
 //= require reminders
 //= require morris.min
 //= require graphs

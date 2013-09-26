@@ -18,6 +18,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'whenever'
+gem 'phony_rails'
 
 group :development, :test do
   gem 'pry'
@@ -28,7 +29,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'daemons'
   gem 'simplecov'
-  gem 'phony_rails'
 end
 
 # Gems used only for assets and not required
@@ -55,10 +55,8 @@ group :test do
 end
 
 # Only try to install these gems on staging/prod servers
-if ENV['RACK_ENV'] == 'staging' or ENV['RACK_ENV'] == 'production'
-  group :production do
+  # group :production do
     # gem 'tiny_tds'
     # gem 'activerecord-sqlserver-adapter'
     # gem 'therubyracer'
-  end
-end
+  # end
