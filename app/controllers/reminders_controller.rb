@@ -55,7 +55,6 @@ class RemindersController < ApplicationController
     if params[:group_ids] != "" 
       recipients = group_to_recipient_ids(params[:group_ids])
     end
-    binding.pry
   end
 
   def create
