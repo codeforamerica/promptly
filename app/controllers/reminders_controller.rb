@@ -56,10 +56,10 @@ class RemindersController < ApplicationController
     if params[:group_ids] != "" 
       recipients = group_to_recipient_ids(params[:group_ids])
     end
-
   end
 
   def create
+    binding.pry
     @reminder = Reminder.new
 
     params[:reminder][:recipient_id].each do |recipient|
