@@ -12,7 +12,7 @@ CalFresh (Food Stamps): Your CalFresh benefits may stop at the end of this month
 CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinuarse al final de este mes. ¿Preguntas? Llame al (415) 558-4159.
 
 ## Chinese
-（糧食券）：你的糧食券福利可能會在本月底停止。有問題嗎？請致電（415）558-1001。
+（糧食券）：你的糧食券福利可能會在本月底停止。有問題嗎？請致電 (415) 558-1001。
 
 # Auto sms response
 
