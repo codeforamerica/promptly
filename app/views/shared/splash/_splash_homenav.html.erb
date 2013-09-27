@@ -13,7 +13,9 @@
 					  <span><%= link_to "Welcome, #{current_user.name}!", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %></span>
 					</div>
         <% else %>
-            <span><%= link_to "Sign in", new_user_session_path %> | <%= link_to "Sign up", new_user_registration_path %></span>
+        		<div class="login pull-right">
+            <span>Already have an account? <%= link_to "Sign in", new_user_session_path, :class => 'signin' %></span>
+          	</div>
         <% end %>
 		</div>
 	</div>
