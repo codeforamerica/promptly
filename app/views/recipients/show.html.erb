@@ -13,7 +13,7 @@
       <span class="aquaHighlight">Recipient History</span>
     </div>
     <div class="conversation">
-      <%= render(:partial => 'show_conversation', :collection => @recipient.conversations, :as => :conversation) || 'No messages.' %>
+      <%= render(:partial => 'shared/show_conversation', :collection => @recipient.conversations, :as => :conversation) || 'No messages.' %>
     </div>
   </div>
 
@@ -22,7 +22,7 @@
       <span class="aquaHighlight">Queued Reminders</span>
     </div>
     <div class="queued">
-      <%= render(:partial => 'queued_reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+      <%= render(:partial => 'shared/queued_reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
     </div>
   </div>
 

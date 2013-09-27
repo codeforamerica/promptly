@@ -5,7 +5,7 @@ module ApplicationHelper
     "active" if current_controller?(page_name)
   end
   
-  def link_to_add_modal(param_name, tag_type, class = nil, )
+  def link_to_add_modal(param_name, tag_type, options = nil)
     fields = content_tag(tag_type, name: param_name, id: param_name)
     link_to(name, '#', class: "add_modal btn", data: {id: id, fields: fields.gsub("\n", "")})
   end
