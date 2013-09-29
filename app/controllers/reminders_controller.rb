@@ -39,7 +39,7 @@ class RemindersController < ApplicationController
     @groups = Group.where(:id => params[:group_ids])
     @individual_recipients = parse_phone_numbers(params[:individual_recipients])
     
-    if params[:message]
+    if params[:message] != ""
       message = Message.new(params[:message])
       message.save
       params[:reminder][:message_id] = message.id.to_s

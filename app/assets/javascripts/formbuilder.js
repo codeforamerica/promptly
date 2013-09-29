@@ -12,27 +12,8 @@
 	});
 
 	function cancelClicked(event) {
-		$(this).hide()
-    $(this).('fieldset').remove();
-    // $('form #reminder_report_id').parentsUntil('.field').show();
-    // $('form .add_fields').show();
-    event.preventDefault();
-  }
-
-  // For creating modal fields.
-	$('form .add_modal').on('click', function(event) {
-		time = new Date().getTime();
-		regexp = new RegExp($(this).data('id'), 'g');
-		$(this).before($(this).data('fields').replace(regexp, time));
-		event.preventDefault();
 		$(this).hide();
-		// Lets the cancel button know about the extra fields.
-		$('form .cancel').on('click', cancelModal );
-	});
-
-	function cancelModal(event) {
-		$(this).hide()
-    $(this).prev('.modal').remove();
+    $(this).prev('fieldset').remove();
     // $('form #reminder_report_id').parentsUntil('.field').show();
     // $('form .add_fields').show();
     event.preventDefault();
@@ -40,7 +21,7 @@
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
   $('.dateSelect').datepicker({
-  	format: 'mm/dd/yyyy'
+  	format: 'mm/dd/yyyy';
   });
 
   $('#message_message_text').live('keyup keydown', function(e) {
@@ -58,7 +39,7 @@
 	);
   $('.editTime').live("click", function(){
 	$('#delivery_send_time').clone().attr('type','text').insertAfter('#delivery_send_time').prev().remove();
-	$('<label for="delivery_send_date">Delivery time</label>').insertBefore('#delivery_send_time')
+	$('<label for="delivery_send_date">Delivery time</label>').insertBefore('#delivery_send_time');
 	$('.defaultTime').remove();
   });
 });

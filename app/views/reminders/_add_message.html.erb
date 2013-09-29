@@ -29,16 +29,17 @@
 
 <div class="modal hide fade" id="new-message" tab-index="-1" role="dialog" aria-labelledby="new-message-modal" aria-hidden="true">
   <div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
+    <a class="close cancel-modal" data-dismiss="modal">&times;</a>
     <h3>Create New Message</h3>
   </div>
   <div class="modal-body">
-    <%= label_tag "Add New Message:" %>
-    <%= text_area_tag 'message', nil, rows: 15, class: "span12", id: "new-message-text-area" %>
-
+    <%= simple_fields_for @message do |message_fields| %>
+      <%= label_tag "Add New Message:" %>
+      <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { id: "new-message-text-area", class: "span12" } %>
+    <% end %>
   </div>
   <div class="modal-footer">
-    <a class="btn btn-primary" id="individual-recipients-submit">Save Message</a>
-    <a href="#" class="btn">Cancel</a>
+    <a class="btn btn-primary save-modal" id="individual-recipients-submit" data-dismiss="modal">Save Message</a>
+    <a href="#" class="btn cancel-modal" data-dismiss="modal">Cancel</a>
   </div>
 </div>
