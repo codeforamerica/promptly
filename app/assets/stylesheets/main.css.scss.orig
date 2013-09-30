@@ -80,6 +80,13 @@ input {
 .greenHighlight {
 	background: $green;
 	color: $white;
+<<<<<<< HEAD
+	padding: 0px 15px;
+	text-transform: uppercase;
+	position: relative;
+	top: 2px;
+	font-size: 18px;
+=======
 	padding: 1px 15px;
 	text-transform: uppercase;
 	position: relative;
@@ -152,12 +159,20 @@ input {
 }
 // Over-riding .span* styles so the positioning works out.
 
+<<<<<<< HEAD
+.sidebar {
+	background: $lightGray;
+	text-transform: uppercase;
+	font-family: $headerFont;
+	font-size: 14px;
+=======
 .recentReminder {
 	padding: 10px 0 10px 0;
 
 	table {
 		margin: 0 0 0 0;
 	}
+>>>>>>> develop
 }
 
 .tableAqua {
