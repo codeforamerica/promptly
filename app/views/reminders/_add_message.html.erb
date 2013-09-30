@@ -2,44 +2,46 @@
   <span class="aquaHighlight">Message</span>
 </div>
 
-<div class="span12">
-  <table class="table table-bordered datatable">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Message text</th>
-        <th>Date Created</th>
-        <th>Date Updated</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% Message.all.each do |message| %>
-      <tr>
-        <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-checkbox' %></td>
-        <td><%= message.message_text %></td>
-        <td><%= message.created_at %></td>
-        <td><%= message.updated_at %></td>
-      </tr>
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Message text</th>
+          <th>Date Created</th>
+          <th>Date Updated</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Message.all.each do |message| %>
+        <tr>
+          <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-radio' %></td>
+          <td><%= message.message_text %></td>
+          <td><%= message.created_at %></td>
+          <td><%= message.updated_at %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Need a new message? <a class="btn" data-toggle="modal" data-target="#new-message" href="#new-message">Create new message</a>
+
+  <div class="modal hide fade" id="new-message" tab-index="-1" role="dialog" aria-labelledby="new-message-modal" aria-hidden="true">
+    <div class="modal-header">
+      <a class="close cancel-modal" data-dismiss="modal">&times;</a>
+      <h3>Create New Message</h3>
+    </div>
+    <div class="modal-body">
+      <%= simple_fields_for @message do |message_fields| %>
+        <%= label_tag "Add New Message:" %>
+        <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { id: "new-message-text-area", class: "span12" } %>
       <% end %>
-    </tbody>
-  </table>
-</div>
-
-<p>Need a new message? <a class="btn" data-toggle="modal" data-target="#new-message" href="#new-message">Create new message</a>
-
-<div class="modal hide fade" id="new-message" tab-index="-1" role="dialog" aria-labelledby="new-message-modal" aria-hidden="true">
-  <div class="modal-header">
-    <a class="close cancel-modal" data-dismiss="modal">&times;</a>
-    <h3>Create New Message</h3>
-  </div>
-  <div class="modal-body">
-    <%= simple_fields_for @message do |message_fields| %>
-      <%= label_tag "Add New Message:" %>
-      <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { id: "new-message-text-area", class: "span12" } %>
-    <% end %>
-  </div>
-  <div class="modal-footer">
-    <a class="btn btn-primary save-modal" id="individual-recipients-submit" data-dismiss="modal">Save Message</a>
-    <a href="#" class="btn cancel-modal" data-dismiss="modal">Cancel</a>
+    </div>
+    <div class="modal-footer">
+      <a class="btn btn-primary save-modal" id="individual-recipients-submit" data-dismiss="modal">Save Message</a>
+      <a href="#" class="btn cancel-modal" data-dismiss="modal">Cancel</a>
+    </div>
   </div>
 </div>
