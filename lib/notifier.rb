@@ -12,7 +12,6 @@ class Notifier
     end
 
     def log
-      binding.pry
       @conversation = Conversation.new({
         date: DateTime.now,
         message: response.body,
