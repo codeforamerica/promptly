@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.integer  "job_id"
     t.string   "state"
     t.string   "session_id"
+    t.string   "group_ids"
   end
 
   create_table "reports", :force => true do |t|

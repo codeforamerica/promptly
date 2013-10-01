@@ -9,9 +9,7 @@ describe Notifier do
   it "has a valid recipient" do
     @recipient.should be_valid
   end
-  it "has one or many reports" do
-   @recipient.should have_and_belong_to_many(:reports)
-  end
+
   it "has valid message for each reminder" do
     @recipient.reminders.each do |reminder|
       reminder.message.should_not be_nil
