@@ -14,8 +14,6 @@ Landshark::Application.routes.draw do
     resources :conversations
     resources :groups
     resources :messages
-    match '/reminder_imports/review' => 'reminder_imports#review'
-    resources :reminder_imports
     match '/reminders/new' => 'reminders#new'
     post '/reminders/new/confirm' => 'reminders#confirm'
     get '/reminders/:batch_id/edit' => 'reminders#edit'
