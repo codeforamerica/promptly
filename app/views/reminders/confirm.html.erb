@@ -15,8 +15,8 @@
 
 				<p> We're sending</p>
 				<div class="well">
-					<%= Message.find(params[:message_id]).message_text %>
-					<%= f.hidden_field :message_id, :value => Message.find(params[:message_id]).id %>
+					<%= Message.find(params[:reminder][:message_id]).message_text %>
+					<%= f.hidden_field :message_id, :value => Message.find(params[:reminder][:message_id]).id %>
 				</div>
 
 				<% if params[:group_ids] != "" %>

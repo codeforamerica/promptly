@@ -12,7 +12,7 @@
 	});
 
 	function cancelClicked(event) {
-		$(this).hide()
+		$(this).hide();
     $(this).prev('fieldset').remove();
     // $('form #reminder_report_id').parentsUntil('.field').show();
     // $('form .add_fields').show();
@@ -21,7 +21,7 @@
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
   $('.dateSelect').datepicker({
-  	format: 'mm/dd/yyyy'
+  	format: 'mm/dd/yyyy';
   });
 
   $('#message_message_text').live('keyup keydown', function(e) {
@@ -39,7 +39,7 @@
 	);
   $('.editTime').live("click", function(){
 	$('#delivery_send_time').clone().attr('type','text').insertAfter('#delivery_send_time').prev().remove();
-	$('<label for="delivery_send_date">Delivery time</label>').insertBefore('#delivery_send_time')
+	$('<label for="delivery_send_date">Delivery time</label>').insertBefore('#delivery_send_time');
 	$('.defaultTime').remove();
   });
 });

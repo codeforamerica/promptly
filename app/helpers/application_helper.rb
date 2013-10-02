@@ -5,18 +5,12 @@ module ApplicationHelper
     "active" if current_controller?(page_name)
   end
   
-  def link_to_add_form_tags(param_name, tag_type)
-    fields = tag_type 
-    link_to(name, '#', class: "add_fields btn btn-default btn-small", data: {id: id, fields: fields.gsub("\n", "")})
+  def link_to_add_modal(param_name, tag_type, options = nil)
+    fields = content_tag(tag_type, name: param_name, id: param_name)
+    link_to(name, '#', class: "add_modal btn", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
   def link_to_add_fields(name, f, association, child_association = nil)
-    puts f
-    puts f.object.inspect
-    puts f.object.class.inspect
-    puts f.object.class.reflect_on_association(association).inspect
-    puts f.object.class.reflect_on_association(association).klass.inspect
-
     new_object = f.object.class.reflect_on_association(association).klass.new
 
     if child_association

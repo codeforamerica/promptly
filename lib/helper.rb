@@ -52,7 +52,7 @@ module Helper
 
   def create_group_from_individual_recipients(individual_recipients)
     @group = Group.new
-    @group.recipient_ids = phones_to_group
+    @group.recipient_ids = individual_recipients
     @group.save
   end
   
