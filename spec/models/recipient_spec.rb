@@ -1,5 +1,4 @@
 require 'spec_helper'
-include ActionDispatch::TestProcess
 
 describe Recipient do
 
