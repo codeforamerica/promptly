@@ -26,6 +26,7 @@ FactoryGirl.define do
     name "test reminder"
     send_date Date.today
     send_time "12:00pm"
+    recipient FactoryGirl.create(:recipient)
   end
 
   factory :user do

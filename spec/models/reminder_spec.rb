@@ -13,4 +13,14 @@ describe Reminder do
     end
   end
 
+  describe "#add_reminder_to_queue" do
+    it "adds a new reminder to the Delayed Job queue" do
+      recipient = FactoryGirl.create(:recipient)
+      message = FactoryGirl.create(:message)
+      reminder = FactoryGirl.create(:reminder, recipient_id: recipient.id, message_id: message.id)
+      Reminder.add_reminder_to_queue(reminder)
+      Delayed::Job.count.should == 1
+    end
+  end
+
 end
