@@ -1,4 +1,4 @@
-Landshark::Application.routes.draw do
+Promptly::Application.routes.draw do
 
   root :to => 'pages#splash'
   
