@@ -11,10 +11,6 @@ class Reminder < ActiveRecord::Base
   has_and_belongs_to_many :groups
   accepts_nested_attributes_for :message, :recipient
 
-  def date_format(human_date)
-  	human_date.date.to_s(:input_format) 
-  end
-
   def self.grouped_reminders(limit = 0)
     if limit != 0
       Reminder.where('send_date >=?', DateTime.now).order("send_date").limit(limit).to_set.classify {|reminder| reminder.batch_id}

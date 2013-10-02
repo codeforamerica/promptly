@@ -24,7 +24,6 @@ FactoryGirl.define do
 
   factory :reminder do
     name "test reminder"
-    message_id = FactoryGirl.create(:message).id
     send_date Date.today
     send_time "12:00pm"
   end
@@ -38,9 +37,16 @@ FactoryGirl.define do
   end
 
   factory :conversation_with_message, parent: :conversation do
-    after :create do |user|
+    after :create do 
       conversation.message = FactoryGirl.create(:message)
     end
   end
 
+  factory :reminder_with_message_and_recipient, parent: :reminder do 
+    after :create do 
+      reminder.message = FactoryGirl.create(:message)
+      reminder.recipient = FactoryGirl.create(:recipient)
+    end
+  end
+    
 end
