@@ -3,6 +3,7 @@ rvm:
   - 1.9.3
 env:
   - DB=sqlite
+  - SECRET_TOKEN=c6db63f6b64ad47f23b95801c5558e7be28eb9a23a7af43090b688b5bba7a473aa6b70915e67d62c44bd5dfbec8c159d82d7ce73d4b4fcac69772901be9705dd
 script:
   - RAILS_ENV=test bundle exec rake --trace db:migrate test
 
