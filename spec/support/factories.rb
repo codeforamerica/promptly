@@ -1,5 +1,12 @@
 # spec/support/factories.rb
 FactoryGirl.define do
+
+  factory :conversation do
+    date DateTime.now
+    message "test message"
+  end
+
+
   factory :group do
     name "test group"
   end
@@ -28,6 +35,12 @@ FactoryGirl.define do
     password_confirmation "password"
     roles "admin"
     name "test"
+  end
+
+  factory :conversation_with_message, parent: :conversation do
+    after :create do |user|
+      conversation.message = FactoryGirl.create(:message)
+    end
   end
 
 end
