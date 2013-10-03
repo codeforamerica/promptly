@@ -1,23 +1,15 @@
-<span class="sidebar">
-	<div class="nav">
-
-		<%= link_to dashboard_path, :class => is_active?("home") do %>
-			<span class="typcn typcn-home">&nbsp;</span>Dashboard
-		<% end %>
+<div class="nav">
+	<%= link_to dashboard_path, :class => is_active?("home") do %>
+		<span class="typcn typcn-home"></span>Dashboard
+	<% end %>
 	</div>
 	<div class="nav">
-		<%= link_to reminders_path, :class => is_active?("reminders") do %>
-			<span class="typcn typcn-phone">&nbsp;</span>Reminders
-		<% end %>
+	<%= link_to reminders_path, :class => is_active?("reminders") do %>
+		<span class="typcn typcn-phone"></span>Reminders
+	<% end %>
 	</div>
 	<div class="nav">
-		<%= link_to groups_path, :class => is_active?("groups") do %>
-			<span class="typcn typcn-group">&nbsp;</span>Groups
-		<% end %>
-	</div>
-	<div class="nav">
-		<%= link_to conversations_path, :class => is_active?("conversations") do %>
-			<span class="typcn typcn-message-typing">&nbsp;</span>Conversations
-		<% end %>
-	</div>
-</span>
+	<%= link_to groups_path, :class => is_active?("groups") do %>
+		<span class="typcn typcn-group"></span>Groups
+	<% end %>
+</div>

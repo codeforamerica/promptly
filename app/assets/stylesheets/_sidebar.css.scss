@@ -8,6 +8,7 @@ $baseLineHeight: 20px;
 $loginHeight: 20px;
 
 .sidebar {
+	margin: -1px -32px 0 10px;
 	text-transform: uppercase;
 	font-family: $headerFont;
 	font-size: 14px;
@@ -15,6 +16,7 @@ $loginHeight: 20px;
 	padding-bottom: ($baseLineHeight / 4);
 
 	.nav {
+		margin: 0 0 0 -20px;
 		background: none;
 		color: $lightGray;
 		margin: 0px;
@@ -28,6 +30,7 @@ $loginHeight: 20px;
 		a {
 			margin: 0px auto;
 			padding: 8px 15px;
+			text-align: center;
 			display: block;
 			&:focus, &:hover { 
 				text-decoration: none;
@@ -55,15 +58,4 @@ $loginHeight: 20px;
 		font-family: $bodyFont;
 		font-weight: normal;
 	}
-}
-
-#homepage-sidebar {
-	text-transform: uppercase;
-	font-family: $headerFont;
-	font-size: 12px;
-}
-
-.sidebarHeader {
-	background: darken($lightGray, 20);
-	min-height: 15px;
 }

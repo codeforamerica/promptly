@@ -60,10 +60,15 @@ input {
 	float: right;
 }
 
-#main {
+#content {
 	background-color: $lightGray;
 	padding-bottom: 70px;
 	padding-top: 20px;
+}
+
+#main {
+	padding: 15px;
+	background-color: $white;
 }
 
 .footer {
@@ -77,8 +82,6 @@ input {
 .dumbPadding {
 	padding: 10px 0px;
 }
-
-@import 'headers';
 
 .messageMain {
 	display: none;
@@ -115,24 +118,6 @@ input {
 	margin-bottom: 0px;
 	tbody {
 		border-bottom: 1px solid darken($lightGray, 10);
-	}
-}
-
-.upload {
-	padding-bottom: 20px;
-	text-align: center;
-	.btn {
-		border-radius: 0px;
-		background-image: none;
-		border: none;
-		text-transform: uppercase;
-		font-family: $headerFont;
-		padding: 5px;
-		font-size: 15px;
-		width: 160px;
-		&:hover {
-			background: lighten($blue, 10);
-		}
 	}
 }
 

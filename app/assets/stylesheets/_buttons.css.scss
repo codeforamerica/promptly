@@ -15,3 +15,21 @@
 		@include transition(background, 0.25s, linear, 0.25s); 
 	}
 }
+
+.upload {
+	padding-bottom: 20px;
+	text-align: center;
+	.btn {
+		border-radius: 0px;
+		background-image: none;
+		border: none;
+		text-transform: uppercase;
+		font-family: $headerFont;
+		padding: 5px;
+		font-size: 15px;
+		width: 160px;
+		&:hover {
+			background: lighten($blue, 10);
+		}
+	}
+}
