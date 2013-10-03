@@ -20,7 +20,6 @@ class Reminder < ActiveRecord::Base
   end
 
   def self.create_new_recipients_reminders(recipient, send_date, send_time = '12:00pm', message)
-    # binding.pry
     unless recipient == ""
       reminder_time = Time.zone.parse(send_time)
       reminder_time = reminder_time.getutc
