@@ -27,9 +27,15 @@ describe Reminder do
     it "creates a new reminder and adds to the Delayed Job queue" do
       recipient = FactoryGirl.create(:recipient)
       message = FactoryGirl.create(:message)
-      Reminder.create_new_recipients_reminders(recipient, DateTime.now + 2.days, message)
-      # Reminder.all.count.should == 1
+      a = Reminder.create_new_recipients_reminders(recipient, DateTime.now + 2.days, message)
       Delayed::Job.count.should == 1
+    end
+  end
+
+  describe "#check_for_valid_date" do
+    it "checks if the given date is a valid date" do
+      test_date = DateTime.now
+      Reminder.check_for_valid_date(test_date).should be_an_instance_of(DateTime)
     end
   end
 

@@ -20,6 +20,7 @@ class Reminder < ActiveRecord::Base
   end
 
   def self.create_new_recipients_reminders(recipient, send_date, send_time = '12:00pm', message)
+    # binding.pry
     unless recipient == ""
       reminder_time = Time.zone.parse(send_time)
       reminder_time = reminder_time.getutc
@@ -57,10 +58,14 @@ class Reminder < ActiveRecord::Base
   end
 
   def self.check_for_valid_date(the_date)
-  	begin
-	  	the_date.respond_to?('strip') ? the_date = the_date.gsub("'","").strip : the_date
-			valid_date = DateTime.strptime(the_date, '%m/%d/%Y')
-			DateTime.parse(valid_date.to_s)
+    begin
+      if the_date.is_a? String
+        the_date = the_date.gsub("'","").strip
+        valid_date = DateTime.strptime(the_date, '%m/%d/%Y')
+  			DateTime.parse(valid_date.to_s)
+      else
+        the_date
+      end
 		rescue
 			'There is an error with the send_date: '+$!.message
 		end
