@@ -4,20 +4,17 @@
 		$('.modal').modal( 'show' );
 		// Lets the cancel button know about the extra fields.
 		$('.modal .cancel-modal').on('click', cancelModal );
-    $('.modal').on('hidden', function(){ saveModal(); })
-		// $('.save-modal').on('click', saveModal());
+    // $('.modal').on('hidden', function(){ saveModal(); })
+		$('.save-modal').click(function(e) {saveModal(e)});
 	});
 
 	function saveModal(event) {
-    console.log("i'm saved!");
+    event.preventDefault();
 		var message = $('#new-message-text-area').val();
-    $.ajax({
+    var newMessage = $.ajax({
       data: { message_text: message },
       type: 'post',
       url: "/admin/messages/"
-    })
-    .done(function(data) {
-      console.log(data);
     });
 
 		$('.modal').modal( 'hide' );
