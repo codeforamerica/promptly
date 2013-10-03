@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Pause length="2"/>
+  <Say voice="woman">
+    Hello World! This is Promptly, your friendly neighborhood notification service.
+    If you don't want anymore messages, reply STOP to the text message.
+    If you have questions or comments, please email us sf@codeforamerica.org.
+
+    Thanks and have a great day!
+  </Say>
+  <Pause length="2"/>
+</Response>

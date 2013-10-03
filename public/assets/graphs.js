@@ -1,0 +1,1 @@
+$(function(){function a(a){a.forEach(function(a){new Morris.Line({element:a+"_chart",data:$("#"+a+"_chart").data(a),xkey:"date",ykeys:["number_sent"],labels:["Number of Recipients"],smooth:!1})})}graphs=["upcoming","sent","response","undelivered"],a(graphs)});
