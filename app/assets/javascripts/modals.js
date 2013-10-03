@@ -1,17 +1,15 @@
  $(function() {
    // For creating modal fields.
 	$('form .add_modal').on('click', function(event) {
-		time = new Date().getTime();
-		regexp = new RegExp($(this).data('id'), 'g');
-		$(this).before($(this).data('fields').replace(regexp, time));
-		event.preventDefault();
+		$('.modal').modal( 'show' );
 		// Lets the cancel button know about the extra fields.
 		$('.modal .cancel-modal').on('click', cancelModal );
 		$('.modal .save-modal').on('click', saveModal);
 	});
 
 	function saveModal(event) {
-		$(this).parents('.modal').hide();
+		var message = $('.modal textarea').val();
+		$('.modal').modal( 'hide' );
 	}
 
 	function cancelModal(event) {
