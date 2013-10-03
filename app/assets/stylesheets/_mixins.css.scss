@@ -1,0 +1,35 @@
+@mixin promptly-border-radius($radius: 0px) {
+	-webkit-border-radius: $radius;
+  	-moz-border-radius: $radius;
+  	border-radius: $radius;
+}
+
+@mixin box-shadow($arguments: none) {
+  	-webkit-box-shadow: $arguments;
+  	-moz-box-shadow: $arguments;
+  	box-shadow: $arguments;
+}
+
+@mixin box-shadow-double($arguments1: none, $arguments2: none) {
+  	-webkit-box-shadow: $arguments1, $arguments2;
+  	-moz-box-shadow: $arguments1, $arguments2;
+  	box-shadow: $arguments1, $arguments2;
+}
+
+@mixin gradient($from: none, $to: none) {
+    background-color: $to;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($from),  to($to));
+    background-image: -webkit-linear-gradient(top, $from, $to);
+    background-image: -moz-linear-gradient(top, $from, $to);
+    background-image: -o-linear-gradient(top, $from, $to);
+    background-image: -ms-linear-gradient(top, $from, $to);
+    background-image: linear-gradient(top, $from, $to);
+}
+
+@mixin transition($arguments: none) {
+	-webkit-transition:$arguments;
+	-moz-transition:$arguments;
+	-ms-transition:$arguments;
+	-o-transition:$arguments;
+	transition:$arguments;
+}

@@ -1,5 +1,4 @@
-@import "colors";
-@import "fonts";
+@import "mixins";
 @import "compass/css3/transition";
 
 //Sizes
@@ -7,55 +6,151 @@ $navbarHeight: 40px;
 $baseLineHeight: 20px;
 $loginHeight: 20px;
 
+$sidebar-nav-radius: 5px 5px 5px 5px;	
+
 .sidebar {
-	margin: -1px -32px 0 10px;
 	text-transform: uppercase;
 	font-family: $headerFont;
 	font-size: 14px;
-	margin-bottom: ($baseLineHeight / 2);
-	padding-bottom: ($baseLineHeight / 4);
+}
 
-	.nav {
-		margin: 0 0 0 -20px;
-		background: none;
-		color: $lightGray;
-		margin: 0px;
-		padding: 5px 0;
+.sidebar-nav > ul {
+	margin: 0px 0px 0px 0px;
+	border-top: 1px solid transparent;
+  	border-bottom: 1px solid transparent;
+	border-left: none;
+	border-right: none;
+	padding-bottom: 1px;
+	text-align: center !important;
+	font-size: 10px;
+}
 
-		.typcn {
-			font-size: $baseLineHeight * 2;
-			display: block;
-			margin: 10px auto;
-		}
-		a {
-			margin: 0px auto;
-			padding: 8px 15px;
-			text-align: center;
-			display: block;
-			&:focus, &:hover { 
-				text-decoration: none;
-				background: $lightGray;
-				@include transition(background, 0.25s, linear, 0.25s); 
-			}
-			&.active { 
-				text-decoration: none;
-				background: $blue;
-				color: #fff;
-			}
-		}
-	}
+.sidebar-nav > ul > li > ul {
+	list-style: none;
+	margin: 0px 0px 0px 0px;
+	display: none;
+}
 
+.nav-tabs.nav-stacked > li > a,
+.nav-tabs.nav-stacked > li > ul > li > a {
+  	margin: 1px 0px 0px 0px;
+	padding: 15px 0px;
+	color: #aaa;
+	text-shadow: 0px 1px 0px #fff;
+	border-top: 1px solid transparent;
+  	border-bottom: 1px solid transparent;
+	border-left: none;
+	border-right: none;
+  	background: transparent;
+	text-decoration: none;		
+}
 
-	table {
-		font-family: $bodyFont;
-		margin-left: auto;
-		margin-right: auto;
-		width: 90%;
-	}
+.nav-tabs.nav-stacked > li > a,
+.nav-tabs.nav-stacked > li > ul > li > a {
+  	margin: 1px 0px 0px 0px;
+	padding: 15px 0px;
+	color: #aaa;
+	text-shadow: 0px 1px 0px #fff;
+	border-top: 1px solid transparent;
+  	border-bottom: 1px solid transparent;
+	border-left: none;
+	border-right: none;
+  	background: transparent;
+  	@include promptly-border-radius;
+	text-decoration: none;		
+}
 
-	p {
-		margin-left: ($baseLineHeight / 4);
-		font-family: $bodyFont;
-		font-weight: normal;
-	}
+.nav-tabs.nav-stacked > li > ul > li {
+	padding: 5px 0px;
+}
+
+.nav-tabs.nav-stacked > li > a > i,
+.nav-tabs.nav-stacked > li > ul > li > a > i {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	font-size: 22px;
+	display: inline-block;
+	width: 100%;
+}
+
+.nav-tabs.nav-stacked > li > ul > li > a > i {
+	font-size: 20px;
+}
+
+.nav-tabs.nav-stacked > li > a:hover > i {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+.nav-tabs.nav-stacked > li > a:hover {
+  	margin: 1px 0px 0px 0px;
+	border-top: 1px solid transparent;
+  	border-bottom: 1px solid transparent;
+	border-left: none;
+	border-right: none;
+  	color: #666;
+  	background: transparent;
+	@include box-shadow;
+  	@include promptly-border-radius;
+}
+
+.nav-tabs.nav-stacked > li > a:hover,
+.nav-tabs.nav-stacked > li > ul > li > a:hover {
+  	margin: 1px 0px 0px 0px;
+	border-top: 1px solid transparent;
+  	border-bottom: 1px solid transparent;
+	border-left: none;
+	border-right: none;
+  	color: #666;
+  	background: transparent;
+	@include box-shadow;
+  	@include promptly-border-radius;
+}
+
+.nav-tabs.nav-stacked  > li.active > a {
+	margin: 1px 0px 0px 0px;
+  	border: 2px solid $lightGray;
+	border-right: none;
+  	color: $blue;
+  	background: #fff;
+	@include promptly-border-radius($radius: 5px 0px 0px 5px);
+	position: relative;
+	z-index: 20;
+}
+
+.nav-tabs.nav-stacked  > li.active > ul {
+	margin:-4px 0px 0px 0px;
+  	border: 2px solid $lightGray;
+	padding: 5px 0px;
+	border-top: none;
+	border-right: none;
+  	color: $blue;
+  	background: #fff;
+	@include promptly-border-radius($radius: 5px 5px 5px 5px);
+	position: relative;
+	z-index: 21;
+}
+
+.nav-tabs.nav-stacked  > li.active > ul > li.active > a {
+	color: $blue;
+}
+
+.nav-tabs.nav-stacked > li:first-child > a {
+	margin: 0px;
+  	@include promptly-border-radius($radius: 5px 0px 0px 5px);
+}
+
+.nav-tabs.nav-stacked > li:last-child > a {
+  	@include promptly-border-radius($radius: 5px 0px 0px 5px);
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle,
+.navbar .nav li.dropdown.active > .dropdown-toggle,
+.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+  	color: #555555;
+  	background-color: #373737;
+  	outline: 0;
+	@include box-shadow;
 }

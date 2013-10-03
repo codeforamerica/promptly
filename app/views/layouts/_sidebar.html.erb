@@ -1,15 +1,17 @@
-<div class="nav">
-	<%= link_to dashboard_path, :class => is_active?("home") do %>
-		<span class="typcn typcn-home"></span>Dashboard
-	<% end %>
-	</div>
-	<div class="nav">
-	<%= link_to reminders_path, :class => is_active?("reminders") do %>
-		<span class="typcn typcn-phone"></span>Reminders
-	<% end %>
-	</div>
-	<div class="nav">
-	<%= link_to groups_path, :class => is_active?("groups") do %>
-		<span class="typcn typcn-group"></span>Groups
-	<% end %>
-</div>
+<ul class="nav nav-tabs nav-stacked main-menu">
+	<li>
+		<%= link_to dashboard_path, :class => is_active?("home") do %>
+			<i class="typcn typcn-home"></i>Dashboard
+		<% end %>
+	</li>
+	<li>
+		<%= link_to reminders_path, :class => is_active?("reminders") do %>
+			<i class="typcn typcn-phone"></i>Reminders
+		<% end %>
+	</li>
+	<li>
+		<%= link_to groups_path, :class => is_active?("groups") do %>
+			<i class="typcn typcn-group"></i>Groups
+		<% end %>
+	</li>
+</ul>
