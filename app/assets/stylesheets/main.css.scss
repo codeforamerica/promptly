@@ -1,12 +1,13 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 @import "constants";
+@import "fonts";
+@import "buttons";
+@import "headers";
 @import "placeholder";
 @import "navbar";
-@import "charts";
-@import "buttons";
 @import "sidebar";
-@import "fonts";
+@import "charts";
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
@@ -60,7 +61,7 @@ input {
 }
 
 #main {
-	background-color: $white;
+	background-color: $lightGray;
 	padding-bottom: 70px;
 	padding-top: 20px;
 }
@@ -77,65 +78,7 @@ input {
 	padding: 10px 0px;
 }
 
-.greenHighlight {
-	background: $green;
-	color: $white;
-	padding: 1px 15px;
-	text-transform: uppercase;
-	position: relative;
-	top: 0px;
-	font-size: 16px;
-	font-family: $headerFont;
-}
-
-.aquaHighlight {
-	background: $darkerAqua;
-	color: $white;
-	padding: 1px 15px;
-	text-transform: uppercase;
-	position: relative;
-	top: 0px;
-	font-size: 16px;
-	font-family: $headerFont;
-}
-
-.grayHighlight {
-	background: $lightGray;
-	color: darken($lightGray, 40);
-	padding: 4px 15px;
-	text-transform: uppercase;
-	position: relative;
-	font-size: 16px;
-	font-family: $headerFont;
-}
-
-
-// This positioning is super hacky. *****************************************
-.headerGray {
-	background: $darkGray;
-	color: $lightGray;
-	padding: 10px 15px 10px;;
-	margin: 0px 0px;
-	border-bottom: 1px solid $lightGray;
-}
-
-.mainHeaderGreen {
-	background: $lightGreen;
-	margin-bottom: 2px;
-	padding: 2px 0px;
-}
-
-.mainHeaderAqua {
-	background: $aqua;
-	margin-bottom: 2px;
-	padding: 2px 0px;
-}
-
-.mainHeaderGray {
-	background: darken($lightGray, 20);
-	padding: 4px 0;
-	margin-bottom: 10px;
-}
+@import 'headers';
 
 .messageMain {
 	display: none;

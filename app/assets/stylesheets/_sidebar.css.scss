@@ -10,8 +10,7 @@ $loginHeight: 20px;
 .sidebar {
 	text-transform: uppercase;
 	font-family: $headerFont;
-	font-size: 18px;
-	background: $lightGray;
+	font-size: 14px;
 	margin-bottom: ($baseLineHeight / 2);
 	padding-bottom: ($baseLineHeight / 4);
 
@@ -19,11 +18,15 @@ $loginHeight: 20px;
 		background: none;
 		color: $lightGray;
 		margin: 0px;
+		padding: 5px 0;
+
 		.typcn {
-			font-size: 1.5em;
+			font-size: $baseLineHeight * 2;
+			display: block;
+			margin: 10px auto;
 		}
 		a {
-			margin: 0px 0px;
+			margin: 0px auto;
 			padding: 8px 15px;
 			display: block;
 			&:focus, &:hover { 

@@ -49,7 +49,7 @@
 				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
 				<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 				<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
-				<%= f.submit %>
+				<%= f.submit, :class=> "btn" %>
 			
 			<% end %><!-- /form -->
 

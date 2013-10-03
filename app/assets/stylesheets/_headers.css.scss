@@ -1,0 +1,61 @@
+@mixin headerConstants {
+	font-family: $headerFont;
+	text-transform: uppercase;
+}
+
+.headerBig {
+	padding: 4px 15px;
+
+	@include headerConstants;
+
+	> .headerText {
+		padding: 4px 15px;
+	}
+}
+
+.headerSmall {
+	@include headerConstants;
+	font-size: 16pt;
+	padding: 5px 0px;
+	margin-bottom: 2px;
+
+	> .headerText {
+		padding: 1px 15px;
+	}
+}
+
+.grayHighlight {
+	background: $lightGray;
+	color: darken($lightGray, 40);
+	position: relative;
+}
+
+
+// This positioning is super hacky. *****************************************
+.headerGray {
+	background: $darkGray;
+	color: $lightGray;
+	padding: 10px 15px 10px;
+	margin: 0px 0px;
+	border-bottom: 1px solid $lightGray;
+}
+
+.headerRed {
+	background-color: $red;
+	color: $white;
+}
+
+.headerGreen {
+	background: $green;
+	color: $white;
+}
+
+.headerAqua {
+	background-color: $darkerAqua;
+	color: $white;
+}
+
+.headerGray {
+	background: darken($lightGray, 20);
+	color: $lightGray;
+}

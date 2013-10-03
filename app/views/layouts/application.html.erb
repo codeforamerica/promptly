@@ -18,11 +18,13 @@
       <div><%= notice %></div>
       <div><%= alert %></div>
     </div>
-    <div class="span2">
-      <%= render 'layouts/sidebar' %>
-    </div>
-    <div class="span10">
-      <%= yield %>
+    <div class="row-fluid">
+      <div class="span1">
+        <%= render 'layouts/sidebar' %>
+      </div>
+      <div class="main span11">
+        <%= yield %>
+      </div>
     </div>
   </div>
   <%= render 'shared/footer' %>
