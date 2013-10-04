@@ -29,7 +29,6 @@ Landshark::Application.routes.draw do
   #project page
   match '/hsa' => 'pages#hsa'
   match '/documents' => 'pages#documents'
-  match '/calwin' => 'pages#calwin'
 
   #autoresponse
   match '/handle-incoming-sms' => 'auto_response#handle_incoming_sms'

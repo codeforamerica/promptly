@@ -12,7 +12,6 @@ class Notifier
     end
 
     def log
-      binding.pry
       @conversation = Conversation.new({
         date: DateTime.now,
         message: response.body,
@@ -37,11 +36,18 @@ class Notifier
     @recipient, @smsmessage, @batch_id = recipient, smsmessage, batch_id
   end
 
+  def before(job)
+    puts "This is happening before perform."
+    puts "Job: #{job}"
+    binding.pry
+  end
+
   def self.perform(recipient, smsmessage, batch_id)
     new(recipient, smsmessage, batch_id).perform
   end
 
   def perform
+    binding.pry
     the_message = client.account.sms.messages.create(attributes)
     Logger.log(the_message, recipient, batch_id)
   end
