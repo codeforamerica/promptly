@@ -15,6 +15,13 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_reminders = @group.reminders
+    @group_recipients = @group.recipients
+    @group_conversations =[]
+    @group_recipients.each do |recipient|
+      if recipient.conversations != []
+        @group_conversations << recipient.conversations
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
