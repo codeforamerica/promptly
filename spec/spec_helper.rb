@@ -8,6 +8,7 @@ SimpleCov.start do
   add_group "Helpers", "app/helpers"
   add_group "Tests", "spec"
 end
+
 puts "required simplecov"
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -20,7 +21,9 @@ require 'twilio-ruby'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+
 RSpec.configure do |config|
+
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -56,11 +59,13 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
+  # config.before(:each) do
+  #   DatabaseCleaner.start
+  # end
 
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+
 end

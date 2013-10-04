@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/codeforamerica/landshark.png?branch=master)](https://travis-ci.org/codeforamerica/landshark)
+[![Build Status](https://travis-ci.org/codeforamerica/promptly.png?branch=master)](https://travis-ci.org/codeforamerica/promptly)
 
-# LandShark
+# Promptly
 A text message reminder system for San Francisco Human Services Agency.
 
 #### Contribute
@@ -19,12 +19,12 @@ gem install bundler
 
 3) Clone this repo
 ```
-git clone https://github.com/codeforamerica/landshark.git
+git clone https://github.com/codeforamerica/promptly.git
 ```
 
 4) Install required gems
 ```
-cd landshark
+cd promptly
 bundle install
 ```
 
@@ -33,7 +33,7 @@ bundle install
 - **Edit .sample_env** by replacing <username> with your Postgres username ($USER by default)
 - Rename .sample_env to **.env**
 
-LandShark requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILIO_TOKEN. The easiest way is to use foreman and a .env file in the root directory, but there are many ways to do this. Heroku has a good overview <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. 
+Promptly requires four env vars: RACK_ENV, TWILIO_NUMBER, TWILIO_SID, and TWILIO_TOKEN. The easiest way is to use foreman and a .env file in the root directory, but there are many ways to do this. Heroku has a good overview <a href="https://devcenter.heroku.com/articles/config-vars">here</a>. 
 
 *Make sure your .gitignore always includes /.env so you don't publicize your secret keys.*
 
@@ -44,7 +44,7 @@ development:
     adapter: postgresql
     host: localhost
     username: <username>
-    database: landshark
+    database: promptly
 ```
 
 - Then run:

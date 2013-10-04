@@ -2,9 +2,9 @@ language: ruby
 rvm:
   - 1.9.3
 env:
-  - DB=sqlite
+  - DB=sqlite SECRET_TOKEN=264e6709224405956c0738fbc151cca4fe89035c39c7a87015e375a480dcb3ccb88dd7633efbfc99edc959dcbffad3d8a225a9de981b5e9fa7d75137a145a749
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate test
+  - RAILS_ENV=test bundle exec rake --trace db:schema:load test
 
 before_install:
  - sudo apt-get update -qq

@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   # GET /Groups
   # GET /Groups.json
+  load_and_authorize_resource
   def index
     @groups = Group.all
 
@@ -70,7 +71,9 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
     respond_to do |format|
-      if @group.update_attributes(params[:Group])
+        phones = params[:group][:phone]
+        add_phone_numbers_to_group(phones, @group)
+      if @group.update_attributes(name: params[:group][:name], description: params[:group][:description])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
