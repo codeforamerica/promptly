@@ -33,7 +33,11 @@
       <span class="aquaHighlight">Group History</span>
     </div>
     <div class="conversation">
-      <%= render(:partial => 'shared/show_conversation', :collection => @group.recipients.conversations, :as => :conversation) || 'No messages.' %>
+      <% if @group_conversations %>
+        <%= render(:partial => 'shared/show_conversation', :collection => @group_conversations, :as => :conversation) %>
+      <% else %>
+       <span>No messages.</span>
+      <% end %>
     </div>
   </div>
 
@@ -42,7 +46,7 @@
       <span class="aquaHighlight">Queued Reminders</span>
     </div>
     <div class="queued">
-      <%= render(:partial => 'shared/queued_reminders', :collection => @group.recipients.reminders, :as => :reminder) || 'No queued reminders.' %>
+      <%= render(:partial => 'shared/queued_reminders', :collection => @group_reminders, :as => :reminder) || 'No queued reminders.' %>
     </div>
   </div>
 
