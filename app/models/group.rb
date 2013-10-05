@@ -5,13 +5,15 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :recipients
   accepts_nested_attributes_for :recipients
 
-  def add_phone_numbers(phone_numbers)
-    recipients = []
-    phone_numbers.each do |p|
-      r = Recipient.where(phone: p).first_or_create
-      r.save
-      recipients << r
+  def self.add_phone_numbers_to_group(phone_numbers, the_group)
+    phones_to_group = []
+    phone_numbers.split(/[ ,;\r\n]/).each do |phone_number|
+      recipient = Recipient.where(phone: phone_number).first_or_create
+      recipient.save
+      unless recipient == ""
+        phones_to_group << recipient.id
+      end
     end
-    self.recipients = recipients.uniq
+    the_group.recipient_ids = phones_to_group
   end
 end

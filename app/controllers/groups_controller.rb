@@ -95,15 +95,4 @@ class GroupsController < ApplicationController
     end
   end
 
-  def add_phone_numbers_to_group(phone_numbers, the_group)
-  	phones_to_group = []
-	  phone_numbers.split("\r\n").each do |phone_number|
-    	recipient = Recipient.where(phone: phone_number).first_or_create
-    	recipient.save
-    	unless recipient == ""
-    	  phones_to_group << recipient.id
-	    end
-	  end
-	  the_group.recipient_ids = phones_to_group
-  end
 end
