@@ -4,11 +4,6 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :reminders
   has_and_belongs_to_many :recipients
   accepts_nested_attributes_for :recipients
-  
-  def default_values
-    self.name ||= self.group_name_id
-    self.description ||= self.group_name_id
-  end
 
   def add_phone_numbers(phone_numbers)
     recipients = []
