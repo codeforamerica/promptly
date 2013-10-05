@@ -1,17 +1,23 @@
  $(function() {
    // For creating modal fields.
 	$('form .add_modal').on('click', function(event) {
-		time = new Date().getTime();
-		regexp = new RegExp($(this).data('id'), 'g');
-		$(this).before($(this).data('fields').replace(regexp, time));
-		event.preventDefault();
+		$('.modal').modal( 'show' );
 		// Lets the cancel button know about the extra fields.
 		$('.modal .cancel-modal').on('click', cancelModal );
-		$('.modal .save-modal').on('click', saveModal);
+    // $('.modal').on('hidden', function(){ saveModal(); })
+		$('.save-modal').click(function(e) {saveModal(e)});
 	});
 
 	function saveModal(event) {
-		$(this).parents('.modal').hide();
+    event.preventDefault();
+		var message = $('#new-message-text-area').val();
+    var newMessage = $.ajax({
+      data: { message_text: message },
+      type: 'post',
+      url: "/admin/messages/"
+    });
+
+		$('.modal').modal( 'hide' );
 	}
 
 	function cancelModal(event) {

@@ -9,4 +9,4 @@ if Rails.env.production? && ENV['SECRET_TOKEN'].blank?
 	To generate it, run "rake secret", then set it with "heroku config:set SECRET_TOKEN=the_token_you_generated"'
 end
 
-Landshark::Application.config.secret_token = ENV['SECRET_TOKEN'] || '7f5655b8052331139a499caeccf25a82f0cc6e1cb297cee25d9fb5666412272074e5484454e4a3b2dd49db5ff44ed079ebc277d6f02d686b5e9359aaf800f6d0'
+Promptly::Application.config.secret_token = ENV['SECRET_TOKEN'] || '7f5655b8052331139a499caeccf25a82f0cc6e1cb297cee25d9fb5666412272074e5484454e4a3b2dd49db5ff44ed079ebc277d6f02d686b5e9359aaf800f6d0'

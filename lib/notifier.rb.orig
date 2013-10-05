@@ -12,6 +12,7 @@ class Notifier
     end
 
     def log
+      binding.pry
       @conversation = Conversation.new({
         date: DateTime.now,
         message: response.body,
@@ -36,18 +37,11 @@ class Notifier
     @recipient, @smsmessage, @batch_id = recipient, smsmessage, batch_id
   end
 
-  def before(job)
-    puts "This is happening before perform."
-    puts "Job: #{job}"
-    binding.pry
-  end
-
   def self.perform(recipient, smsmessage, batch_id)
     new(recipient, smsmessage, batch_id).perform
   end
 
   def perform
-    binding.pry
     the_message = client.account.sms.messages.create(attributes)
     Logger.log(the_message, recipient, batch_id)
   end
@@ -60,6 +54,20 @@ class Notifier
     }
   end
 
+<<<<<<< HEAD
+   def self.notification_add(recipient, sent_date, job_id)
+    recipient.reminders.each do |reminder|
+      @notification = Notification.new
+      @notification.reminder_id = reminder.id
+      @notification.recipient_id = recipient.id
+      @notification.sent_date = sent_date
+      @notification.job_id = job_id
+    end
+      @notification.save
+  end
+
+=======
+>>>>>>> develop
   private
 
   attr_reader :recipient

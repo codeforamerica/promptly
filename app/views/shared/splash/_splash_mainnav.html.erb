@@ -18,9 +18,6 @@
 					<li class="<%= 'active' if current_page?(documents_url) %>">
 						<%= link_to "Sample Documents", controller: "pages", action: "documents" %>
 					</li>
-					<li class="<%= 'active' if current_page?(calwin_url) %>">
-						<%= link_to "CalWin How-To", controller: "pages", action: "calwin" %>
-					</li>
 				</ul>
 				<div class="login pull-right">
 				<% if user_signed_in? %>
