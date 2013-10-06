@@ -13,16 +13,18 @@
 
 <body>
   <%= render 'shared/mainnav' %>
-  <div class="container-fluid" id="content">
-  	<div class="notice">
-      <div><%= notice %></div>
-      <div><%= alert %></div>
-    </div>
+    <div class="container-fluid">
     <div class="row-fluid">
-      <div class="sidebar span1">
+      <div id="sidebar-left" class="span1">
         <%= render 'layouts/sidebar' %>
       </div>
-      <div class="span11" id="main">
+      <div id="content" class="span11">
+        <div class="row-fluid">
+          <div class="notice">
+            <div><%= notice %></div>
+            <div><%= alert %></div>
+          </div>
+        </div>
         <%= yield %>
       </div>
     </div>

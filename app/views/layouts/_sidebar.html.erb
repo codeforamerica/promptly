@@ -1,17 +1,19 @@
-<ul class="nav nav-tabs nav-stacked main-menu">
-	<li>
-		<%= link_to dashboard_path, :class => is_active?("home") do %>
-			<i class="typcn typcn-home"></i>Dashboard
+<div class="nav-collapse sidebar-nav">
+	<ul class="nav nav-tabs nav-stacked main-menu">
+		<%= content_tag(:li, class: is_active?("home")) do %>
+			<%= link_to dashboard_path do %>
+				<i class="typcn typcn-home"></i>Dashboard
+			<% end %>
 		<% end %>
-	</li>
-	<li>
-		<%= link_to reminders_path, :class => is_active?("reminders") do %>
-			<i class="typcn typcn-phone"></i>Reminders
+		<%= content_tag(:li, class: is_active?("reminders")) do %>
+			<%= link_to reminders_path do %>
+				<i class="typcn typcn-phone"></i>Reminders
+			<% end %>
 		<% end %>
-	</li>
-	<li>
-		<%= link_to groups_path, :class => is_active?("groups") do %>
-			<i class="typcn typcn-group"></i>Groups
+		<%= content_tag(:li, class: is_active?("groups")) do %>
+			<%= link_to groups_path do %>
+				<i class="typcn typcn-group"></i>Groups
+			<% end %>
 		<% end %>
-	</li>
-</ul>
+	</ul>
+</div>
