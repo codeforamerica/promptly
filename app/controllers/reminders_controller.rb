@@ -61,7 +61,7 @@ class RemindersController < ApplicationController
     params[:reminder][:group_ids].each do |group|
       @recipients = Group.find(group).recipients
       @recipients.each do |recipient|
-        Reminder.create_new_recipients_reminders(recipient, params[:reminder][:send_date], params[:reminder][:send_time], Message.find(params[:reminder][:message_id]))
+        Reminder.create_new_recipients_reminders(recipient, Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], params[:reminder][:send_time], group)
       end
     end
 

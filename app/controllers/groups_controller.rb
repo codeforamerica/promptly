@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
         phones = params[:group][:phone]
-        add_phone_numbers_to_group(phones, @group)
+        Group.add_phone_numbers_to_group(phones, @group)
       if @group.update_attributes(name: params[:group][:name], description: params[:group][:description])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
