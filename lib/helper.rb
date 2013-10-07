@@ -55,5 +55,11 @@ module Helper
     @group.recipient_ids = individual_recipients
     @group.save
   end
+
+  
+  def destroy_delayed_job_by_job_id(job_id)
+    @delay = Delayed::Job.find(job_id)
+    @delay.destroy 
+  end
   
 end
