@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
 
     respond_to do |format|
         phones = params[:group][:phone]
-        add_phone_numbers_to_group(phones, @group)
+        Group.add_phone_numbers_to_group(phones, @group)
       if @group.update_attributes(name: params[:group][:name], description: params[:group][:description])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
@@ -95,15 +95,4 @@ class GroupsController < ApplicationController
     end
   end
 
-  def add_phone_numbers_to_group(phone_numbers, the_group)
-  	phones_to_group = []
-	  phone_numbers.split("\r\n").each do |phone_number|
-    	recipient = Recipient.where(phone: phone_number).first_or_create
-    	recipient.save
-    	unless recipient == ""
-    	  phones_to_group << recipient.id
-	    end
-	  end
-	  the_group.recipient_ids = phones_to_group
-  end
 end
