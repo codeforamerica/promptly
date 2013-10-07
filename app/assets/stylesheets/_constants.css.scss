@@ -13,10 +13,22 @@ $red: #FA6900;
 $lightGreen: #A2EAAC;
 $green: #4CA55D;
 
+$borderColor: darkent($lightGray, 10);
 
 //Fonts
 $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
+
+@font-face {
+  font-family: 'typicons';
+  src: url("typicons/typicons.eot");
+  src: url("typicons/typicons.eot?#iefix") format('embedded-opentype'),
+       url("typicons/typicons.woff") format('woff'),
+       url("typicons/typicons.ttf") format('truetype'),
+       url("typicons/typicons.svg#typicons") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 $linkColor: $blue;
 $placeholderText: darken($lightGray, 5%);

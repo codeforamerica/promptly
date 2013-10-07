@@ -1,4 +1,4 @@
-@import "colors";
+@import "constants";
 
 $navbarBackground: $blue;
 $navbarBackgroundHighlight: $darkBlue;
@@ -30,12 +30,12 @@ $navbarLinkBackgroundActive: $darkBlue;
 }
 
 .navbar{
-	margin-bottom: 0;
+	margin-bottom: $navbarHeight;
 	.brand {
 		float: left;
 		display: block;
-		padding: 10px 20px 10px;
-		margin-left: 20px;
+		// padding: 10px;
+		// margin-left: 10px;
 		// font-size: 26px;
 		font-weight: 200;
 		color: #fff;

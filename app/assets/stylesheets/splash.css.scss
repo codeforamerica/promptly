@@ -151,14 +151,6 @@ h1, h2, h3, h4 {
           background-color: $white;
         }
       }
-
-      &:first-child a {
-        text-align: left;
-      }
-
-      &:last-child a {
-        text-align: right;
-      }
     }
   }
 }

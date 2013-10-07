@@ -1,28 +1,32 @@
 <div class="container">
-	<div class="row-fluid dumbPadding">
-		<div class="mainHeaderGreen">
-			<span class="greenHighlight">message</span>
+	<div class="row-fluid">
+		<div class="span12 headerBig headerGreen">
+			<span class="headerText">message</span>
 		</div>
 	</div>
 	<div class="row-fluid">
-		<div class="mainHeaderGray">
-			<span class="grayHighlight">Text Message Preview</span>
+		<div class="span12">
+			<div class="headerSmall headerGray">
+				<span class="headerText">Text Message Preview</span>
+			</div>
+			<p>Message Name: <b><%= @message.name %></b></p>
+			<p>
+			  <span class="well messagetext">Message text: <%= @message.message_text %></span>
+			</p>
+			<div class="headerSmall headerGray">
+				<span class="headerText">Date Created</span>
+			</div>
+			<p><%= @message.created_at %></p>
+			<div class="headerSmall headerGray">
+				<span class="headerText">Date Updated</span>
+			</div>
+			<p><%= @message.updated_at || "No updates" %></p>
 		</div>
-		<p>Message Name: <b><%= @message.name %></b></p>
-		<p>
-		  <span class="well messagetext">Message text: <%= @message.message_text %></span>
-		</p>
-		<div class="mainHeaderGray">
-			<span class="grayHighlight">Date Created</span>
-		</div>
-	<p><%= @message.created_at %></p>
-		<div class="mainHeaderGray">
-			<span class="grayHighlight">Date Updated</span>
-		</div>
-		<p><%= @message.updated_at || "No updates" %></p>
 	</div>
-	<div>
-		<%= link_to 'Edit message', edit_message_path(@message), :class => 'btn btn-primary' %>
-		<%= link_to 'Back', messages_path %>
+	<div class="row-fluid">
+		<div class="span12">
+			<%= link_to 'Edit message', edit_message_path(@message), :class => 'btn btn-primary' %>
+			<%= link_to 'Back', messages_path %>
+		</div>
 	</div>
 </div>

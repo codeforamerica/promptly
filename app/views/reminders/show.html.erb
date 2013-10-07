@@ -1,11 +1,11 @@
 <div class="container">
-	<div class="row-fluid dumbPadding">
-		<div class="span12 mainHeaderGreen">
-			<span class="greenHighlight">Reminder <%= @reminders.first.name %></span>
+	<div class="row-fluid">
+		<div class="span12 headerSmall headerGreen">
+			<span class="headerText">Reminder <%= @reminders.first.name %></span>
 		</div>
 	</div>
   <div class="row-fluid">
-  	<div class="span8">
+  	<div class="span12">
 		<p>On <%= @reminders.first.send_date.to_s(:date_only) %> at <%= @reminders.first.send_date.to_s(:time_only) %> the message: </p>
 		<blockquote><%= Message.find(@reminders.first.message_id).message_text %></blockquote>
 		<p>will be sent to <%= pluralize(@reminders.count, 'recipient') %>.</p>
