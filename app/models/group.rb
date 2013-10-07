@@ -16,4 +16,8 @@ class Group < ActiveRecord::Base
     end
     the_group.recipient_ids = phones_to_group
   end
+
+  def self.add_reminders_to_group(reminder, group)
+    group.reminders << reminder
+  end
 end

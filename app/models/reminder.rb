@@ -19,9 +19,15 @@ class Reminder < ActiveRecord::Base
     end
   end
 
-  def self.create_new_recipients_reminders(recipient, message, send_date, send_time = '12:00pm', group_id = 'none')
+  def self.create_new_recipients_reminders(recipient, message, send_date, options ={})
+      defaults = {
+        send_time: '12:00pm',
+        group_id: nil
+      }
+      options = defaults.merge(options)
+
     unless recipient == ""
-      reminder_time = Time.zone.parse(send_time)
+      reminder_time = Time.zone.parse(options[:send_time])
       reminder_time = reminder_time.getutc
       send_date = check_for_valid_date(send_date)
       begin
@@ -34,9 +40,7 @@ class Reminder < ActiveRecord::Base
 		      @reminder.send_date = reminder_date 
 		      @reminder.send_time = reminder_time     
 		      @reminder.batch_id = batch_id
-          if group !='none'
-            @reminder.group_ids = group
-          end
+          @reminder.group_ids = options[:group_id]
 		      @reminder.save
           puts 'saved'
 		      add_reminder_to_queue(@reminder)
