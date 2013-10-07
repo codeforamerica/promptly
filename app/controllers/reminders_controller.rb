@@ -85,8 +85,7 @@ class RemindersController < ApplicationController
   def destroy
     @reminders = Reminder.where('batch_id=?', params[:batch_id])
     @reminders.each do |reminder|
-      @delay = Delayed::Job.find(reminder.job_id)
-      @delay.destroy      
+      destroy_delayed_job_by_job_id(reminder.job_id)     
       reminder.destroy
     end
 
