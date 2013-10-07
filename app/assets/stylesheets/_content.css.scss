@@ -1,0 +1,86 @@
+.pageHeader {
+	
+}
+
+.recentReminder {
+	padding: 10px 0 10px 0;
+
+	table {
+		margin: 0 0 0 0;
+	}
+}
+
+.tableAqua {
+	border-left: 5px solid $aqua;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
+}
+
+.tableGreen {
+	border-left: 5px solid $green;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
+}
+
+.messagetext {
+	display: block;
+	margin-top: ($baseLineHeight/2);
+}
+
+.characterCount {
+	color: $darkGray;
+	margin-bottom: 20px;
+}
+
+
+//******************
+// Recipient Page
+//******************
+
+@mixin conversations {
+	padding: ($baseLineHeight/2);
+	margin: $baseLineHeight/4 0;
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.conversation {
+	margin-top: 20px; // in order to clear the heading bar
+	strong {
+		color: $darkGray;
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+.conversation-self {	
+	background-color: $lightGray;
+	@include conversations;
+
+	> .avatar {
+	float: left !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight $baseLineHeight/2 $baseLineHeight/2;
+	overflow: hidden;
+	}
+}
+
+.conversation-recipient {
+	> .avatar {
+	float: right !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight;
+	overflow: hidden;
+	}
+}
+
+.queued {
+	padding-top: $baseLineHeight*2;
+}
