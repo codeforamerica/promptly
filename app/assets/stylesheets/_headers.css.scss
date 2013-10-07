@@ -4,9 +4,10 @@
 }
 
 .headerBig {
-	padding: 4px 15px;
-
 	@include headerConstants;
+	font-size: 20px;
+	padding: 6px 6px;
+	margin-bottom: 4px;
 
 	> .headerText {
 		padding: 4px 15px;
@@ -15,8 +16,8 @@
 
 .headerSmall {
 	@include headerConstants;
-	font-size: 16pt;
-	padding: 5px 0px;
+	font-size: 13pt;
+	padding: 5px 6px;
 	margin-bottom: 2px;
 
 	> .headerText {
@@ -30,14 +31,21 @@
 	position: relative;
 }
 
+.aquaHighlight {
+	background: $aqua;
+	color: darken($aqua, 40);
+	position: relative;
+}
+
 
 // This positioning is super hacky. *****************************************
 .headerGray {
 	background: $darkGray;
-	color: $lightGray;
-	padding: 10px 15px 10px;
-	margin: 0px 0px;
 	border-bottom: 1px solid $lightGray;
+
+	.headerText {
+		color: lighten($lightGray, 20);
+	}
 }
 
 .headerRed {

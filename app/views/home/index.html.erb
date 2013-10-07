@@ -42,11 +42,17 @@
       <%= render 'undelivered' || 'There are no upcoming reminders' %>
     </div>
     <div class="span8">
-      <div class="span12 mainHeaderAqua">
-        <!-- <span class="aquaHighlight">Upcoming messages</span> -->
+      <div class="row-fluid">
+        <div class="span12 headerAqua">
+          <span class="headerText">Upcoming messages</span>
+        </div>
       </div>
-      <div class="conversation">
-      <% render(:partial => 'notifications', :collection => @upcoming, :as => :upcoming) || 'There are no upcoming reminders' %>
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="conversation">
+            <% render(:partial => 'notifications', :collection => @upcoming, :as => :upcoming) || 'There are no upcoming reminders' %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

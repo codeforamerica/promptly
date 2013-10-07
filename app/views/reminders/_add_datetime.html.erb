@@ -1,6 +1,12 @@
-<div class="mainHeaderAqua">
-  <span class="aquaHighlight">Date and Time</span>
+<div class="headerSmall headerAqua">
+  <span class="headerText">Date and Time</span>
 </div>
 
-<%= f.input :send_date, as: :string, input_html: { class: 'datepicker' } %>
-<%= f.input :send_time, as: :string, input_html: { value: '12:00pm' } %>
+<div class="row-fluid">
+	<div class="span6">
+		<%= f.input :send_date, as: :string, input_html: { class: 'datepicker' } %>
+	</div>
+	<div class="span6">
+		<%= f.input :send_time, as: :string, input_html: { value: '12:00pm' } %>
+	</div>
+</div>
