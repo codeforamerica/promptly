@@ -1,6 +1,8 @@
 class ConversationsController < ApplicationController
   # GET /conversations
   # GET /conversations.json
+  load_and_authorize_resource
+
   def index
     @conversations = Conversation.all
     @responses = Conversation.where('status = ?', 'received')
