@@ -38,7 +38,7 @@ module ApplicationHelper
     (start_date..end_date).map do |date|
       {
         date: date.to_s(:date_format),
-        number_sent: model.where("#{date_field} = ?", date).count
+        number_sent: model.order("DATE(#{date_field})").where("DATE(#{date_field}) = ?", date).count
       }
     end
   end
