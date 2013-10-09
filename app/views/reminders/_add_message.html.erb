@@ -4,7 +4,7 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <table class="table table-bordered">
+    <table id="messages-table" class="table table-bordered">
       <thead>
         <tr>
           <th></th>
@@ -36,12 +36,12 @@
     <div class="modal-body">
       <%= simple_fields_for @message do |message_fields| %>
         <%= label_tag "Add New Message:" %>
-        <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { id: "new-message-text-area", class: "span12" } %>
+        <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "span12" } %>
       <% end %>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary save-modal" id="individual-recipients-submit">Save Message</button>
-      <a href="#" class="btn cancel-modal" data-dismiss="modal">Cancel</a>
+      <a href="#" class="cancel-modal" data-dismiss="modal">Cancel</a>
+      <%= link_to "Save Message", messages_path, id: "new-message-submit", class: "btn btn-primary save-modal", remote: true %>
     </div>
   </div>
 </div>

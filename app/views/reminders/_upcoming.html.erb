@@ -9,6 +9,7 @@
   </thead>
   <tbody>
     <% @groups.each do |batch, reminder| %>
+    <% binding.pry %>
     <tr>
       <td><%= link_to reminder.count, reminder_path(batch) %></td>
       <td><%= reminder.first.send_date.to_s(:date_format) %></td>
