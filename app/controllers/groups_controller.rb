@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
 		    phones = params[:recipient][:phone]
-		    add_phone_numbers_to_group(phones, @group)
+		    Group.add_phone_numbers_to_group(phones, @group)
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
