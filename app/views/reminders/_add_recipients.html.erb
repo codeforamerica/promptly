@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <a class="btn btn-primary" id="individual-recipients-submit" data-dismiss="modal" aria-hidden="true">Add Recipients</a>
+    <%= link_to "Add Recipients", recipients_path, id: "individual-recipients-submit", class: "btn btn-primary save-modal", remote: true %>
     <a href="#" class="btn" data-dismiss="modal">Cancel</a>
   </div>
 </div>

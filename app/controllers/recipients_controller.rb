@@ -1,7 +1,7 @@
 class RecipientsController < ApplicationController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
-  before_filter :standardize_numbers, only: [ :create, :update ]
+  # before_filter :standardize_numbers, only: [ :create, :update ]
   # before_filter :authenticate_user!
   load_and_authorize_resource
 
@@ -14,6 +14,7 @@ class RecipientsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recipients }
+      format.js
     end
   end
 
@@ -51,11 +52,13 @@ class RecipientsController < ApplicationController
     @recipient = Recipient.new(params[:recipient])
     respond_to do |format|
       if @recipient.save
+        format.js
         format.html { redirect_to @recipient, notice: 'Recipient was successfully created.' }
         format.json { render json: @recipient, status: :created, location: @recipient }
       else
         format.html { render action: "new" }
         format.json { render json: @recipient.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

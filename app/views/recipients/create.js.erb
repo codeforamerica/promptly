@@ -1,0 +1,2 @@
+$('#add-groups').append('<tr><td><%= check_box_tag "recipient_id", @recipient.id, false, :class => "table-row-checkbox" %></td><td><%= @recipient.name %></td><td><%= @recipient.phone %></td><td><%= @recipient.created_at %></td><td><%= @recipient.updated_at %></td></tr>')
+$('.modal').modal( 'hide' );

@@ -15,24 +15,6 @@
       <%= f.input :message_text, as: :text, label: "Message text", input_html: { maxlength: 160, class: 'span6', rows: 5 } %> 
     <div class="characterCount offset3 span6">Characters left: <span id="char-count">160</span></div>
   </div>
-  <div class="span4">
-    <div class="sidebar">
-      <div class="headerGray">
-        <span class="headerText">Reminder Details</span>
-      </div>
-      <div class="field">
-        <div class="control-group">
-          <%= f.simple_fields_for :reminders do |builder| %>
-            <%= builder.label :send_date, 'Reminder date' %>
-            <%= builder.text_field :send_date, :class => 'dateSelect' %>
-          <% end %>
-        </div>
-      </div>
-      <p>Reminder recipients</p>
-      <%= f.collection_check_boxes :recipient_ids, Recipient.all, :id, :phone_or_name do |b| b.label(class: "checkbox") {b.check_box(class: "checkbox")+ b.text}
-      end  %>
-    </div>
-  </div>
 </div>
 <div class="row-fluid">
   <div class="span">
