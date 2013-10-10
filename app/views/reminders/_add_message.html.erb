@@ -18,8 +18,8 @@
         <tr>
           <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-radio' %></td>
           <td><%= message.message_text %></td>
-          <td><%= message.created_at %></td>
-          <td><%= message.updated_at %></td>
+          <td><%= message.created_at.to_s(:date_format) %></td>
+          <td><%= message.updated_at.to_s(:date_format) %></td>
         </tr>
         <% end %>
       </tbody>

@@ -18,8 +18,8 @@
         <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
         <td><%= group.name %></td>
         <td><%= group.recipients.count %></td>
-        <td><%= group.created_at %></td>
-        <td><%= group.updated_at %></td>
+        <td><%= group.created_at.to_s(:date_format) %></td>
+        <td><%= group.updated_at.to_s(:date_format) %></td>
       </tr>
       <% end %>
     </tbody>
