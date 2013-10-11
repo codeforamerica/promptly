@@ -4,22 +4,22 @@
 
 <div class="row-fluid">
   <div class="span12">
-    <table id="messages-table" class="table table-bordered">
+    <table id="messages-table" class="table table-hover">
       <thead>
         <tr>
           <th></th>
           <th>Message text</th>
-          <th>Date Created</th>
-          <th>Date Updated</th>
+          <!-- <th>Date Created</th>
+          <th>Date Updated</th> -->
         </tr>
       </thead>
       <tbody>
-        <% Message.all.each do |message| %>
+        <% @messages_search.each do |message| %>
         <tr>
           <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-radio' %></td>
           <td><%= message.message_text %></td>
-          <td><%= message.created_at.to_s(:date_format) %></td>
-          <td><%= message.updated_at.to_s(:date_format) %></td>
+          <!-- <td><%= message.created_at.to_s(:date_format) %></td>
+          <td><%= message.updated_at.to_s(:date_format) %></td> -->
         </tr>
         <% end %>
       </tbody>
@@ -35,6 +35,7 @@
     </div>
     <div class="modal-body">
       <%= simple_fields_for @message do |message_fields| %>
+        <%= message_fields.input :name, input_html: { class: "span12" } %>
         <%= label_tag "Add New Message:" %>
         <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "span12" } %>
       <% end %>

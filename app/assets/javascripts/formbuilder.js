@@ -42,4 +42,5 @@
   $('<label for="delivery_send_date">Delivery time</label>').insertBefore('#delivery_send_time');
   $('.defaultTime').remove();
   });
+
 });

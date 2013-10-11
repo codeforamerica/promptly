@@ -1,4 +1,10 @@
 <div class="row-fluid">
+  <%= form_tag messages_path, :method => 'get', :id => "messages_search" do %>
+  <div>
+    <%= text_field_tag :search, params[:search], id: "message-search" %>
+    <%= link_to "Search", messages_path, id: "message-search-btn", class: "btn btn-primary", remote: true %>
+  </div>
+  <% end %>
   <div class="span12" id="message">
     <%= simple_form_for @reminder, :url => reminders_new_confirm_path  do |f| %>
       

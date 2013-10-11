@@ -4,3 +4,6 @@ var newMessage = $.ajax({
   type: 'post',
   url: '<%= j messages_url %>'
 });
+
+console.log("new");
+$('#message').update('<%= j render("reminders/add_message") %>');

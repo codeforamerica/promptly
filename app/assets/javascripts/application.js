@@ -22,3 +22,13 @@
 //= require morris.min
 //= require graphs
 //= require_tree .
+
+
+$(function(){
+  // Search form.
+  $('#message-search').keyup(function () {
+    console.log($.get($('#messages_search').serialize(), null, 'script'));
+    $.get($('#messages_search').serialize(), null, 'script');
+    return false;
+  });
+})
