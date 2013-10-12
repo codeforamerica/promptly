@@ -32,7 +32,7 @@ h6 { font-size: 12px; line-height: 12px; }
 #content {
 	background: $white;
 	filter: none;
-	min-height: 100%;
+	min-height: 300px;
 	padding: 20px 20px;
 	margin-bottom: $navbarHeight;
 	@include promptly-border-radius(0px 5px 5px 5px);
