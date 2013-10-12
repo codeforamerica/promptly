@@ -1,12 +1,29 @@
-<h2>Forgot your password?</h2>
+<div class="row-fluid">
+  <div class="span12 headerSmall headerAqua pageHeader">
+      <span class="headerText">Forgot your password?</span>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+		  <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+		  <div class="control-group">
+		  	<%= f.label :email, :class => 'control-label' %>
+		  	<div class="controls">
+			  	<%= f.email_field :email, :autofocus => true %>
+			  </div>
+			</div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+		  <div class="control-group">
+		  	<div class="controls">
+		  		<%= f.submit "Send reset instructions", :class => 'btn btn-primary' %>
+		  	</div>
+		  	<div class="controls">
+		  		<%= render "devise/shared/links" %>
+		  	</div>
+		  </div>
+		<% end %>
+	</div>
+</div>
