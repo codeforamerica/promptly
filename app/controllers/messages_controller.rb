@@ -3,7 +3,6 @@ class MessagesController < ApplicationController
   
   def index
   	@messages = Message.all
-    @messages_search = Message.search(params[:search])
 
     respond_to do |format|
       format.html # index.html.erb

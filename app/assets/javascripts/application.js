@@ -17,18 +17,11 @@
 //= require bootstrap-tab
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require dataTables/jquery.dataTables
+//= require dataTablePagination
+//= require formbuilder
 //= require dateselector
 //= require reminders
 //= require morris.min
 //= require graphs
 //= require_tree .
-
-
-$(function(){
-  // Search form.
-  $('#message-search').keyup(function () {
-    console.log($.get($('#messages_search').serialize(), null, 'script'));
-    $.get($('#messages_search').serialize(), null, 'script');
-    return false;
-  });
-})

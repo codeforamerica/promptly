@@ -43,4 +43,13 @@
   $('.defaultTime').remove();
   });
 
+  $('#messages-table').dataTable( {
+        "sDom": '<"top"f>rt<"bottom"p><"clear">',
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+          "sLengthMenu": "_MENU_ records per page"
+        }
+    } );
+ 
+
 });
