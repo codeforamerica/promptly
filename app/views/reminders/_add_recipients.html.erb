@@ -2,14 +2,14 @@
   <span class="headerText">Recipients</span>
 </div>
 
-  <table class="table table-bordered datatable" id="add-groups">
+  <table class="table table-hover datatable" id="add-groups">
     <thead>
       <tr>
         <th></th>
         <th>Group Name</th>
         <th>Recipients</th>
-        <th>Created</th>
-        <th>Updated</th>
+ <!--        <th>Created</th>
+        <th>Updated</th> -->
       </tr>
     </thead>
     <tbody>
@@ -18,8 +18,8 @@
         <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
         <td><%= group.name %></td>
         <td><%= group.recipients.count %></td>
-        <td><%= group.created_at.to_s(:date_format) %></td>
-        <td><%= group.updated_at.to_s(:date_format) %></td>
+<!--         <td><%= group.created_at.to_s(:date_format) %></td>
+        <td><%= group.updated_at.to_s(:date_format) %></td> -->
       </tr>
       <% end %>
     </tbody>
