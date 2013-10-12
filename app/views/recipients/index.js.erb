@@ -1,6 +1,0 @@
-var phone = $('#individual-recipients-text-area').val();
- var newPhone = $.ajax({
-  data: { 'recipient[phone]': phone },
-  type: 'post',
-  url: '<%= j recipients_url %>'
-});

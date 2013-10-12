@@ -29,21 +29,6 @@
 					<% end %>
 				<% end %>
 
-				<% if @individual_recipients.length > 1 %>
-					<p>And</p>
-					<div class="well">
-						<% @individual_recipients.each do |recipient| %>
-							<%= Recipient.find(recipient).phone %>,
-						<% end %>
-					<div>
-				<% elsif @individual_recipients.length == 1 %>
-					<p>And</p>
-					<div class="well">
-						<% @individual_recipients.each do |recipient| %>
-							<%= Recipient.find(recipient).phone %>
-						<% end %>
-					</div>
-				<% end %>
 				<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
 
 				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>

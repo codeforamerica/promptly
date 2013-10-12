@@ -13,7 +13,7 @@ module Helper
     # Returns an array of recipient IDs.
 	def parse_phone_numbers(phone_numbers_text)
     recipients_to_add = []
-    phone_numbers_text.split("\r\n").each do |phone_number|
+    phone_numbers_text.split(/[ ,;\r\n]/).each do |phone_number|
       #phone number normalization
       phone_number = standardize_numbers(phone_number)
 

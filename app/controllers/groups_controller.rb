@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
+      format.js
     end
   end
 
@@ -57,11 +58,13 @@ class GroupsController < ApplicationController
       if @group.save
 		    phones = params[:recipient][:phone]
 		    Group.add_phone_numbers_to_group(phones, @group)
+        format.js
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
         format.html { render action: "new" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
