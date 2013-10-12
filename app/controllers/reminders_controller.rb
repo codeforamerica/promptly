@@ -22,6 +22,7 @@ class RemindersController < ApplicationController
     @message = @reminder.build_message
     @recipients = @reminder.build_recipient
     @group = Group.new
+    @messages_search = Message.all
 
     respond_to do |format|
       format.html # new.html.erb

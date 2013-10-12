@@ -7,7 +7,7 @@
       <% end %>
   <%= f.input :recipient_id, as: :hidden %><!-- adds the recipient_id as a param so we can add it manually -->
 
-
+  <%= render 'message_table', :f => f %>
   <%= render 'add_message', :f => f %>
 </div><!-- message -->
 

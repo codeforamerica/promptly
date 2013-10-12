@@ -17,6 +17,9 @@
 //= require bootstrap-tab
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require dataTables/jquery.dataTables
+//= require dataTablePagination
+//= require formbuilder
 //= require dateselector
 //= require reminders
 //= require morris.min
