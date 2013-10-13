@@ -1,6 +1,9 @@
 <div class="splash-hero">
   <%= render 'shared/splash/splash_homenav' %>
   <div class="container">
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, class: name %>
+    <% end %>
     <div class="row">
       <div class="span6">
         <h1>Promptly</h1>
