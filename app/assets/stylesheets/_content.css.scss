@@ -36,6 +36,15 @@
 	margin-bottom: 20px;
 }
 
+.tab-content {
+	margin-top: -20px; // Moving the area up so the border is seamless
+	padding-top: 20px; // Moving the content down so it's not smushed
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	@include promptly-border-radius($radius: 0 0 5px 5px);
+}
+
 
 //******************
 // Recipient Page
