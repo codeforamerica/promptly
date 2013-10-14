@@ -1,18 +1,16 @@
 <div class="row-fluid">
-	<div class="span12 pageHeader">
-		<div class="headerBig headerGray">
+	<div class="span12">
+		<div class="headerBig headerGray pageHeader">
 			<span class="headerText">Schedule Reminder</span>
 		</div>
 	</div>
 </div>
-<div class="row-fluid">
-	<div class="span12">
-
-		<div class="headerSmall headerAqua pageHeader">
-			<span class="headerText">Confirm Reminder</span>
-		</div>
-		
-		<%= simple_form_for @reminder do |f| %>
+	<div class="row-fluid">
+		<div class="span10 offset1 reminderConfirm">
+			<div class="headerSmall headerAqua pageHeader">
+				<span class="headerText">Confirm Reminder</span>
+			</div>
+			<%= simple_form_for @reminder do |f| %>
     
     <% if @reminder.errors.any? %>
       <%= render 'form_errors' %>
@@ -20,7 +18,7 @@
 
 			<h3>Almost there! Just to confirm:</h3>
 			<p>We're sending</p>
-			<div class="row">
+			<div class="row-fluid">
 				<div class="span6">
 				<div class="infoItem">
 					<%= link_to new_reminder_path(anchor: "message") do %>
@@ -45,13 +43,11 @@
 			<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
 
 			<p>On <span class="infoItemInline"><%= link_to(params[:reminder][:send_date], new_reminder_path(anchor: "date-and-time")) %></span> at <span class="infoItemInline"><%= link_to(params[:reminder][:send_time], new_reminder_path(anchor: "date-and-time")) %></span>.</p>
+
 			<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
-	</div>
-</div>
-<div class="row-fluid">
-	<div class="span12">
-				<%= f.submit class: 'btn btn-primary' %>
-				<% end %><!-- /form -->
+
+			<%= f.submit class: 'btn btn-primary dumbMargin' %>
+		<% end %><!-- /form -->
 	</div>
 </div>

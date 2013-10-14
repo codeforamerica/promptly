@@ -21,6 +21,7 @@
 //= require dataTablePagination
 //= require formbuilder
 //= require dateselector
+//= require confirm-items
 //= require reminders
 //= require morris.min
 //= require graphs
