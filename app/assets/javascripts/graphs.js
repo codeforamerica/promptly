@@ -25,7 +25,7 @@ $(function(){
           },
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
-        labels: ['Number of Recipients'],
+        labels: ['Messages Sent'],
         xLabelFormat: function(date) {
           return (date.getMonth()+1)+'/'+(date.getDate()+1)+'/'+date.getFullYear(); 
           },

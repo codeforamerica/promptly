@@ -2,6 +2,10 @@
 	margin-bottom: $navbarHeight;
 }
 
+#submit {
+	margin-top: 30px;
+}
+
 .recentReminder {
 	padding: 10px 0 10px 0;
 
@@ -92,4 +96,75 @@
 
 .queued {
 	padding-top: $baseLineHeight*2;
+}
+
+//******************
+// Reminder Confirm Page
+//******************
+
+$border-aqua: #B3C1C1;
+
+.reminderConfirm {
+	padding: 0 20px 20px 20px;
+	margin: 0;
+	
+	border: 1px solid $border-aqua;
+	border-radius: 0 10px;
+	@include promptly-border-radius($radius: 0 0 10px 10px);
+
+  > .headerSmall {
+  	margin-left: -20px;
+  	margin-right: -20px;
+  }
+
+}
+
+#groups-list > li {
+	margin-left: 5em;
+}
+
+.infoItem {
+	padding: 20px;
+	margin-left:  5em;
+	border: 1px solid $border-aqua;
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10);
+  font-weight: 500;
+  line-height: 1.4;
+
+	// box-shadow: inset 0 0 2px 1px rgba(179, 193, 193, 0.6);
+	border-radius: 10px;
+	@include promptly-border-radius($radius: 10px);
+}
+
+.infoItemInline {
+	display:inline-block;
+	padding: 10px;
+	margin: 0 5px;
+	border: 1px solid $border-aqua;
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10);
+  font-weight: 500;
+  line-height: 1.4;
+
+	// box-shadow: inset 0 0 2px 1px rgba(179, 193, 193, 0.6);
+	border-radius: 10px;
+	@include promptly-border-radius($radius: 10px);
+}
+
+.infoItem > a,
+.infoItemInline > a {
+	text-decoration: none;
+	color: darken($darkBlue, 10%);
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
