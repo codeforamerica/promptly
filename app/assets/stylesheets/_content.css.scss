@@ -100,27 +100,38 @@
 
 $border-aqua: #B3C1C1;
 
-.infoItem {
-	padding: 20px;
-	margin-left: 5em;
-	margin-right: 0;
-	margin-bottom: 0;
-	margin-top: 0;
+.reminderConfirm {
+	padding: 0 20px 20px 20px;
+	margin: 0;
 	
 	border: 1px solid $border-aqua;
-	border-radius: 10px;
-	@include promptly-border-radius($radius: 10px);
+	border-radius: 0 10px;
+	@include promptly-border-radius($radius: 0 0 10px 10px);
 
+  > .headerSmall {
+  	margin-left: -20px;
+  	margin-right: -20px;
+  }
+
+}
+
+#groups-list > li {
+	margin-left: 5em;
+}
+
+.infoItem {
+	padding: 20px;
+	margin-left:  5em;
+	border: 1px solid $border-aqua;
 	background-color: lighten($border-aqua, 20%);
 	color: darken($darkBlue, 10%);
   font-size: floor($base-font-size * 1.10);
   font-weight: 500;
   line-height: 1.4;
 
-}
-
-#groups-list > li {
-	margin-left: 5em;
+	// box-shadow: inset 0 0 2px 1px rgba(179, 193, 193, 0.6);
+	border-radius: 10px;
+	@include promptly-border-radius($radius: 10px);
 }
 
 .infoItemInline {
