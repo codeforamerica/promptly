@@ -35,7 +35,9 @@
 	    </div>
 	    <div class="conversation">
 	      <% if @group_conversations %>
-	        <%= render(:partial => 'shared/show_conversation', :collection => @group_conversations, :as => :conversation) %>
+	      	<% @group_conversations.each do |c| %>
+	      		<%= render(:partial => 'shared/show_conversation', :collection => c, :as => :conversation) %>
+	      	<% end %>
 	      <% else %>
 	       <span>No messages.</span>
 	      <% end %>
