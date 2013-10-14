@@ -1,37 +1,47 @@
-<div class="container">
-	<div class="row-fluid">
-		<div class="span12 headerBig headerGreen">
-			<span class="headerText">Confirm</span>
+<div class="row-fluid">
+	<div class="span12 pageHeader">
+		<div class="headerBig headerGray">
+			<span class="headerText">Schedule Reminder</span>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span12">
-			
-			<%= simple_form_for @reminder do |f| %>
-      
-      <% if @reminder.errors.any? %>
-        <%= render 'form_errors' %>
-      <% end %>
+</div>
+<div class="row-fluid">
+	<div class="span12">
 
-				<p> We're sending</p>
-				<div class="well">
+		<div class="headerSmall headerAqua pageHeader">
+			<span class="headerText">Confirm Reminder</span>
+		</div>
+		
+		<%= simple_form_for @reminder do |f| %>
+    
+    <% if @reminder.errors.any? %>
+      <%= render 'form_errors' %>
+    <% end %>
+
+			<p class="lead">Almost there! Just to confirm:</p>
+			<p>We're sending</p>
+			<div class="row">
+				<div class="span6">
+				<div class="infoItem">
 					<%= Message.find(params[:reminder][:message_id]).message_text %>
 					<%= f.hidden_field :message_id, :value => Message.find(params[:reminder][:message_id]).id %>
 				</div>
-
-				<% if params[:group_ids] != "" %>
-					<p>To</p>
-					<% @groups.each do |group| %>
-						<div class="well">
-							<%= group.name %>
-							<%= f.hidden_field :group_ids, :multiple => true, :value => group.id %>
-						</div>
-					<% end %>
+				</div>
+			</div>
+			<% if params[:group_ids] != "" %>
+				<p>To</p>
+				<ul class="unstyled" id="groups-list">
+				<% @groups.each do |group| %>
+					<li>
+						<span class="infoItemInline"><%= group.name %><%= f.hidden_field :group_ids, :multiple => true, :value => group.id %></span>
+					</li>
 				<% end %>
+				</ul>
+			<% end %>
 
 				<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
 
-				<p>On <%= params[:reminder][:send_date] %> at <%= params[:reminder][:send_time] %>.</p>
+				<p>On <span class="infoItemInline"><%= params[:reminder][:send_date] %></span> at <span class="infoItemInline"><%= params[:reminder][:send_time] %></span>.</p>
 				<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 				<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 				<%= f.submit class: 'btn btn-primary' %>
