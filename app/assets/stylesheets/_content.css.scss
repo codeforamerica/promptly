@@ -138,3 +138,18 @@ $border-aqua: #B3C1C1;
 	border-radius: 10px;
 	@include promptly-border-radius($radius: 10px);
 }
+
+.infoItem > a,
+.infoItemInline > a {
+	text-decoration: none;
+	color: darken($darkBlue, 10%);
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
