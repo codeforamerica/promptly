@@ -42,7 +42,7 @@ class RemindersController < ApplicationController
     # get the one from the radio button and add it to the reminder
     params[:reminder][:message_id] = params[:message_id] if params[:reminder][:message_id].nil?    
     @groups = Group.where(:id => params[:group_ids])
-
+    
     if params[:group_ids].nil? 
       unless params[:group].nil?
         new_group = Group.where(name: params[:group][:name]).first_or_create
@@ -50,8 +50,10 @@ class RemindersController < ApplicationController
       end
     else 
       unless params[:group].nil?
-        new_group = Group.where(name: params[:group][:name]).first_or_create
-        params[:group_ids] << new_group.id
+        if params[:group][:name] != ""
+          new_group = Group.where(name: params[:group][:name]).first_or_create
+          params[:group_ids] << new_group.id
+        end
       end
       recipients = group_to_recipient_ids(params[:group_ids])
     end
