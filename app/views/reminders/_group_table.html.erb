@@ -15,8 +15,8 @@
         <% Group.all.each do |group| %>
         <tr>
           <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
-          <td><%= group.name %></td>
-          <td><%= group.recipients.count %></td>
+          <td><%= link_to group.name, group_path(group) %></td>
+          <td><%= link_to group.recipients.count, group_path(group) %></td>
         </tr>
         <% end %>
       </tbody>
