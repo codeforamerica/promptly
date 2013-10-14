@@ -19,7 +19,7 @@
     </div>
     <div><%= link_to 'View all', reminders_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <%= render 'sent_reminders' || 'There are no sent reminders' %>
+      <%= render 'sent_reminders', object: @conversations || 'There are no sent reminders' %>
     </div>
   </div>
 </div>
