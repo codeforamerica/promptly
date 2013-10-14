@@ -7,6 +7,7 @@
 @import "navbar";
 @import "sidebar";
 @import "content";
+@import "forms";
 @import "charts";
 @import "data_tables";
 
@@ -52,21 +53,6 @@ h6 { font-size: 12px; line-height: 12px; }
 	margin-top: 0px;
 	border-top: 1px solid #e5e5e5;
 	background-color: $white;
-}
-
-input {
-	@include input-placeholder {
-		color: #e0e0e0;
-		font-style: italic;
-	}
-}
-
-.controls select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-	border-radius: 0px;
-}
-
-.control-group {
-	margin-bottom: 0px;
 }
 
 .lbl {
