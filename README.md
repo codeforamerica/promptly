@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/codeforamerica/landshark.png?branch=master)](https://travis-ci.org/codeforamerica/landshark)
+[![Build Status](https://travis-ci.org/codeforamerica/promptly.png?branch=master)](https://travis-ci.org/codeforamerica/promptly)
 
-# LandShark
+# Promptly
 A text message reminder system for San Francisco Human Services Agency.
 
 #### Contribute
