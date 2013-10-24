@@ -6,8 +6,13 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :recipients
 
   def self.add_phone_numbers_to_group(phone_numbers, the_group)
+    if phone_numbers.is_a? Array
+      phone_numbers = phone_numbers
+    else
+      phone_numbers = phone_numbers.split(/[ ,;\r\n]/)
+    end
     phones_to_group = []
-    phone_numbers.split(/[ ,;\r\n]/).each do |phone_number|
+    phone_numbers.each do |phone_number|
       recipient = Recipient.where(phone: phone_number).first_or_create
       recipient.save
       unless recipient == ""
@@ -19,16 +24,5 @@ class Group < ActiveRecord::Base
 
   def self.add_reminders_to_group(reminder, group)
     group.reminders << reminder
-  end
-
-  #Add an array of phone numbers to a group
-  def add_phone_number_array(phone_numbers)
-    new_recipients = []
-    phone_numbers.each do |p|
-      r = Recipient.where(phone: p).first_or_create
-      r.save
-      r.empty? ? r : new_recipients << r.id
-    end
-    self.recipients = new_recipients
   end
 end

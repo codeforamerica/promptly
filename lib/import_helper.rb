@@ -25,7 +25,7 @@ class ImportHelper < ActiveRecord::Base
     puts "Converting phone numbers to array."
     phone_numbers = []
     phone_key = ""
-    test_keys = ["phone", "phone_number", "phone number", "number", "contact"]
+    test_keys = ["phone", "phone_number", "phone number", "number", "contact", "Phone"]
     test_keys.each do |key|
       if result.first.keys.include?(key)
         phone_key = key
@@ -54,7 +54,7 @@ class ImportHelper < ActiveRecord::Base
 
     # Save phone numbers to group
     puts "Adding phone numbers: #{phone_numbers}"
-    g.add_phone_number_array(phone_numbers)
+    Group.add_phone_number_array(phone_numbers, g)
     puts "#{Time.now.to_formatted_s} - FINISHED GROUP IMPORT"
   end
 end
