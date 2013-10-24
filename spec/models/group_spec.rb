@@ -28,4 +28,16 @@ describe Group do
     end
   end
 
+  describe "#find_recipients_in_group" do
+    it "returns an array of recipients for a specific group" do
+      group = FactoryGirl.create(:group) do |group|
+        group.name = "test group 2"
+        group.recipients.create(name: "test2", phone: "8888888888")
+        group.recipients.create(name: "test3", phone: "3333333333")
+      end
+      test_return = Group.find_recipients_in_group(group.id)
+      test_return.should == group.recipients
+    end
+  end
+
 end
