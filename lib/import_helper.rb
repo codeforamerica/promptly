@@ -44,6 +44,7 @@ class ImportHelper < ActiveRecord::Base
     end
 
     # Find or create group
+    puts "Finding/creating group"
     g = Group.where(group_name_id: group_name_id).first_or_create(
       :group_name_id => group_name_id,
       :name => group_name_id,
@@ -51,14 +52,13 @@ class ImportHelper < ActiveRecord::Base
       :editable => 0
       )
     g.save
+
     puts "Modifying group: #{g.group_name_id}, #{g.id}"
-
+    # Empty current recipients
     g.recipients.clear
-    puts "removing existing recipients from group"
-
     # Save phone numbers to group
     puts "Adding phone numbers: #{phone_numbers}"
-    Group.add_phone_numbers_to_group(phone_numbers, g)
+    Group.add_phone_numbers_to_group(phone_numbers.uniq, g)
     puts "#{Time.now.to_formatted_s} - FINISHED GROUP IMPORT"
   end
 end
