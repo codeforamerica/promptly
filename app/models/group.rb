@@ -20,4 +20,15 @@ class Group < ActiveRecord::Base
   def self.add_reminders_to_group(reminder, group)
     group.reminders << reminder
   end
+
+  #Add an array of phone numbers to a group
+  def add_phone_number_array(phone_numbers)
+    new_recipients = []
+    phone_numbers.each do |p|
+      r = Recipient.where(phone: p).first_or_create
+      r.save
+      r.empty? ? r : new_recipients << r.id
+    end
+    self.recipients = new_recipients
+  end
 end

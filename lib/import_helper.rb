@@ -54,7 +54,7 @@ class ImportHelper < ActiveRecord::Base
 
     # Save phone numbers to group
     puts "Adding phone numbers: #{phone_numbers}"
-    g.add_phone_numbers(phone_numbers)
+    g.add_phone_number_array(phone_numbers)
     puts "#{Time.now.to_formatted_s} - FINISHED GROUP IMPORT"
   end
 end

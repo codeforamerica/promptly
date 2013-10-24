@@ -14,7 +14,7 @@ gem 'foreman'
 gem 'jquery-rails', '2.0.2'
 gem 'jquery-ui-rails'
 gem 'role_model'
-gem 'pg'
+#gem 'pg'
 gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'whenever'
@@ -56,8 +56,8 @@ group :test do
 end
 
 # Only try to install these gems on staging/prod servers
-  # group :production do
-    # gem 'tiny_tds'
-    # gem 'activerecord-sqlserver-adapter'
-    # gem 'therubyracer'
-  # end
+group :production do
+  gem 'tiny_tds'
+  gem 'activerecord-sqlserver-adapter'
+  gem 'therubyracer'
+end
