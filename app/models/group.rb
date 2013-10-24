@@ -7,7 +7,12 @@ class Group < ActiveRecord::Base
 
   def self.add_phone_numbers_to_group(phone_numbers, the_group)
     phones_to_group = []
-    phone_numbers.split(/[ ,;\r\n]/).each do |phone_number|
+    if phone_numbers.is_a? Array 
+      phone_numbers = phone_numbers
+    else
+      phone_numbers = phone_numbers.split(/[ ,;\r\n]/)
+    end
+    phone_numbers.each do |phone_number|
       recipient = Recipient.where(phone: phone_number).first_or_create
       recipient.save
       unless recipient == ""
