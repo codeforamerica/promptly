@@ -9,6 +9,13 @@ describe Group do
       Group.add_phone_numbers_to_group(phone_numbers, group)
       Recipient.count.should == 2
     end
+
+    it "adds an array of phone numbers to a group" do
+      group = FactoryGirl.create(:group, name: "test group")
+      phone_numbers = ["9999999999", "1111111111"]
+      Group.add_phone_numbers_to_group(phone_numbers, group)
+      Recipient.count.should == 2
+    end
   end
   describe "#add_reminders_to_group" do
     it "adds created reminders to their respective group" do

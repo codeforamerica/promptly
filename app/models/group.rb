@@ -25,4 +25,8 @@ class Group < ActiveRecord::Base
   def self.add_reminders_to_group(reminder, group)
     group.reminders << reminder
   end
+
+  def self.find_recipients_in_group(group_id)
+    Group.find(group_id).recipients
+  end
 end
