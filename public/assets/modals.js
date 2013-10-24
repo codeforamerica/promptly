@@ -1,0 +1,1 @@
+$(function(){function a(a){$(this).parents(".modal").modal("hide"),$(this).prev(".fieldset").remove(),a.preventDefault()}$("form .add_modal").on("click",function(b){$(".modal").modal("show"),$(".modal .cancel-modal").on("click",a)})});

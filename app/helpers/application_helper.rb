@@ -38,7 +38,8 @@ module ApplicationHelper
     (start_date..end_date).map do |date|
       {
         date: date,
-        number_sent: model.order("DATE(#{date_field})").where("DATE(#{date_field}) = ?", date).count
+        #number_sent: model.order("DATE(#{date_field})").where("DATE(#{date_field}) = ?", date).count
+        number_sent: model.order("#{date_field}").where("#{date_field} = ?", date).count
       }
     end
   end

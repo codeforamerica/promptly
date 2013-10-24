@@ -13,9 +13,9 @@ class Reminder < ActiveRecord::Base
 
   def self.grouped_reminders(limit = 0)
     if limit != 0
-      Reminder.where('date(send_date) >= ?', Time.parse(DateTime.now.to_s)).order("send_date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
+      Reminder.where('send_date >= ?', DateTime.now).order("send_date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
     else
-      Reminder.where('date(send_date) >= ?', Time.parse(DateTime.now.to_s)).order("send_date").to_set.classify {|reminder| reminder.batch_id}
+      Reminder.where('send_date >= ?', DateTime.now).order("send_date").to_set.classify {|reminder| reminder.batch_id}
     end
   end
 
