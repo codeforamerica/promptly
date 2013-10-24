@@ -15,9 +15,10 @@ class ImportHelper < ActiveRecord::Base
     puts "Querying DB."
     sql = "SELECT * FROM #{table}"
     result = con.select_all(sql)
-    if result.nil?
-      puts "No phone numbers to add! Stopping import..."
+    if result.first.nil?
+      puts "No phone numbers found. Aborting import!"
       return
+    end
 
     #reconnect to rails DB
     # puts "Reconnecting to rails DB."
