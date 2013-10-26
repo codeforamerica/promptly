@@ -35,10 +35,17 @@ module ApplicationHelper
   end
 
   def chart_data(start_date, end_date = Date.today, date_field, model)
+    date_field_sym = date_field.to_sym
     (start_date..end_date).map do |date|
       {
         date: date,
-        number_sent: model.order("DATE(#{date_field})").where("DATE(#{date_field}) = ?", date).count
+
+        #to_datetime > midnight
+        #Using midnight-midnight range gets around using date() sql function to cast dates,
+        #which doesn't work on SQLServer 08 
+        number_sent: model.order(date_field_sym)
+                      .where(date_field_sym => date.to_datetime..(date+1).to_datetime)
+                      .count
       }
     end
   end
