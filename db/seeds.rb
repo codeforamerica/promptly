@@ -9,9 +9,9 @@ User.create([
 ])
 
 # Send admin login details to console
-puts "Admin user successfully created."
+puts "Admin user successfully created:"
 puts "    email: admin@example.com"
-puts "    password: administrator" 
+puts "    password: adminpass" 
 
 Message.create([
   {   name: "Example Message", message_text: "Demo message to be sent to group.", description: "This is merely a test message." },
