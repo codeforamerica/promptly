@@ -19,24 +19,25 @@ class Reminder < ActiveRecord::Base
     end
   end
 
-  def self.create_new_recipients_reminders(recipient, message, send_date, options ={})
+  def self.create_new_recipients_reminders(message, send_date, options ={})
       defaults = {
         send_time: '12:00pm',
-        group_id: nil
+        group_id: nil,
+        recipient: nil
       }
       options = defaults.merge(options)
 
-    unless recipient == ""
+    # unless options[:recipient] == ""
       reminder_time = Time.zone.parse(options[:send_time])
       reminder_time = reminder_time.getutc
       send_date = check_for_valid_date(send_date)
       begin
 	      reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
 	      batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
-	      if check_for_existing_reminder(recipient.id, batch_id)
+	      if check_for_existing_reminder(options[:recipient].id, batch_id)
 	        raise ArgumentError.new("Reminder already exists!")
 		    else
-		      @reminder = Reminder.new(:recipient_id => recipient.id, :message_id => message.id)
+		      @reminder = Reminder.new(:recipient_id => options[:recipient].id, :message_id => message.id)
 		      @reminder.send_date = reminder_date 
 		      @reminder.send_time = reminder_time     
 		      @reminder.batch_id = batch_id
@@ -49,18 +50,14 @@ class Reminder < ActiveRecord::Base
 		  rescue
 		  	$!.message
 		  end
-    end
+    # end
   end
 
   def self.add_reminder_to_queue(reminder)
     theDate = reminder.send_date
     @recipient = Recipient.find(reminder.recipient_id)
-    if theDate < DateTime.now
-      Notifier.delay(priority: 0, run_at: DateTime.now).perform(@recipient, Message.find(reminder.message_id).message_text, reminder.batch_id)
-    else
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(@recipient, Message.find(reminder.message_id).message_text, reminder.batch_id)
-      reminder.update_attributes(job_id: theJob.id)
-    end
+    theJob = Notifier.delay(priority: 0, run_at: theDate).perform(reminder.message_id, reminder.group_ids, reminder.recipient)
+    reminder.update_attributes(job_id: theJob.id)
   end
 
   def self.check_for_valid_date(the_date)

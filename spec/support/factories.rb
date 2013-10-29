@@ -6,6 +6,10 @@ FactoryGirl.define do
     message "test message"
   end
 
+  factory :recipient do
+    name "test"
+    phone "9196361635"
+  end
 
   factory :group do
     name "test group"
@@ -13,14 +17,10 @@ FactoryGirl.define do
 
   factory :message do
     name "test message"
-    message_text "test"
+    message_text "A test from rspec."
     description "this is a test message"
   end
 
-  factory :recipient do
-    name "test"
-    phone "9196361635"
-  end
 
   factory :reminder do
     name "test reminder"
@@ -43,10 +43,17 @@ FactoryGirl.define do
     end
   end
 
-  factory :reminder_with_message_and_recipient, parent: :reminder do 
-    after :create do 
+
+  factory :reminder_with_message_and_group, parent: :reminder do 
+    before :create do |reminder|
       reminder.message = FactoryGirl.create(:message)
-      reminder.recipient = FactoryGirl.create(:recipient)
+      reminder.groups = FactoryGirl.create_list(:group_with_recipient, 1)
+    end
+  end
+
+  factory :group_with_recipient, parent: :group do
+    before :create do |group|
+      group.recipients = FactoryGirl.create_list(:recipient, 2)
     end
   end
     

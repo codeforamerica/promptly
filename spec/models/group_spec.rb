@@ -22,7 +22,7 @@ describe Group do
       group = FactoryGirl.create(:group, name: "test group 2")
       recipient = FactoryGirl.create(:recipient)
       message = FactoryGirl.create(:message)
-      Reminder.create_new_recipients_reminders(recipient, message, DateTime.now + 2.days, group_id: group.id.to_s)
+      Reminder.create_new_recipients_reminders(message, DateTime.now + 2.days, group_id: group.id)
       Reminder.count.should == 1
       Delayed::Job.count.should == 1
     end

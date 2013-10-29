@@ -1,14 +1,14 @@
 class Notifier
 
   class Logger
-    def initialize(response, recipient, batch_id)
+    def initialize(response, recipient)
       @response = response
       @recipient = recipient
-      @batch_id = batch_id
+      # @batch_id = batch_id
     end
 
-    def self.log(response, recipient, batch_id)
-      new(response, recipient, batch_id).log
+    def self.log(response, recipient)
+      new(response, recipient).log
     end
 
     def log
@@ -18,8 +18,8 @@ class Notifier
         to_number: response.to,
         from_number: response.from,
         message_id: response.sid,
-        status: response.status,
-        batch_id: @batch_id
+        status: response.status
+        # batch_id: @batch_id
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -32,23 +32,45 @@ class Notifier
     
   end
 
-  def initialize(recipient, smsmessage, batch_id)
-    @recipient, @smsmessage, @batch_id = recipient, smsmessage, batch_id
+  def initialize(message_id, options ={})
+      defaults = {
+        group_id: nil,
+        recipient_id: nil
+      }
+    options = defaults.merge(options)
+    @recipient_id, @message_id, @group_id = options[:recipient_id], message_id, options[:group_id]
+    @recipients = []
+    if @group_id
+      @group_id.each do |group|
+        @recipients << Group.find_recipients_in_group(group)
+      end
+    else
+      @recipients = Recipient.find(recipient_id)
+    end
   end
 
-  def self.perform(recipient, smsmessage, batch_id)
-    new(recipient, smsmessage, batch_id).perform
+  def self.perform(message_id, options ={})
+      defaults = {
+        group_id: nil,
+        recipient_id: nil
+      }
+      options = defaults.merge(options)
+    new(message_id, group_id: options[:group_id], recipient_id: options[:recipient_id]).perform
   end
 
   def perform
-    the_message = client.account.sms.messages.create(attributes)
-    Logger.log(the_message, recipient, batch_id)
+    @recipients.each do |recipient|
+        
+      the_message = client.account.sms.messages.create(attributes(recipient))
+      Logger.log(the_message, recipient)
+    end
   end
 
-  def attributes
+  def attributes(recipient)
+
     {
       from: from,
-      to: to,
+      to: to(recipient),
       body: body,
     }
   end
@@ -62,12 +84,13 @@ class Notifier
     ENV["TWILIO_NUMBER"]
   end
 
-  def to
-    recipient.phone
+  def to(recipient)
+    
+    recipient[0].phone
   end
 
   def body
-    @smsmessage
+    Message.find(@message_id).message_text
   end
 
   def batch_id
