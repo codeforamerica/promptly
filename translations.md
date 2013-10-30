@@ -6,22 +6,22 @@
 # DC notice text
 
 ## English
-CalFresh (Food Stamps): Your CalFresh benefits may stop at the end of this month. Questions? Call (415) 558-1001.
+CalFresh (Food Stamps): Your CalFresh benefits may stop at the end of this month. Questions? Call (415) 944-4301.
 
 ## Spanish
-CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinuarse al final de este mes. ¿Preguntas? Llame al (415) 558-1001.
+CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinuarse al final de este mes. ¿Preguntas? Llame al (415) 944-4301.
 
 ## Chinese
-糧食券: 你的糧食券福利可能會在本月底停止. 有問題嗎？請致電 (415) 558-1001.
+糧食券: 你的糧食券福利可能會在本月底停止. 有問題嗎？請致電 (415) 944-4301.
 
 ## Russian
-CalFresh (Food Stamps): В конце этого месяца выплата вашего пособия CalFresh может быть остановлена. Если у вас есть вопросы, позвоните по номеру (415) 558 1001.
+CalFresh (Food Stamps): В конце этого месяца выплата вашего пособия CalFresh может быть остановлена. Если у вас есть вопросы, позвоните по номеру (415) 944-4301.
 
 ## Tagalog
-CalFresh (Food Stamps): Ang inyong mga benepisyo ng CalFresh ay maaaring tumigil sa katapusan ng buwang ito. May mga katanungan ba kayo? Tumawag sa (415) 558-1001.
+CalFresh (Food Stamps): Ang inyong mga benepisyo ng CalFresh ay maaaring tumigil sa katapusan ng buwang ito. May mga katanungan ba kayo? Tumawag sa (415) 944-4301.
 
 ## Vietnamese
-CalFresh (Phiếu Thực phẩm): Phúc lợi CalFresh của quý vị có thể sẽ bị ngưng vào cuối tháng này. Nếu quý vị có thắc mắc thì xin gọi về (415) 558-1001.
+CalFresh (Phiếu Thực phẩm): Phúc lợi CalFresh của quý vị có thể sẽ bị ngưng vào cuối tháng này. Nếu quý vị có thắc mắc thì xin gọi về (415) 944-4301.
 
 # Auto sms response
 
