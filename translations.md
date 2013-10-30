@@ -14,6 +14,15 @@ CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinu
 ## Chinese
 糧食券: 你的糧食券福利可能會在本月底停止. 有問題嗎？請致電 (415) 558-1001.
 
+## Russian
+CalFresh (Food Stamps): В конце этого месяца выплата вашего пособия CalFresh может быть остановлена. Если у вас есть вопросы, позвоните по номеру (415) 558 1001.
+
+## Tagalog
+CalFresh (Food Stamps): Ang inyong mga benepisyo ng CalFresh ay maaaring tumigil sa katapusan ng buwang ito. May mga katanungan ba kayo? Tumawag sa (415) 558-1001.
+
+## Vietnamese
+CalFresh (Phiếu Thực phẩm): Phúc lợi CalFresh của quý vị có thể sẽ bị ngưng vào cuối tháng này. Nếu quý vị có thắc mắc thì xin gọi về (415) 558-1001.
+
 # Auto sms response
 
 ## English (only)
@@ -35,6 +44,8 @@ Este mensaje se repetirá. Gracias.
 你好，這是舊金山福利局。我們寄給你一個關於你福利的電子短信是因為你報名參加我們的短信服務。如果你不想收到任何電子短信，請回复電子短信要求停止服務。如果您有任何關於糧食券的問題，請致電（415）558-1001。重複一次，糧食券的電話號碼是（415）558-1001。
 
 這個信息將會重複。謝謝。
+
+
 
 # Multi-lingual IVR menu
 - For English, press 1 or stay on the line.
