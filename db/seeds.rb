@@ -28,6 +28,6 @@ Group.create(name: "Test Group", description: "Dummy group for tests and other f
 
 # Reminder must be created last; it refers to earlier Mesage.id and Recipient.id
 Reminder.create([
-  {   name: "First reminder for group", message_id: 1, recipient_id: 1, send_date: Date.today, send_time: "12:00pm" }  
+  {   name: "First reminder for group", message_id: 1, recipient_id: 1, batch_id: "1", send_date: Date.today, send_time: "12:00pm" }  
 ])
 
