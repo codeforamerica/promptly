@@ -125,7 +125,7 @@ heroku addons:add scheduler
 heroku addons:open scheduler
 ```
 Run the task `rake update_conversations` every 10 minutes, like so:
-
+![heroku scheduler addon](http://codeforamerica.github.io/promptly/heroku-scheduler-addon.png)
 
 6) Create a Promptly admin user
 Run `$ heroku run rails c` to start the rails console in the Heroku environment.
