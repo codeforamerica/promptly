@@ -67,7 +67,7 @@ $ foreman start
 ```
 You should see the project at <a href="http://localhost:5000">http://localhost:5000</a>
 
-11) Create a Promptly user
+11) Create a Promptly admin user
 If you want to do anything in Promptly, you'll need to create an admin user from the command line
 
 Run `$foreman run rails c` to start the rails console.
@@ -83,8 +83,60 @@ Then create a user:
 )
 ```
 Now you can login with admin@example.com/temppass at 
-[http://localhost:5000/users/sign_in] and change your password at [http://localhost:5000/users/edit].
+[http://localhost:5000/users/sign_in](http://localhost:5000/users/sign_in) and change your password at [http://localhost:5000/users/edit](http://localhost:5000/users/edit).
 
 ### Deploy to Heroku
+If you don't already have one, now would be a good time to [signup for Heroku](https://id.heroku.com/signup).
+
+1) Create a Heroku app and push your code
+```sh
+$ heroku login
+$ heroku create
+$ git push heroku master
+```
+
+2) Add the Heroku PostgreSQL addon and promote it
+```sh
+$ heroku addons:add heroku-postgresql
+$ heroku pg:promote HEROKU_POSTGRESQL_COLOR_URL
+```
+
+3) Configure Heroku environment variables
+```sh
+heroku config:add TWILIO_NUMBER=[your Twilio phone number]
+```
+Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file. DATABASE_URL is already set from step #2.
+
+4) Load the Promptly schema
+```sh
+$ heroku run rake db:schema:load
+```
+
+At this point should be able to run `heroku open` and see the project.
+
+5) Add the Heroku scheduler addon
+For annoying reasons we won't go into here, Promptly requires a periodic rake task to update the conversations model with incoming text messages from users. You can do this on Heroku using the scheduler addon. 
+
+```sh
+heroku addons:add scheduler
+heroku addons:open scheduler
+```
+Run the task `rake update_conversations` every 10 minutes.
+
+6) Create a Promptly admin user
+Run `$ heroku run rails c` to start the rails console in the Heroku environment.
+
+Then create a user:
+```ruby
+> User.create(
+    :name => "Admin",
+    :email => "admin@example.com",
+    :password => "temppass",
+    :password_confirmation => "temppass",
+    :roles_mask => 1
+)
+```
+
+And you're all set! Run `heroku open` to schedule your first reminder. 
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>
