@@ -54,10 +54,19 @@ h1, h2, h3, h4 {
   padding: (($navbarHeight - $baseLineHeight) / 2) 15px (($navbarHeight - $baseLineHeight) / 2);
   height: $loginHeight;
 
-  p {
-    color: darken(#FFF, 5%);
+  span {
     padding: 0 0 0 0;
-    font-weight: bold;
+    color: darken($gray, 60%);
+  }
+
+  .signin {
+    background-color: $blue;
+    color: $white;
+    padding: 4px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    text-decoration: none;
   }
 }
 
@@ -121,14 +130,14 @@ h1, h2, h3, h4 {
     margin: 0;
     display: table;
     width: 100%;
-    padding: 10px 15px;
-    font-weight: bold;
-    font-size: 150%;
+    padding: 10px 0px;
+    font-weight: 600;
+    font-size: floor($base-font-size * 5);
 
     > li {
-      position: relative;
       display: table-cell;
       float: none;
+      width: 1%;
 
       > a {
         position: relative;
@@ -141,14 +150,6 @@ h1, h2, h3, h4 {
           color: darken($red, 20%);
           background-color: $white;
         }
-      }
-
-      &:first-child a {
-        text-align: left;
-      }
-
-      &:last-child a {
-        text-align: right;
       }
     }
   }
@@ -170,7 +171,7 @@ h1, h2, h3, h4 {
 
 
 #what {
-  background-color: darken($blue, 20%);
+  background-color: darken($blue, 30%);
   color: darken($lightGray, 10%);
   
   .big-icons {
@@ -180,6 +181,17 @@ h1, h2, h3, h4 {
   .caption {
     text-align: center;
   }
+}
+
+#contact {
+  background-color: darken($aqua, 20%);
+  color: lighten($lightGray, 10%);
+
+ a {
+  font-family: $headerFont;
+  font-size: 38.5px !important;
+  color: darken($blue, 30%);
+ }
 }
 
 #story {
@@ -215,7 +227,6 @@ h1, h2, h3, h4 {
  ***************/
 
  .footer {
-  text-align: center;
   padding: 30px 0;
   margin-top: 0px;
   border-top: 1px solid #e5e5e5;

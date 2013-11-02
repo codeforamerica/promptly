@@ -12,10 +12,16 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
+//= require bootstrap-transition
+//= require bootstrap-modal
+//= require bootstrap-tab
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require dataTables/jquery.dataTables
+//= require dataTablePagination
+//= require formbuilder
 //= require dateselector
+//= require confirm-items
 //= require reminders
 //= require morris.min
 //= require graphs

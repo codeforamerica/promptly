@@ -4,19 +4,25 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :reminders
   has_and_belongs_to_many :recipients
   accepts_nested_attributes_for :recipients
-  
-  def default_values
-    self.name ||= self.group_name_id
-    self.description ||= self.group_name_id
+
+  def self.add_phone_numbers_to_group(phone_numbers, the_group)
+    if phone_numbers.is_a? Array
+      phone_numbers = phone_numbers
+    else
+      phone_numbers = phone_numbers.split(/[ ,;\r\n]/)
+    end
+    phones_to_group = []
+    phone_numbers.each do |phone_number|
+      recipient = Recipient.where(phone: phone_number).first_or_create
+      recipient.save
+      unless recipient == ""
+        phones_to_group << recipient.id
+      end
+    end
+    the_group.recipient_ids = phones_to_group
   end
 
-  def add_phone_numbers(phone_numbers)
-    recipients = []
-    phone_numbers.each do |p|
-      r = Recipient.where(phone: p).first_or_create
-      r.save
-      recipients << r
-    end
-    self.recipients = recipients.uniq
+  def self.add_reminders_to_group(reminder, group)
+    group.reminders << reminder
   end
 end

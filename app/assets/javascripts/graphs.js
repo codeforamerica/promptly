@@ -19,10 +19,17 @@ $(function(){
         xkey: 'date',
         // A list of names of data record attributes that contain y-values.
         ykeys: ['number_sent'],
+        dateFormat: function(date) {
+          d = new Date(date);
+          return (d.getMonth()+1)+'/'+(d.getDate()+1)+'/'+d.getFullYear(); 
+          },
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
-        labels: ['Number of Recipients'],
-        smooth: false
+        labels: ['Messages Sent'],
+        xLabelFormat: function(date) {
+          return (date.getMonth()+1)+'/'+(date.getDate()+1)+'/'+date.getFullYear(); 
+          },
+        smooth: false,
       });
     })
   };

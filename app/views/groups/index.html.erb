@@ -1,17 +1,24 @@
 <div class="row-fluid">
-  <h2>All groups</h2>
-  <table class="table">
-  	<thead>
-  		<th>Group name</th>
-  		<th>Group description</th>
-  	</thead>
-  <% @groups.each do |g| %>
-      <tr>
-	      <td><%= link_to_if(can?(:read, Group), "#{g.name}", group_path(g.id)) {} %></td>
-			  <td><%= "#{g.description}" %></td>
-			  <td><%= link_to_if(can?(:edit, Group), "Edit", edit_group_path(g.id), :class => 'btn btn-default') %>&nbsp;<%= link_to_if(can?(:delete, g), "Delete", g, :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger') %></td>
-      </tr>
-  <% end %>
-  </table>
-  <div class="dumbPadding"><%= link_to 'New group', new_group_path, :class=>'btn btn-primary' %></div>
+  <div class="pageHeader span12">
+      <%= link_to 'New group', new_group_path, :class => 'cta-button btn btn-primary' %>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+    <table class="table table-bordered">
+    	<thead>
+    		<th>Group name</th>
+    		<th>Group description</th>
+    	</thead>
+      <tbody>
+      <% @groups.each do |g| %>
+        <tr>
+  	      <td><%= link_to_if(can?(:read, Group), "#{g.name}", group_path(g.id)) {} %></td>
+  			  <td><%= "#{g.description}" %></td>
+  			  <td><%= link_to_if(can?(:edit, Group), "Edit", edit_group_path(g.id), :class => 'btn btn-default') %>&nbsp;<%= link_to_if(can?(:delete, g), "Delete", g, :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger') %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>

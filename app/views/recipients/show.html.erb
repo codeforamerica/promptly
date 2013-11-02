@@ -9,20 +9,28 @@
 <div class="row-fluid">
 
   <div class="span8">
-    <div class="span12 mainHeaderAqua">
-      <span class="aquaHighlight">Recipient History</span>
+    <div class="row-fluid">
+      <div class="span12 headerSmall headerAqua">
+        <span class="headerText">Recipient History</span>
+      </div>
     </div>
-    <div class="conversation">
-      <%= render(:partial => 'show_conversation', :collection => @recipient.conversations, :as => :conversation) || 'No messages.' %>
+    <div class="row-fluid">
+      <div class="span12 conversation">
+        <%= render(:partial => 'shared/show_conversation', :collection => @recipient.conversations, :as => :conversation) || 'No messages.' %>
+      </div>
     </div>
   </div>
 
   <div class="span4 sidebar">
-    <div class="span12 mainHeaderAqua">
-      <span class="aquaHighlight">Queued Reminders</span>
+    <div class="row-fluid">
+      <div class="span12 headerSmall headerAqua">
+        <span class="headerText">Queued Reminders</span>
+      </div>
     </div>
-    <div class="queued">
-      <%= render(:partial => 'queued_reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+    <div class="row-fluid">
+      <div class="span12 queued">
+        <%= render(:partial => 'shared/queued_reminders', :collection => @recipient.reminders, :as => :reminder) || 'No queued reminders.' %>
+      </div>
     </div>
   </div>
 

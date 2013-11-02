@@ -1,44 +1,41 @@
 <div class="row-fluid">
-  <div class="pageHeader">
-    <h2>Dashboard</h2>
-    <div>
-      <span>Schedule new reminders and view statistics</span>
-      <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'offset1 btn btn-primary' %>
-    </div>
+  <div class="pageHeader span12">
+      <%= link_to 'Schedule a reminder', new_reminder_path, :class => 'btn btn-primary cta-button' %>
   </div>
-  <div class="span5">
-    <div class="mainHeaderAqua">
-      <span class="aquaHighlight">Upcoming reminders</span>
+</div>
+<div class="row-fluid">
+  <div class="span6">
+    <div class="headerSmall headerAqua">
+      <span class="headerText">Upcoming reminders</span>
     </div>
       <div><%= link_to 'View all', reminders_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
     </div>
   </div>
-  <div class="span5">
-    <div class="mainHeaderGreen">
-      <span class="greenHighlight">Sent reminders</span>
+  <div class="span6">
+    <div class="headerSmall headerGreen">
+      <span class="headerText">Sent reminders</span>
     </div>
     <div><%= link_to 'View all', reminders_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
-      <%= render 'sent_reminders' || 'There are no sent reminders' %>
+      <%= render 'sent_reminders', object: @conversations || 'There are no sent reminders' %>
     </div>
   </div>
 </div>
 <div class="row-fluid">
-  <div><!-- This empty div is here so bootstrap will add the correct margin to the div below. Dumb--></div>
-  <div class="span5">
-    <div class="mainHeaderGreen">
-      <span class="greenHighlight">Responses</span>
+  <div class="span6">
+    <div class="headerSmall headerGreen">
+      <span class="headerText">Responses</span>
     </div>
     <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'responses' || 'There are no responses' %>
     </div>
   </div>
-  <div class="span5">
-    <div class="mainHeaderGreen">
-      <span class="greenHighlight">Undelivered reminders</span>
+  <div class="span6">
+    <div class="headerSmall headerRed">
+      <span class="headerText">Undelivered reminders</span>
     </div>
     <div><%= link_to 'View all', conversations_path, :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">

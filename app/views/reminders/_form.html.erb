@@ -7,13 +7,14 @@
       <% end %>
   <%= f.input :recipient_id, as: :hidden %><!-- adds the recipient_id as a param so we can add it manually -->
 
-
+  <%= render 'message_table', :f => f %>
   <%= render 'add_message', :f => f %>
 </div><!-- message -->
 
 
 <div class="row-fluid" id="recipients">
   <div class="span12">
+    <%= render 'group_table', :f => f %>
     <%= render 'add_recipients', :f => f %>
   </div>
 </div><!-- recipients -->
@@ -27,7 +28,8 @@
 <div class="row-fluid" id="submit">
   <div class="span12">
 
-    <%= f.submit :class => 'btn btn-primary' %>
+    <%= link_to "Cancel", admin_path %>
+    <%= f.submit "Schedule Reminder", :class => 'btn btn-primary' %>
     <% end %> <!-- /form -->
   </div>
 </div>

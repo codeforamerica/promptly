@@ -1,8 +1,13 @@
-Landshark::Application.routes.draw do
+Promptly::Application.routes.draw do
 
   root :to => 'pages#splash'
   
-  devise_for :users, :controllers => {:registrations => "registrations"}
+  devise_for :users, :skip => [:registrations]
+  as :user do
+    get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
+    put 'users' => 'devise/registrations#update', :as => 'user_registration'
+  end
+  
   get '/admin' => 'home#index'
   # get '/admin/users/new' => 'users#new'
   # get '/users/sign_up' => 'registrations#new'
@@ -14,8 +19,6 @@ Landshark::Application.routes.draw do
     resources :conversations
     resources :groups
     resources :messages
-    match '/reminder_imports/review' => 'reminder_imports#review'
-    resources :reminder_imports
     match '/reminders/new' => 'reminders#new'
     post '/reminders/new/confirm' => 'reminders#confirm'
     get '/reminders/:batch_id/edit' => 'reminders#edit'
@@ -29,7 +32,6 @@ Landshark::Application.routes.draw do
   #project page
   match '/hsa' => 'pages#hsa'
   match '/documents' => 'pages#documents'
-  match '/calwin' => 'pages#calwin'
 
   #autoresponse
   match '/handle-incoming-sms' => 'auto_response#handle_incoming_sms'

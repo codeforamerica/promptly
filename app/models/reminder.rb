@@ -11,21 +11,30 @@ class Reminder < ActiveRecord::Base
   has_and_belongs_to_many :groups
   accepts_nested_attributes_for :message, :recipient
 
-  def date_format(human_date)
-  	human_date.date.to_s(:input_format) 
-  end
-
   def self.grouped_reminders(limit = 0)
     if limit != 0
-      Reminder.where('send_date >=?', DateTime.now).order("send_date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
+      Reminder.where('send_date >= ?', DateTime.now)
+        .order("send_date")
+        .limit(limit)
+        .to_set
+        .classify {|reminder| reminder.batch_id}
     else
-      Reminder.where('send_date >=?', DateTime.now).order("send_date").to_set.classify {|reminder| reminder.batch_id}
+      Reminder.where('send_date >= ?', DateTime.now)
+        .order("send_date")
+        .to_set
+        .classify {|reminder| reminder.batch_id}
     end
   end
 
-  def self.create_new_recipients_reminders(recipient, send_date, send_time = '12:00pm', message)
+  def self.create_new_recipients_reminders(recipient, message, send_date, options ={})
+      defaults = {
+        send_time: '12:00pm',
+        group_id: nil
+      }
+      options = defaults.merge(options)
+
     unless recipient == ""
-      reminder_time = Time.zone.parse(send_time)
+      reminder_time = Time.zone.parse(options[:send_time])
       reminder_time = reminder_time.getutc
       send_date = check_for_valid_date(send_date)
       begin
@@ -38,6 +47,7 @@ class Reminder < ActiveRecord::Base
 		      @reminder.send_date = reminder_date 
 		      @reminder.send_time = reminder_time     
 		      @reminder.batch_id = batch_id
+          @reminder.group_ids = options[:group_id]
 		      @reminder.save
           puts 'saved'
 		      add_reminder_to_queue(@reminder)
@@ -61,10 +71,14 @@ class Reminder < ActiveRecord::Base
   end
 
   def self.check_for_valid_date(the_date)
-  	begin
-	  	the_date.respond_to?('strip') ? the_date = the_date.gsub("'","").strip : the_date
-			valid_date = DateTime.strptime(the_date, '%m/%d/%Y')
-			DateTime.parse(valid_date.to_s)
+    begin
+      if the_date.is_a? String
+        the_date = the_date.gsub("'","").strip
+        valid_date = DateTime.strptime(the_date, '%m/%d/%Y')
+  			DateTime.parse(valid_date.to_s)
+      else
+        the_date
+      end
 		rescue
 			'There is an error with the send_date: '+$!.message
 		end

@@ -1,12 +1,15 @@
 class GroupsController < ApplicationController
   # GET /Groups
   # GET /Groups.json
+  load_and_authorize_resource
+  
   def index
     @groups = Group.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
+      format.js
     end
   end
 
@@ -15,6 +18,13 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @group_reminders = @group.reminders
+    @group_recipients = @group.recipients
+    @group_conversations =[]
+    @group_recipients.each do |recipient|
+      if recipient.conversations != []
+        @group_conversations << recipient.conversations
+      end
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -47,12 +57,14 @@ class GroupsController < ApplicationController
     respond_to do |format|
       if @group.save
 		    phones = params[:recipient][:phone]
-		    add_phone_numbers_to_group(phones, @group)
+		    Group.add_phone_numbers_to_group(phones, @group)
+        format.js
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
         format.html { render action: "new" }
         format.json { render json: @group.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -63,7 +75,9 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
 
     respond_to do |format|
-      if @group.update_attributes(params[:Group])
+        phones = params[:group][:phone]
+        Group.add_phone_numbers_to_group(phones, @group)
+      if @group.update_attributes(name: params[:group][:name], description: params[:group][:description])
         format.html { redirect_to @group, notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
@@ -85,15 +99,4 @@ class GroupsController < ApplicationController
     end
   end
 
-  def add_phone_numbers_to_group(phone_numbers, the_group)
-  	phones_to_group = []
-	  phone_numbers.split("\r\n").each do |phone_number|
-    	recipient = Recipient.where(phone: phone_number).first_or_create
-    	recipient.save
-    	unless recipient == ""
-    	  phones_to_group << recipient.id
-	    end
-	  end
-	  the_group.recipient_ids = phones_to_group
-  end
 end

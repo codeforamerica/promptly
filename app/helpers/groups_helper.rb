@@ -9,4 +9,6 @@ module GroupsHelper
 		phone_numbers_array.join("\n")
 	end
 
+	
+
 end

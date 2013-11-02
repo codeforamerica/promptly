@@ -1,55 +1,23 @@
-<div class="mainHeaderAqua">
-  <span class="aquaHighlight">Recipients</span>
-</div>
-
-  <table class="table table-bordered datatable" id="add-groups">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Group Name</th>
-        <th>Recipients</th>
-        <th>Created</th>
-        <th>Updated</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% Group.all.each do |group| %>
-      <tr>
-        <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
-        <td><%= group.name %></td>
-        <td><%= group.recipients.count %></td>
-        <td><%= group.created_at %></td>
-        <td><%= group.updated_at %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-<p>Need to add different recipients?
-<a class="btn" data-toggle="modal" data-target="#individual-recipients" href="#individual-recipients">Add Recipients</a></p>
-
-
-
 <div class="modal hide" id="individual-recipients" tab-index="-1" role="dialog" aria-labelledby="individual-recipients-modal" aria-hidden="true">
   <div class="modal-header">
     <a class="close" data-dismiss="modal">&times;</a>
-    <h3>Add Individual Recipients</h3>
+    <h3>Add a New Group</h3>
   </div>
   <div class="modal-body">
-    <%= label_tag "Add individual recipients:" %>
-    <p class="text-info">Add recipient phone numbers one to a line.</p>
-    <%= text_area_tag 'individual_recipients', nil, rows: 15, class: "span12", id: "individual-recipients-text-area" %>
-
-    <div class="control-group">
-      <div class="controls">
-        <label class="checkbox">
-          <%= check_box_tag 'create_group' %> Create Group
-        </label>
-      </div>
-    </div>
+    <%= simple_fields_for @group do |group_fields| %>
+        <%= group_fields.input :name, input_html: { class: "span12" } %>
+        <%= fields_for :recipient do |builder| %>
+        <div class="control-group">
+          <%= builder.label :phone, "Enter a list of phone numbers", :class => 'control-label' %>
+          <div class="controls">
+          <%= builder.text_area :phone, rows: 10, class: "span12" %>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
   </div>
   <div class="modal-footer">
-    <a class="btn btn-primary" id="individual-recipients-submit" data-dismiss="modal" aria-hidden="true">Add Recipients</a>
-    <a href="#" class="btn" data-dismiss="modal">Cancel</a>
+    <a href="#" data-dismiss="modal">Cancel</a>
+    <%= link_to "Add Group", groups_path, id: "groups-submit", class: "btn btn-primary save-modal", remote: true %>
   </div>
 </div>

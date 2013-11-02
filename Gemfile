@@ -19,6 +19,7 @@ gem 'simple_form'
 gem 'bootstrap-datepicker-rails'
 gem 'whenever'
 gem 'phony_rails'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'pry'

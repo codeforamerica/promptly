@@ -1,0 +1,170 @@
+.pageHeader {
+	margin-bottom: $navbarHeight;
+}
+
+#submit {
+	margin-top: 30px;
+}
+
+.recentReminder {
+	padding: 10px 0 10px 0;
+
+	table {
+		margin: 0 0 0 0;
+	}
+}
+
+.tableAqua {
+	border-left: 5px solid $aqua;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
+}
+
+.tableGreen {
+	border-left: 5px solid $green;
+	margin-bottom: 0px;
+	tbody {
+		border-bottom: 1px solid darken($lightGray, 10);
+	}
+}
+
+.messagetext {
+	display: block;
+	margin-top: ($baseLineHeight/2);
+}
+
+.characterCount {
+	color: $darkGray;
+	margin-bottom: 20px;
+}
+
+.tab-content {
+	margin-top: -20px; // Moving the area up so the border is seamless
+	padding-top: 20px; // Moving the content down so it's not smushed
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	@include promptly-border-radius($radius: 0 0 5px 5px);
+}
+
+
+//******************
+// Recipient Page
+//******************
+
+@mixin conversations {
+	padding: ($baseLineHeight/2);
+	margin: $baseLineHeight/4 0;
+
+	p {
+		padding: 0;
+		margin: 0;
+	}
+}
+
+.conversation {
+	margin-top: 20px; // in order to clear the heading bar
+	strong {
+		color: $darkGray;
+		font-weight: bold;
+		margin: 0;
+	}
+}
+
+.conversation-self {	
+	background-color: $lightGray;
+	@include conversations;
+
+	> .avatar {
+	float: left !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight $baseLineHeight/2 $baseLineHeight/2;
+	overflow: hidden;
+	}
+}
+
+.conversation-recipient {
+	> .avatar {
+	float: right !important;
+	clear: both;
+	padding: $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight/2 $baseLineHeight;
+	overflow: hidden;
+	}
+}
+
+.queued {
+	padding-top: $baseLineHeight*2;
+}
+
+//******************
+// Reminder Confirm Page
+//******************
+
+$border-aqua: #B3C1C1;
+
+.reminderConfirm {
+	padding: 0 20px 20px 20px;
+	margin: 0;
+	
+	border: 1px solid $border-aqua;
+	border-radius: 0 10px;
+	@include promptly-border-radius($radius: 0 0 10px 10px);
+
+  > .headerSmall {
+  	margin-left: -20px;
+  	margin-right: -20px;
+  }
+
+}
+
+#groups-list > li {
+	margin-left: 5em;
+}
+
+.infoItem {
+	padding: 20px;
+	margin-left:  5em;
+	border: 1px solid $border-aqua;
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10);
+  font-weight: 500;
+  line-height: 1.4;
+
+	// box-shadow: inset 0 0 2px 1px rgba(179, 193, 193, 0.6);
+	border-radius: 10px;
+	@include promptly-border-radius($radius: 10px);
+}
+
+.infoItemInline {
+	display:inline-block;
+	padding: 10px;
+	margin: 0 5px;
+	border: 1px solid $border-aqua;
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10);
+  font-weight: 500;
+  line-height: 1.4;
+
+	// box-shadow: inset 0 0 2px 1px rgba(179, 193, 193, 0.6);
+	border-radius: 10px;
+	@include promptly-border-radius($radius: 10px);
+}
+
+.infoItem > a,
+.infoItemInline > a {
+	text-decoration: none;
+	color: darken($darkBlue, 10%);
+	background-color: lighten($border-aqua, 20%);
+	color: darken($darkBlue, 10%);
+  font-size: floor($base-font-size * 1.10) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

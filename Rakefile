@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Landshark::Application.load_tasks
+Promptly::Application.load_tasks
