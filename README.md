@@ -46,7 +46,7 @@ Promptly requires the following environment variables:
 - TWILIO_NUMBER is your Twilio phone number (just numbers, no punctuation)
 - TWILIO_SID is your Twilio account SID 
 - TWILIO_TOKEN is your twilio auth token
-- SECRET_TOKEN is used to prevent cookie tampering. Run `rake secret` to get a pseudo-random key to use.
+- SECRET_TOKEN is used to prevent cookie tampering. Run `$ rake secret` to get a pseudo-random key to use.
 - DATABASE_URL is the connection string to your database.
   - It should look like this: `postgres://<username>:<password>@<host>/<dbname>`
   - `<password>` is null by default, so if you didn't explicitly create one then omit the entire `:<password>` component
@@ -55,7 +55,7 @@ Promptly requires the following environment variables:
 
 *Confirm your .gitignore includes /.env so you don't publicize these keys!*
 
-8) Create **config/database.yml** and leave it blank ([sorry...rails bug](https://github.com/rails/rails/pull/9120).
+8) Create **config/database.yml** and leave it blank ([sorry...rails bug)](https://github.com/rails/rails/pull/9120).
 
 9) Load database schema
 ```sh
@@ -105,7 +105,7 @@ $ heroku pg:promote HEROKU_POSTGRESQL_[YOUR COLOR]_URL
 
 3) Configure Heroku environment variables
 ```sh
-heroku config:add TWILIO_NUMBER=[your Twilio phone number]
+$ heroku config:add TWILIO_NUMBER=[your Twilio phone number]
 ```
 Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file. DATABASE_URL was set when we promoted the database in step #2.
 
@@ -114,21 +114,22 @@ Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your
 $ heroku run rake db:schema:load
 ```
 
-At this point should be able to run `heroku open` and see the project.
+At this point should be able to run `$ heroku open` and see the project.
 
 5) Add the Heroku scheduler addon
 
 For annoying reasons we won't go into here, Promptly requires a periodic rake task to update the conversations model with incoming text messages from users. You can do this on Heroku using the scheduler addon. 
 
 ```sh
-heroku addons:add scheduler
-heroku addons:open scheduler
+$ heroku addons:add scheduler
+$ heroku addons:open scheduler
 ```
-Run the task `rake update_conversations` every 10 minutes, like so:
+Run the task `rake update_conversations` every 10 minutes:
 ![heroku scheduler addon](http://codeforamerica.github.io/promptly/heroku-scheduler-addon.png)
 
 6) Create a Promptly admin user
-Run `$ heroku run rails c` to start the rails console in the Heroku environment.
+
+`$ heroku run rails c` to start the rails console in the Heroku environment.
 
 Then create a user:
 ```ruby
