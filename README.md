@@ -36,7 +36,7 @@ $ cd promptly
 $ bundle install
 ```
 
-6) Configure environment variables by renaming **.sample_env** to **.env** and editing it.
+6) Configure environment variables by renaming **.sample_env** to **.env** and filling in the values.
 
 Promptly requires the following environment variables:
 - TWILIO_NUMBER is your Twilio phone number (just numbers, no punctuation)
@@ -48,7 +48,9 @@ Promptly requires the following environment variables:
 
 7) Create **config/database.yml**
 ```ruby
-# PostgresApp creates a default user $USER with no password. Otherwise you'll have to create one yourself.
+# PostgresApp creates a default user $USER with no password.
+# Otherwise you'll have to make one yourself.
+
 development:
   adapter: postgresql
   host: localhost
@@ -59,9 +61,12 @@ development:
 8) Setup database
 ```sh
 $ rake db:setup
-```
 
-This creates the database, loads the schema, and seeds database with an admin user.
+# Equivalent to:
+# rake db:create
+# rake db:schema:load
+# rake db:seed
+```
 
 9) Start the server
 ```sh
@@ -72,7 +77,7 @@ You should see the project at <a href="http://localhost:5000">http://localhost:5
 You can sign in with email=**admin@example.com** and pass=**administrator**.
 
 ### Deploy to Heroku
-[Signup for Heroku](https://id.heroku.com/signup).
+[Signup for Heroku](https://id.heroku.com/signup) if you havn't already.
 
 1) Create a Heroku app and push your code
 ```sh
@@ -98,11 +103,11 @@ Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your
 $ heroku run rake db:setup
 ```
 
-At this point should be able to run `$ heroku open` and see the project.
+At this point you can run `$ heroku open` to see the project.
 
 5) Add the Heroku scheduler addon
 
-For annoying reasons we won't go into here, Promptly requires a periodic rake task to update the conversations model with incoming text messages from users. You can do this on Heroku using the scheduler addon. 
+For annoying reasons we won't go into here, Promptly requires a periodic rake task to update the conversations model with incoming text messages from users. You can do this on Heroku using the scheduler addon.
 
 ```sh
 $ heroku addons:add scheduler
@@ -112,7 +117,9 @@ Run the task `rake update_conversations` every 10 minutes:
 ![heroku scheduler addon](http://codeforamerica.github.io/promptly/heroku-scheduler-addon.png)
 
 6) Change the admin password
-`heroku open`
+```sh
+$ heroku open
+```
 
 Sign in with email=**admin@example.com** and pass=**administrator**. Click Welcome, Admin in the top right and update your password.
 
