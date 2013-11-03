@@ -53,14 +53,15 @@ development:
   adapter: postgresql
   host: localhost
   username: [PostgreSQL username] 
-  database: promptly```
+  database: promptly
+```
 
 8) Setup database
 ```sh
 $ rake db:setup
 ```
 
-This creates the database, loads the schema, and seeds database with an admin Promptly user.
+This creates the database, loads the schema, and seeds database with an admin user.
 
 9) Start the server
 ```sh
@@ -68,24 +69,7 @@ $ foreman start
 ```
 You should see the project at <a href="http://localhost:5000">http://localhost:5000</a>
 
-11) Create a Promptly admin user
-
-If you want to do anything in Promptly, you'll need to create an admin user from the command line
-
-`$ foreman run rails c` to start the rails console.
-
-Then create a user:
-```ruby
-> User.create(
-    :name => "Admin",
-    :email => "admin@example.com",
-    :password => "temppass",
-    :password_confirmation => "temppass",
-    :roles_mask => 1
-)
-```
-Now you can login with admin@example.com/temppass at 
-[http://localhost:5000/users/sign_in](http://localhost:5000/users/sign_in) and change your password at [http://localhost:5000/users/edit](http://localhost:5000/users/edit).
+You can sign in with email=**admin@example.com** and pass=**administrator**.
 
 ### Deploy to Heroku
 [Signup for Heroku](https://id.heroku.com/signup).
@@ -111,7 +95,7 @@ Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your
 
 4) Load the Promptly schema
 ```sh
-$ heroku run rake db:schema:load
+$ heroku run rake db:setup
 ```
 
 At this point should be able to run `$ heroku open` and see the project.
@@ -127,21 +111,11 @@ $ heroku addons:open scheduler
 Run the task `rake update_conversations` every 10 minutes:
 ![heroku scheduler addon](http://codeforamerica.github.io/promptly/heroku-scheduler-addon.png)
 
-6) Create a Promptly admin user
+6) Change the admin password
+`heroku open`
 
-`$ heroku run rails c` to start the rails console in the Heroku environment.
+Sign in with email=**admin@example.com** and pass=**administrator**. Click Welcome, Admin in the top right and update your password.
 
-Then create a user:
-```ruby
-> User.create(
-    :name => "Admin",
-    :email => "admin@example.com",
-    :password => "temppass",
-    :password_confirmation => "temppass",
-    :roles_mask => 1
-)
-```
-
-And you're all set! Run `heroku open` to schedule your first reminder. 
+And you're all set! Run  to schedule your first reminder. 
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>
