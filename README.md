@@ -25,44 +25,44 @@ $ gem install bundler
 - Mac: http://postgresapp.com/
 - Other: http://www.postgresql.org/
 
-4) Create a PostgreSQL application database
-
-Open psql and run: `# create database promptly;`
-
-5) Clone this repo
+4) Clone this repo
 ```sh
 $ git clone https://github.com/codeforamerica/promptly.git
 ```
 
-6) Install required gems
+5) Install required gems
 ```sh
 $ cd promptly
 $ bundle install
 ```
 
-7) Configure environment variables by renaming **.sample_env** to **.env** and editing it.
+6) Configure environment variables by renaming **.sample_env** to **.env** and editing it.
 
 Promptly requires the following environment variables:
 - TWILIO_NUMBER is your Twilio phone number (just numbers, no punctuation)
 - TWILIO_SID is your Twilio account SID 
 - TWILIO_TOKEN is your twilio auth token
 - SECRET_TOKEN is used to prevent cookie tampering. Run `$ rake secret` to get a pseudo-random key to use.
-- DATABASE_URL is the connection string to your database.
-  - It should look like this: `postgres://<username>:<password>@<host>/<dbname>`
-  - `<password>` is null by default, so if you didn't explicitly create one then omit the entire `:<password>` component
-  - `<host>` is `localhost` for now
-  - `<dbname>` is `promptly` (we created this in step #3)
 
 *Confirm your .gitignore includes /.env so you don't publicize these keys!*
 
-8) Create **config/database.yml** and leave it blank ([sorry...rails bug)](https://github.com/rails/rails/pull/9120).
+7) Create **config/database.yml**
+```ruby
+# PostgresApp creates a default user $USER with no password. Otherwise you'll have to create one yourself.
+development:
+  adapter: postgresql
+  host: localhost
+  username: [PostgreSQL username] 
+  database: promptly```
 
-9) Load database schema
+8) Setup database
 ```sh
-$ rake db:schema:load
+$ rake db:setup
 ```
 
-10) Start the server
+This creates the database, loads the schema, and seeds database with an admin Promptly user.
+
+9) Start the server
 ```sh
 $ foreman start
 ```
@@ -107,7 +107,7 @@ $ heroku pg:promote HEROKU_POSTGRESQL_[YOUR COLOR]_URL
 ```sh
 $ heroku config:add TWILIO_NUMBER=[your Twilio phone number]
 ```
-Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file. DATABASE_URL was set when we promoted the database in step #2.
+Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file.
 
 4) Load the Promptly schema
 ```sh
