@@ -96,16 +96,24 @@ $ heroku pg:promote HEROKU_POSTGRESQL_[YOUR COLOR]_URL
 ```sh
 $ heroku config:add TWILIO_NUMBER=[your Twilio phone number]
 ```
-Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file.
+Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file ([see above for details](#install-locally)).
 
 4) Load the Promptly schema
 ```sh
 $ heroku run rake db:setup
 ```
 
-At this point you can run `$ heroku open` to see the project.
+At this point you can run `$ heroku open` to see the project. We're almost done!
 
-5) Add the Heroku scheduler addon
+5) Add a worker dyno
+
+Promptly requires a worker dyno to queue the text message reminders. Please note this will **cost you money**. See the Heroku dev center for details on [delayed job](https://devcenter.heroku.com/articles/delayed-job) and [pricing](https://devcenter.heroku.com/categories/billing).
+
+```sh
+$ heroku ps:scale worker=1
+```
+
+6) Add the Heroku scheduler addon
 
 For annoying reasons we won't go into here, Promptly requires a periodic rake task to update the conversations model with incoming text messages from users. You can do this on Heroku using the scheduler addon.
 
@@ -116,13 +124,13 @@ $ heroku addons:open scheduler
 Run the task `rake update_conversations` every 10 minutes:
 ![heroku scheduler addon](http://codeforamerica.github.io/promptly/heroku-scheduler-addon.png)
 
-6) Change the admin password
+7) Change the admin password
 ```sh
 $ heroku open
 ```
 
-Sign in with email=**admin@example.com** and pass=**administrator**. Click Welcome, Admin in the top right and update your password.
+Sign in with email=**admin@example.com** and password=**administrator**. Click *Welcome, Admin* in the top right and update your password.
 
-And you're all set! Run  to schedule your first reminder. 
+And you're all set!
 
 <a href="#"><img src="https://a248.e.akamai.net/camo.github.com/e8ce7fcd025087eebe85499c7bf4b5ac57f12b1e/687474703a2f2f73746174732e636f6465666f72616d65726963612e6f72672f636f6465666f72616d65726963612f6366615f74656d706c6174652e706e67" alt="codeforamerica"/></a>
