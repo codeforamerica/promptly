@@ -1,4 +1,6 @@
 module Helper
+  logger = Rails.logger
+
   def current_user_exists?(phone_number)
   	phone_number.gsub!(/[^0-9]/, "")
   	if phone_number.length > 10
@@ -14,7 +16,6 @@ module Helper
 	def parse_phone_numbers(phone_numbers_text)
     recipients_to_add = []
     phone_numbers_text.split(/[ ,;\r\n]/).each do |phone_number|
-      #phone number normalization
       phone_number = standardize_numbers(phone_number)
 
       #save the recipients
@@ -56,10 +57,9 @@ module Helper
     @group.save
   end
 
-  
   def destroy_delayed_job_by_job_id(job_id)
     @delay = Delayed::Job.find(job_id)
     @delay.destroy 
   end
-  
+
 end

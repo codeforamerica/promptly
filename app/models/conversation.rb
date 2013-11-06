@@ -9,9 +9,16 @@ class Conversation < ActiveRecord::Base
 
   def self.grouped_sent_conversations(limit = 0)
     if limit != 0
-      Conversation.where('status = ?', 'sent').order("date").limit(limit).to_set.classify {|reminder| reminder.batch_id}
+      Conversation.where('status = ?', 'sent')
+        .order("date")
+        .limit(limit)
+        .to_set
+        .classify {|reminder| reminder.batch_id}
     else
-      Conversation.where('status = ?', 'sent').order("date").to_set.classify {|reminder| reminder.batch_id}
+      Conversation.where('status = ?', 'sent')
+        .order("date")
+        .to_set
+        .classify {|reminder| reminder.batch_id}
     end
   end
 
