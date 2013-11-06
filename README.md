@@ -96,7 +96,7 @@ $ heroku pg:promote HEROKU_POSTGRESQL_[YOUR COLOR]_URL
 ```sh
 $ heroku config:add TWILIO_NUMBER=[your Twilio phone number]
 ```
-Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file.
+Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file ([see above for details](#install-locally)).
 
 4) Load the Promptly schema
 ```sh
