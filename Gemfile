@@ -58,6 +58,8 @@ end
 # Only try to install these gems on staging/prod servers
 group :production do
   gem 'tiny_tds'
-  gem 'activerecord-sqlserver-adapter'
+  # Installing adapter from GH source because because need a recent fix to use
+  # Devise on SQL server: https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/pull/262
+  gem 'activerecord-sqlserver-adapter', git: 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git'
   gem 'therubyracer'
 end
