@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923214540) do
+ActiveRecord::Schema.define(:version => 20131106203150) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -28,6 +28,33 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
   create_table "conversations_recipients", :id => false, :force => true do |t|
     t.integer "recipient_id"
     t.integer "conversation_id"
+  end
+
+  create_table "dc_all", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_chinese", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_english", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_other", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_russian", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_spanish", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_tagalog", :id => false, :force => true do |t|
+  end
+
+  create_table "dc_waived_calfresh_vietnamese", :id => false, :force => true do |t|
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -78,6 +105,11 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.text     "description"
   end
 
+  create_table "messages_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "message_id"
+  end
+
   create_table "notifications", :force => true do |t|
     t.integer  "report_id"
     t.integer  "recipient_id"
@@ -101,11 +133,21 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.integer "program_id"
   end
 
+  create_table "programs_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "program_id"
+  end
+
   create_table "recipients", :force => true do |t|
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
+  end
+
+  create_table "recipients_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "recipient_id"
   end
 
   create_table "recipients_reports", :id => false, :force => true do |t|
@@ -125,6 +167,11 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.integer  "job_id"
     t.string   "state"
     t.string   "session_id"
+  end
+
+  create_table "reminders_reports", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "report_id"
   end
 
   create_table "reports", :force => true do |t|
@@ -156,5 +203,8 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "waived_cases", :id => false, :force => true do |t|
+  end
 
 end
