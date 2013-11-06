@@ -51,6 +51,13 @@ FactoryGirl.define do
     end
   end
 
+  factory :reminder_with_message_and_recipient, parent: :reminder do 
+    before :create do |reminder|
+      reminder.message = FactoryGirl.create(:message)
+      reminder.recipient = FactoryGirl.create(:recipient)
+    end
+  end
+
   factory :group_with_recipient, parent: :group do
     before :create do |group|
       group.recipients = FactoryGirl.create_list(:recipient, 2)

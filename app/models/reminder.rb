@@ -3,7 +3,7 @@ class Reminder < ActiveRecord::Base
   attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id
   attr_accessible :id, :created_at, :updated_at
   # validates :reminder_id, presence: true
-  # validates :recipient_id, presence: true
+  # validates :message_id, presence: true
   # validates :send_date, presence: true
   
   belongs_to :recipient
@@ -27,7 +27,6 @@ class Reminder < ActiveRecord::Base
       }
       options = defaults.merge(options)
 
-    # unless options[:recipient] == ""
       reminder_time = Time.zone.parse(options[:send_time])
       reminder_time = reminder_time.getutc
       send_date = check_for_valid_date(send_date)
@@ -43,21 +42,12 @@ class Reminder < ActiveRecord::Base
 		      @reminder.batch_id = batch_id
           @reminder.group_ids = options[:group_id]
 		      @reminder.save
-          puts 'saved'
-		      add_reminder_to_queue(@reminder)
-		      @reminder
-		    end
-		  rescue
-		  	$!.message
-		  end
-    # end
-  end
-
-  def self.add_reminder_to_queue(reminder)
-    theDate = reminder.send_date
-    @recipient = Recipient.find(reminder.recipient_id)
-    theJob = Notifier.delay(priority: 0, run_at: theDate).perform(reminder.message_id, reminder.group_ids, reminder.recipient)
-    reminder.update_attributes(job_id: theJob.id)
+          @reminder.add_to_queue
+          @reminder
+        end
+      rescue
+        $!.message
+      end
   end
 
   def self.check_for_valid_date(the_date)
@@ -77,5 +67,12 @@ class Reminder < ActiveRecord::Base
   def self.check_for_existing_reminder(recipient_check, batch_id_check)
     phone_check = Recipient.find(recipient_check)
     Reminder.where('batch_id = ? AND recipient_id = ?', batch_id_check, phone_check.id).exists?
+  end
+
+  def add_to_queue
+    theDate = send_date
+    @recipient = Recipient.find(recipient_id)
+    theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, recipient_id: recipient.id)
+    update_attributes(job_id: theJob.id)
   end
 end

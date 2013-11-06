@@ -42,10 +42,14 @@ class Notifier
     @recipients = []
     if @group_id
       @group_id.each do |group|
-        @recipients << Group.find_recipients_in_group(group)
+        @group_recipients = Group.find_recipients_in_group(group)
+        @group_recipients.each do |recipient|
+          @recipients << recipient
+        end
       end
-    else
-      @recipients = Recipient.find(recipient_id)
+    end
+    if @recipient_id
+      @recipients << Recipient.find(@recipient_id)
     end
   end
 
@@ -60,7 +64,6 @@ class Notifier
 
   def perform
     @recipients.each do |recipient|
-        
       the_message = client.account.sms.messages.create(attributes(recipient))
       Logger.log(the_message, recipient)
     end
@@ -85,8 +88,7 @@ class Notifier
   end
 
   def to(recipient)
-    
-    recipient[0].phone
+    recipient.phone
   end
 
   def body

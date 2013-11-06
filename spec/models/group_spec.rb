@@ -17,16 +17,6 @@ describe Group do
       Recipient.count.should == 2
     end
   end
-  describe "#add_reminders_to_group" do
-    it "adds created reminders to their respective group" do
-      group = FactoryGirl.create(:group, name: "test group 2")
-      recipient = FactoryGirl.create(:recipient)
-      message = FactoryGirl.create(:message)
-      Reminder.create_new_recipients_reminders(message, DateTime.now + 2.days, group_id: group.id)
-      Reminder.count.should == 1
-      Delayed::Job.count.should == 1
-    end
-  end
 
   describe "#find_recipients_in_group" do
     it "returns an array of recipients for a specific group" do
