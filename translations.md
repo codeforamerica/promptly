@@ -16,7 +16,9 @@ CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinu
 
 ## Russian
 CalFresh (Food Stamps): В конце месяца выплата вашего пособия CalFresh может быть остановлена. Если у вас есть вопросы, позвоните 415-944-4301.
+
 deleted: этого - "this" ("the" is implied)
+
 deleted: по номеру - "the number"
 
 ## Tagalog
