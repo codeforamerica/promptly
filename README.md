@@ -129,7 +129,7 @@ Run the task `rake update_conversations` every 10 minutes:
 $ heroku open
 ```
 
-Sign in with email=**admin@example.com** and password=**administrator**. Click Welcome, Admin in the top right and update your password.
+Sign in with email=**admin@example.com** and password=**administrator**. Click *Welcome, Admin* in the top right and update your password.
 
 And you're all set!
 
