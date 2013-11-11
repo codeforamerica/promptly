@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/codeforamerica/promptly.png?branch=master)](https://travis-ci.org/codeforamerica/promptly)
 
 # Promptly
-Promptly is a text message notification system originally built by 2013 Code for America fellows for the San Francisco Human Services Agency. See [promptly.io](http://promptly.io) for more info on the project.
+Promptly is a text message notification system originally built by 2013 Code for America fellows for the San Francisco Human Services Agency. See [promptly.io](http://promptly.io) for more info on the project. See our [wiki](https://github.com/codeforamerica/promptly/wiki) for documentation.
 
 ### Contribute
 This project is young and in flux. Feel free to email sf@codeforamerica.org if you're interested in deploying or contributing.
@@ -21,9 +21,11 @@ $ gem install bundler
 
 2) Install the Heroku Toolbelt: [https://toolbelt.heroku.com/](https://toolbelt.heroku.com/)
 
-3) Install PostgreSQL
+3) Install and run PostgreSQL
 - Mac: http://postgresapp.com/
 - Other: http://www.postgresql.org/
+
+Make sure PostgreSQL is running. If you're using Postgres.app, just run the application and then look for a cute elephant in the menu bar.
 
 4) Clone this repo
 ```sh
@@ -36,7 +38,10 @@ $ cd promptly
 $ bundle install
 ```
 
-6) Configure environment variables by renaming **.sample_env** to **.env** and filling in the values.
+6) Configure environment variables by renaming **.sample_env** to **.env** and inserting the values
+```sh
+$ mv .sample_env .env
+```
 
 Promptly requires the following environment variables:
 - TWILIO_NUMBER is your Twilio phone number (just numbers, no punctuation)
@@ -44,17 +49,15 @@ Promptly requires the following environment variables:
 - TWILIO_TOKEN is your twilio auth token
 - SECRET_TOKEN is used to prevent cookie tampering. Run `$ rake secret` to get a pseudo-random key to use.
 
-*Confirm your .gitignore includes /.env so you don't publicize these keys!*
+7) Create the file **config/database.yml**
+Insert the text below into database.yml. You will have to include your PostgreSQL username. Postgres.app creates a default user $USER with no password. Otherwise you'll have to make one yourself.
 
-7) Create **config/database.yml**
 ```ruby
-# PostgresApp creates a default user $USER with no password.
-# Otherwise you'll have to make one yourself.
-
 development:
   adapter: postgresql
   host: localhost
-  username: [PostgreSQL username] 
+  username: [PostgreSQL username]
+  #password: [Optional PostgreSQL password]
   database: promptly
 ```
 
@@ -72,7 +75,20 @@ $ rake db:setup
 ```sh
 $ foreman start
 ```
-You should see the project at <a href="http://localhost:5000">http://localhost:5000</a>
+You should see something this in the console:
+
+```
+12:01:14 worker.1 | started with pid 3228
+12:01:14 web.1    | started with pid 3227
+12:01:16 web.1    | I, [2013-11-11T12:01:16.139986 #3227]  INFO -- : listening on addr=0.0.0.0:5000 fd=7
+12:01:16 web.1    | I, [2013-11-11T12:01:16.140103 #3227]  INFO -- : worker=0 spawning...
+12:01:16 web.1    | I, [2013-11-11T12:01:16.142336 #3227]  INFO -- : master process ready
+12:01:16 web.1    | I, [2013-11-11T12:01:16.144046 #3229]  INFO -- : worker=0 spawned pid=3229
+12:01:16 web.1    | I, [2013-11-11T12:01:16.144531 #3229]  INFO -- : Refreshing Gem list
+12:01:20 web.1    | I, [2013-11-11T12:01:20.205813 #3229]  INFO -- : worker=0 ready
+```
+
+You can now visit Promptly at <a href="http://localhost:5000">http://localhost:5000</a>
 
 You can sign in with email=**admin@example.com** and pass=**administrator**.
 
