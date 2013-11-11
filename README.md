@@ -38,7 +38,7 @@ $ cd promptly
 $ bundle install
 ```
 
-6) Configure environment variables by renaming **.sample_env** to **.env** and inserting the values
+6) Configure environment variables by renaming **.sample_env** to **.env** and adding your (secret) keys
 ```sh
 $ mv .sample_env .env
 ```
@@ -48,6 +48,8 @@ Promptly requires the following environment variables:
 - TWILIO_SID is your Twilio account SID 
 - TWILIO_TOKEN is your twilio auth token
 - SECRET_TOKEN is used to prevent cookie tampering. Run `$ rake secret` to get a pseudo-random key to use.
+
+Add values for these variables in the .env file like so: `TWILIO_NUMBER=5105555555`
 
 7) Create the file **config/database.yml**
 Insert the text below into database.yml. You will have to include your PostgreSQL username. Postgres.app creates a default user $USER with no password. Otherwise you'll have to make one yourself.
