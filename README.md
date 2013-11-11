@@ -68,7 +68,7 @@ development:
   database: promptly
 ```
 
-8) Setup database
+8) Setup the database
 ```sh
 $ rake db:setup
 
@@ -121,7 +121,7 @@ $ heroku config:add TWILIO_NUMBER=[your Twilio phone number]
 ```
 Repeat for TWILIO_SID, TWILIO_TOKEN, and SECRET_TOKEN using the values from your .env file ([see above for details](#install-locally)).
 
-4) Load the Promptly schema
+4) Setup the database
 ```sh
 $ heroku run rake db:setup
 ```
