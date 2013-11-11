@@ -49,7 +49,12 @@ Promptly requires the following environment variables:
 - TWILIO_TOKEN is your twilio auth token
 - SECRET_TOKEN is used to prevent cookie tampering. Run `$ rake secret` to get a pseudo-random key to use.
 
-Add values for these variables in the .env file like so: `TWILIO_NUMBER=5105555555`
+Add one variable per line in the .env file like this:
+```
+TWILIO_NUMBER=5105555555
+TWILIO_SID=AC1365ff47...
+...
+``
 
 7) Create the file **config/database.yml**
 Insert the text below into database.yml. You will have to include your PostgreSQL username. Postgres.app creates a default user $USER with no password. Otherwise you'll have to make one yourself.
