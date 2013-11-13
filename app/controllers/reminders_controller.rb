@@ -36,7 +36,8 @@ class RemindersController < ApplicationController
   end
 
   def confirm
-    @reminder = Reminder.new
+    @reminder = Reminder.new(params[:reminder])
+    
     # @individual_recipients = parse_phone_numbers(params[:individual_recipients])
     # If they didn't create a new message,
     # get the one from the radio button and add it to the reminder
