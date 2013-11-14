@@ -30,33 +30,6 @@ ActiveRecord::Schema.define(:version => 20131106203150) do
     t.integer "conversation_id"
   end
 
-  create_table "dc_all", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_chinese", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_english", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_other", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_russian", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_spanish", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_tagalog", :id => false, :force => true do |t|
-  end
-
-  create_table "dc_waived_calfresh_vietnamese", :id => false, :force => true do |t|
-  end
-
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
