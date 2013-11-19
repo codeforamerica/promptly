@@ -15,7 +15,11 @@ CalFresh (Estampillas de Comida): Sus beneficios de CalFresh podrìan descontinu
 糧食券: 你的糧食券福利可能會在本月底停止. 有問題嗎？請致電 (415) 944-4301.
 
 ## Russian
-CalFresh (Food Stamps): В конце этого месяца выплата вашего пособия CalFresh может быть остановлена. Если у вас есть вопросы, позвоните по номеру (415) 944-4301.
+CalFresh (Food Stamps): В конце месяца выплата вашего пособия CalFresh может быть остановлена. Если у вас есть вопросы, позвоните 415-944-4301.
+
+deleted: этого - "this" ("the" is implied)
+
+deleted: по номеру - "the number"
 
 ## Tagalog
 CalFresh (Food Stamps): Ang inyong mga benepisyo ng CalFresh ay maaaring tumigil sa katapusan ng buwang ito. May mga katanungan ba kayo? Tumawag sa (415) 944-4301.
