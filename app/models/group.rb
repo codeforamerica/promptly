@@ -22,7 +22,7 @@ class Group < ActiveRecord::Base
     the_group.recipient_ids = phones_to_group
   end
 
-  def self.add_reminders_to_group(reminder, group)
-    group.reminders << reminder
+  def self.find_recipients_in_group(group_id)
+    Group.find(group_id).recipients
   end
 end
