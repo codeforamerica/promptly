@@ -21,7 +21,7 @@ $(function(){
         ykeys: ['number_sent'],
         dateFormat: function(date) {
           d = new Date(date);
-          return (d.getMonth()+1)+'/'+(d.getDate()+1)+'/'+d.getFullYear(); 
+          return (d.getMonth()+1)+'/'+(d.getDate())+'/'+d.getFullYear(); 
           },
         // Labels for the ykeys -- will be displayed when you hover over the
         // chart.
