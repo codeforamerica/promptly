@@ -40,6 +40,7 @@ class RemindersController < ApplicationController
     # @individual_recipients = parse_phone_numbers(params[:individual_recipients])
     # If they didn't create a new message,
     # get the one from the radio button and add it to the reminder
+    
     params[:reminder][:message_id] = params[:message_id] if params[:reminder][:message_id].nil?    
     @groups = Group.where(:id => params[:group_ids])
     

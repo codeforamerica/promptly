@@ -1,7 +1,9 @@
 <div class="row-fluid">
-  <div class="pageHeader span12">
+  <% if can? :create, Group %>
+    <div class="pageHeader span12">
       <%= link_to 'New group', new_group_path, :class => 'cta-button btn btn-primary' %>
-  </div>
+    </div>
+  <% end %>
 </div>
 <div class="row-fluid">
   <div class="span12">
@@ -15,7 +17,9 @@
         <tr>
   	      <td><%= link_to_if(can?(:read, Group), "#{g.name}", group_path(g.id)) {} %></td>
   			  <td><%= "#{g.description}" %></td>
-  			  <td><%= link_to_if(can?(:edit, Group), "Edit", edit_group_path(g.id), :class => 'btn btn-default') %>&nbsp;<%= link_to_if(can?(:delete, g), "Delete", g, :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger') %></td>
+          <% if can? :edit, Group %>
+    			  <td><%= link_to "Edit", edit_group_path(g.id), :class => 'btn btn-default' %>&nbsp;<%= link_to "Delete", g, :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger' %></td>
+          <% end %>
         </tr>
       <% end %>
       </tbody>

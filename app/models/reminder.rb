@@ -2,6 +2,7 @@ class Reminder < ActiveRecord::Base
   attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text
   attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id
   attr_accessible :id, :created_at, :updated_at
+  validates_presence_of :message_id, :send_date, :recipient, :send_time
   # validates :reminder_id, presence: true
   # validates :recipient_id, presence: true
   # validates :send_date, presence: true

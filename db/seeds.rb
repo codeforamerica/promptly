@@ -9,9 +9,9 @@ User.create(
   roles_mask: 1)
 
 # Send admin login details to console
-puts "Admin user successfully created."
+puts "Admin user successfully created:"
 puts "    email: admin@example.com"
-puts "    password: administrator" 
+puts "    password: adminpass" 
 
 # Message.create([
 #   {   name: "Example Message", message_text: "Demo message to be sent to group.", description: "This is merely a test message." },
@@ -26,8 +26,8 @@ puts "    password: administrator"
 
 # Group.create(name: "Test Group", description: "Dummy group for tests and other fun.")
 
-# # Reminder must be created last; it refers to earlier Mesage.id and Recipient.id
-# Reminder.create([
-#   {   name: "First reminder for group", message_id: 1, recipient_id: 1, send_date: Date.today, send_time: "12:00pm" }  
-# ])
+# Reminder must be created last; it refers to earlier Mesage.id and Recipient.id
+Reminder.create([
+  {   name: "First reminder for group", message_id: 1, recipient_id: 1, batch_id: "1", send_date: Date.today, send_time: "12:00pm" }  
+])
 
