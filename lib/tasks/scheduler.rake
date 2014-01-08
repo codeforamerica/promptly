@@ -7,13 +7,14 @@ desc "This task is called by the Heroku scheduler add-on"
 	@client = Twilio::REST::Client.new account_sid, auth_token
 
 	@client.account.sms.messages.list.each do |message|
-		@conversation = Conversation.where('message_id = ?' , message.sid).first_or_create
-	  	@conversation.message_id = message.sid
-	    @conversation.status = message.status
-	    @conversation.date = message.date_sent
-	    @conversation.from_number = message.from
-	    @conversation.to_number = message.to
-	    @conversation.message = message.body
-	    @conversation.save!
+		@conversation = Conversation.where('message_id = ?' , message.sid)
+		@conversation.each do |c|
+	    c.status = message.status
+	    c.date = message.date_sent
+	    c.from_number = message.from
+	    c.to_number = message.to
+	    c.message = message.body
+	    c.save!
+	   end
 	end
 end
