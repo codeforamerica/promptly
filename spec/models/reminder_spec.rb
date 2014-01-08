@@ -13,13 +13,18 @@ describe Reminder do
     end
   end
 
-  describe "#create_new_recipients_reminders" do
+  describe "#create_new_reminders" do
     before do
       @recipient = FactoryGirl.create(:recipient)
       @message = FactoryGirl.create(:message)
+      @group = FactoryGirl.create(:group_with_recipient)
     end
-    it "creates a new reminder and adds to the Delayed Job queue" do
-      Reminder.create_new_recipients_reminders(@message, DateTime.now + 2.days, recipient: @recipient)
+    it "creates a new reminder with one group and adds to the Delayed Job queue" do
+      Reminder.create_new_reminders(@message, DateTime.now + 2.days, group_id: @group.id)
+      Delayed::Job.count.should == 1
+    end
+    it "creates a new reminder with one recipient and adds to the Delayed Job queue" do
+      Reminder.create_new_reminders(@message, DateTime.now + 2.days, recipient: @recipient)
       Delayed::Job.count.should == 1
     end
   end

@@ -70,7 +70,6 @@ class Notifier
   end
 
   def attributes(recipient)
-
     {
       from: from,
       to: to(recipient),
