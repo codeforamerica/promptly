@@ -15,6 +15,7 @@ gem 'whenever'
 gem 'phony_rails'
 gem 'newrelic_rpm'
 gem 'json', '1.8.0'
+gem 'rake'
 
 group :development do
   gem 'pry'
@@ -53,7 +54,6 @@ group :test do
   gem "launchy"
   gem "guard-rspec"
   gem 'shoulda-matchers'
-  gem 'rake'
 end
 
 # Only try to install these gems on staging/prod servers
