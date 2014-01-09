@@ -14,6 +14,12 @@ class RemindersController < ApplicationController
 
   def show 
     @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:batch_id], DateTime.now)
+    @total_count = 0
+    @reminders.each do |reminder|
+      reminder.groups.each do |group|
+        @total_count += group.recipients.count
+      end
+    end
   end
 
 
