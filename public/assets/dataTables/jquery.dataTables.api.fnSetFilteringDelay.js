@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 jQuery.fn.dataTableExt.oApi.fnSetFilteringDelay = function ( oSettings, iDelay ) {
     var _that = this;
 
@@ -30,3 +31,6 @@ jQuery.fn.dataTableExt.oApi.fnSetFilteringDelay = function ( oSettings, iDelay )
     } );
     return this;
 };
+=======
+jQuery.fn.dataTableExt.oApi.fnSetFilteringDelay=function(a,b){var c=this;return b===undefined&&(b=250),this.each(function(a){$.fn.dataTableExt.iApiIndex=a;var d=this,e=null,f=null,g=$("input",c.fnSettings().aanFeatures.f);return g.unbind("keyup").bind("keyup",function(){var h=d;if(f===null||f!=g.val())window.clearTimeout(e),f=g.val(),e=window.setTimeout(function(){$.fn.dataTableExt.iApiIndex=a,c.fnFilter(g.val())},b)}),this}),this};
+>>>>>>> hsa

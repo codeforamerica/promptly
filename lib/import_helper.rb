@@ -36,10 +36,12 @@ class ImportHelper < ActiveRecord::Base
       val = p_hash[key]
       phone_numbers << val
     end
+    
     # Remove duplicates, nils
     phone_numbers = phone_numbers.uniq.compact
 
     # Find or create group
+    puts "Finding/creating group"
     g = Group.where(group_name_id: group_name_id).first_or_create(
       :group_name_id => group_name_id,
       :name => group_name_id,

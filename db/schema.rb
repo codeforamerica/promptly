@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130923214540) do
+ActiveRecord::Schema.define(:version => 20131106203150) do
 
   create_table "conversations", :force => true do |t|
     t.datetime "date"
@@ -78,6 +78,11 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.text     "description"
   end
 
+  create_table "messages_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "message_id"
+  end
+
   create_table "notifications", :force => true do |t|
     t.integer  "report_id"
     t.integer  "recipient_id"
@@ -101,11 +106,21 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.integer "program_id"
   end
 
+  create_table "programs_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "program_id"
+  end
+
   create_table "recipients", :force => true do |t|
     t.string   "phone"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
+  end
+
+  create_table "recipients_reminders", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "recipient_id"
   end
 
   create_table "recipients_reports", :id => false, :force => true do |t|
@@ -126,6 +141,11 @@ ActiveRecord::Schema.define(:version => 20130923214540) do
     t.string   "state"
     t.string   "session_id"
     t.string   "group_ids"
+  end
+
+  create_table "reminders_reports", :id => false, :force => true do |t|
+    t.integer "reminder_id"
+    t.integer "report_id"
   end
 
   create_table "reports", :force => true do |t|

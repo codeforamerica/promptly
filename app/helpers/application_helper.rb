@@ -39,7 +39,6 @@ module ApplicationHelper
     (start_date..end_date).map do |date|
       {
         date: date,
-
         #to_datetime > midnight
         #Using midnight-midnight range gets around using date() sql function to cast dates,
         #which doesn't work on SQLServer 08 
