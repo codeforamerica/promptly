@@ -9,17 +9,13 @@ gem 'delayed_job_active_record'
 gem 'roo'
 gem 'devise'
 gem 'cancan'
-gem 'foreman'
-gem 'jquery-rails', '2.0.2'
-gem 'jquery-ui-rails'
 gem 'role_model'
 gem 'simple_form'
-gem 'bootstrap-datepicker-rails'
 gem 'whenever'
 gem 'phony_rails'
 gem 'newrelic_rpm'
 
-group :development, :test do
+group :development
   gem 'pry'
   gem 'pry-nav'
   gem 'sqlite3', '1.3.5'
@@ -30,6 +26,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'pg'
   gem 'unicorn'
+  gem 'foreman'
 end
 
 # Gems used only for assets and not required
@@ -44,6 +41,9 @@ group :assets do
   gem 'compass-rails'
   gem 'bootstrap-sass'
   gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+  gem 'bootstrap-datepicker-rails'
+  gem 'jquery-rails', '2.0.2'
+  gem 'jquery-ui-rails'
 end
 
 group :test do
