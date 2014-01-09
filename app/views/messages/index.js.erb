@@ -1,6 +1,10 @@
 var message = $('#message_message_text').val();
+var name = $('#message_name').val();
 var newMessage = $.ajax({
-  data: { 'message[message_text]': message },
+  data: { 
+  			'message[message_text]': message,
+			'message[name]': name
+		},
   type: 'post',
   url: '<%= j messages_url %>'
 });
