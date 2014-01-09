@@ -1,0 +1,28 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+@font-face {
+  font-family: 'typicons';
+  src: url("typicons/typicons.eot");
+  src: url("typicons/typicons.eot?#iefix") format("embedded-opentype"), url("typicons/typicons.woff") format("woff"), url("typicons/typicons.ttf") format("truetype"), url("typicons/typicons.svg#typicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* This is IE 8 styling stuff */
+/* line 4, ../../../app/assets/stylesheets/ie/ie-nav.css.scss */
+.navbar-inner {
+  background-color: pink;
+  border-radius: 0px;
+  background-image: none;
+}

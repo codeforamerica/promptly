@@ -1,0 +1,25 @@
+/* line 10, ../../app/assets/stylesheets/input-placeholder.sass */
+.placeholders::-webkit-input-placeholder, input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: black;
+}
+/* line 12, ../../app/assets/stylesheets/input-placeholder.sass */
+.placeholders:-moz-placeholder, input:-moz-placeholder, textarea:-moz-placeholder {
+  color: black;
+}
+/* line 14, ../../app/assets/stylesheets/input-placeholder.sass */
+.placeholders.placeholder, input.placeholder, textarea.placeholder {
+  color: black;
+}
+
+/* line 10, ../../app/assets/stylesheets/input-placeholder.sass */
+.something::-webkit-input-placeholder {
+  color: black;
+}
+/* line 12, ../../app/assets/stylesheets/input-placeholder.sass */
+.something:-moz-placeholder {
+  color: black;
+}
+/* line 14, ../../app/assets/stylesheets/input-placeholder.sass */
+.something.placeholder {
+  color: black;
+}
