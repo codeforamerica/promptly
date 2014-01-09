@@ -35,7 +35,7 @@ FactoryGirl.define do
     password_confirmation "password"
     roles "admin"
     name "test"
-  end
+  end 
 
   factory :conversation_with_message, parent: :conversation do
     after :create do 
