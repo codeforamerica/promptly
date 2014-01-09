@@ -3,6 +3,9 @@
 <head>
   <title>Promptly</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <!--[if lt IE 9]>
+    <%= stylesheet_link_tag 'ie', :media => 'all' %>
+  <![endif]-->
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" %>
   <%= csrf_meta_tags %>
