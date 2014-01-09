@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git
+  revision: e95d1f4a4a62932a37d0eefbb3ff4e8a26dfb03b
+  specs:
+    activerecord-sqlserver-adapter (3.2.12)
+      activerecord (~> 3.2.0)
+
+GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 494f752b8eb8350f33841c822a67d014c869219f
   specs:
@@ -29,8 +36,6 @@ GEM
       activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-sqlserver-adapter (3.2.12)
-      activerecord (~> 3.2.0)
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -151,6 +156,7 @@ GEM
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
+    pg (0.17.1)
     phony (1.9.0)
     phony_rails (0.4.2)
       activesupport (>= 3.0)
@@ -280,7 +286,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-sqlserver-adapter
+  activerecord-sqlserver-adapter!
   bootstrap-datepicker-rails
   bootstrap-sass
   cancan
@@ -301,8 +307,10 @@ DEPENDENCIES
   jquery-datatables-rails!
   jquery-rails (= 2.0.2)
   jquery-ui-rails
+  json (= 1.8.0)
   launchy
   newrelic_rpm
+  pg
   phony_rails
   pry
   pry-nav

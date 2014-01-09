@@ -14,8 +14,9 @@ gem 'simple_form'
 gem 'whenever'
 gem 'phony_rails'
 gem 'newrelic_rpm'
+gem 'json', '1.8.0'
 
-group :development
+group :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'sqlite3', '1.3.5'
