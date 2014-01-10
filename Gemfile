@@ -16,6 +16,7 @@ gem 'phony_rails'
 gem 'newrelic_rpm'
 gem 'json', '1.8.0'
 gem 'rake'
+gem 'daemons'
 
 group :development do
   gem 'pry'
@@ -24,7 +25,6 @@ group :development do
   gem 'rspec-rails'
   gem 'dotenv-rails'
   gem 'database_cleaner'
-  gem 'daemons'
   gem 'simplecov'
   gem 'pg'
   gem 'unicorn'
