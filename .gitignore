@@ -27,4 +27,7 @@
 *~
 
 # Ignore test coverage
-/coverage
+/coverage# @waltz's emacs gitignore partee pak
+*~
+.#*
+#~#
