@@ -1,4 +1,4 @@
-class RecipientsController < ApplicationController
+class RecipientsController < AdminController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   # before_filter :standardize_numbers, only: [ :create, :update ]

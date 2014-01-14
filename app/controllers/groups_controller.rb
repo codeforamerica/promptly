@@ -1,4 +1,4 @@
-class GroupsController < ApplicationController
+class GroupsController < AdminController
   # GET /Groups
   # GET /Groups.json
   load_and_authorize_resource

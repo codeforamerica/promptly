@@ -1,4 +1,4 @@
-class RemindersController < ApplicationController
+class RemindersController < AdminController
   include Helper
   load_and_authorize_resource
   
