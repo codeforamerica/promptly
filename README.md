@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/codeforamerica/promptly.png?label=ready)](https://waffle.io/codeforamerica/promptly)
 [![Build Status](https://travis-ci.org/codeforamerica/promptly.png?branch=master)](https://travis-ci.org/codeforamerica/promptly)
 
 # Promptly
