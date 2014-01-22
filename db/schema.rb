@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20131106203150) do
     t.string   "message_id"
     t.string   "status"
     t.string   "batch_id"
+    t.string   "call_id"
   end
 
   create_table "conversations_recipients", :id => false, :force => true do |t|

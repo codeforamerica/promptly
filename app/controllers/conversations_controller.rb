@@ -10,6 +10,7 @@ class ConversationsController < ApplicationController
     unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
     @unsubscribed = Conversation.where('message = ?', unsubscribed)
     @sent_count = Conversation.grouped_sent_conversations
+    @calls = Conversation.where('call_id' != nil)
 
     respond_to do |format|
       format.html # index.html.erb

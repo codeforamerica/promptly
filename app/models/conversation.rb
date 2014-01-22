@@ -1,5 +1,5 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :date, :message, :to_number, :from_number, :message_id, :status, :batch_id
+  attr_accessible :date, :message, :to_number, :from_number, :message_id, :status, :batch_id, :call_id
   has_and_belongs_to_many :recipients
   has_many :reports
   has_many :programs
