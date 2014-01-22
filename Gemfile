@@ -49,6 +49,7 @@ group :assets do
 end
 
 group :test do
+  gem "steak"
   gem "factory_girl_rails"
   gem "capybara"
   gem "launchy"
