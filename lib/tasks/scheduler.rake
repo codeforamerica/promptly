@@ -19,19 +19,21 @@ desc "This task is called by the Heroku scheduler add-on"
 	end
 
 	# Import call information from Twilio into conversations table
-	@client.account.calls.list.each do |call|
+	@client.account.calls.list.each do |twilio_call|
+		# Don't import existing calls (TODO: only look at calls from last x minutes)
 		Conversation.all.each do |c|
-			if c.call_id == call.sid
+			if c.call_id == twilio_call.sid
 				break
 			end
 		end
 		conv = Conversation.new
-		conv.call_id = call.sid
-		conv.to_number = call.to
-		conv.from_number = call.from
-		conv.date = call.date_created
-		conv.status = call.status
-		@recipient = Recipient.where('phone = ?' , call.from)
+		conv.call_id = twilio_call.sid
+		conv.to_number = twilio_call.to
+		conv.from_number = twilio_call.from
+		conv.date = twilio_call.date_created
+		conv.status = twilio_call.status
+		# Strip the + and country code for comparison
+		@recipient = Recipient.where('phone = ?' , twilio_call.from.gsub(/^\+\d/, '')).all
 		conv.recipients = @recipient
 		conv.save!
 	end
