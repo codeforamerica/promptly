@@ -30,4 +30,8 @@ class Conversation < ActiveRecord::Base
     Conversation.where(:status => 'failed')
   end
 
+  def self.calls
+    Conversation.where('call_id' != nil)
+  end
+
 end
