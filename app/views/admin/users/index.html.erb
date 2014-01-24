@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <h2>All users</h2>
+  <% @users.each do |u| %>
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="span8 offset1">
+        <ul class="unstyled">
+          <li><%= link_to_if(can?(:read, User), "#{u.name}", admin_user_path(u.id)) {} %></li>
+          <li><%= "#{u.email}" %></li>
+          <li><%= link_to_if(can?(:edit, User), "Edit", edit_admin_user_path(u.id), :class => 'btn btn-default') %></li>
+          <li><%= link_to_if(can?(:delete, u), "Delete", [:admin, u], :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger') %></li>
+        </ul>
+      </div>    
+    </div>
+  </div>
+  <% end %>
+</div>

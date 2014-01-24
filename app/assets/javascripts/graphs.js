@@ -27,7 +27,7 @@ $(function(){
         // chart.
         labels: ['Messages Sent'],
         xLabelFormat: function(date) {
-          return (date.getMonth()+1)+'/'+(date.getDate()+1)+'/'+date.getFullYear(); 
+          return (date.getMonth()+1)+'/'+(date.getDate())+'/'+date.getFullYear(); 
           },
         smooth: false,
       });

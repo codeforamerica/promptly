@@ -1,0 +1,29 @@
+  <div class="row-fluid">
+  <h3>All recipients</h3>
+  </div>
+  <div class="row-fluid">
+    <div class="span12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Phone number</th>
+            <th>Reminders sent</th>
+            <th>Reminder details</th>
+            <th></th>
+          </tr>
+        </thead>
+        <% @recipients.each do |recipient| %>
+          <tr>
+            <td><%= link_to number_to_phone(recipient.phone), [:admin, recipient] %></td>
+            <td><%= render(:partial => 'reminders', :collection => recipient.reminders, :as => :reminder) || 'You have no reminders' %></td>
+          <td><%= link_to 'Edit', edit_admin_recipient_path(recipient), :class=>'btn btn-mini' %>  <%= link_to 'Delete', [:admin, recipient], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+          </tr>
+          <% end %>
+        </table>
+      <%= link_to 'New recipient', new_admin_recipient_path, :class=>'btn btn-primary' %>
+      </div>    
+    </div>
+  </div>
+  
+  
+

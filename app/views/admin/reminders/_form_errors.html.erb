@@ -1,0 +1,9 @@
+<div id="error_explanation">
+  <h2><%= pluralize(@reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
+
+  <ul>
+  <% @reminder.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
