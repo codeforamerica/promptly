@@ -17,4 +17,10 @@ feature "Reminders" do
     page.should have_content "Promptly"
     page.current_path.should == "/admin/reminders"
   end
+
+  scenario "viewing a reminder should work" do
+    reminder = FactoryGirl.create :reminder
+    visit "/admin/reminders/#{reminder.id}"
+    page.should have_content
+  end
 end

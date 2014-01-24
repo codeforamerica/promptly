@@ -17,20 +17,24 @@ FactoryGirl.define do
 
   factory :message do
     name "test message"
-    message_text "A test from rspec."
+    message_text { Faker::Lorem.characters(rand(100..140)) }
     description "this is a test message"
   end
-
 
   factory :reminder do
     name "test reminder"
     send_date Date.today
     send_time "12:00pm"
-    recipient FactoryGirl.create(:recipient)
+    recipient
+    message
+  end
+
+  sequence :email do |n|
+    "test#{n}@example.com"
   end
 
   factory :user do
-    email "example@email.com"
+    email # pulls in from the defined sequence
     password "password"
     password_confirmation "password"
     roles "admin"

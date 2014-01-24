@@ -46,9 +46,11 @@ group :assets do
   gem 'bootstrap-datepicker-rails'
   gem 'jquery-rails', '2.0.2'
   gem 'jquery-ui-rails'
+  gem 'pry'
 end
 
 group :test do
+  gem "faker"
   gem "steak"
   gem "factory_girl_rails"
   gem "capybara"

@@ -1,0 +1,7 @@
+var groupName = $('#group_name').val();
+var phones = $('#recipient_phone').val();
+$.ajax({
+  data: { 'group[name]': groupName, 'recipient[phone]': phones },
+  type: 'post',
+  url: '<%= j groups_url %>'
+});

@@ -68,12 +68,11 @@ class Admin::RecipientsController < AdminController
   def update
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
-        # format.html { redirect_to admin_recipient_path(@recipient), notice: 'Recipient was successfully updated.' }
-        format.html { redirect_to admin_dashboard_path }
+        format.html { redirect_to [:admin, @recipient], notice: 'Recipient was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { rende r json: @recipient.errors, status: :unprocessable_entity }
+        format.json { render json: @recipient.errors, status: :unprocessable_entity }
       end
     end
   end

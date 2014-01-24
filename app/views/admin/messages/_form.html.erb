@@ -1,0 +1,28 @@
+<div class="row-fluid">
+  <div class="span8">
+    <%= simple_form_for [:admin, @message] do |f| %>
+      <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this report from being saved:</h2>
+          <ul>
+          <% @message.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= f.input :name, label: "Name", input_html: { class: 'span6' } %>
+      <%= f.input :message_text, as: :text, label: "Message text", input_html: { maxlength: 160, class: 'span6', rows: 5 } %> 
+    <div class="characterCount offset3 span6">Characters left: <span id="char-count">160</span></div>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span">
+     <div class="actions">
+        <%= f.submit :class => 'btn btn-primary'%>
+        <%= link_to 'Cancel', admin_messages_path %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

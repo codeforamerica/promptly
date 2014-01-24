@@ -1,0 +1,27 @@
+<div class="headerSmall headerAqua">
+  <span class="headerText">Message</span>
+</div>
+
+<div class="row-fluid">
+  <div class="span12">
+    <table id="messages-table" class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Message text</th>
+          <th>Message name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Message.all.each do |message| %>
+        <tr>
+          <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-radio' %></td>
+          <td><%= message.message_text %></td>
+          <td><%= message.name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <p>Need a new message? <a class="btn" data-toggle="modal" data-target="#new-message" href="#new-message">Create new message</a>
+  </div>
+</div>

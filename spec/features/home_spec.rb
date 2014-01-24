@@ -1,5 +1,3 @@
-# spec/features/programs_spec.rb
-
 require 'spec_helper'
 
 describe "Home" do
