@@ -20,8 +20,19 @@ describe Conversation do
 
   describe "#undelivered" do
     it "returns a list of all undelivered messages" do
-      conversation = FactoryGirl.create(:conversation, status: "failed")
-      Conversation.undelivered.count.should == 1
+      orig_undelivered_count = Conversation.undelivered.count
+      undelivered = FactoryGirl.create(:conversation, status: "failed")
+      conversation = FactoryGirl.create(:conversation)
+      Conversation.undelivered.count.should == (1 + orig_undelivered_count)
+    end
+  end
+
+    describe "#calls" do
+    it "returns a list of calls" do
+      orig_call_count = Conversation.calls.count
+      call = FactoryGirl.create(:conversation_with_call)
+      conversation = FactoryGirl.create(:conversation)
+      Conversation.calls.count.should == (1 + orig_call_count)
     end
   end
 

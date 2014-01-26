@@ -7,8 +7,14 @@ class Conversation < ActiveRecord::Base
   attr_accessible :recipient_ids
   attr_accessible :conversation_ids
 
-  def self.grouped_sent_conversations(limit = 0)
-    if limit != 0
+  scope :calls, where('call_id != ?', 'IS NOT NULL')
+  scope :undelivered, where(:status => 'failed')
+  scope :all_responses, where(:status => 'received')
+  unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
+  scope :unsubscribed, where('message = ?', unsubscribed)
+  scope :grouped_sent_conversations, lambda  { |limit|
+     limit ||=0
+     if limit != 0
       Conversation.where('status = ?', 'sent')
         .order("date")
         .limit(limit)
@@ -20,18 +26,5 @@ class Conversation < ActiveRecord::Base
         .to_set
         .classify {|reminder| reminder.batch_id}
     end
-  end
-
-  def self.all_responses
-    Conversation.where(:status => 'received')
-  end
-
-  def self.undelivered
-    Conversation.where(:status => 'failed')
-  end
-
-  def self.calls
-    Conversation.where('call_id' != nil)
-  end
-
+  }
 end
