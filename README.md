@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/codeforamerica/promptly.png?branch=master)](https://travis-ci.org/codeforamerica/promptly)
+[![Build Status](https://travis-ci.org/codeforamerica/promptly.png?branch=master)](https://travis-ci.org/postcode/promptly)
 
 # Promptly
-Promptly is a text message notification system originally built by 2013 Code for America fellows for the San Francisco Human Services Agency. See [promptly.io](http://promptly.io) for more info on the project. See our [wiki](https://github.com/codeforamerica/promptly/wiki) for documentation.
+Promptly is a text message notification system originally built by 2013 Code for America fellows for the San Francisco Human Services Agency. See [promptly.io](http://promptly.io) for more info on the project. See our [wiki](https://github.com/postcode/promptly/wiki) for documentation.
 
 ### Contribute
-This project is young and in flux. Feel free to email sf@codeforamerica.org if you're interested in deploying or contributing.
+This project is young and in flux. Feel free to email info@postcode.io if you're interested in deploying or contributing.
 
 ### Requirements
 Promptly is a Ruby on Rails application that uses Twilio to send text messages.
@@ -29,7 +29,7 @@ Make sure PostgreSQL is running. If you're using Postgres.app, just run the appl
 
 4) Clone this repo
 ```sh
-$ git clone https://github.com/codeforamerica/promptly.git
+$ git clone https://github.com/postcode/promptly.git
 ```
 
 5) Install required gems
@@ -145,7 +145,7 @@ $ heroku addons:add scheduler
 $ heroku addons:open scheduler
 ```
 Run the task `rake update_conversations` every 10 minutes:
-![heroku scheduler addon](http://codeforamerica.github.io/promptly/heroku-scheduler-addon.png)
+![heroku scheduler addon](http://postcode.github.io/promptly/heroku-scheduler-addon.png)
 
 7) Change the admin password
 ```sh
