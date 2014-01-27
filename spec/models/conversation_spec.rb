@@ -13,8 +13,10 @@ describe Conversation do
 
   describe "#all_responses" do
     it "returns a list of all messages" do
-      conversation = FactoryGirl.create(:conversation, status: "received")
-      Conversation.all_responses.count.should == 1
+      orig_responses_count = Conversation.all_responses.count
+      response = FactoryGirl.create(:conversation, status: "received")
+      conversation = FactoryGirl.create(:conversation)
+      Conversation.all_responses.count.should == (1 + orig_responses_count)
     end
   end
 

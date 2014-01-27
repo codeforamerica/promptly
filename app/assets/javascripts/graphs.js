@@ -4,7 +4,8 @@ $(function(){
   'upcoming',
   'sent',
   'response',
-  'undelivered'
+  'undelivered',
+  'calls'
   ]
 
   createGraphs(graphs)
