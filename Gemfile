@@ -21,7 +21,6 @@ gem 'daemons'
 group :development do
   gem 'pry'
   gem 'pry-nav'
-  gem 'sqlite3', '1.3.5'
   gem 'rspec-rails'
   gem 'dotenv-rails'
   gem 'database_cleaner'
