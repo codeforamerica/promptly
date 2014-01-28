@@ -17,15 +17,15 @@ gem 'newrelic_rpm'
 gem 'json', '1.8.0'
 gem 'rake'
 gem 'daemons'
+gem 'pg'
+gem 'unicorn'
+gem 'foreman'
 
 group :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'dotenv-rails'
   gem 'database_cleaner'
-  gem 'pg'
-  gem 'unicorn'
-  gem 'foreman'
 end
 
 # Gems used only for assets and not required
@@ -43,7 +43,6 @@ group :assets do
   gem 'bootstrap-datepicker-rails'
   gem 'jquery-rails', '2.0.2'
   gem 'jquery-ui-rails'
-  gem 'pry'
 end
 
 group :test do
@@ -65,7 +64,4 @@ group :production do
   # Devise on SQL server: https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/pull/262
   gem 'activerecord-sqlserver-adapter', git: 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git'
   gem 'therubyracer'
-  gem 'pg'
-  gem 'unicorn'
-  gem 'foreman'
 end
