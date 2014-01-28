@@ -1,0 +1,27 @@
+<% if @calls != [] %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Call ID</th>
+      <th>From</th>
+      <th>Date received</th>
+      <th>Recipient</th>
+    </tr>
+  </thead>
+  <tbody>
+    [This is placeholder text: THERE ARE <%= @calls.count %> CALLS. WOO!]
+    <% @calls.each do |c| %>
+    <tr>
+      <td><%= c.call_id %></td>
+      <td><%= number_to_phone(c.from_number, :area_code => true) %></td>
+      <td><%= c.date.to_s(:date_format) %></td>
+      <td>
+      <% c.recipients.each do |r| %>
+        <%= link_to number_to_phone(r.phone), r %>
+      <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

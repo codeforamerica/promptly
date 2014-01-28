@@ -5,11 +5,11 @@ class Admin::ConversationsController < ApplicationController
 
   def index
     @conversations = Conversation.all
-    @responses = Conversation.where('status = ?', 'received')
-    @undelivered = Conversation.where('status = ?', 'failed')
-    unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
-    @unsubscribed = Conversation.where('message = ?', unsubscribed)
+    @responses = Conversation.all_responses
+    @undelivered = Conversation.undelivered
+    @unsubscribed = Conversation.unsubscribed
     @sent_count = Conversation.grouped_sent_conversations
+    @calls = Conversation.calls
 
     respond_to do |format|
       format.html # index.html.erb

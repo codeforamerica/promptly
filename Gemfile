@@ -21,11 +21,8 @@ gem 'daemons'
 group :development do
   gem 'pry'
   gem 'pry-nav'
-  gem 'sqlite3', '1.3.5'
-  gem 'rspec-rails'
   gem 'dotenv-rails'
   gem 'database_cleaner'
-  gem 'simplecov'
   gem 'pg'
   gem 'unicorn'
   gem 'foreman'
@@ -57,6 +54,8 @@ group :test do
   gem "launchy"
   gem "guard-rspec"
   gem 'shoulda-matchers'
+  gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 # Only try to install these gems on staging/prod servers
@@ -66,4 +65,7 @@ group :production do
   # Devise on SQL server: https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/pull/262
   gem 'activerecord-sqlserver-adapter', git: 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git'
   gem 'therubyracer'
+  gem 'pg'
+  gem 'unicorn'
+  gem 'foreman'
 end

@@ -11,10 +11,14 @@
       <ul class="nav nav-tabs">
         <li class="active"><a href="#response" data-toggle="tab">Responses</a></li>
         <li><a href="#undelivered" data-toggle="tab">Undelivered</a></li>
+        <li><a href="#call" data-toggle="tab">Calls</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="response">
           <%= render 'response', :collection => @responses || 'There are no responses.'%>
+        </div>
+        <div class="tab-pane" id="call">
+          <%= render 'call', :collection => @calls || 'There are no calls.'%>
         </div>
         <div class="tab-pane" id="undelivered">
           <%= render 'undelivered', :collection => @undelivered || 'There are no undelivered reminders.' %>

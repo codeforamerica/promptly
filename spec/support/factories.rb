@@ -1,9 +1,19 @@
 # spec/support/factories.rb
 FactoryGirl.define do
 
+  sequence :call_id do |n|
+    "test#{n}callID"
+  end
+
+  factory :conversation_with_call, parent: :conversation do
+    call_id
+  end
+
   factory :conversation do
     date DateTime.now
     message "test message"
+    to_number { Faker::PhoneNumber.phone_number }
+    from_number { Faker::PhoneNumber.phone_number }
   end
 
   factory :recipient do
