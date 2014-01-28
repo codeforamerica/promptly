@@ -12,9 +12,11 @@ class Conversation < ActiveRecord::Base
   scope :all_responses, where(:status => 'received')
   unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
   scope :unsubscribed, where('message = ?', unsubscribed)
-  scope :grouped_sent_conversations, lambda  { |limit|
-     limit ||=0
-     if limit != 0
+  scope :grouped_sent_conversations, lambda  { |*limit|
+    # Hack to have the lambda take an optional argument.
+    limit = limit.empty? ? 0 : limit.first
+
+    if limit != 0
       Conversation.where('status = ?', 'sent')
         .order("date")
         .limit(limit)
