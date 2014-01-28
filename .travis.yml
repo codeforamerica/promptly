@@ -8,7 +8,7 @@ bundler_args: --without production
 before_script:
   - psql -c 'create database promptly_test;' -U postgres
   - cp config/database.travis.yml config/database.yml
-  - rake db:schema:load
-script: rake spec
+  - bundle exec rake db:schema:load
+script: bundle exec rake spec
 notifications:
   webhooks: http://cfa-project-monitor.herokuapp.com/projects/e794be6b-2609-4246-b34a-6b20eb79b2c0/status
