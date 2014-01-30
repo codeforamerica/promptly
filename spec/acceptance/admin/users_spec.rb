@@ -13,4 +13,15 @@ feature "Users" do
     page.should have_content
   end
 
+   scenario "creating a new user when not logged in" do
+    visit "/admin/users/new"
+    page.current_path.should == "/"
+  end
+
+  scenario "creating a new user" do
+    sign_in FactoryGirl.create :user
+    visit "/admin/users/new"
+    page.should have_content
+  end
+
 end
