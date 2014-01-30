@@ -1,6 +1,6 @@
 <h3><%= @user == @current_user ? "Your Account Settings" : "Edit User" %></h3>
  
-<%= form_for(@user, :html => { :method => :put }) do |f| %>
+<%= form_for([:admin, @user], :html => { :method => :put }) do |f| %>
 	<%= render :partial => 'user_fields', :locals => { :f => f } %>
  
 	<p><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></p>
