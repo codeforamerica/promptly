@@ -14,5 +14,5 @@
     </div>
   </div>
   <% end %>
-  <%= link_to_if(can?(:create, current_user), "New", new_admin_user_path) %>
+  <%= link_to_if(can?(:create, User), "New", new_admin_user_path) %>
 </div>
