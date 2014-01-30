@@ -68,7 +68,8 @@ class Admin::UsersController < AdminController
     @user.destroy
  
     respond_to do |format|
-      redirect_to user_path
+      flash[:notice] = "Account has been destroyed"
+      format.html { redirect_to :action => :index }
     end
  
   rescue ActiveRecord::RecordNotFound
@@ -84,6 +85,7 @@ class Admin::UsersController < AdminController
  
     if @user.save
       respond_to do |format|
+        flash[:notice] = "Account has been created"
         format.json { render :json => @user.to_json, :status => 200 }
         format.xml  { head :ok }
         format.html { redirect_to :action => :index }
@@ -92,7 +94,7 @@ class Admin::UsersController < AdminController
       respond_to do |format|
         format.json { render :text => "Could not create user", :status => :unprocessable_entity } # placeholder
         format.xml  { head :ok }
-        format.html { render :action => :new, :status => :unprocessable_entity }
+        format.html { render :text => @user.errors.full_messages.join('<br/>'), :status => :unprocessable_entity }
       end
     end
   end
@@ -113,7 +115,7 @@ class Admin::UsersController < AdminController
       else
         format.json { render :text => "Could not update user", :status => :unprocessable_entity } #placeholder
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-        format.html { render :action => :edit, :status => :unprocessable_entity }
+        format.html { render :text => @user.errors.full_messages.join('<br/>'), :status => :unprocessable_entity }
       end
     end
  
