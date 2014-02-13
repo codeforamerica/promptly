@@ -1,0 +1,13 @@
+<h2>Welcome!</h2>
+
+<p>Here are your current organizations:</p>
+
+<% if @organizations.any? %>
+  <ul>
+    <% @organizations.each do |organization| -%>
+      <li><%= link_to organization.name, admin_organization_path(organization) -%></li>
+    <% end %>
+  </ul>
+<% else %>
+  <span>Sorry, you're not currently a part of any organizations. Stay tuned!</span>
+<% end %>

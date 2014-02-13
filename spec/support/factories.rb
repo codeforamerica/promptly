@@ -52,7 +52,7 @@ FactoryGirl.define do
   end 
 
   factory :organization do
-    name { Faker::Lorem.words(rand(1..4)) }
+    name { Faker::Lorem.words(rand(1..4)).join(" ") }
   end
 
   factory :conversation_with_message, parent: :conversation do
