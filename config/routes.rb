@@ -10,18 +10,23 @@ Promptly::Application.routes.draw do
   namespace :admin do
     root to: 'dashboard#index', as: 'dashboard'
 
-    resources :users
-    resources :recipients
-    resources :conversations
-    resources :groups
-    resources :messages
-    resources :organizations
-    resources :reminders do
-      collection do
-        get :confirm
+
+    resources :organizations do
+      resources :users
+      resources :recipients
+      resources :conversations
+      resources :groups
+      resources :messages
+      resources :organizations
+      resources :reminders do
+        collection do
+          get :confirm
+        end
       end
     end
+
   end
+
 
   #project page
   match '/hsa'       => 'pages#hsa'
