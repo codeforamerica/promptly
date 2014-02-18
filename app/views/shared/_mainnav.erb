@@ -1,19 +1,32 @@
-<div class="navbar"> <!-- navbar -->
+<div class="navbar navbar-static-top">
 	<div class="navbar-inner">
-		<div class="container">
-			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar icon-white"></span>
-				<span class="icon-bar icon-white"></span>
-				<span class="icon-bar icon-white"></span>
-			</button>
-			<%= link_to "Promptly", root_path, :class => 'brand offset2' %>
-			<div class="login pull-right">
-				<% if user_signed_in? %>
-				  <p><%= link_to "Welcome, #{current_user.name}!", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %></p>
-				<% else %>
-				  <p><%= link_to "Sign in", new_user_session_path %>
-				<% end %>
-			</div>
-		</div>
+    <%= link_to "Promptly", root_path, :class => "brand" %>
+    <ul class="nav pull-right">
+      <% if user_signed_in? %>
+        <% if current_user.organizations.length > 0 %>
+          <li class="dropdown">
+            <a class="dropdown-toggle"
+               data-toggle="dropdown"
+               href="#">
+              Organizations
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <% current_user.organizations.each do |organization| %>
+                <li>
+                  <a tabindex="-1" href="#">
+                    <%= link_to organization.name, [:admin, organization] %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+        <li><%= link_to "Welcome, #{current_user.name}!", edit_user_registration_path %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "Sign in", new_user_session_path %></li>
+      <% end %>
+    </ul>
 	</div>
-</div> <!-- /navbar -->
+</div>

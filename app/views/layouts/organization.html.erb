@@ -1,0 +1,9 @@
+<% content_for :content do %>
+  <div id="sidebar-left" class="span1">
+    <%= render 'layouts/sidebar' %>
+  </div>
+  <div id="content" class="span11">
+    <%= yield %>
+  </div>
+<% end %>
+<%= render file: "layouts/application" %>

@@ -1,7 +1,7 @@
 Promptly::Application.routes.draw do
   root :to => 'pages#splash'
   
-  devise_for :users, :skip => [:registrations]
+  devise_for :users, :skip => [:registrations], :controllers => { :sessions => "sessions" }
   as :user do
     get 'users/edit' => 'devise/registrations#edit',   :as => 'edit_user_registration'
     put 'users'      => 'devise/registrations#update', :as => 'user_registration'
