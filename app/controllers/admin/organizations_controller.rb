@@ -1,4 +1,6 @@
 class Admin::OrganizationsController < AdminController
+  layout "organization"
+
   def index
     @organizations = Organization.all
   end
