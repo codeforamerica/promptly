@@ -7,9 +7,11 @@ Promptly::Application.routes.draw do
     put 'users'      => 'devise/registrations#update', :as => 'user_registration'
   end
 
-  namespace :admin do
-    root to: 'dashboard#index', as: 'dashboard'
+  # match 'logout', :to => 'sessions#destroy', :as => "logout"
 
+  namespace :admin do
+    # root to: 'dashboard#index', as: '/dashboard/:organization_id/'
+    match 'dashboard/:organization_id', :to => 'dashboard#index', :as => "dashboard"
 
     resources :organizations do
       resources :users
