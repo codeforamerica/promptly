@@ -1,3 +1,7 @@
+<div id="sidebar-left" class="span1">
+    <%= render 'layouts/sidebar' %>
+ </div>
+
 <h2><%= @organization.name -%></h2>
 
 <h3>Users</h3>
@@ -8,8 +12,10 @@
     <% end %>
   </ul>
 <% else %>
-  <p>There currently aren't any users in this organization. <%= link_to "Add some!", edit_admin_organization_path(@organization) -%>
+  <p>There currently aren't any users in this organization. <%= link_to "Add some!", new_admin_organization_user_path(@organization) -%>
 <% end %>
 
 <p><%= link_to "Edit this organization", edit_admin_organization_path(@organization) %></p>
 <p><%= link_to "Delete this organization", admin_organization_path(@organization), method: :delete -%></p>
+
+
