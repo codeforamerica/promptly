@@ -1,4 +1,5 @@
-class Admin::DashboardController < AdminController
+class Admin::DashboardController < OrgController
+	
   def index
     @recipient = Recipient.all
     @recents = Conversation.find(:all, :order => "date desc", :limit => 10)
