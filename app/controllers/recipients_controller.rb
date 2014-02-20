@@ -69,7 +69,7 @@ class Admin::RecipientsController < AdminController
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
         # format.html { redirect_to admin_recipient_path(@recipient), notice: 'Recipient was successfully updated.' }
-        format.html { redirect_to admin_dashboard_path }
+        format.html { redirect_to admin_dashboard_path(@organization.id) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
