@@ -7,4 +7,9 @@ class OrgController < AdminController
     @organization = Organization.find(params[:organization_id])
   end
 
+  def current_ability
+    @current_ability ||= Ability.new(current_user, params[:organization_id])
+  end
+
 end
+
