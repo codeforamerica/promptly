@@ -1,4 +1,4 @@
-class Admin::RemindersController < AdminController
+class Admin::RemindersController < OrgController
   include Helper
   load_and_authorize_resource
   before_filter :patch_batch_id
@@ -78,7 +78,7 @@ class Admin::RemindersController < AdminController
     end
 
     respond_to do |format|
-      format.html { redirect_to reminders_url, notice: 'Reminder was successfully created.' }
+      format.html { redirect_to organization_reminders_url, notice: 'Reminder was successfully created.' }
       format.json { render json: @reminder, status: :created, location: @reminder }
     end
   end
@@ -89,7 +89,7 @@ class Admin::RemindersController < AdminController
       r.update_attributes(params[:reminder])
     end
     respond_to do |format|
-      format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
+      format.html { redirect_to organization_reminders_path, notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
     end
   end
@@ -102,14 +102,14 @@ class Admin::RemindersController < AdminController
     end
 
     respond_to do |format|
-      format.html { redirect_to reminders_url }
+      format.html { redirect_to organization_reminders_url }
       format.json { head :no_content }
     end
   end
 
   def import
     Reminder.import(params[:file], params[:reminder])
-    redirect_to reminders_url, notice: "Reminder created."
+    redirect_to organization_reminders_url, notice: "Reminder created."
   end
 
   private

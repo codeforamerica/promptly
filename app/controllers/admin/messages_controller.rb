@@ -1,4 +1,4 @@
-class Admin::MessagesController < ApplicationController
+class Admin::MessagesController < OrgController
   load_and_authorize_resource
   
   def index

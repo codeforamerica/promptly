@@ -1,4 +1,4 @@
-class Admin::RecipientsController < AdminController
+class Admin::RecipientsController < OrgController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   # before_filter :standardize_numbers, only: [ :create, :update ]
@@ -9,8 +9,8 @@ class Admin::RecipientsController < AdminController
   # GET /recipients
   # GET /recipients.json
   def index
-    @recipients = Recipient.all
-
+    @recipients = Recepient.all
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recipients }

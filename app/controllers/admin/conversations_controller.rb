@@ -1,4 +1,4 @@
-class Admin::ConversationsController < ApplicationController
+class Admin::ConversationsController < OrgController
   # GET /conversations
   # GET /conversations.json
   load_and_authorize_resource

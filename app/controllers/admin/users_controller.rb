@@ -1,4 +1,4 @@
-class Admin::UsersController < AdminController
+class Admin::UsersController < OrgController
 # from http://www.tonyamoyal.com/2010/09/29/rails-authentication-with-devise-and-cancan-part-2-restful-resources-for-administrators/
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :authenticate_user!, :only => [:new, :edit, :show, :update, :create]
