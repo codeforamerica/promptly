@@ -6,6 +6,6 @@
 	</div>
 </div>
 	<%= render 'form' %>
-	<%= link_to 'Show', @reminder %> |
-	<%= link_to 'Back', reminders_path %>
+	<%= link_to 'Show', @organization, @reminder %> |
+	<%= link_to 'Back', organization_reminders_path(@organization) %>
 </div>

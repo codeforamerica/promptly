@@ -1,2 +1,2 @@
-<p><%= link_to reminder.send_date.to_s(:date_format), admin_reminder_path(reminder.batch_id) %><br /></p>
+<p><%= link_to reminder.send_date.to_s(:date_format), admin_organization_reminder_path(@organization,reminder.batch_id) %><br /></p>
 <p><%= reminder.message.message_text %></p>

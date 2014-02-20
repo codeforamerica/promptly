@@ -17,13 +17,13 @@
         <td><%= message.message_text %></td>
         <td></td>
         <td>
-          <%= link_to 'Edit', edit_admin_message_path(message), :class=>'btn btn-mini' %>
+          <%= link_to 'Edit', edit_admin_organization_message_path(@organization,message), :class=>'btn btn-mini' %>
           <%= link_to 'Delete', [:admin, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Create message', new_admin_message_path, :class => 'btn btn-primary' %>
+  <%= link_to 'Create message', new_admin_organization_message_path(@organization), :class => 'btn btn-primary' %>
 </div>
 
 <script>
