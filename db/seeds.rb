@@ -1,17 +1,39 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-User.create(
+password = "administrator"
+
+o = Organization.create(
+	name: "Default Organization"
+)
+
+u = User.create(
   name: "Admin",
   email: "admin@example.com",
-  password: "administrator",
-  password_confirmation: "administrator",
+  password: password,
+  password_confirmation: password,
   roles_mask: 1)
+
+ou = OrganizationsUser.create(
+	user_id: u.id,
+	organization_id: o.id,
+	roles_mask: 1) 
+ 
+# User.create([{ :first_name => 'Jamie' }, { :first_name => 'Jeremy' }]) do |u|
+#   u.is_admin = false
+
 
 # Send admin login details to console
 puts "Admin user successfully created:"
 puts "    email: admin@example.com"
-puts "    password: administrator" 
+puts "    password: #{password}" 
+
+
+# Send org user details to console
+puts "Organization user successfully created:"
+puts "    user_id: #{ou.user_id}"
+puts "    organization_id: #{ou.organization_id}" 
+
 
 # Message.create([
 #   {   name: "Example Message", message_text: "Demo message to be sent to group.", description: "This is merely a test message." },
