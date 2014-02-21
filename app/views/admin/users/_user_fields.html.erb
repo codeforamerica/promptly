@@ -9,7 +9,7 @@
     <div class="control-group">
       <%= f.label :roles, 'Select a role' %>
       <div class="controls">
-        <%= f.collection_select :roles, User.valid_roles, :to_s, :to_s %>
+        <%= f.collection_select :roles, OrganizationsUser.valid_roles, :to_s, :to_s %>
       </div>
     </div>
   </div>
