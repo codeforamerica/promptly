@@ -20,6 +20,7 @@ gem 'daemons'
 gem 'pg'
 gem 'unicorn'
 gem 'foreman'
+gem 'composite_primary_keys'
 
 group :development do
   gem 'pry'
