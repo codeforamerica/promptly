@@ -1,20 +1,13 @@
 class OrganizationsUser < ActiveRecord::Base
+  require 'role_model'
+  require 'composite_primary_keys'
+  include RoleModel
 
-  attr_accessible :organization_id, :user_id, :roles_mask
-
-	require 'role_model'
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-
-
-	include RoleModel
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :organization_id, :user_id, :roles, :roles_mask, :name
-  # attr_accessible :title, :body
-
+  attr_accessible :organization_id, :user_id, :roles_mask, :roles, :name
   validates_presence_of :organization_id, :user_id
-  validates_uniqueness_of :organization_id, :user_id
+  self.primary_keys = :organization_id, :user_id
+  belongs_to :organization
+  belongs_to :user
 
   # optionally set the integer attribute to store the roles in,
   # :roles_mask is the default

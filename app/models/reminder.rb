@@ -1,11 +1,10 @@
 class Reminder < ActiveRecord::Base
-  attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text
-  attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id
-  attr_accessible :id, :created_at, :updated_at
+  attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text, :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id, :id, :created_at, :updated_at, :orgaization_id
+
   validates_presence_of :message_id, :send_date, :send_time
-  
   belongs_to :recipient
   belongs_to :message
+  belongs_to :organization
   has_and_belongs_to_many :groups
   accepts_nested_attributes_for :message, :recipient
 
