@@ -9,7 +9,7 @@ class Admin::RecipientsController < OrgController
   # GET /recipients
   # GET /recipients.json
   def index
-    @recipients = Recepient.all
+    @recipients = Recipient.all
     
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +21,7 @@ class Admin::RecipientsController < OrgController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    # @recipient = Recipient.find(params[:id])
+    @recipient = Recipient.find(params[:id])
     # @conversations = @recipient.conversations.group("date")
 
     respond_to do |format|
@@ -83,7 +83,7 @@ class Admin::RecipientsController < OrgController
     @recipient.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipients_url }
+      format.html { redirect_to organization_recipients_url(@organization.id) }
       format.json { head :no_content }
     end
   end
