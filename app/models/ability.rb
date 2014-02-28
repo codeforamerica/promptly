@@ -7,17 +7,18 @@ class Ability
     user ||= User.new # guest user (not logged in)
     @organization_user = OrganizationsUser.where(user_id: user.id).where(organization_id: organization_id).first # This should be unique
 
-
-    if @organization_user.has_role? :admin
-     # an admin can do everything
-      can :manage, :all
-    elsif @organization_user.has_role? :user
-      # an user can read everything
-      can :manage, [Reminder, Conversation, Message, Recipient]
-      can :read, :all
-    elsif @organization_user.has_role? :guest
-        #guest can only sign up for the site
-      can :read, [User, Page]
+    if @organization_user
+      if @organization_user.has_role? :admin
+       # an admin can do everything
+        can :manage, :all
+      elsif @organization_user.has_role? :user
+        # an user can read everything
+        can :manage, [Reminder, Conversation, Message, Recipient]
+        can :read, :all
+      elsif @organization_user.has_role? :guest
+          #guest can only sign up for the site
+        can :read, [User, Page]
+      end
     end
     #
 
