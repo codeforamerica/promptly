@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span8">
-    <%= simple_form_for [:admin, @message] do |f| %>
+    <%= simple_form_for [:admin, @organization, @message] do |f| %>
       <% if @message.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@message.errors.count, "error") %> prohibited this report from being saved:</h2>

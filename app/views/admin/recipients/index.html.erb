@@ -14,9 +14,9 @@
         </thead>
         <% @recipients.each do |recipient| %>
           <tr>
-            <td><%= link_to number_to_phone(recipient.phone), [:admin, recipient] %></td>
+            <td><%= link_to number_to_phone(recipient.phone), [:admin, @organization, recipient] %></td>
             <td><%= render(:partial => 'reminders', :collection => recipient.reminders, :as => :reminder) || 'You have no reminders' %></td>
-          <td><%= link_to 'Edit', edit_admin_organization_recipient_path(@organization,recipient), :class=>'btn btn-mini' %>  <%= link_to 'Delete', [:admin, recipient], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+          <td><%= link_to 'Edit', edit_admin_organization_recipient_path(@organization,recipient), :class=>'btn btn-mini' %>  <%= link_to 'Delete', [:admin, @organization, recipient], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
           </tr>
           <% end %>
         </table>

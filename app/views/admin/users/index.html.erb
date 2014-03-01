@@ -1,18 +1,17 @@
-<div class="container-fluid">
   <h2>All users</h2>
-  <% @users.each do |u| %>
+  <% @organization.users.each do |u| %>
   <div class="row-fluid">
     <div class="span12">
       <div class="span8 offset1">
         <ul class="unstyled">
-          <li><%= link_to_if(can?(:read, User), "#{u.name}", admin_organization_user_path(@organization, u.id)) {} %></li>
+          <li><%= link_to_if(can?(:read, User), "#{u.name}", admin_organization_user_path(@organization.id, u.id)) {} %></li>
           <li><%= "#{u.email}" %></li>
-          <li><%= link_to_if(can?(:edit, User), "Edit", edit_admin_organization_user_path(@organization, u.id), :class => 'btn btn-default') %></li>
-          <li><%= link_to_if(can?(:delete, u), "Delete", [:admin, @organization, u], :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger') %></li>
+          <li><%= link_to_if(can?(:edit, User), "Edit", edit_admin_organization_user_path(@organization.id, u.id), :class => 'btn btn-default') %></li>
+          <li><%= link_to_if(can?(:delete, u), "Delete", admin_organization_user_path(@organization.id, u.id), method: :delete, :confirm => "Are you sure?", :class => 'btn btn-danger') %></li>
         </ul>
       </div>    
     </div>
   </div>
   <% end %>
-  <%= link_to_if(can?(:create, User), "Create a new user", new_admin_organization_user_path(@organization)) %>
+  <%= link_to_if(can?(:create, User), "Create a new user", new_admin_organization_user_path(@organization.id)) %>
 </div>

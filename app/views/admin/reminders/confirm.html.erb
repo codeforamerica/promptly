@@ -47,7 +47,7 @@
 			<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 
-			<%= link_to "Cancel", admin_path %>
+			<%= link_to "Cancel", admin_organization_path(@organization) %>
 			<%= f.submit "Schedule Reminder", class: 'btn btn-primary dumbMargin' %>
 		<% end %><!-- /form -->
 	</div>

@@ -1,7 +1,7 @@
 <div class="nav-collapse sidebar-nav">
 	<ul class="nav nav-tabs nav-stacked main-menu">
 		<%= content_tag(:li, class: is_active?("home")) do %>
-			<%= link_to admin_dashboard_path(@organization.id) do %>
+			<%= link_to admin_organization_dashboard_path(@organization.id) do %>
 				<i class="typcn typcn-home"></i>Dashboard
 			<% end %>
 		<% end %>
@@ -13,6 +13,11 @@
 		<%= content_tag(:li, class: is_active?("groups")) do %>
 			<%= link_to admin_organization_groups_path(@organization.id) do %>
 				<i class="typcn typcn-group"></i>Groups
+			<% end %>
+		<% end %>
+		<%= content_tag(:li, class: is_active?("messages")) do %>
+			<%= link_to admin_organization_messages_path(@organization.id) do %>
+				<i class="typcn typcn-message"></i>Messages
 			<% end %>
 		<% end %>
 		<%= content_tag(:li, class: is_active?("users")) do %>

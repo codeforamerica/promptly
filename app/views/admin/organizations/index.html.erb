@@ -1,13 +1,11 @@
-<h2>Organizations</h2>
+<h2>Your organizations</h2>
 
-<p><%= link_to "Make a new organization.", new_admin_organization_path(@organization) %></p>
-
-<% if @organizations.any? %>
+<% if @current_user.organizations.any? %>
   <ul>
-    <% @organizations.each do |organization| %>
+    <% @current_user.organizations.each do |organization| %>
       <li><%= link_to organization.name, admin_organization_path(organization.id) -%></li>
     <% end %>
   </ul>
 <% else %>
-  <p>There aren't any organizations right now. You should <%= link_to "make a new organization", new_admin_organization_path -%>.</p>
+
 <% end %>

@@ -13,12 +13,12 @@
     <tbody>
       <% @messages.each do |message| %>
       <tr>
-        <td><%= link_to message.name, [:admin, message] %></td>
+        <td><%= link_to message.name, [:admin, @organization, message] %></td>
         <td><%= message.message_text %></td>
         <td></td>
         <td>
-          <%= link_to 'Edit', edit_admin_organization_message_path(@organization,message), :class=>'btn btn-mini' %>
-          <%= link_to 'Delete', [:admin, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'btn btn-mini' %>
+          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
       </tr>
       <% end %>
     </tbody>
