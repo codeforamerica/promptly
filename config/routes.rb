@@ -11,9 +11,9 @@ Promptly::Application.routes.draw do
 
   namespace :admin do
     # root to: 'dashboard#index', as: '/dashboard/:organization_id/'
-    match 'dashboard/:organization_id', :to => 'dashboard#index', :as => "dashboard"
 
     resources :organizations do
+      match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
       resources :users
       resources :recipients
       resources :conversations
