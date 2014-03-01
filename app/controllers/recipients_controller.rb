@@ -69,7 +69,7 @@ class Admin::RecipientsController < AdminController
     respond_to do |format|
       if @recipient.update_attributes(params[:recipient])
         # format.html { redirect_to admin_recipient_path(@recipient), notice: 'Recipient was successfully updated.' }
-        format.html { redirect_to admin_dashboard_path(@organization.id) }
+        format.html { redirect_to admin_organization_dashboard_path(@organization.id) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,7 +84,7 @@ class Admin::RecipientsController < AdminController
     @recipient.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipients_url }
+      format.html { redirect_to organization_recipients_url(@organization.id) }
       format.json { head :no_content }
     end
   end

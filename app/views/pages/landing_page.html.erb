@@ -1,13 +1,15 @@
 <h2>Welcome!</h2>
 
-<p>Here are your current organizations:</p>
-
-<% if @organizations.any? %>
+<% if Organization.any? %>
+ All organizations
   <ul>
-    <% @organizations.each do |organization| -%>
+    <% Organization.all.each do |organization| -%>
       <li><%= link_to organization.name, admin_organization_path(organization.id) -%></li>
     <% end %>
   </ul>
-<% else %>
-  <span>Sorry, you're not currently a part of any organizations. Stay tuned!</span>
-<% end %>
+ <% end %>
+
+<%= link_to 'View your organizations', admin_organizations_path, :class => 'btn btn-primary' %>
+<%= link_to 'Create organization', new_admin_organization_path, :class => 'btn btn-primary' %>
+
+

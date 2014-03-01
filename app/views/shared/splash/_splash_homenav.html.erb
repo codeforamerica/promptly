@@ -8,9 +8,9 @@
 			</button>
 			
 				<% if user_signed_in? %>
-					<span><%= link_to "Admin", admin_dashboard_path(@organization.id), class: 'btn btn-success' %></span>					
+					<span><%= link_to "Admin", admin_organization_dashboard_path(@organization.id), class: 'btn btn-success' %></span>					
 					<div class="login pull-right">
-					  <span><%= link_to "Welcome, #{current_user.name}!", edit_user_registration_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %></span>
+					  <span><%= link_to "Welcome, #{current_user.name}!", root_path %> | <%= link_to "Sign out", destroy_user_session_path, method: :delete %></span>
 					</div>
         <% else %>
         		<div class="login pull-right">
