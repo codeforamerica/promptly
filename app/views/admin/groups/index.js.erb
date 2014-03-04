@@ -3,5 +3,5 @@ var phones = $('#recipient_phone').val();
 $.ajax({
   data: { 'group[name]': groupName, 'recipient[phone]': phones },
   type: 'post',
-  url: '<%= j groups_url %>'
+  url: '<%= j admin_organization_groups_url %>'
 });
