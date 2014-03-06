@@ -22,7 +22,7 @@ Promptly::Application.routes.draw do
       resources :organizations
       resources :reminders do
         collection do
-          get :confirm
+          post :confirm
         end
       end
     end

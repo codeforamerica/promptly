@@ -10,7 +10,7 @@
 			<div class="headerSmall headerAqua pageHeader">
 				<span class="headerText">Confirm Reminder</span>
 			</div>
-			<%= simple_form_for @reminder do |f| %>
+			<%= simple_form_for [:admin, @organization, @reminder] do |f| %>
     
 	    <% if @reminder.errors.any? %>
 	      <%= render 'form_errors' %>
