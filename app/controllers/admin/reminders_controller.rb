@@ -44,7 +44,6 @@ class Admin::RemindersController < OrgController
   def confirm
     @reminder = Reminder.new(params[:reminder])
 
-    binding.pry
     # @individual_recipients = parse_phone_numbers(params[:individual_recipients])
     # If they didn't create a new message,
     # get the one from the radio button and add it to the reminder
@@ -70,16 +69,12 @@ class Admin::RemindersController < OrgController
 
   def create
     @reminder = Reminder.new(params[:reminder])
+    params[:reminder][:group_ids].each do |group|
+      Reminder.create_new_reminders(Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], send_time: params[:reminder][:send_time], group_id: params[:reminder][:group_ids], organization: @organization.id)
+    end
     respond_to do |format|
-      if @reminder.save
-        format.js
-        format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully created.' }
-        format.json { render json: @reminder, status: :created, location: @reminder }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @reminder.errors, status: :unprocessable_entity }
-        format.js
-      end
+      format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully created.' }
+      format.json { render json: @reminder, status: :created, location: @reminder }
     end
   end
 

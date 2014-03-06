@@ -27,7 +27,8 @@ class Reminder < ActiveRecord::Base
       defaults = {
         send_time: '12:00pm',
         group_id: nil,
-        recipient: nil
+        recipient: nil,
+        organization: nil
       }
       options = defaults.merge(options)
 
@@ -40,8 +41,8 @@ class Reminder < ActiveRecord::Base
         the_recipient = nil
       end
       begin
-	      reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
-	      batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
+        reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
+        batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
         # if check_for_existing_reminder(options[:recipient].id, batch_id)
         #   raise ArgumentError.new("Reminder already exists!")
         # else
@@ -51,6 +52,7 @@ class Reminder < ActiveRecord::Base
           @reminder.send_time = reminder_time     
           @reminder.batch_id = batch_id
           @reminder.group_ids = options[:group_id]
+          @reminder.organization_id = options[:organization]
           @reminder.save!
           @reminder.add_to_queue
           @reminder
