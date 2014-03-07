@@ -13,8 +13,10 @@ class Ability
         can :manage, :all
       elsif @organization_user.has_role? :user
         # an user can read everything
-        can :manage, [Reminder, Conversation, Message, Recipient]
-        can :read, :all
+        can :manage, [Conversation, Message, Recipient]
+        # can :manage, Reminder, :organization_id => organization_id
+        can :read, Organization
+        can :manage, Reminder, :organization_id => @organization_user.organization_id
       elsif @organization_user.has_role? :guest
           #guest can only sign up for the site
         can :read, [User, Page]
