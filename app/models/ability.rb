@@ -9,14 +9,17 @@ class Ability
 
     if @organization_user
       if @organization_user.has_role? :admin
-       # an admin can do everything
+        binding.pry
         can :manage, :all
       elsif @organization_user.has_role? :user
         # an user can read everything
-        can :manage, [Conversation, Message, Recipient]
+        # can :manage, [Conversation, Message, Recipient]
         # can :manage, Reminder, :organization_id => organization_id
         can :read, Organization
         can :manage, Reminder, :organization_id => @organization_user.organization_id
+        can :manage, Message, :organization_id => @organization_user.organization_id
+        can :manage, Conversation, :organization_id => @organization_user.organization_id
+        can :manage, Group, :organization_id => @organization_user.organization_id
       elsif @organization_user.has_role? :guest
           #guest can only sign up for the site
         can :read, [User, Page]

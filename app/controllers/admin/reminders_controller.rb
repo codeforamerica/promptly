@@ -14,7 +14,7 @@ class Admin::RemindersController < OrgController
   end
 
   def show
-    @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:id], DateTime.now)
+    @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:batch_id], DateTime.now)
     @total_count = 0
     @reminders.each do |reminder|
       reminder.groups.each do |group|

@@ -2,7 +2,7 @@ class Admin::MessagesController < OrgController
   load_and_authorize_resource
   
   def index
-  	@messages = Message.all
+  	@messages = Message.accessible_by(current_ability).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,6 +32,7 @@ class Admin::MessagesController < OrgController
 
   def create
     @message = Message.new(params[:message])
+    @message.organization_id = @organization.id
 
     respond_to do |format|
       if @message.save
@@ -48,6 +49,7 @@ class Admin::MessagesController < OrgController
 
   def update
     @message = Message.find(params[:id])
+    @message.organization_id = @organization.id
 
     respond_to do |format|
       if @message.update_attributes(params[:message])

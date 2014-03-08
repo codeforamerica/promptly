@@ -4,7 +4,7 @@ class Admin::GroupsController < OrgController
   load_and_authorize_resource
   
   def index
-    @groups = Group.all
+    @groups = Group.accessible_by(current_ability).all
 
     respond_to do |format|
       format.html # index.html.erb
