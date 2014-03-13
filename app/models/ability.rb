@@ -5,29 +5,33 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    @organization_user = OrganizationsUser.where(user_id: user.id).where(organization_id: organization_id).first # This should be unique
+    if user.is_super?
+      can :manage, :all
+    else
+      @organization_user = OrganizationsUser.where(user_id: user.id).where(organization_id: organization_id).first # This should be unique
 
-    if @organization_user
-      if @organization_user.has_role? :super
-        can :manage, :all
-      elsif @organization_user.has_role? :admin
-        can :read, Organization, :organization_id => @organization_user.organization_id
-        can :manage, Reminder, :organization_id => @organization_user.organization_id
-        can :manage, Message, :organization_id => @organization_user.organization_id
-        can :manage, Conversation, :organization_id => @organization_user.organization_id
-        can :manage, Group, :organization_id => @organization_user.organization_id
-      elsif @organization_user.has_role? :user
-        # an user can read everything
-        # can :manage, [Conversation, Message, Recipient]
-        # can :manage, Reminder, :organization_id => organization_id
-        can :read, Organization, :organization_id => @organization_user.organization_id
-        can :manage, Reminder, :organization_id => @organization_user.organization_id
-        can :read, Message, :organization_id => @organization_user.organization_id
-        can :manage, Conversation, :organization_id => @organization_user.organization_id
-        can :manage, Group, :organization_id => @organization_user.organization_id
-      elsif @organization_user.has_role? :guest
-          #guest can only sign up for the site
-        can :read, [User, Page]
+      if @organization_user
+        if @organization_user.has_role? :super
+          can :manage, :all
+        elsif @organization_user.has_role? :admin
+          can :read, Organization, :organization_id => @organization_user.organization_id
+          can :manage, Reminder, :organization_id => @organization_user.organization_id
+          can :manage, Message, :organization_id => @organization_user.organization_id
+          can :manage, Conversation, :organization_id => @organization_user.organization_id
+          can :manage, Group, :organization_id => @organization_user.organization_id
+        elsif @organization_user.has_role? :user
+          # an user can read everything
+          # can :manage, [Conversation, Message, Recipient]
+          # can :manage, Reminder, :organization_id => organization_id
+          can :read, Organization, :organization_id => @organization_user.organization_id
+          can :manage, Reminder, :organization_id => @organization_user.organization_id
+          can :read, Message, :organization_id => @organization_user.organization_id
+          can :manage, Conversation, :organization_id => @organization_user.organization_id
+          can :manage, Group, :organization_id => @organization_user.organization_id
+        elsif @organization_user.has_role? :guest
+            #guest can only sign up for the site
+          can :read, [User, Page]
+        end
       end
     end
     #

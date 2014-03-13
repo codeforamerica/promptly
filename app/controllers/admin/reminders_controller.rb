@@ -4,8 +4,8 @@ class Admin::RemindersController < OrgController
   before_filter :patch_batch_id
 
   def index
-    @groups = Reminder.accessible_by(current_ability).grouped_reminders
-    @sent = Conversation.accessible_by(current_ability).grouped_sent_conversations
+    @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
+    @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations
 
     respond_to do |format|
       format.html # index.html.erb

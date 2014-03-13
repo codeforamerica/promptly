@@ -4,7 +4,12 @@ class OrgController < AdminController
   before_filter :get_organization, :get_organization_user
 
   def get_organization
-    @organization = Organization.find(params[:organization_id])
+    if current_user.is_super?
+      params[:organization_id]? params[:organization_id] : 1
+      @organization = Organization.find(params[:organization_id])
+    else 
+      @organization = Organization.find(params[:organization_id])
+    end
   end
 
   def get_organization_user 

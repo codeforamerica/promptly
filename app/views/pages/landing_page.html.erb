@@ -8,8 +8,10 @@
     <% end %>
   </ul>
  <% end %>
-
-<%= link_to 'View your organizations', admin_organizations_path, :class => 'btn btn-primary' %>
-<%= link_to 'Create organization', new_admin_organization_path, :class => 'btn btn-primary' %>
-
+ 
+<% if current_user.is_super? %>
+  <%= link_to 'Create organization', new_admin_organization_path, :class => 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'View your organizations', admin_organizations_path, :class => 'btn btn-primary' %>
+<% end %>
 

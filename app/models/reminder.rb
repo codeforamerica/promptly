@@ -8,6 +8,8 @@ class Reminder < ActiveRecord::Base
   has_and_belongs_to_many :groups
   accepts_nested_attributes_for :message, :recipient
 
+  scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
+
   def self.grouped_reminders(limit = 0)
     if limit != 0
       Reminder.where('send_date >= ?', DateTime.now)

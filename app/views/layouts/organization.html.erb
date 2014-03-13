@@ -3,6 +3,9 @@
     <%= render 'layouts/sidebar' %>
   </div>
   <div id="content" class="span11">
+    <div class="span8">
+      <h1><%= link_to @organization.name, admin_organization_path(@organization.id) %></h1>
+    </div>
     <%= yield %>
   </div>
 <% end %>

@@ -7,6 +7,7 @@ class Conversation < ActiveRecord::Base
   belongs_to :organization
   unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
   
+  scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
   scope :calls, where('call_id != ?', 'IS NOT NULL')
   scope :undelivered, where(:status => 'failed')
   scope :all_responses, where(:status => 'received')
