@@ -1,0 +1,15 @@
+<div>
+	<table class="table tableGreen">
+		<thead>
+			<tr>
+				<th>Message Type</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><p><%= Reminder.find(upcoming.reminder_id).message_text %></p></td>
+			<td><p>Sent to <%= link_to upcoming.to_number, recipient_path(upcoming.recipient_ids) %></p></td>
+			<td><%= upcoming.date.to_s(:date_format) %></td>
+			<td><i class="icon-pencil"></i></td>
+		</tr>
+	</table>
+</div>

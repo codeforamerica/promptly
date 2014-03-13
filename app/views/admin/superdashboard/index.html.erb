@@ -4,7 +4,7 @@
       <span class="headerText">Upcoming reminders</span>
     </div>
     <div class="conversation">
-      <%= render 'admin/dashboard/upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
+      <%= render 'admin/superdashboard/upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
     </div>
   </div>
   <div class="span6">
@@ -12,7 +12,7 @@
       <span class="headerText">Sent reminders</span>
     </div>
     <div class="conversation">
-      <%= render 'admin/dashboard/sent_reminders', object: @conversations || 'There are no sent reminders' %>
+      <%= render 'admin/superdashboard/sent_reminders', object: @conversations || 'There are no sent reminders' %>
     </div>
   </div>
 </div>
@@ -22,7 +22,7 @@
       <span class="headerText">Responses</span>
     </div>
     <div class="conversation">
-      <%= render 'admin/dashboard/responses' || 'There are no responses' %>
+      <%= render 'admin/superdashboard/responses' || 'There are no responses' %>
     </div>
   </div>
   <div class="span6">
@@ -30,7 +30,7 @@
       <span class="headerText">Undelivered reminders</span>
     </div>
     <div class="conversation">
-      <%= render 'admin/dashboard/undelivered' || 'There are no upcoming reminders' %>
+      <%= render 'admin/superdashboard/undelivered' || 'There are no upcoming reminders' %>
     </div>
   </div>
 </div>
@@ -40,7 +40,7 @@
       <span class="headerText">Calls</span>
     </div>
     <div class="conversation">
-      <%= render 'admin/dashboard/calls' || 'There are no calls' %>
+      <%= render 'admin/superdashboard/calls' || 'There are no calls' %>
     </div>
   </div>
 </div>
