@@ -28,6 +28,7 @@ class Admin::OrganizationsController < AdminController
  
   def create
     @organization = Organization.new(params[:organization])
+    @super = User.find()
  
     if @organization.save
       redirect_to admin_organization_path(@organization)

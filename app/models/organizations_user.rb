@@ -15,6 +15,6 @@ class OrganizationsUser < ActiveRecord::Base
 
   # declare the valid roles -- do not change the order if you add more
   # roles later, always append them at the end!
-  roles :admin, :user, :guest
+  roles :admin, :user, :guest, :super
 
 end

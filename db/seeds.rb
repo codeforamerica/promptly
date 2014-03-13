@@ -12,12 +12,14 @@ u = User.create(
   email: "admin@example.com",
   password: password,
   password_confirmation: password,
-  roles_mask: 1)
+  roles_mask: 8)
+u.roles << :super
+u.save!
 
 ou = OrganizationsUser.create(
 	user_id: u.id,
 	organization_id: o.id,
-	roles_mask: 1) 
+	roles_mask: 8) 
  
 # User.create([{ :first_name => 'Jamie' }, { :first_name => 'Jeremy' }]) do |u|
 #   u.is_admin = false
