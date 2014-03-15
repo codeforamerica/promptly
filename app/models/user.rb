@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   require 'role_model'
   include RoleModel
 
-  has_and_belongs_to_many :organizations
-  has_many :organization_users
+  has_many :organizations_user
+  has_many :organizations, through: :organizations_user
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,

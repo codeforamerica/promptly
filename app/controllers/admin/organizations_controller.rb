@@ -28,7 +28,7 @@ class Admin::OrganizationsController < AdminController
  
   def create
     @organization = Organization.new(params[:organization])
-    # @super = User.find()
+
  
     if @organization.save
       redirect_to admin_organization_path(@organization)
@@ -39,6 +39,12 @@ class Admin::OrganizationsController < AdminController
 
   def update
     @organization = Organization.update(params[:id], params[:organization])
+    @organization.users = User.find(params[:user_ids])
+    binding.pry
+    params[:user_ids].each do |user_id|
+      @organization_users = OrganizationsUser.find(params[:id], user_id)
+      @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(params[:roles]))
+    end
     
     if @organization.save
       redirect_to admin_organization_path(@organization)
