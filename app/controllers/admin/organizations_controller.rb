@@ -39,11 +39,12 @@ class Admin::OrganizationsController < AdminController
 
   def update
     @organization = Organization.update(params[:id], params[:organization])
-    @organization.users = User.find(params[:user_ids])
-    binding.pry
-    params[:user_ids].each do |user_id|
-      @organization_users = OrganizationsUser.find(params[:id], user_id)
-      @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(params[:roles]))
+    params[:organizations_user][:user_ids].each do |user_id|
+      if user_id[1] == "1"
+        @organization_users = OrganizationsUser.find(params[:id], user_id[0])
+        @org_role = params[:organizations_user]["#{user_id[0]}"]
+        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
+      end
     end
     
     if @organization.save

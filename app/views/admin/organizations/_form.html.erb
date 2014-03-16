@@ -12,11 +12,19 @@
         </tr>
       </thead>
       <tbody>
-        <%= simple_form_for :user do |user| %>
+        <% for user in User.all %>
         <tr>
-          <td><%= user.check_box :id, :class => 'table-row-checkbox' %></td>
-          <td><%= user.label :name %></td>
-          <td><%= render 'roles', :f => user %></td>
+          <td><%= check_box "organizations_user[user_ids]", user.id, :class => 'table-row-checkbox' %></td>
+          <td><%= user.name %></td>
+          <td><%= simple_fields_for :organizations_user do |org_user| %>
+          <div class="field">
+              <div class="control-group">
+                <div class="controls">
+                  <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s %>
+                </div>
+              </div>
+            </div>
+          <% end %></td>
         </tr>
         <% end %>
       </tbody>
