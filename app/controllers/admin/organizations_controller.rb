@@ -28,7 +28,13 @@ class Admin::OrganizationsController < AdminController
  
   def create
     @organization = Organization.new(params[:organization])
-
+    params[:organizations_user][:user_ids].each do |user_id|
+      if user_id[1] == "1"
+        @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
+        @org_role = params[:organizations_user]["#{user_id[0]}"]
+        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
+      end
+    end
  
     if @organization.save
       redirect_to admin_organization_path(@organization)
@@ -40,10 +46,16 @@ class Admin::OrganizationsController < AdminController
   def update
     @organization = Organization.update(params[:id], params[:organization])
     params[:organizations_user][:user_ids].each do |user_id|
+      @organization_users
       if user_id[1] == "1"
-        @organization_users = OrganizationsUser.find(params[:id], user_id[0])
+        @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
         @org_role = params[:organizations_user]["#{user_id[0]}"]
         @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
+        @organization_users.save
+      else
+        if OrganizationsUser.exists?(:organization_id => params[:id], :user_id => user_id[0])
+          OrganizationsUser.find(params[:id], user_id[0]).delete
+        end
       end
     end
     

@@ -14,7 +14,11 @@
       <tbody>
         <% for user in User.all %>
         <tr>
-          <td><%= check_box "organizations_user[user_ids]", user.id, :class => 'table-row-checkbox' %></td>
+          <% if OrganizationsUser.exists?(:organization_id => @organization.id, :user_id => user.id) %>
+            <td><%= check_box "organizations_user[user_ids]", user.id, :class => 'table-row-checkbox', checked: true %></td>
+          <% else %>
+            <td><%= check_box "organizations_user[user_ids]", user.id, :class => 'table-row-checkbox' %></td>
+          <% end %>
           <td><%= user.name %></td>
           <td><%= simple_fields_for :organizations_user do |org_user| %>
           <div class="field">
