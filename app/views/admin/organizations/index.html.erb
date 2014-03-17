@@ -6,6 +6,8 @@
       <li><%= link_to organization.name, admin_organization_path(organization.id) -%></li>
     <% end %>
   </ul>
-<% else %>
+<% end %>
 
+<% if current_user.is_super? %>
+  <%= link_to 'Create organization', new_admin_organization_path, :class => 'btn btn-primary' %>
 <% end %>
