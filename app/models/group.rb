@@ -6,6 +6,8 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :recipients
   belongs_to :organization
 
+  scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
+
   def self.add_phone_numbers_to_group(phone_numbers, the_group)
     if phone_numbers.is_a? Array
       phone_numbers = phone_numbers

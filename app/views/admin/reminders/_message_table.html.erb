@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <% Message.all.each do |message| %>
+        <% Message.accessible_by(current_ability).organization(params[:organization_id]).all.each do |message| %>
         <tr>
           <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-radio' %></td>
           <td><%= message.message_text %></td>

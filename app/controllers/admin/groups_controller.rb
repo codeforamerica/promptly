@@ -4,7 +4,7 @@ class Admin::GroupsController < OrgController
   load_and_authorize_resource
   
   def index
-    @groups = Group.accessible_by(current_ability).all
+    @groups = Group.accessible_by(current_ability).organization(params[:organization_id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,6 +53,7 @@ class Admin::GroupsController < OrgController
   def create
     @group = Group.new(params[:group])
     @group.group_name_id = params[:group][:name].downcase.tr(' ', '_')
+    @group.organization_id = @organization.id
 
     respond_to do |format|
       if @group.save

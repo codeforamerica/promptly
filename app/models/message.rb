@@ -6,4 +6,6 @@ class Message < ActiveRecord::Base
   belongs_to :organization
   accepts_nested_attributes_for :reminders
   validates :message_text, presence: true
+
+  scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
 end
