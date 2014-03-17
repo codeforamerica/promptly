@@ -1,5 +1,5 @@
 class Admin::OrganizationsController < AdminController
-
+  
   def index
     @organizations = Organization.all
   end
@@ -17,6 +17,7 @@ class Admin::OrganizationsController < AdminController
   end
  
   def destroy
+    authorize
   	@organization = Organization.find(params[:id])
 
     if @organization.destroy
@@ -27,6 +28,7 @@ class Admin::OrganizationsController < AdminController
   end
  
   def create
+    authorize
     @organization = Organization.new(params[:organization])
     params[:organizations_user][:user_ids].each do |user_id|
       if user_id[1] == "1"
@@ -45,6 +47,7 @@ class Admin::OrganizationsController < AdminController
   end
 
   def update
+    authorize
     @organization = Organization.update(params[:id], params[:organization])
     params[:organizations_user][:user_ids].each do |user_id|
       @organization_users
@@ -66,4 +69,9 @@ class Admin::OrganizationsController < AdminController
       render action: "edit", status: "unprocessable_entity"
     end
   end
+
+  def authorize
+    raise CanCan::AccessDenied unless @current_user.is_super?
+  end
+
 end

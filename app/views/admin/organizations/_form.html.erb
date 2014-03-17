@@ -31,10 +31,16 @@
           <% end %></td>
         </tr>
         <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+        </tr>
       </tbody>
     </table>
+    
   </div>
 </div>
   
-  <%= f.button :submit %>
+  <%= f.button :submit, :class => 'btn btn-primary' %>
 <% end %>
