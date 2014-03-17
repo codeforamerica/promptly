@@ -27,6 +27,7 @@ group :development do
   gem 'pry-nav'
   gem 'dotenv-rails'
   gem 'database_cleaner'
+  gem 'rspec-rails'
 end
 
 # Gems used only for assets and not required
