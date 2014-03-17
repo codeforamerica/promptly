@@ -2,7 +2,7 @@ class Admin::MessagesController < OrgController
   load_and_authorize_resource
   
   def index
-  	@messages = Message.accessible_by(current_ability).all
+  	@messages = Message.accessible_by(current_ability).organization(params[:organization_id]).all
 
     respond_to do |format|
       format.html # index.html.erb
