@@ -18,6 +18,9 @@
           <td><%= radio_button_tag 'message_id', message.id, false, class: 'table-row-radio' %></td>
           <td><%= message.message_text %></td>
           <td><%= message.name %></td>
+          <td>
+          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'btn btn-mini' %>
+          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
         </tr>
         <% end %>
       </tbody>
