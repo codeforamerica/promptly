@@ -1,8 +1,8 @@
-class Admin::MessagesController < ApplicationController
+class Admin::MessagesController < OrgController
   load_and_authorize_resource
   
   def index
-  	@messages = Message.all
+  	@messages = Message.accessible_by(current_ability).organization(params[:organization_id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,11 +32,12 @@ class Admin::MessagesController < ApplicationController
 
   def create
     @message = Message.new(params[:message])
+    @message.organization_id = @organization.id
 
     respond_to do |format|
       if @message.save
         format.js
-        format.html { redirect_to @message, notice: 'Reminder was successfully created.' }
+        format.html { redirect_to [:admin, @organization, @message], notice: 'Message was successfully created.' }
         format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }
@@ -48,10 +49,11 @@ class Admin::MessagesController < ApplicationController
 
   def update
     @message = Message.find(params[:id])
+    @message.organization_id = @organization.id
 
     respond_to do |format|
       if @message.update_attributes(params[:message])
-        format.html { redirect_to @message, notice: 'Message was successfully updated.' }
+        format.html { redirect_to [:admin, @organization, @message], notice: 'Message was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -65,7 +67,7 @@ class Admin::MessagesController < ApplicationController
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to messages_url }
+      format.html { redirect_to organization_messages_url(@organization) }
       format.json { head :no_content }
     end
   end

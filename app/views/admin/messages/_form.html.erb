@@ -1,6 +1,6 @@
 <div class="row-fluid">
   <div class="span8">
-    <%= simple_form_for [:admin, @message] do |f| %>
+    <%= simple_form_for [:admin, @organization, @message] do |f| %>
       <% if @message.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@message.errors.count, "error") %> prohibited this report from being saved:</h2>
@@ -20,7 +20,7 @@
   <div class="span">
      <div class="actions">
         <%= f.submit :class => 'btn btn-primary'%>
-        <%= link_to 'Cancel', admin_messages_path %>
+        <%= link_to 'Cancel', admin_organization_messages_path(@organization) %>
       </div>
     <% end %>
   </div>

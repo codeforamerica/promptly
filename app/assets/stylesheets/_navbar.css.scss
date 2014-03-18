@@ -12,7 +12,7 @@ $navbarLinkBackgroundHover: $navbarBackground;
 $navbarLinkBackgroundActive: $darkBlue;
 	
 .navbar-inner {
-	background-color: $navbarBackground;
+  background-color: $navbarBackground;
 	border-radius: 0px;
 	background-image: none;
 	filter: none;
@@ -21,7 +21,6 @@ $navbarLinkBackgroundActive: $darkBlue;
 		font-weight: 500;
 		font-size: 32px;
 		position: relative;
-		top: -3px;
 	}
 	.white-caret {
 		color: $white;

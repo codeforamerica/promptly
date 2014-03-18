@@ -1,0 +1,17 @@
+<h2>Welcome!</h2>
+
+<% if Organization.any? %>
+ All organizations
+  <ul>
+    <% Organization.all.each do |organization| -%>
+      <li><%= link_to organization.name, admin_organization_path(organization.id) -%></li>
+    <% end %>
+  </ul>
+ <% end %>
+ 
+<% if current_user.is_super? %>
+  <%= link_to 'Create organization', new_admin_organization_path, :class => 'btn btn-primary' %>
+<% else %>
+  <%= link_to 'View your organizations', admin_organizations_path, :class => 'btn btn-primary' %>
+<% end %>
+

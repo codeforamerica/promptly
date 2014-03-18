@@ -1,6 +1,6 @@
 <h2>Register User</h2>
  
-<%= form_for [:admin, @user] do |f| %>
+<%= form_for [:admin, @organization, @user] do |f| %>
  
    <%= render :partial => 'user_fields', :locals => { :f => f } %>
  
@@ -12,5 +12,4 @@
  
   <p><%= f.submit %></p>
 <% end %>
-
 

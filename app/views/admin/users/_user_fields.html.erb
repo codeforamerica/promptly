@@ -4,12 +4,12 @@
 <p><%= f.label :email %></p>
 <p><%= f.text_field :email %></p>
  
-<% if current_user.is_admin? %>
+<% if can?(:edit, User) %>
   <div class="field">
     <div class="control-group">
       <%= f.label :roles, 'Select a role' %>
       <div class="controls">
-        <%= f.collection_select :roles, User.valid_roles, :to_s, :to_s %>
+        <%= f.collection_select :roles, OrganizationsUser.valid_roles, :to_s, :to_s %>
       </div>
     </div>
   </div>

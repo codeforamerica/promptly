@@ -1,6 +1,11 @@
 <div class="row-fluid">
-  <div class="pageHeader span12">
-      <%= link_to 'Schedule a reminder', new_admin_reminder_path, :class => 'btn btn-primary cta-button' %>
+  <div class="pageHeader span11">
+    <div class="span7">
+      <span class="pageTitle">Dashboard</span>
+    </div>
+    <div class="span3">
+      <%= link_to 'Schedule a reminder', new_admin_organization_reminder_path(@organization), :class => 'btn btn-primary cta-button' %>
+    </div>
   </div>
 </div>
 <div class="row-fluid">
@@ -8,7 +13,7 @@
     <div class="headerSmall headerAqua">
       <span class="headerText">Upcoming reminders</span>
     </div>
-      <div><%= link_to 'View all', admin_reminders_path, :class => 'btn btn-default pull-right' %></div>
+      <div><%= link_to 'View all', admin_organization_reminders_path(@organization), :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
     </div>
@@ -17,7 +22,7 @@
     <div class="headerSmall headerGreen">
       <span class="headerText">Sent reminders</span>
     </div>
-    <div><%= link_to 'View all', admin_reminders_path, :class => 'btn btn-default pull-right' %></div>
+    <div><%= link_to 'View all', admin_organization_reminders_path(@organization), :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'sent_reminders', object: @conversations || 'There are no sent reminders' %>
     </div>
@@ -28,7 +33,7 @@
     <div class="headerSmall headerGreen">
       <span class="headerText">Responses</span>
     </div>
-    <div><%= link_to 'View all', admin_conversations_path, :class => 'btn btn-default pull-right' %></div>
+    <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'responses' || 'There are no responses' %>
     </div>
@@ -37,7 +42,7 @@
     <div class="headerSmall headerRed">
       <span class="headerText">Undelivered reminders</span>
     </div>
-    <div><%= link_to 'View all', admin_conversations_path, :class => 'btn btn-default pull-right' %></div>
+    <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'btn btn-default pull-right' %></div>
     <div class="conversation">
       <%= render 'undelivered' || 'There are no upcoming reminders' %>
     </div>

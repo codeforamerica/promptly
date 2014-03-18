@@ -1,11 +1,11 @@
-class Admin::RemindersController < AdminController
+class Admin::RemindersController < OrgController
   include Helper
   load_and_authorize_resource
   before_filter :patch_batch_id
 
   def index
-    @groups = Reminder.grouped_reminders
-    @sent = Conversation.grouped_sent_conversations
+    @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
+    @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class Admin::RemindersController < AdminController
   end
 
   def show
-    @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:id], DateTime.now)
+    @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:batch_id], DateTime.now)
     @total_count = 0
     @reminders.each do |reminder|
       reminder.groups.each do |group|
@@ -28,7 +28,7 @@ class Admin::RemindersController < AdminController
     @message = @reminder.build_message
     @recipients = @reminder.build_recipient
     @group = Group.new
-    @messages_search = Message.all
+    @messages_search = Message.accessible_by(current_ability).organization(params[:organization_id]).all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,12 +43,12 @@ class Admin::RemindersController < AdminController
 
   def confirm
     @reminder = Reminder.new(params[:reminder])
-    
+
     # @individual_recipients = parse_phone_numbers(params[:individual_recipients])
     # If they didn't create a new message,
     # get the one from the radio button and add it to the reminder
     
-    params[:reminder][:message_id] = params[:message_id] if params[:reminder][:message_id].nil?    
+    params[:reminder][:message_id] = params[:message_id] if params[:reminder][:message_id].nil?  
     @groups = Group.where(:id => params[:group_ids])
     
     if params[:group_ids].nil? 
@@ -68,17 +68,12 @@ class Admin::RemindersController < AdminController
   end
 
   def create
-    @reminder = Reminder.new
+    @reminder = Reminder.new(params[:reminder])
     params[:reminder][:group_ids].each do |group|
-      Reminder.create_new_reminders(Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], send_time: params[:reminder][:send_time], group_id: group)
-      # @recipients = Group.find(group).recipients
-      # @recipients.each do |recipient|
-      #   Reminder.create_new_reminders(recipient, Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], send_time: params[:reminder][:send_time], group_id: group)
-      # end
+      Reminder.create_new_reminders(Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], send_time: params[:reminder][:send_time], group_id: params[:reminder][:group_ids], organization: @organization.id)
     end
-
     respond_to do |format|
-      format.html { redirect_to reminders_url, notice: 'Reminder was successfully created.' }
+      format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully created.' }
       format.json { render json: @reminder, status: :created, location: @reminder }
     end
   end
@@ -89,7 +84,7 @@ class Admin::RemindersController < AdminController
       r.update_attributes(params[:reminder])
     end
     respond_to do |format|
-      format.html { redirect_to reminders_path, notice: 'Reminder was successfully updated.' }
+      format.html { redirect_to organization_reminders_path, notice: 'Reminder was successfully updated.' }
         format.json { head :no_content }
     end
   end
@@ -102,14 +97,14 @@ class Admin::RemindersController < AdminController
     end
 
     respond_to do |format|
-      format.html { redirect_to reminders_url }
+      format.html { redirect_to organization_reminders_url }
       format.json { head :no_content }
     end
   end
 
   def import
     Reminder.import(params[:file], params[:reminder])
-    redirect_to reminders_url, notice: "Reminder created."
+    redirect_to organization_reminders_url, notice: "Reminder created."
   end
 
   private

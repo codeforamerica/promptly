@@ -1,0 +1,46 @@
+<%= simple_form_for [:admin, @organization] do |f| %>
+  <%= f.input :name, inline_label: "Name" %>
+  <% f.association :users, as: :check_boxes, label: "Users" %>
+ <div class="row-fluid">
+  <div class="span12">
+    <table class="table table-hover datatable" id="add-groups">
+      <thead>
+        <tr>
+          <th>Add to Organziation</th>
+          <th>Name</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for user in User.all %>
+        <tr>
+          <% if OrganizationsUser.exists?(:organization_id => @organization.id, :user_id => user.id) %>
+            <td><%= check_box "organizations_user[user_ids]", user.id, :class => 'table-row-checkbox', checked: true %></td>
+          <% else %>
+            <td><%= check_box "organizations_user[user_ids]", user.id, :class => 'table-row-checkbox' %></td>
+          <% end %>
+          <td><%= user.name %></td>
+          <td><%= simple_fields_for :organizations_user do |org_user| %>
+          <div class="field">
+              <div class="control-group">
+                <div class="controls">
+                  <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s %>
+                </div>
+              </div>
+            </div>
+          <% end %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</div>
+  
+  <%= f.button :submit, :class => 'btn btn-primary' %>
+<% end %>

@@ -1,7 +1,8 @@
-class Admin::UsersController < AdminController
+class Admin::UsersController < OrgController
 # from http://www.tonyamoyal.com/2010/09/29/rails-authentication-with-devise-and-cancan-part-2-restful-resources-for-administrators/
   before_filter :get_user, :only => [:index,:new,:edit]
   before_filter :authenticate_user!, :only => [:new, :edit, :show, :update, :create]
+  before_filter :get_particular_user
   load_and_authorize_resource :only => [:show,:new,:destroy,:edit,:update]
  
   # GET /users
@@ -82,13 +83,24 @@ class Admin::UsersController < AdminController
   #-----------------------------------------------------------------
   def create
     @user = User.new(params[:user])
- 
     if @user.save
-      respond_to do |format|
-        flash[:notice] = "Account has been created"
-        format.json { render :json => @user.to_json, :status => 200 }
-        format.xml  { head :ok }
+      @organization_user = OrganizationsUser.create(
+        user_id: @user.id,
+        organization_id: params[:organization_id],
+        roles_mask: 1) 
+      puts "Roles mask: #{@user.roles_mask}"
+      if @organization_user.save  
+        respond_to do |format|
+          flash[:notice] = "Account has been created"
+          format.json { render :json => @user.to_json, :status => 200 }
+          format.xml  { head :ok }
         format.html { redirect_to :action => :index }
+        end
+      else
+        respond_to do |format|
+          format.json { render :text => "Could not create organization user", :status => :unprocessable_entity } 
+          format.html { render :text => @organization_user.errors.full_messages.join('<br/>'), :status => :unprocessable_entity }
+        end
       end
     else
       respond_to do |format|
@@ -135,4 +147,12 @@ class Admin::UsersController < AdminController
   def get_user
     @current_user = current_user
   end
+
+  def get_particular_user
+    puts "#{params}"
+    if params[:id]
+      @user = User.find(params[:id])
+    end
+  end
+
 end

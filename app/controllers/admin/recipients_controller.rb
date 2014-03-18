@@ -1,4 +1,4 @@
-class Admin::RecipientsController < AdminController
+class Admin::RecipientsController < OrgController
 
   before_filter :set_recipient!, only: [ :show, :edit, :update, :destroy ]
   # before_filter :standardize_numbers, only: [ :create, :update ]
@@ -10,7 +10,7 @@ class Admin::RecipientsController < AdminController
   # GET /recipients.json
   def index
     @recipients = Recipient.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @recipients }
@@ -21,7 +21,7 @@ class Admin::RecipientsController < AdminController
   # GET /recipients/1
   # GET /recipients/1.json
   def show
-    # @recipient = Recipient.find(params[:id])
+    @recipient = Recipient.find(params[:id])
     # @conversations = @recipient.conversations.group("date")
 
     respond_to do |format|
@@ -83,7 +83,7 @@ class Admin::RecipientsController < AdminController
     @recipient.destroy
 
     respond_to do |format|
-      format.html { redirect_to recipients_url }
+      format.html { redirect_to organization_recipients_url(@organization.id) }
       format.json { head :no_content }
     end
   end

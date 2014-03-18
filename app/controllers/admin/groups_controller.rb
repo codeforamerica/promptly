@@ -1,10 +1,10 @@
-class Admin::GroupsController < AdminController
+class Admin::GroupsController < OrgController
   # GET /Groups
   # GET /Groups.json
   load_and_authorize_resource
   
   def index
-    @groups = Group.all
+    @groups = Group.accessible_by(current_ability).organization(params[:organization_id]).all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -53,13 +53,14 @@ class Admin::GroupsController < AdminController
   def create
     @group = Group.new(params[:group])
     @group.group_name_id = params[:group][:name].downcase.tr(' ', '_')
+    @group.organization_id = @organization.id
 
     respond_to do |format|
       if @group.save
 		    phones = params[:recipient][:phone]
 		    Group.add_phone_numbers_to_group(phones, @group)
         format.js
-        format.html { redirect_to [:admin, @group], notice: 'Group was successfully created.' }
+        format.html { redirect_to [:admin, @organization, @group], notice: 'Group was successfully created.' }
         format.json { render json: @group, status: :created, location: @group }
       else
         format.html { render action: "new" }
@@ -78,7 +79,7 @@ class Admin::GroupsController < AdminController
         phones = params[:group][:phone]
         Group.add_phone_numbers_to_group(phones, @group)
       if @group.update_attributes(name: params[:group][:name], description: params[:group][:description])
-        format.html { redirect_to [:admin, @group], notice: 'Group was successfully updated.' }
+        format.html { redirect_to [:admin, @organization, @group], notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -94,7 +95,7 @@ class Admin::GroupsController < AdminController
     @group.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_groups_path }
+      format.html { redirect_to admin_organization_groups_path(@organization) }
       format.json { head :no_content }
     end
   end

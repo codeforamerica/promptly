@@ -1,23 +1,43 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(user, organization_id)
     # Define abilities for the passed in user here. For example:
     #
     user ||= User.new # guest user (not logged in)
-    
-    if user.has_role? :admin
-     # an admin can do everything
+    if user.is_super?
       can :manage, :all
-    elsif user.has_role? :user
-      # an user can read everything
-      can :manage, [Reminder, Conversation, Message, Recipient]
-      can :read, :all
-    elsif user.has_role? :guest
-        #guest can only sign up for the site
-      can :read, [User, Page]
+    else
+      @organization_user = OrganizationsUser.where(user_id: user.id).where(organization_id: organization_id).first # This should be unique
+
+      if @organization_user
+        if @organization_user.has_role? :super
+          can :manage, :all
+        elsif @organization_user.has_role? :admin
+          can :manage, Organization, :organization_id => @organization_user.organization_id
+          can :manage, Recipient
+          can :manage, Reminder, :organization_id => @organization_user.organization_id
+          can :manage, Message, :organization_id => @organization_user.organization_id
+          can :manage, Conversation, :organization_id => @organization_user.organization_id
+          can :manage, Group, :organization_id => @organization_user.organization_id
+        elsif @organization_user.has_role? :user
+          # an user can read everything
+          can :manage, [Conversation, Recipient]
+          # can :manage, Reminder, :organization_id => organization_id
+          can :read, Organization, :organization_id => @organization_user.organization_id
+          can :manage, Reminder, :organization_id => @organization_user.organization_id
+          can :read, Message, :organization_id => @organization_user.organization_id
+          can :manage, Conversation, :organization_id => @organization_user.organization_id
+          can :manage, Group, :organization_id => @organization_user.organization_id
+        elsif @organization_user.has_role? :guest
+            #guest can only sign up for the site
+          can :read, [User, Page]
+        end
+      end
     end
     #
+
+
     # The first argument to `can` is the action you are giving the user 
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions

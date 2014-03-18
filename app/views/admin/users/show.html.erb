@@ -1,7 +1,7 @@
 <h3><%= @user.name %></h3>
  
-<%= link_to_if(can?(:update,@user), "Edit", edit_admin_user_path(@user)) %> |
-<%= link_to_if(can?(:delete, @user), "Delete", admin_user_path(@user), :confirm => "Are you sure?", :method => :delete) {} %>
+<%= link_to_if(can?(:update,@user), "Edit", edit_admin_organization_user_path(@organization.id, @user)) %> |
+<%= link_to_if(can?(:delete, @user), "Delete", admin_organization_user_path(@organization.id, @user), :confirm => "Are you sure?", :method => :delete) {} %>
  
 <table class="one-column-emphasis">
 	<tbody>
@@ -11,7 +11,7 @@
 		</tr>
 		<tr>
 			<td class="oce-first">Role:</td>
-			<td><%= @user.roles.first %></td>
+			<td><%= @organization_user.roles.first %></td>
 		</tr>
 	<% if can?(:see_timestamps,User) %>
 		<tr>

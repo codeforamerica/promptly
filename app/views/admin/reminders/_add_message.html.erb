@@ -4,7 +4,7 @@
       <h3>Create New Message</h3>
     </div>
     <div class="modal-body">
-      <%= simple_fields_for @message do |message_fields| %>
+      <%= simple_fields_for :message do |message_fields| %>
         <%= message_fields.input :name, input_html: { class: "span12" } %>
         <%= label_tag "Add New Message:" %>
         <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "span12" } %>
@@ -12,6 +12,6 @@
     </div>
     <div class="modal-footer">
       <a href="#" class="cancel-modal" data-dismiss="modal">Cancel</a>
-      <%= link_to "Save Message", admin_messages_path, id: "new-message-submit", class: "btn btn-primary save-modal", remote: true %>
+      <%= link_to "Save Message", admin_organization_messages_path(@organization), id: "new-message-submit", class: "btn btn-primary save-modal", remote: true %>
     </div>
   </div>

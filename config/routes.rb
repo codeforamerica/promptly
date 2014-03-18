@@ -1,26 +1,42 @@
 Promptly::Application.routes.draw do
-  root :to => 'pages#splash'
   
-  devise_for :users, :skip => [:registrations]
+  devise_for :users, :skip => [:registrations], :controllers => { :sessions => "sessions" }
   as :user do
     get 'users/edit' => 'devise/registrations#edit',   :as => 'edit_user_registration'
     put 'users'      => 'devise/registrations#update', :as => 'user_registration'
   end
 
-  namespace :admin do
-    root to: 'dashboard#index', as: 'dashboard'
+  authenticated :user do
+    root :to => 'admin::superdashboard#index'
+  end
+  root :to => 'pages#splash'
 
-    resources :users
-    resources :recipients
-    resources :conversations
-    resources :groups
-    resources :messages
-    resources :reminders do
-      collection do
-        get :confirm
+
+  # match 'logout', :to => 'sessions#destroy', :as => "logout"
+
+  namespace :admin do
+    # root to: 'dashboard#index', as: '/dashboard/:organization_id/'
+    as :super do
+      root to: 'superdashboard#index', as: 'dashboard'
+    end
+
+    resources :organizations do
+      match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
+      resources :users
+      resources :recipients
+      resources :conversations
+      resources :groups
+      resources :messages
+      resources :organizations
+      resources :reminders do
+        collection do
+          post :confirm
+        end
       end
     end
+
   end
+
 
   #project page
   match '/hsa'       => 'pages#hsa'

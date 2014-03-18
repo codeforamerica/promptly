@@ -10,7 +10,7 @@
 			<div class="headerSmall headerAqua pageHeader">
 				<span class="headerText">Confirm Reminder</span>
 			</div>
-			<%= simple_form_for @reminder do |f| %>
+			<%= simple_form_for [:admin, @organization, @reminder] do |f| %>
     
 	    <% if @reminder.errors.any? %>
 	      <%= render 'form_errors' %>
@@ -21,7 +21,7 @@
 			<div class="row-fluid">
 				<div class="span6">
 					<div class="infoItem">
-						<%= link_to new_admin_reminder_path(anchor: "message") do %>
+						<%= link_to new_admin_organization_reminder_path(@organization,anchor: "message") do %>
 							<%= Message.find(params[:reminder][:message_id]).message_text %>
 						<% end %>
 						<%= f.hidden_field :message_id, :value => Message.find(params[:reminder][:message_id]).id %>
@@ -34,7 +34,7 @@
 				<ul class="unstyled" id="groups-list">
 				<% @groups.each do |group| %>
 					<li>
-						<span class="infoItemInline"><%= link_to group.name, new_admin_reminder_path(anchor: "recipients") %><%= f.hidden_field :group_ids, :multiple => true, :value => group.id %></span>
+						<span class="infoItemInline"><%= link_to group.name, new_admin_organization_reminder_path(@organization,anchor: "recipients") %><%= f.hidden_field :group_ids, :multiple => true, :value => group.id %></span>
 					</li>
 				<% end %>
 				</ul>
@@ -42,12 +42,12 @@
 
 			<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
 
-			<p>On <span class="infoItemInline"><%= link_to(params[:reminder][:send_date], new_admin_reminder_path(anchor: "date-and-time")) %></span> at <span class="infoItemInline"><%= link_to(params[:reminder][:send_time], new_admin_reminder_path(anchor: "date-and-time")) %></span>.</p>
+			<p>On <span class="infoItemInline"><%= link_to(params[:reminder][:send_date], new_admin_organization_reminder_path(@organization,anchor: "date-and-time")) %></span> at <span class="infoItemInline"><%= link_to(params[:reminder][:send_time], new_admin_organization_reminder_path(@organization,anchor: "date-and-time")) %></span>.</p>
 
 			<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 
-			<%= link_to "Cancel", admin_path %>
+			<%= link_to "Cancel", admin_organization_path(@organization) %>
 			<%= f.submit "Schedule Reminder", class: 'btn btn-primary dumbMargin' %>
 		<% end %><!-- /form -->
 	</div>

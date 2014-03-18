@@ -20,12 +20,14 @@ gem 'daemons'
 gem 'pg'
 gem 'unicorn'
 gem 'foreman'
+gem 'composite_primary_keys'
 
 group :development do
   gem 'pry'
   gem 'pry-nav'
   gem 'dotenv-rails'
   gem 'database_cleaner'
+  gem 'rspec-rails'
 end
 
 # Gems used only for assets and not required

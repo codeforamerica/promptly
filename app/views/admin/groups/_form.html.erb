@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @group]  do |f| %>
+<%= simple_form_for [:admin, @organization, @group]  do |f| %>
   <% if @group.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>

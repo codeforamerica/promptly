@@ -19,7 +19,7 @@
 			<tbody>
 			<% @group.recipients.each do |recipient| %>
 				<tr>
-					<td><%= link_to number_to_phone(recipient.phone, :area_code => true), [:admin, recipient] %></td>
+					<td><%= link_to number_to_phone(recipient.phone, :area_code => true), [:admin, @organization, recipient] %></td>
 				</tr>
 			<% end %>
 		</tbody>
@@ -61,6 +61,6 @@
 </div>
 <div class="row_fluid">
 	<div>
-		<%= link_to 'Back', admin_groups_path %>
+		<%= link_to 'Back', admin_organization_groups_path(@organization) %>
 	</div>
 </div>

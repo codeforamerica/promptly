@@ -1,0 +1,21 @@
+<div id="sidebar-left" class="span1">
+    <%= render 'layouts/sidebar' %>
+ </div>
+
+<h2><%= @organization.name -%></h2>
+
+<h3>Users</h3>
+<% if @organization.users.any? %>
+  <ul>
+    <% @organization.users.each do |user| %>
+      <li><%= user.email -%></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There currently aren't any users in this organization. <%= link_to "Add some!", new_admin_organization_user_path(@organization.id) -%>
+<% end %>
+
+<p><%= link_to "Edit this organization", edit_admin_organization_path(@organization.id) %></p>
+<p><%= link_to "Delete this organization", admin_organization_path(@organization.id), method: :delete -%></p>
+
+

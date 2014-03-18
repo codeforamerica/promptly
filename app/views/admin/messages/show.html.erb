@@ -25,8 +25,8 @@
 	</div>
 	<div class="row-fluid">
 		<div class="span12">
-			<%= link_to 'Edit message', edit_message_path(@message), :class => 'btn btn-primary' %>
-			<%= link_to 'Back', messages_path %>
+			<%= link_to 'Edit message', edit_admin_organization_message_path(@organization.id, @message), :class => 'btn btn-primary' %>
+			<%= link_to 'Back', admin_organization_messages_path(@organization.id) %>
 		</div>
 	</div>
 </div>

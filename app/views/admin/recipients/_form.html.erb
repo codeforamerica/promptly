@@ -1,4 +1,4 @@
-<%= simple_form_for [:admin, @recipient]  do |f| %>
+<%= simple_form_for [:admin, @organization, @recipient]  do |f| %>
   <% if @recipient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>

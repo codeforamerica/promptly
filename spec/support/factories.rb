@@ -51,6 +51,10 @@ FactoryGirl.define do
     name "test"
   end 
 
+  factory :organization do
+    name { Faker::Lorem.words(rand(1..4)).join(" ") }
+  end
+
   factory :conversation_with_message, parent: :conversation do
     after :create do 
       conversation.message = FactoryGirl.create(:message)

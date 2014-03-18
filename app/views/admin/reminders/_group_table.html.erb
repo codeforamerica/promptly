@@ -12,11 +12,11 @@
         </tr>
       </thead>
       <tbody>
-        <% Group.all.each do |group| %>
+        <% Group.accessible_by(current_ability).organization(params[:organization_id]).all.each do |group| %>
         <tr>
           <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
-          <td><%= link_to group.name, admin_group_path(group) %></td>
-          <td><%= link_to group.recipients.count, admin_group_path(group) %></td>
+          <td><%= link_to group.name, admin_organization_group_path(@organization,group) %></td>
+          <td><%= link_to group.recipients.count, admin_organization_group_path(@organization,group) %></td>
         </tr>
         <% end %>
       </tbody>

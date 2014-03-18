@@ -1,13 +1,14 @@
 class Reminder < ActiveRecord::Base
-  attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text
-  attr_accessible :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id
-  attr_accessible :id, :created_at, :updated_at
+  attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text, :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id, :id, :created_at, :updated_at, :orgaization_id
+
   validates_presence_of :message_id, :send_date, :send_time
-  
   belongs_to :recipient
   belongs_to :message
+  belongs_to :organization
   has_and_belongs_to_many :groups
   accepts_nested_attributes_for :message, :recipient
+
+  scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
 
   def self.grouped_reminders(limit = 0)
     if limit != 0
@@ -28,7 +29,8 @@ class Reminder < ActiveRecord::Base
       defaults = {
         send_time: '12:00pm',
         group_id: nil,
-        recipient: nil
+        recipient: nil,
+        organization: nil
       }
       options = defaults.merge(options)
 
@@ -41,8 +43,8 @@ class Reminder < ActiveRecord::Base
         the_recipient = nil
       end
       begin
-	      reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
-	      batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
+        reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
+        batch_id = Digest::MD5.hexdigest(message.id.to_s + reminder_date.to_s)
         # if check_for_existing_reminder(options[:recipient].id, batch_id)
         #   raise ArgumentError.new("Reminder already exists!")
         # else
@@ -52,6 +54,7 @@ class Reminder < ActiveRecord::Base
           @reminder.send_time = reminder_time     
           @reminder.batch_id = batch_id
           @reminder.group_ids = options[:group_id]
+          @reminder.organization_id = options[:organization]
           @reminder.save!
           @reminder.add_to_queue
           @reminder
