@@ -6,12 +6,12 @@ desc "Add an organization, a super admin and an organization role to the site."
   task :add_orgs => :environment do
   password = "administrator"
 
-  o = Organization.first_or_create(
+  o = Organization.create(
     name: "Default Organization"
   )
   puts "Created the organization #{o.name}"
 
-  u = User.first_or_create(
+  u = User.create(
     name: "Admin",
     email: "admin@example.com",
     password: password,
@@ -26,7 +26,7 @@ desc "Add an organization, a super admin and an organization role to the site."
   puts "    password: #{password}" 
 
 
-  ou = OrganizationsUser.first_or_create(
+  ou = OrganizationsUser.create(
     user_id: u.id,
     organization_id: o.id,
     roles_mask: 8) 
