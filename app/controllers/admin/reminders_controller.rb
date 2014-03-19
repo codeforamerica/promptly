@@ -5,7 +5,6 @@ class Admin::RemindersController < OrgController
 
   def index
     @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
-    puts "****************************************#{params}"
     @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations
 
     respond_to do |format|

@@ -19,13 +19,9 @@ class Conversation < ActiveRecord::Base
       Conversation.where('status = ?', 'sent')
         .order("date")
         .limit(limit)
-        .to_set
-        .classify {|reminder| reminder.batch_id}
     else
       Conversation.where('status = ?', 'sent')
         .order("date")
-        .to_set
-        .classify {|reminder| reminder.batch_id}
     end
   }
 end
