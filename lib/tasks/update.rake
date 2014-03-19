@@ -44,6 +44,7 @@ desc "Adds an organization id to all existing entities. These include Messages, 
       if message.organization.nil?
         message.organization = @organization
         puts "Added org id #{@organization.id} to message: #{message.message_text}"
+        message.save!
       end
     end
 
@@ -51,6 +52,7 @@ desc "Adds an organization id to all existing entities. These include Messages, 
       if group.organization.nil?
         group.organization = @organization
         puts "Added org id #{@organization.id} to group: #{group.name}"
+        group.save!
       end
     end
 
@@ -58,6 +60,7 @@ desc "Adds an organization id to all existing entities. These include Messages, 
       if reminder.organization.nil?
         reminder.organization = @organization
         puts "Added org id #{@organization.id} to reminder: #{reminder.id}"
+        reminder.save!
       end
     end
   end
