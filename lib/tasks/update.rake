@@ -43,18 +43,21 @@ desc "Adds an organization id to all existing entities. These include Messages, 
     Message.all.each do |message|
       unless message.organization
         message.organization = @organization
+        puts "Added org id to message: #{message.message_text}"
       end
     end
 
     Group.all.each do |group|
       unless group.organization
         group.organization = @organization
+        puts "Added org id to group: #{group.name}"
       end
     end
 
     Reminder.all.each do |reminder|
       unless reminder.organization
         reminder.organization = @organization
+        puts "Added org id to reminder: #{reminder.id}"
       end
     end
   end
