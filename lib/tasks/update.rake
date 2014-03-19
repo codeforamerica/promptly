@@ -41,23 +41,23 @@ desc "Adds an organization id to all existing entities. These include Messages, 
   task :add_org_id => :environment do
     @organization = Organization.first
     Message.all.each do |message|
-      unless message.organization
+      if message.organization.nil?
         message.organization = @organization
-        puts "Added org id #{organization.id} to message: #{message.message_text}"
+        puts "Added org id #{@organization.id} to message: #{message.message_text}"
       end
     end
 
     Group.all.each do |group|
-      unless group.organization
+      if group.organization.nil?
         group.organization = @organization
-        puts "Added org id #{organization.id} to group: #{group.name}"
+        puts "Added org id #{@organization.id} to group: #{group.name}"
       end
     end
 
     Reminder.all.each do |reminder|
-      unless reminder.organization
+      if reminder.organization.nil?
         reminder.organization = @organization
-        puts "Added org id #{organization.id} to reminder: #{reminder.id}"
+        puts "Added org id #{@organization.id} to reminder: #{reminder.id}"
       end
     end
   end
