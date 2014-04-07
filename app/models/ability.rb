@@ -20,6 +20,7 @@ class Ability
           can :manage, Message, :organization_id => @organization_user.organization_id
           can :manage, Conversation, :organization_id => @organization_user.organization_id
           can :manage, Group, :organization_id => @organization_user.organization_id
+          can :manage, User
         elsif @organization_user.has_role? :user
           # an user can read everything
           can :manage, [Conversation, Recipient]
