@@ -5,8 +5,7 @@
   <div class="row-fluid">
     <div class="span10">
       <h1><%= @organization.name -%></h1>
-
-      <h2>All Users</h2>
+      <span class="pageTitle span3">All Users</span>
       <% if @organization.users.any? %>
       <table class="table table-striped span8">
         <thead>
