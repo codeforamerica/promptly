@@ -1,6 +1,6 @@
 <div class="nav-collapse sidebar-nav">
 	<ul class="nav nav-tabs nav-stacked main-menu">
-		<%= content_tag(:li, class: is_active?("home")) do %>
+		<%= content_tag(:li, class: is_active?("dashboard")) do %>
 			<%= link_to admin_organization_dashboard_path(@organization.id) do %>
 				<i class="typcn typcn-home"></i>Dashboard
 			<% end %>
