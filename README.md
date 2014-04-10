@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.org/postcode/promptly.png?branch=master)](https://travis-ci.org/postcode/promptly)
+[![Stories in Ready](https://badge.waffle.io/codeforamerica/promptly.png?label=ready)](https://waffle.io/codeforamerica/promptly)
+
 
 # Promptly
 Promptly is a text message notification system originally built by 2013 Code for America fellows for the San Francisco Human Services Agency. See [promptly.io](http://promptly.io) for more info on the project. See our [wiki](https://github.com/postcode/promptly/wiki) for documentation.
