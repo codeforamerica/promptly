@@ -10,13 +10,15 @@ desc "Add an organization, a super admin and an organization role to the site."
     name: "Default Organization"
   )
   puts "Created the organization #{o.name}"
+  
+  mask = OrganizationsUser.mask_for(:super)
 
   u = User.first_or_create(
     name: "Admin",
     email: "admin@example.com",
     password: password,
     password_confirmation: password,
-    roles_mask: 8)
+    roles_mask: mask)
   u.roles << :super
   u.save!
 
@@ -29,7 +31,7 @@ desc "Add an organization, a super admin and an organization role to the site."
   ou = OrganizationsUser.first_or_create(
     user_id: u.id,
     organization_id: o.id,
-    roles_mask: 8) 
+    roles_mask: mask) 
 
   # Send org user details to console
   puts "Organization user successfully created:"
@@ -41,23 +43,26 @@ desc "Adds an organization id to all existing entities. These include Messages, 
   task :add_org_id => :environment do
     @organization = Organization.first
     Message.all.each do |message|
-      unless message.organization
+      if message.organization.nil?
         message.organization = @organization
-        puts "Added org id #{organization.id} to message: #{message.message_text}"
+        puts "Added org id #{@organization.id} to message: #{message.message_text}"
+        message.save!
       end
     end
 
     Group.all.each do |group|
-      unless group.organization
+      if group.organization.nil?
         group.organization = @organization
-        puts "Added org id #{organization.id} to group: #{group.name}"
+        puts "Added org id #{@organization.id} to group: #{group.name}"
+        group.save!
       end
     end
 
     Reminder.all.each do |reminder|
-      unless reminder.organization
+      if reminder.organization.nil?
         reminder.organization = @organization
-        puts "Added org id #{organization.id} to reminder: #{reminder.id}"
+        puts "Added org id #{@organization.id} to reminder: #{reminder.id}"
+        reminder.save!
       end
     end
   end

@@ -1,21 +1,37 @@
 <div id="sidebar-left" class="span1">
-    <%= render 'layouts/sidebar' %>
- </div>
-
-<h2><%= @organization.name -%></h2>
-
-<h3>Users</h3>
-<% if @organization.users.any? %>
-  <ul>
-    <% @organization.users.each do |user| %>
-      <li><%= user.email -%></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>There currently aren't any users in this organization. <%= link_to "Add some!", new_admin_organization_user_path(@organization.id) -%>
-<% end %>
-
-<p><%= link_to "Edit this organization", edit_admin_organization_path(@organization.id) %></p>
-<p><%= link_to "Delete this organization", admin_organization_path(@organization.id), method: :delete -%></p>
+  <%= render 'layouts/sidebar' %>
+</div>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span10">
+      <h1><%= @organization.name -%></h1>
+      <span class="pageTitle span3">All Users</span>
+      <% if @organization.users.any? %>
+      <table class="table table-striped span8">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @organization.users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email -%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <p>There currently aren't any users in this organization. <%= link_to "Add some!", new_admin_organization_user_path(@organization.id) -%>
+      <% end %>
+    </div>
+    <div class="row-fluid">
+      <%= link_to "Edit this organization", edit_admin_organization_path(@organization.id), :class => 'btn btn-primary' %>
+      <%= link_to "Delete this organization", admin_organization_path(@organization.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' -%>
+    </div>
+  </div>
+</div>
 
 

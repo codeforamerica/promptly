@@ -61,6 +61,10 @@ h6 { font-size: 12px; line-height: 12px; }
 	font-weight: bold;
 }
 
+.table th {
+  font-weight: normal;
+}
+
 //Custom styles
 
 .login {
@@ -96,7 +100,7 @@ h6 { font-size: 12px; line-height: 12px; }
 // Over-riding .span* styles so the positioning works out.
 
 //responsive
-@media (min-width: 1200px) {
+@media (min-width: 1120px) {
   #content {
     padding: 20px;
     margin-left: -2px;
@@ -114,5 +118,18 @@ h6 { font-size: 12px; line-height: 12px; }
     padding: 10px 20px;
     position: relative;
     z-index: 2;
+  }
+}
+
+//responsive
+@media (max-width: 1120px) {
+  #content {
+    padding: 20px;
+    margin-left: -2px;
+  }
+  #sidebar-left {
+    background: transparent;
+    margin: -1px 0px 0px 0px;
+    padding-top: 0px;
   }
 }

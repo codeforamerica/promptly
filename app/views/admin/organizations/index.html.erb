@@ -1,7 +1,7 @@
 <h2>Your organizations</h2>
 
 <% if @current_user.organizations.any? %>
-  <ul>
+  <ul class="unstyled">
     <% @current_user.organizations.each do |organization| %>
       <li><%= link_to organization.name, admin_organization_path(organization.id) -%></li>
     <% end %>
