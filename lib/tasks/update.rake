@@ -21,11 +21,14 @@ desc "Add an organization, a super admin and an organization role to the site."
     roles_mask: mask)
   u.roles << :super
   u.save!
-
-  # Send admin login details to console
-  puts "SuperAdmin user successfully created:"
-  puts "    email: admin@example.com"
-  puts "    password: #{password}" 
+  if u.save! 
+    # Send admin login details to console
+    puts "SuperAdmin user successfully created:"
+    puts "    email: admin@example.com"
+    puts "    password: #{password}" 
+  else
+    puts "error #{u}"
+  end
 
 
   ou = OrganizationsUser.first_or_create(
