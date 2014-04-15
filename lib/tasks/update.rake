@@ -13,9 +13,10 @@ desc "Add an organization, a super admin and an organization role to the site."
   
   mask = OrganizationsUser.mask_for(:super)
 
-  u = User.first_or_create(
+  u = User.where(
     name: "Admin",
-    email: "admin@example.com",
+    email: "admin@example.com").first_or_create
+  u.update_attributes(
     password: password,
     password_confirmation: password,
     roles_mask: mask)
@@ -31,10 +32,10 @@ desc "Add an organization, a super admin and an organization role to the site."
   end
 
 
-  ou = OrganizationsUser.first_or_create(
+  ou = OrganizationsUser.where(
     user_id: u.id,
     organization_id: o.id,
-    roles_mask: mask) 
+    roles_mask: mask).first_or_create 
 
   # Send org user details to console
   puts "Organization user successfully created:"
