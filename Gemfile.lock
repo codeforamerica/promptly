@@ -50,6 +50,9 @@ GEM
       railties (>= 3.0)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
+    browser-timezone-rails (0.0.7)
+      jquery-rails
+      rails (>= 3.1)
     builder (3.0.4)
     cancan (1.6.10)
     capybara (2.1.0)
@@ -295,6 +298,7 @@ DEPENDENCIES
   activerecord-sqlserver-adapter!
   bootstrap-datepicker-rails
   bootstrap-sass
+  browser-timezone-rails
   cancan
   capybara
   coffee-rails

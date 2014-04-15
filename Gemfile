@@ -21,6 +21,7 @@ gem 'pg'
 gem 'unicorn'
 gem 'foreman'
 gem 'composite_primary_keys'
+gem 'browser-timezone-rails'
 
 group :development do
   gem 'pry'

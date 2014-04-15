@@ -26,4 +26,5 @@
 //= require reminders
 //= require morris.min
 //= require graphs
+//= require browser_timezone_rails/application.js
 //= require_tree .
