@@ -22,12 +22,12 @@ One cause of low participation is churn; when clients needlessly lose benefits o
 This means that about 40% of incoming applications came from clients who had received CalFresh benefits in the prior 3 months, suggesting many of these families experienced a unnecessary break in benefits.
 
 More importantly, churn is a bad experience for clients. Imagine trying to check out in the grocery store but your EBT card won’t work. The cashier tells you it’s empty. You don’t have enough cash, so you leave the store without food. When you call the agency, they tell you that they stopped your benefits because you didn’t turn in some paperwork. Apparently they sent you a letter. You dig through your mail and find this:
-[NOA IMG]
+![Notice of Action - Termination](http://codeforamerica.github.io/promptly/how-to-promptly/noa.jpg)
 
 Indeed, you remember seeing it weeks ago but setting it aside because it was confusing and you were busy. So now you’re without groceries and trying to restore your benefits. Sometimes this involves a phone call. Other times it involves starting your CalFresh application from scratch. For some clients this is an inconvenience. For others it’s a crisis.
 
 This is the motivation for Promptly: Churn is lose-lose and confusion drives churn. So let’s reduce confusion and meet clients where they are with critical information in plain english:
-[MSG IMAGE]
+![Promptly text message](http://codeforamerica.github.io/promptly/how-to-promptly/msg.jpg)
 
 Alright, let’s dive in!
 
@@ -49,7 +49,7 @@ The first step is to figure out exactly what you want to say, when to say it, an
 
 ###What to text
 Here’s what we told CalFresh clients in San Francisco who were about to be discontinued:
-[MESSAGE IMG]
+![Promptly text message](http://codeforamerica.github.io/promptly/how-to-promptly/msg.jpg)
 
 A few things to note:
 - Always identify yourself.
@@ -118,8 +118,7 @@ When we text clients from our new Promptly phone number, some will call back and
 
 ###Call Forwarding
 For incoming calls, the simplest solution is to automatically forward them to some other phone number that will connect them to a human who can help. For example, in San Francisco, we forward all incoming calls directly to the CalFresh call center. Check out Twilio’s instructions for setting up call forwarding. In short, set the voice request URL for your Twilio number to http://twimlets.com/forward?PhoneNumber=XXX-XXX-XXXX, like this:
-
-[IMAGE]
+![Twilio voice config](http://codeforamerica.github.io/promptly/how-to-promptly/twilio-voice.jpg)
 
 If you need more complex forwarding scheme that, for example, asks clients to choose their language or allocates incoming calls to different phone numbers, you will have to do this work yourself. You can build a simple IVR and routing system using Twilio - see this Twilio docs to get started.
 
@@ -133,8 +132,7 @@ You can set this up using Twilio’s echo Twimlet:
 3. Insert your URL encoded message into this string:
 http://twimlets.com/echo?Twiml=%3CResponse%3E%3CSms%3E[REPLACE THIS WITH YOUR URL ENCODED MESSAGE]%3C%2FSms%3E%3C%2FResponse%3E
 4. Set the mssage request URL for your Twilio number to this full string, like this:
-
-[image]
+![Twilio SMS config](http://codeforamerica.github.io/promptly/how-to-promptly/twilio-sms.jpg)
 
 ###A note on opting out
 In the U.S., telephony service providers have agreed to a few standards to prevent unwanted text message spam. Three of these are relevant for our clients:
