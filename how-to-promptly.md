@@ -1,5 +1,5 @@
 #How to Promptly
-Promptly is an open source text message notification system. My team built Promptly in collaboration with the San Francisco Human Service Agency (SF HSA) in 2013. We used it to reduce churn by notifying CalF resh clients of upcoming discontinuations. As of this writing, SF HSA has over 3,000 CalFresh clients enrolled. This guide explains exactly how your human service agency can do the same thing. It’s targeted primarily to HSA program directors and program managers, but should be useful for anyone involved in the project. We also specifically focus on CalWin integration, but all of the same general points apply to C-IV, LEADER, or any other case management data system. Here’s the agenda:
+Promptly is an open source text message notification system. My team built Promptly in collaboration with the San Francisco Human Service Agency (SF HSA) in 2013. We used it to reduce churn by notifying CalFresh clients of upcoming discontinuations. As of this writing, SF HSA has over 3,000 CalFresh clients enrolled. This guide explains exactly how your human service agency can do the same thing. It’s targeted primarily to HSA program directors and program managers, but should be useful for anyone involved in the project. We also specifically focus on CalWin integration, but all of the same general points apply to C-IV, LEADER, or any other case management data system. Here’s the agenda:
 
 - [Why this is important](#why-this-is-important)
 - [Step 0: Get your team, get your resources](#step-0-get-your-team-get-your-resources)
@@ -15,16 +15,16 @@ Promptly is an open source text message notification system. My team built Promp
 If you get to the end and still have questions, don’t hesitate to reach out and we’ll update this guide accordingly. But before we dive in, let’s remember why it’s worth doing.
 
 ##Why this is important
-In 2010, California had the lowest SNAP participation rate of any state in the country. National participation was about 75%. California’s was 43%. In other words, the majority of Californians who were eligible for CalFresh weren’t getting it[FOOTNOTE].
+In 2010, California had the lowest SNAP participation rate of any state in the country. National participation was about 75%. California’s was 43%. In other words, the majority of Californians who were eligible for CalFresh weren’t getting it<a name="1-back"></a><sup>[1](#1)</sup>.
 
-One cause of low participation is churn; when clients needlessly lose benefits only to re-enroll soon after. Churn is lose-lose. It’s a negative shock for clients and waste of time for agency. Here are the stats on churn for October - December 2012 [FOOTNOTE]:
+One cause of low participation is churn; when clients needlessly lose benefits only to re-enroll soon after. Churn is lose-lose. It’s a negative shock for clients and waste of time for agency. Here are the stats on churn for October - December 2012<a name="2-back"></a><sup>[2](#2)</sup>:
 
 Measure | California | San Francisco
 ------------------------------------|------------|--------
-Churn rate (30 day)                 | 18.2%     | 18.5%
-Churn rate (90 day)                 | 37.6%     | 40.4%
-Recertification churn rate (30 day) | 10.2%     | 9.0%
-Recertification churn rate (90 day) | 12.9%     | 14.9%
+Churn rate (30 day)<a name="3-back"></a><sup>[3](#3)</sup>                 | 18.2%     | 18.5%
+Churn rate (90 day)<a name="3-back"></a><sup>[3](#3)</sup>                 | 37.6%     | 40.4%
+Recertification churn rate (30 day)<a name="4-back"></a><sup>[4](#4)</sup> | 10.2%     | 9.0%
+Recertification churn rate (90 day)<a name="4-back"></a><sup>[4](#4)</sup> | 12.9%     | 14.9%
 
 This means that about 40% of incoming applications came from clients who had received CalFresh benefits in the prior 3 months, suggesting many of these families experienced a unnecessary break in benefits.
 
@@ -53,7 +53,7 @@ The **CalWin Specialist** will support the IT Developer on data integration. | -
 The Program Specialist and IT Developer will do the bulk of the work, while the Executive Sponsor and CalWin Specialist will support them.
 
 Other than the team, you’ll need:
-- A Twilio account with some Twilio credit ($). In short, Twilio charges 3/4c per message and 3c per minute for incoming phone calls. See How much does Promptly cost for details.
+- A Twilio account<a name="5-back"></a><sup>[5](#5)</sup> with some Twilio credit ($). In short, Twilio charges 3/4c per message and 3c per minute for incoming phone calls. See How much does Promptly cost for details.
 - Access to translation services if you’re writing new text messages.
 
 OKAY! Every team member should read this guide before the kickoff meeting to get everyone on the same page. Now that we have our team, we can get started. I’ve broken things down into six steps for clarity, but there’s no need to do these in order. Just think of these as discrete things to get done.
@@ -116,6 +116,7 @@ Here’s how we did it in San Francisco:
 - We stored client cell phone numbers in the ‘message phone’ field of the Case Summary window.
 
 To get this setup from scratch, Program Specialist will need to:
+
 1. Work with the CalWin Specialist to create a new ‘Text messages OK’ special indicator.
 2. Work with section managers and workers to confirm that the ‘message phone’ field is available and not already part of an important business process.
 3. Communicate to eligibility workers exactly how to store this information and answer any questions. How you communicate this will depend on the organization structure of your program.
@@ -141,6 +142,7 @@ Probably very few clients will respond with a text message, but if they do, we s
 > We can't reply back by text right now. If you need help, give us a call at (415) 944-4301. If you don't want these messages, reply with STOP.
 
 You can set this up using Twilio’s echo Twimlet:
+
 1. Figure out exactly what you want to say in 160 characters or less. You should at least remind people they can ‘reply with STOP,’ but the rest is up to you. Remember, every client will get this message regardless of language, program, etc. I recognize this is not ideal and encourage you to build a better solution and contribute it!
 2. URL encode your 160 character message (here’s a free URL encoder).
 3. Insert your URL encoded message into this string:
@@ -162,6 +164,7 @@ At this point you can use Promptly to send text messages to clients. If you alre
 Now that Promptly is up and running, we just need to connect Promptly CalWin data. This work will be done by the Application Developer with support from the CalWin specialist.
 
 The goal is to automatically import specific groups of clients into Promptly on a routine basis. There are many ways to do this that will depend on your internal IT infrastructure and business processes, so your Application Developer or someone else in IT should lead this process. In general, you can import data into Promptly by:
+
 1. Running a query that outputs one table per Promptly Group
 2. Push these tables to the Promptly database
 3. Run the Promptly import command
@@ -171,6 +174,7 @@ See the Importing Group section of the Promptly wiki for a detailed description 
 
 ##Step 7: Launch, monitor, repeat
 We’re finally ready to go! It’s time for the Program Specialist to schedule the reminders:
+
 1. Login to Promptly
 2. Schedule some test reminders. Setup a test Group in Promptly and add yourself, your coworkers, and your friends. 3. Make sure you test every message you intend to send to clients in every language. Make sure the message looks right, and gets delivered at the right time. If it doesn’t work for you, it won’t work for your clients.
 Schedule the real reminders. Pick a time when your call center is open. Give your clients about 3 business days notice.
@@ -183,3 +187,10 @@ Learn, improve, and repeat each month. And that is How to Promptly!
 - If you have general questions, don’t hesitate to reach out to me at jacob@codeforamerica.org.
 - If you have technical questions about installing or using Promptly, open an issue in our Github repository.
 - If you want hands on support, training, installation, or maintenance, I suggest you email info@postcode.io. Postcode is the organization that maintains the Promptly codebase and provides other technology services to local governments. Andy Hull, the founder and CEO of Postcode was the lead develop on Promptly, so he knows what he’s doing.
+
+##Footnotes
+1. <a name="1"></a>http://www.fns.usda.gov/sites/default/files/Reaching2010.pdf [[back]](#1-back)
+2. <a name="2"></a>http://www.cdsscounties.ca.gov/foodstamps/res/docs/ChurnData.xlsx [[back]](#2-back)
+3. <a name="3"></a>Churn rate: Percentage of CalFresh applications that received benefits in the previous 30/90 days [[back]](#3-back)
+4. <a name="4"></a>Recertification churn rate: Percentage of CalFresh cases who had recertifications due that reapplied within 30/90 days [[back]](#4-back)
+5. <a name="5"></a>Twilio is not strictly required, but changing SMS providers requires changes to the Promptly codebase. If you want to learn more about this, feel free to open an issue in our GitHub repository. [[back]](#5-back)
