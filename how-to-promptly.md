@@ -5,7 +5,7 @@ Promptly is an open source text message notification system. [My team](http://ww
 - [Step 0: Get your team, get your resources](#step-0-get-your-team-get-your-resources)
 - [Step 1: Decide what to text, when to text, and who to text](#step-1-decide-what-to-text-when-to-text-and-who-to-text)
 - [Step 2: Figure out client privacy and the opt-in process](#step-2-figure-out-client-privacy-and-the-opt-in-process)
-- [Step 3: Figure out how to store client cell phone numbers and opt-ins in CalWin](#step-3-figure-out-how-to-store-- client-cell-phone-numbers-and-opt-ins-in-calwin)
+- [Step 3: Figure out how to store client cell phone numbers and opt-ins in CalWin](#step-3-figure-out-how-to-store-client-cell-phone-numbers-and-opt-ins-in-calwin)
 - [Step 4: Install Promptly on your agency’s servers](#step-4-install-promptly-on-your-agencys-servers)
 - [Step 5: Setup call forwarding and auto response](#step-5-setup-call-forwarding-and-auto-response)
 - [Step 6: Integrate CalWin data into Promptly](#step-6-integrate-calwin-data-into-promptly)
