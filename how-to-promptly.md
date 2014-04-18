@@ -1,7 +1,16 @@
 #How to Promptly
 Promptly is an open source text message notification system. My team built Promptly in collaboration with the San Francisco Human Service Agency (SF HSA) in 2013. We used it to reduce churn by notifying CalF resh clients of upcoming discontinuations. As of this writing, SF HSA has over 3,000 CalFresh clients enrolled. This guide explains exactly how your human service agency can do the same thing. It’s targeted primarily to HSA program directors and program managers, but should be useful for anyone involved in the project. We also specifically focus on CalWin integration, but all of the same general points apply to C-IV, LEADER, or any other case management data system. Here’s the agenda:
 
-[TOC]
+- [Why this is important](#why-this-is-important)
+- [Step 0: Get your team, get your resources](#step-0-get-your-team-get-your-resources)
+- [Step 1: Decide what to text, when to text, and who to text](#step-1-decide-what-to-text-when-to-text-and-who-to-text- )
+- [Step 2: Figure out client privacy and the opt-in process](#step-2-figure-out-client-privacy-and-the-opt-in-process)
+- [Step 3: Figure out how to store client cell phone numbers and opt-ins in CalWin](#step-3-figure-out-how-to-store-- client-cell-phone-numbers-and-opt-ins-in-calwin)
+- [Step 4: Install Promptly on your agency’s servers](#step-4-install-promptly-on-your-agencys-servers)
+- [Step 5: Setup call forwarding and auto response](#step-5-setup-call-forwarding-and-auto-response)
+- [Step 6: Integrate CalWin data into Promptly](#step-6-integrate-calwin-data-into-promptly)
+- [Step 7: Launch, monitor, repeat](#step-7-launch-monitor-repeat)
+- [Questions?](#questions)
 
 If you get to the end and still have questions, don’t hesitate to reach out and we’ll update this guide accordingly. But before we dive in, let’s remember why it’s worth doing.
 
