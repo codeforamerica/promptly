@@ -18,7 +18,14 @@ If you get to the end and still have questions, don’t hesitate to reach out an
 In 2010, California had the lowest SNAP participation rate of any state in the country. National participation was about 75%. California’s was 43%. In other words, the majority of Californians who were eligible for CalFresh weren’t getting it[FOOTNOTE].
 
 One cause of low participation is churn; when clients needlessly lose benefits only to re-enroll soon after. Churn is lose-lose. It’s a negative shock for clients and waste of time for agency. Here are the stats on churn for October - December 2012 [FOOTNOTE]:
-[TABLE]
+
+Measure | California | San Francisco
+------------------------------------|------------|--------
+Churn rate (30 day)                 | 18.2%     | 18.5%
+Churn rate (90 day)                 | 37.6%     | 40.4%
+Recertification churn rate (30 day) | 10.2%     | 9.0%
+Recertification churn rate (90 day) | 12.9%     | 14.9%
+
 This means that about 40% of incoming applications came from clients who had received CalFresh benefits in the prior 3 months, suggesting many of these families experienced a unnecessary break in benefits.
 
 More importantly, churn is a bad experience for clients. Imagine trying to check out in the grocery store but your EBT card won’t work. The cashier tells you it’s empty. You don’t have enough cash, so you leave the store without food. When you call the agency, they tell you that they stopped your benefits because you didn’t turn in some paperwork. Apparently they sent you a letter. You dig through your mail and find this:
@@ -35,7 +42,14 @@ Alright, let’s dive in!
 Like all new technologies, using Promptly effectively requires some change. This is probably the first time your agency has (officially) sent text messages to clients, so this change can be tricky. Before you get started, make sure you have the right team and the right resources available.
 
 You will need four distinct roles to get Promptly up and running effectively:
-[TABLE]
+
+Role | Responsibility | ~Time commitment
+-----|----------------|-------------------
+The **Executive Sponsor** is a high level executive (ideally the Program Director) who supports the project and can remove bureaucratic and policy barriers.|- Manage communication with other executives.<br>- Make final decision on the opt-in process and client privacy. <br>- Support the Program Specialist and IT Developer as necessary.|Minimal - Likely just a few meetings upfront and then as needed to address barriers as identified by the Program Specialist.
+The **Program Specialist** is the day-to-day Project Manager whose job is to get things done. It is important that they know how the program works and what the clients need. | - Figure out the opt-in process.<br>- Train eligibility workers.<br>- Write and translate the content of the text messages.<br>- Schedule and send the text messages.<br>- Monitor incoming text messages from clients. | Approximately ½ time for one month or ¼ time for two months and 1 hour per month indefinitely going forward.
+The **IT Developer** knows how to install and maintain web applications. | - Install Promptly.<br>- Connect Promptly to necessary data sources.<br>- Manage user accounts.<br>- Monitor and maintain the system. | Approximately ½ time for two weeks or ¼ time for one month.
+The **CalWin Specialist** will support the IT Developer on data integration. | - Create a new special indicator to capture client opt-ins or help figure out an alternative process.<br>- Support the IT Developer to write and validate CalWin queries. | Minimal - Varies depending on IT Developer’s comfort with the data sources.
+
 The Program Specialist and IT Developer will do the bulk of the work, while the Executive Sponsor and CalWin Specialist will support them.
 
 Other than the team, you’ll need:
