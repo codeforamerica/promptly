@@ -1,21 +1,12 @@
 
 $(function(){
-  graphs = [
-  'upcoming',
-  'sent',
-  'response',
-  'undelivered',
-  'calls'
-  ]
+  var graphs = $('.chart')
 
-  createGraphs(graphs)
-
-  function createGraphs(graphs){
-    graphs.forEach(function (graph) {
-      new Morris.Line({
+  var graphCreate = function(graphData) {
+     new Morris.Line({
         // ID of the element in which to draw the chart.
-        element: graph+'_chart',
-        data: $('#'+graph+'_chart').data(graph),
+        element: $(graphData).attr("id"),
+        data: $(graphData).data("graphData"),
         // The name of the data record attribute that contains x-values.
         xkey: 'date',
         // A list of names of data record attributes that contain y-values.
@@ -31,7 +22,14 @@ $(function(){
           return (date.getMonth()+1)+'/'+(date.getDate())+'/'+date.getFullYear(); 
           },
         smooth: false,
-      });
+    });
+  } 
+
+  var graphSetup = function(graphs){
+    $.each(graphs, function (i) {
+      var graph = graphs[i]
+      return graphCreate(graph);
     })
   };
+  graphSetup(graphs)
 });
