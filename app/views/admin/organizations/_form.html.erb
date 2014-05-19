@@ -24,7 +24,12 @@
           <div class="field">
               <div class="control-group">
                 <div class="controls">
-                  <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s %>
+                  <% role = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user.id) %>
+                  <% if role.exists? %>
+                    <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => OrganizationsUser.valid_roles[role[0].roles_mask]} %>
+                  <% else %>
+                    <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -36,7 +41,6 @@
           <td></td>
           <% if @organization.id? %>
             <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
-          
           <% else %>
             <td> </td>
           <% end %>
