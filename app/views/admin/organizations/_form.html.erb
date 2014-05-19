@@ -34,7 +34,12 @@
         <tr>
           <td></td>
           <td></td>
-          <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+          <% if @organization.id? %>
+            <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+          
+          <% else %>
+            <td> </td>
+          <% end %>
         </tr>
       </tbody>
     </table>
