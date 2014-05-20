@@ -38,7 +38,7 @@ class Admin::RemindersController < OrgController
 
   # GET /deliveries/1/edit
   def edit
-    @reminders = Reminder.where("batch_id=?", params[:batch_id])
+    @reminders = Reminder.find(params[:id])
   end
 
   def confirm
@@ -105,14 +105,14 @@ class Admin::RemindersController < OrgController
   end
 
   def destroy
-    @reminders = Reminder.where('batch_id=?', params[:batch_id])
-    @reminders.each do |reminder|
-      destroy_delayed_job_by_job_id(reminder.job_id)     
-      reminder.destroy
-    end
+    @reminders = Reminder.find(params[:id])
+    # @reminders.each do |reminder|
+      destroy_delayed_job_by_job_id(@reminder.job_id)     
+      @reminder.destroy
+    # end
 
     respond_to do |format|
-      format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully created.' }
+      format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
