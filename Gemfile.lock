@@ -319,7 +319,7 @@ DEPENDENCIES
   jquery-datatables-rails!
   jquery-rails (= 2.0.2)
   jquery-ui-rails
-  json (= 1.8.0)
+  json
   launchy
   newrelic_rpm
   pg
