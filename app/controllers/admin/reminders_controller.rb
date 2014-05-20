@@ -68,8 +68,11 @@ class Admin::RemindersController < OrgController
     end
     if params[:reminder][:send_date].length > 11
       @reminder.update_attributes(message_id: params[:reminder][:message_id], :send_date => params[:reminder][:send_date])
+    elsif params[:reminder][:send_date].nil? || params[:reminder][:send_date] == ""
+      @reminder
     else
       @reminder.update_attributes(message_id: params[:reminder][:message_id], :send_date => DateTime.strptime(params[:reminder][:send_date], "%m/%d/%Y"))
+
     end
     if !@reminder.valid?
       render :action => 'new'
