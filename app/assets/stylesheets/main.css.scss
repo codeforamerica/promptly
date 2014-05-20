@@ -99,6 +99,10 @@ h6 { font-size: 12px; line-height: 12px; }
 }
 // Over-riding .span* styles so the positioning works out.
 
+.label-danger {
+  background-color: #d9534f;
+}
+
 //responsive
 @media (min-width: 1120px) {
   #content {
