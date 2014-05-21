@@ -26,11 +26,10 @@
               <div class="control-group">
                 <div class="controls">
                   <% role = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user.id) %>
-                  <% binding.pry %>
                   <% if role.exists? %>
-                    <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => OrganizationsUser.valid_roles[role[0].roles_mask]} %>
+                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => OrganizationsUser.valid_roles[role[0].roles_mask]} %>
                   <% else %>
-                    <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
+                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
                   <% end %>
                 </div>
               </div>
