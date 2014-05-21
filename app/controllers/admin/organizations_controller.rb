@@ -30,6 +30,8 @@ class Admin::OrganizationsController < AdminController
   def create
     authorize
     @organization = Organization.new(params[:organization])
+    @phone = "+1" + params[:phone_number]
+    @organization.update_attributes(:phone_number => @phone)
     params[:organizations_user][:user_ids].each do |user_id|
       if user_id[1] == "1"
         @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
@@ -49,6 +51,8 @@ class Admin::OrganizationsController < AdminController
   def update
     authorize
     @organization = Organization.update(params[:id], params[:organization])
+    @phone = "+1" + params[:organization][:phone_number]
+    @organization.update_attributes(:phone_number => @phone)
     params[:organizations_user][:user_ids].each do |user_id|
       @organization_users
       if user_id[1] == "1"

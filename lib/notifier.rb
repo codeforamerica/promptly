@@ -57,10 +57,11 @@ class Notifier
   def self.perform(message_id, options ={})
       defaults = {
         group_id: nil,
-        recipient_id: nil
+        recipient_id: nil,
+        organization_id: nil
       }
       options = defaults.merge(options)
-    new(message_id, group_id: options[:group_id], recipient_id: options[:recipient_id]).perform
+    new(message_id, group_id: options[:group_id], recipient_id: options[:recipient_id], organization_id: options[:organization_id]).perform
   end
 
   def perform

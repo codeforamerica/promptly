@@ -89,7 +89,6 @@ class Reminder < ActiveRecord::Base
       theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, organization_id: organization_id)
     end
     update_attributes(job_id: theJob.id)
-    # binding.pry
   end
 end
 
