@@ -84,9 +84,9 @@ class Reminder < ActiveRecord::Base
   def add_to_queue
     theDate = send_date
     if recipient_id
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, recipient_id: recipient_id)
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, recipient_id: recipient_id, organization_id: organization_id)
     else
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids)
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, organization_id: organization_id)
     end
     update_attributes(job_id: theJob.id)
     # binding.pry

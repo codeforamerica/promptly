@@ -1,5 +1,6 @@
 <%= simple_form_for [:admin, @organization] do |f| %>
   <%= f.input :name, inline_label: "Name" %>
+  <%= f.input :phone_number, inline_label: "Phone Number" %>
   <% f.association :users, as: :check_boxes, label: "Users" %>
  <div class="row-fluid">
   <div class="span12">
