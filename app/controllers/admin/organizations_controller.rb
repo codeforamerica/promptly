@@ -62,11 +62,10 @@ class Admin::OrganizationsController < AdminController
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
     params[:organizations_user][:user_ids].each do |user_id|
-      @organization_users
       if user_id[1] == "1"
         @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
         @org_role = params[:organizations_user]["#{user_id[0]}"]
-        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
+        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles_mask]))
         @organization_users.save
       else
         if OrganizationsUser.exists?(:organization_id => params[:id], :user_id => user_id[0])
