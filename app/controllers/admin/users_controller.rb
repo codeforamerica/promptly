@@ -117,6 +117,9 @@ class Admin::UsersController < OrgController
     else
       @user.errors[:base] << "The password you entered is incorrect" unless @user.valid_password?(params[:user][:current_password])
     end
+    @org_user = OrganizationsUser.where(user_id: params[:id], organization_id: params[:organization_id]).first
+    @org_user.update_attributes(roles_mask: OrganizationsUser.mask_for(params[:organizations_user].flatten[1][:roles_mask]))
+    @org_user.save!
  
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
@@ -138,7 +141,6 @@ class Admin::UsersController < OrgController
   # Get roles accessible by the current user
   #----------------------------------------------------
   def accessible_roles
-  	# binding.pry
     @accessible_roles = Role.accessible_by(current_ability,:read)
   end
  
