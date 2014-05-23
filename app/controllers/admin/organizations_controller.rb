@@ -55,7 +55,7 @@ class Admin::OrganizationsController < AdminController
   def update
     authorize
     @organization = Organization.update(params[:id], params[:organization])
-    if params[:organization][:phone_number].length <12
+    if params[:organization][:phone_number].length <12 && params[:organization][:phone_number].length >0
       @phone = "+1" + params[:organization][:phone_number]
       @organization.update_attributes(:phone_number => @phone)
     else
@@ -82,7 +82,10 @@ class Admin::OrganizationsController < AdminController
   end
 
   def authorize
-    raise CanCan::AccessDenied unless @current_user.is_super?
+    @org_user = OrganizationsUser.where(:organization_id => params[:id], :user_id => @current_user.id).first
+    if !@org_user.has_any_role? :admin || !@current_user.is_super? 
+      raise CanCan::AccessDenied 
+    end
   end
 
 end
