@@ -35,6 +35,7 @@ class Admin::UsersController < OrgController
   # GET /users/1.json                                     HTML AND AJAX
   #-------------------------------------------------------------------
   def show
+    @org_role = OrganizationsUser.where("user_id = ? and organization_id = ?", @user.id, @organization.id).first.roles.first
     respond_to do |format|
       format.json { render :json => @user }
       format.xml  { render :xml => @user }

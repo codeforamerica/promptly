@@ -1,5 +1,5 @@
 class Reminder < ActiveRecord::Base
-  attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text, :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id, :id, :created_at, :updated_at, :orgaization_id
+  attr_accessible :recipient_id, :message_id, :send_date, :job_id, :name, :reminder, :recipient, :message_text, :reminder_ids, :recipient_ids, :send_time, :batch_id, :group_ids, :state, :session_id, :id, :created_at, :updated_at, :organization_id
 
   validates_presence_of :message_id, :send_date, :send_time
   belongs_to :recipient
@@ -17,12 +17,10 @@ class Reminder < ActiveRecord::Base
         .order("send_date")
         .limit(limit)
         .to_set
-        .classify {|reminder| reminder.batch_id}
     else
       Reminder.where('send_date >= ?', DateTime.now)
         .order("send_date")
         .to_set
-        .classify {|reminder| reminder.batch_id}
     end
   end
 
@@ -87,12 +85,11 @@ class Reminder < ActiveRecord::Base
   def add_to_queue
     theDate = send_date
     if recipient_id
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, recipient_id: recipient_id)
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, recipient_id: recipient_id, organization_id: organization_id)
     else
-      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids)
+      theJob = Notifier.delay(priority: 0, run_at: theDate).perform(message_id, group_id: group_ids, organization_id: organization_id)
     end
     update_attributes(job_id: theJob.id)
-    # binding.pry
   end
 end
 

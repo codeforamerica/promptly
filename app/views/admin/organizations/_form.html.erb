@@ -1,5 +1,6 @@
 <%= simple_form_for [:admin, @organization] do |f| %>
   <%= f.input :name, inline_label: "Name" %>
+  <%= f.input :phone_number, inline_label: "Phone Number" %>
   <% f.association :users, as: :check_boxes, label: "Users" %>
  <div class="row-fluid">
   <div class="span12">
@@ -24,7 +25,12 @@
           <div class="field">
               <div class="control-group">
                 <div class="controls">
-                  <%= org_user.collection_select "#{user.id}[roles]", OrganizationsUser.valid_roles, :to_s, :to_s %>
+                  <% role = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user.id) %>
+                  <% if role.exists? %>
+                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => role[0].roles.first} %>
+                  <% else %>
+                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -34,7 +40,11 @@
         <tr>
           <td></td>
           <td></td>
-          <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+          <% if @organization.id? %>
+            <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+          <% else %>
+            <td> </td>
+          <% end %>
         </tr>
       </tbody>
     </table>

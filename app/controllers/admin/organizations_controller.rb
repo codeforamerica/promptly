@@ -30,6 +30,12 @@ class Admin::OrganizationsController < AdminController
   def create
     authorize
     @organization = Organization.new(params[:organization])
+    if params[:organization][:phone_number].length <12
+      @phone = "+1" + params[:organization][:phone_number]
+      @organization.update_attributes(:phone_number => @phone)
+    else
+      @organization.update_attributes(:phone_number => params[:organization][:phone_number])
+    end
     params[:organizations_user][:user_ids].each do |user_id|
       if user_id[1] == "1"
         @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
@@ -49,12 +55,17 @@ class Admin::OrganizationsController < AdminController
   def update
     authorize
     @organization = Organization.update(params[:id], params[:organization])
+    if params[:organization][:phone_number].length <12 && params[:organization][:phone_number].length >0
+      @phone = "+1" + params[:organization][:phone_number]
+      @organization.update_attributes(:phone_number => @phone)
+    else
+      @organization.update_attributes(:phone_number => params[:organization][:phone_number])
+    end
     params[:organizations_user][:user_ids].each do |user_id|
-      @organization_users
       if user_id[1] == "1"
         @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
         @org_role = params[:organizations_user]["#{user_id[0]}"]
-        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
+        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles_mask]))
         @organization_users.save
       else
         if OrganizationsUser.exists?(:organization_id => params[:id], :user_id => user_id[0])
@@ -71,7 +82,10 @@ class Admin::OrganizationsController < AdminController
   end
 
   def authorize
-    raise CanCan::AccessDenied unless @current_user.is_super?
+    @org_user = OrganizationsUser.where(:organization_id => params[:id], :user_id => @current_user.id).first
+    if !@org_user.has_any_role? :admin || !@current_user.is_super? 
+      raise CanCan::AccessDenied 
+    end
   end
 
 end

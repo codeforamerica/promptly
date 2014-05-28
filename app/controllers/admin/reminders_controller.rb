@@ -14,7 +14,7 @@ class Admin::RemindersController < OrgController
   end
 
   def show
-    @reminders = Reminder.where("batch_id=? AND send_date >=?", params[:batch_id], DateTime.now)
+    @reminders = Reminder.where("send_date >=?", DateTime.now)
     @total_count = 0
     @reminders.each do |reminder|
       reminder.groups.each do |group|
@@ -38,11 +38,12 @@ class Admin::RemindersController < OrgController
 
   # GET /deliveries/1/edit
   def edit
-    @reminders = Reminder.where("batch_id=?", params[:batch_id])
+    @reminders = Reminder.find(params[:id])
   end
 
   def confirm
     @reminder = Reminder.new(params[:reminder])
+
 
     # @individual_recipients = parse_phone_numbers(params[:individual_recipients])
     # If they didn't create a new message,
@@ -65,6 +66,17 @@ class Admin::RemindersController < OrgController
       end
       recipients = group_to_recipient_ids(params[:group_ids])
     end
+    if params[:reminder][:send_date].length > 11
+      @reminder.update_attributes(message_id: params[:reminder][:message_id], :send_date => params[:reminder][:send_date])
+    elsif params[:reminder][:send_date].nil? || params[:reminder][:send_date] == ""
+      @reminder
+    else
+      @reminder.update_attributes(message_id: params[:reminder][:message_id], :send_date => DateTime.strptime(params[:reminder][:send_date], "%m/%d/%Y"))
+
+    end
+    if !@reminder.valid?
+      render :action => 'new'
+    end
   end
 
   def create
@@ -72,6 +84,7 @@ class Admin::RemindersController < OrgController
     params[:reminder][:group_ids].each do |group|
       Reminder.create_new_reminders(Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], send_time: params[:reminder][:send_time], group_id: params[:reminder][:group_ids], organization: @organization.id)
     end
+    @reminder.save
     respond_to do |format|
       format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully created.' }
       format.json { render json: @reminder, status: :created, location: @reminder }
@@ -79,25 +92,27 @@ class Admin::RemindersController < OrgController
   end
 
   def update
-    @reminder = Reminder.where("batch_id=?", params[:batch_id])
-    @reminder.each do |r|
-      r.update_attributes(params[:reminder])
+    @reminder = Reminder.first_or_create("id=?", params[:id])
+    @organization = Organization.find(params[:organization_id])
+    params[:reminder][:group_ids].each do |group|
+      Reminder.create_new_reminders(Message.find(params[:reminder][:message_id]), params[:reminder][:send_date], send_time: params[:reminder][:send_time], group_id: params[:reminder][:group_ids], organization: @organization.id)
     end
+    @reminder.save
     respond_to do |format|
-      format.html { redirect_to organization_reminders_path, notice: 'Reminder was successfully updated.' }
-        format.json { head :no_content }
+      format.html { redirect_to admin_organization_reminders_url, notice: 'Reminder was successfully created.' }
+      format.json { head :no_content }
     end
   end
 
   def destroy
-    @reminders = Reminder.where('batch_id=?', params[:batch_id])
-    @reminders.each do |reminder|
-      destroy_delayed_job_by_job_id(reminder.job_id)     
-      reminder.destroy
-    end
+    @reminders = Reminder.find(params[:id])
+    # @reminders.each do |reminder|
+      destroy_delayed_job_by_job_id(@reminder.job_id)     
+      @reminder.destroy
+    # end
 
     respond_to do |format|
-      format.html { redirect_to organization_reminders_url }
+      format.html { redirect_to [:admin, @organization, @reminder], notice: 'Reminder was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

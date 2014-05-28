@@ -53,6 +53,7 @@ FactoryGirl.define do
 
   factory :organization do
     name { Faker::Lorem.words(rand(1..4)).join(" ") }
+    phone_number {"+14155824309"}
   end
 
   factory :conversation_with_message, parent: :conversation do
@@ -66,6 +67,7 @@ FactoryGirl.define do
     before :create do |reminder|
       reminder.message = FactoryGirl.create(:message)
       reminder.groups = FactoryGirl.create_list(:group_with_recipient, 1)
+      reminder.organization = FactoryGirl.create(:organization)
     end
   end
 
