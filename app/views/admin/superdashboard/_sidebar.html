@@ -1,0 +1,12 @@
+<div class="number">
+  <p>Number of texts sent this year: <h1><%= @this_year %></h1></p>
+</div>
+<div class="number">
+  <p>Number of texts sent last month: <h1><%= @last_month %></h1></p>
+</div>
+<div class="number">
+  <p>Number of calls this year: <h1><%= Conversation.year_calls.count %></h1></p>
+</div>
+<div class="number">
+  <p>Number of calls last month: <h1><%= Conversation.month_calls.count %></h1></p>
+</div>

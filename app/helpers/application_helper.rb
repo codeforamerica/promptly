@@ -36,16 +36,39 @@ module ApplicationHelper
 
   def chart_data(start_date, end_date = Date.today, date_field, model)
     date_field_sym = date_field.to_sym
-    (start_date..end_date).map do |date|
-      {
-        date: date,
-        #to_datetime > midnight
-        #Using midnight-midnight range gets around using date() sql function to cast dates,
-        #which doesn't work on SQLServer 08 
-        number_sent: model.order(date_field_sym)
-                      .where(date_field_sym => date.to_datetime..(date+1).to_datetime)
-                      .count
-      }
+    if model.kind_of?(Array)
+      multi_data(start_date, end_date = Date.today, date_field_sym, model)
+    else
+        (start_date..end_date).map do |date|
+        {
+          date: date,
+          #to_datetime > midnight
+          #Using midnight-midnight range gets around using date() sql function to cast dates,
+          #which doesn't work on SQLServer 08 
+          number_sent: model.order(date_field_sym)
+                        .where(date_field_sym => date.to_datetime..(date+1).to_datetime)
+                        .count
+        }
+      end
     end
+
+  end
+
+  def multi_data(start_date, end_date = Date.today, date_field_sym, model)
+    graph_data = []
+    (start_date.year..end_date.year).map do |date|
+      data = {}
+      data["date"] = date
+      the_year = Date.new(date, 1)
+      the_next_year = Date.new(date+1, 1)
+      model.each_with_index.reduce({}) do |memo, (response, count)|
+        memo = response.order(date_field_sym)
+                          .where("date >= ? and date < ?",  the_year, the_next_year)
+                          .count
+        data["number_sent"+count.to_s] = memo
+      end
+      graph_data.push(data)
+    end
+    graph_data
   end
 end

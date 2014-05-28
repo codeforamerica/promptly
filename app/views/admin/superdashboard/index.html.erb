@@ -1,60 +1,49 @@
 <div class="row-fluid">
   <div class="span11">
-    <h1>Welcome to your dashboard, <%= current_user.name %></h1>
+    <div class="dash-title">DASHBOARD&nbsp;<span class="dash-subtitle">ALL ORGANIZATIONS</span></div>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span6 well">
-    <p>Number of texts sent last month: <h1><%= @last_month %></h1></p>
-  </div>
-  <div class="span6 well">
-    <p>Number of texts sent this year: <h1><%= @this_year %></h1></p>
-  </div>
-</div>
-
-<div class="row-fluid">
-  <div class="span6">
-    <div class="headerSmall headerAqua">
-      <span class="headerText">Upcoming reminders</span>
-    </div>
-    <div class="conversation">
-      <%= render 'admin/superdashboard/upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
-    </div>
-  </div>
-  <div class="span6">
+<!-- <div class="span3 dashboard-sidebar">
+    <% render 'sidebar' %>
+</div> -->
+<div class="dashboard-wrapper">
+<!--   <div class="row-fluid">
     <div class="headerSmall headerGreen">
-      <span class="headerText">Sent reminders</span>
+      <span class="headerText">Reminders Sent and Calls Received</span>
     </div>
     <div class="conversation">
-      <%= render 'admin/superdashboard/sent_reminders', object: @conversations || 'There are no sent reminders' %>
+      <% render 'admin/superdashboard/sent_reminders' || 'There are no sent reminders' %>
+    </div>
+  </div> -->
+  <div class="row-fluid">
+    <div class="headerSmall">
+      <span class="headerText headerDate"><%= DateTime.now.strftime("%B %Y") %></span>
+    </div>
+    <div class="span2">
+      <div class="upcoming-number">
+        <div class="big-number"><%= Reminder.upcoming.count %></div>
+        <div>Upcoming Reminders</div>
+      </div>
+    </div>
+    <div class="conversation span8">
+      <%= render 'admin/superdashboard/upcoming_reminders' || 'There are no upcoming reminders' %>
     </div>
   </div>
-</div>
-<div class="row-fluid">
-  <div class="span6">
-    <div class="headerSmall headerGreen">
-      <span class="headerText">Responses</span>
+  <div class="row-fluid headerBorder">
+    <div class="headerSmall">
+      <span class="headerText headerDate"><%= DateTime.now.strftime("%B %Y") %></span>
     </div>
-    <div class="conversation">
-      <%= render 'admin/superdashboard/responses' || 'There are no responses' %>
+    <div class="number span2">
+      <p><h1><%= @last_month %></h1><%= 'Text'.pluralize( @last_month) %> Sent</p>
     </div>
-  </div>
-  <div class="span6">
-    <div class="headerSmall headerRed">
-      <span class="headerText">Undelivered reminders</span>
+    <div class="number span2">
+      <p><h1><%= Conversation.month_calls.count %></h1>Call <%= 'Response'.pluralize( Conversation.month_calls.count) %></p>
     </div>
-    <div class="conversation">
-      <%= render 'admin/superdashboard/undelivered' || 'There are no upcoming reminders' %>
+    <div class="number span2">
+      <p><h1><%= @conversations.count %></h1>Text <%= 'Response'.pluralize( @conversations.count) %></p>
     </div>
-  </div>
-</div>
-<div class="row-fluid">
-  <div class="span6">
-    <div class="headerSmall headerAqua">
-      <span class="headerText">Calls</span>
-    </div>
-    <div class="conversation">
-      <%= render 'admin/superdashboard/calls' || 'There are no calls' %>
+    <div class="number span2">
+      <p><h1><%= Conversation.undelivered.count %></h1>Undelivered</p>
     </div>
   </div>
 </div>

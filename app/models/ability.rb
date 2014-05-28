@@ -32,7 +32,7 @@ class Ability
           can :manage, Group, :organization_id => @organization_user.organization_id
         elsif @organization_user.has_role? :guest
             #guest can only sign up for the site
-          can :read, [User, Page]
+          can :read, [User]
         end
       end
     end

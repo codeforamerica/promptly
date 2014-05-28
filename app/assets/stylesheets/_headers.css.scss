@@ -14,6 +14,20 @@
 	}
 }
 
+.headerBorder {
+	border-width: 10px 0px 0px;
+	border-color: $lightGray;
+	border-style: solid;
+	padding: 20px 0px;
+}
+
+.headerDate {
+	background: #000;
+	color: $white;
+	font-weight: bold;
+	font-size: 120%;
+}
+
 .headerSmall {
 	@include headerConstants;
 	font-size: 13pt;
@@ -22,6 +36,7 @@
 
 	> .headerText {
 		padding: 1px 15px;
+		margin: 10px;
 	}
 }
 
@@ -38,7 +53,6 @@
 }
 
 
-// This positioning is super hacky. *****************************************
 .headerGray {
 	background: $darkGray;
 	border-bottom: 1px solid $lightGray;
