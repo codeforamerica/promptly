@@ -50,18 +50,30 @@ $(function () {
   var graphCreateDonut = function (graphData) {
     Morris.Donut({
       element: $(graphData).attr("id"),
-      data: $(graphData).data("graphData")
+      data: $(graphData).data("graphData"),
+      colors: ['#4CA55D', '#ffffff'],
+      formatter: function (y, data) { 
+        return y + '%' 
+      }
     });
   };
 
   var graphSetup = function (graphs) {
     $.each(graphs, function (i) {
       var graph = graphs[i];
-      if ($(graph).hasClass('bar')) {
-        return graphCreateBar(graph);
-      } else {
-        return graphCreateLine(graph);
+      var className = $(graph).attr("class") 
+      switch(className) {
+        case 'chart bar':
+          return graphCreateBar(graph);
+          break;
+        case 'chart donut':
+          return graphCreateDonut(graph);
+          break;
+        default:
+          return graphCreateLine(graph);
+          break;
       }
+          
     });
   };
   graphSetup(graphs);

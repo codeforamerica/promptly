@@ -33,16 +33,22 @@
     <div class="headerSmall">
       <span class="headerText headerDate"><%= DateTime.now.strftime("%B %Y") %></span>
     </div>
-    <div class="number span2">
+    <div class="number span3">
+      <%= render 'admin/superdashboard/response_rate' || 'There are no sent reminders' %>
+    </div>
+    <div class="number span3">
+      <%= render 'admin/superdashboard/undelivered_rate' || 'There are no sent reminders' %>
+    </div>
+    <div class="number span1">
       <p><h1><%= @last_month %></h1><%= 'Text'.pluralize( @last_month) %> Sent</p>
     </div>
-    <div class="number span2">
+    <div class="number span1">
       <p><h1><%= Conversation.month_calls.count %></h1>Call <%= 'Response'.pluralize( Conversation.month_calls.count) %></p>
     </div>
-    <div class="number span2">
+    <div class="number span1">
       <p><h1><%= @conversations.count %></h1>Text <%= 'Response'.pluralize( @conversations.count) %></p>
     </div>
-    <div class="number span2">
+    <div class="number span1">
       <p><h1><%= Conversation.undelivered.count %></h1>Undelivered</p>
     </div>
   </div>
