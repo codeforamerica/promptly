@@ -5,24 +5,12 @@
 <p><%= f.text_field :email %></p>
  
 <% if can?(:edit, User) %>
-<% user = User.find(params[:id]) %>
   <div class="field">
     <div class="control-group">
       <%= f.label :roles, 'Select a role' %>
-      <%= simple_fields_for :organizations_user do |org_user| %>
-      <div class="field">
-          <div class="control-group">
-            <div class="controls">
-              <% role = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user.id) %>
-              <% if role.exists? %>
-                <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => role[0].roles.first} %>
-              <% else %>
-                <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <div class="controls">
+        <%= f.collection_select :roles, OrganizationsUser.valid_roles, :to_s, :to_s %>
+      </div>
     </div>
   </div>
   <% end %>
