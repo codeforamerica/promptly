@@ -36,17 +36,18 @@ class Admin::OrganizationsController < AdminController
     else
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
-    params[:organizations_user][:user_ids].each do |user_id|
-      if user_id[1] == "1"
-        @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
-        @org_role = params[:organizations_user]["#{user_id[0]}"]
-        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
-        @organization_users.save
-      end
-    end
- 
+    
     if @organization.save
-      redirect_to admin_organization_path(@organization)
+      params[:organizations_user][:user_ids].each do |user_id|
+        binding.pry
+        if user_id[1] == "1"
+          @organization_users = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user_id[0]).first_or_create
+          @org_role = params[:organizations_user]["#{user_id[0]}"]
+          @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
+          @organization_users.save
+        end
+      end
+      redirect_to admin_organization_path(@organization) 
     else
       render action: "new", status: "unprocessable_entity"
     end
@@ -82,8 +83,7 @@ class Admin::OrganizationsController < AdminController
   end
 
   def authorize
-    @org_user = OrganizationsUser.where(:organization_id => params[:id], :user_id => @current_user.id).first
-    if !@org_user.has_any_role? :admin || !@current_user.is_super? 
+    if !@current_user.is_super? 
       raise CanCan::AccessDenied 
     end
   end
