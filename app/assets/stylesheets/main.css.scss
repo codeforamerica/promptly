@@ -11,6 +11,7 @@
 @import "charts";
 @import "data_tables";
 @import "compass/utilities/general/hacks";
+@import "dashboard";
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
@@ -41,7 +42,7 @@ h6 { font-size: 12px; line-height: 12px; }
 	@include promptly-border-radius(0px 5px 5px 5px);
 	border: 2px solid $borderColor;
 	position: relative;
-	
+  overflow: hidden;
 	&.full-radius {
 		@include promptly-border-radius(5px);
 		margin-right: -6px;

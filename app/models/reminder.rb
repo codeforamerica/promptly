@@ -9,6 +9,7 @@ class Reminder < ActiveRecord::Base
   accepts_nested_attributes_for :message, :recipient
 
   scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
+  scope :upcoming, where("send_date >= ?", Date.current)
 
   def self.grouped_reminders(limit = 0)
     if limit != 0
