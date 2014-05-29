@@ -1,7 +1,8 @@
 class Admin::RemindersController < OrgController
   include Helper
-  load_and_authorize_resource
+  prepend_before_filter :auth_create, :only => :create
   before_filter :patch_batch_id
+  load_and_authorize_resource :only => [:show,:new,:destroy]
 
   def index
     @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
@@ -127,5 +128,9 @@ class Admin::RemindersController < OrgController
   def patch_batch_id
     # TODO: Nuke references to batch_id in favor of the usual id.
     params[:batch_id] = params[:id]
+  end
+
+  def auth_create
+    can? :manage, Organization, :organization_id => @organization.id
   end
 end
