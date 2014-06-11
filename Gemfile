@@ -21,7 +21,7 @@ gem 'unicorn'
 gem 'foreman'
 gem 'composite_primary_keys'
 gem 'browser-timezone-rails'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '>=3.8'
 
 group :development do
   gem 'pry'
