@@ -30,6 +30,8 @@ GEM
       activesupport (= 3.2.18)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-sqlserver-adapter (3.0.3)
+      activerecord (~> 3.0)
     activeresource (3.2.18)
       activemodel (= 3.2.18)
       activesupport (= 3.2.18)
@@ -296,6 +298,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-sqlserver-adapter (~> 3.0.0)
   bootstrap-datepicker-rails
   bootstrap-sass
   browser-timezone-rails
