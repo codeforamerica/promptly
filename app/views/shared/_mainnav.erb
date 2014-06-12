@@ -12,12 +12,22 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <% current_user.organizations.each do |organization| %>
-                <li>
-                  <a tabindex="-1" href="#">
-                    <%= link_to organization.name, [:admin, organization] %>
-                  </a>
-                </li>
+              <% if current_user.is_super? %>
+                <% Organization.all.each do |organization| %>
+                  <li>
+                    <a tabindex="-1" href="#">
+                      <%= link_to organization.name, [:admin, organization] %>
+                    </a>
+                  </li>
+                <% end %>
+              <% else %>
+                <% current_user.organizations.each do |organization| %>
+                  <li>
+                    <a tabindex="-1" href="#">
+                      <%= link_to organization.name, [:admin, organization] %>
+                    </a>
+                  </li>
+                <% end %>
               <% end %>
               <li class="divider"></li>
               <li><%= link_to 'Manage organizations', admin_organizations_path %></li>
