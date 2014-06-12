@@ -24,6 +24,9 @@ gem 'foreman'
 gem 'composite_primary_keys'
 gem 'browser-timezone-rails'
 gem 'newrelic_rpm', '>=3.8'
+gem 'sass-rails', '>= 3.2'
+gem 'bootstrap-sass', '~> 3.1.1'
+
 
 group :development do
   gem 'pry'
@@ -38,14 +41,11 @@ group :assets do
   gem 'uglifier', '1.2.3'
   gem 'font-awesome-sass-rails'
   gem 'coffee-rails'
-  gem 'sass'
-  gem 'sass-rails'
   gem 'compass'
   gem 'compass-rails'
-  gem 'bootstrap-sass'
   gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
   gem 'bootstrap-datepicker-rails'
-  gem 'jquery-rails', '2.0.2'
+  gem 'jquery-rails', '~> 2.0.2'
   gem 'jquery-ui-rails'
 end
 

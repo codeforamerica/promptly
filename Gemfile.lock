@@ -135,8 +135,8 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
     journey (1.0.4)
-    jquery-rails (2.0.2)
-      railties (>= 3.2.0, < 5.0)
+    jquery-rails (2.0.3)
+      railties (>= 3.1.0, < 5.0)
       thor (~> 0.14)
     jquery-ui-rails (4.2.1)
       railties (>= 3.2.16)
@@ -300,7 +300,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-sqlserver-adapter (~> 3.0.0)
   bootstrap-datepicker-rails
-  bootstrap-sass
+  bootstrap-sass (~> 3.1.1)
   browser-timezone-rails
   cancan
   capybara
@@ -320,7 +320,7 @@ DEPENDENCIES
   friendly_id
   guard-rspec
   jquery-datatables-rails!
-  jquery-rails (= 2.0.2)
+  jquery-rails (~> 2.0.2)
   jquery-ui-rails
   json
   launchy
@@ -335,8 +335,7 @@ DEPENDENCIES
   role_model
   roo
   rspec-rails
-  sass
-  sass-rails
+  sass-rails (>= 3.2)
   shoulda-matchers
   simple_form
   simplecov

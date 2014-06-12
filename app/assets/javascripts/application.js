@@ -12,10 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-transition
-//= require bootstrap-dropdown
-//= require bootstrap-modal
-//= require bootstrap-tab
+//= require bootstrap
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es
 //= require dataTables/jquery.dataTables

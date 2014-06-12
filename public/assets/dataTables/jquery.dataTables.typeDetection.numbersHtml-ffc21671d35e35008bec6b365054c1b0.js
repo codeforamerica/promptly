@@ -1,1 +1,0 @@
-jQuery.fn.dataTableExt.aTypes.unshift(function(a){a=typeof a.replace=="function"?a.replace(/<.*?>/g,""):a,a=$.trim(a);var b="0123456789-",c="0123456789.",d,e=!1;d=a.charAt(0);if(b.indexOf(d)==-1)return null;for(var f=1;f<a.length;f++){d=a.charAt(f);if(c.indexOf(d)==-1)return null;if(d=="."){if(e)return null;e=!0}}return"num-html"});
