@@ -1,2 +1,2 @@
-<p><%= link_to reminder.send_date.to_s(:date_format), admin_organization_reminder_path(@organization,reminder.batch_id) %><br /></p>
-<p><%= reminder.message.message_text %></p>
+<p><%= link_to reminder.send_date.to_s(:date_format), admin_organization_reminder_path(@organization,reminder.id) %><br /></p>
+<p><%= Message.exists?(id: reminder.message_id) ? Message.find(reminder.message_id).message_text : "no message" %></p>

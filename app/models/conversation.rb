@@ -1,5 +1,5 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :date, :message, :to_number, :from_number, :message_id, :status, :batch_id, :call_id, :organization_id, :recipient_ids, :conversation_ids
+  attr_accessible :date, :message, :to_number, :from_number, :message_id, :status, :batch_id, :call_id, :organization_id, :recipient_ids, :conversation_ids, :group_id
 
   has_and_belongs_to_many :recipients
   has_many :reports
@@ -15,7 +15,7 @@ class Conversation < ActiveRecord::Base
 
   scope :undelivered, where(:status => 'failed')
   scope :undelivered_month, where("status = ? and date >= ?", "failed", DateTime.now - 1.month)
-  scope :all_responses, where(:status => 'received')
+  scope :text_responses, where(:status => 'received')
   scope :unsubscribed, where('message = ?', unsubscribed)
   scope :all_sent, where('message_id IS NOT NULL')
   scope :grouped_sent_conversations, lambda  { |*limit|

@@ -5,7 +5,7 @@ class Admin::RemindersController < OrgController
 
   def index
     @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
-    @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations
+    @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations.group_by{ |g| g.group_id}
 
     respond_to do |format|
       format.html # index.html.erb
@@ -72,7 +72,6 @@ class Admin::RemindersController < OrgController
       @reminder
     else
       @reminder.update_attributes(message_id: params[:reminder][:message_id], :send_date => DateTime.strptime(params[:reminder][:send_date], "%m/%d/%Y"))
-
     end
     if !@reminder.valid?
       render :action => 'new'

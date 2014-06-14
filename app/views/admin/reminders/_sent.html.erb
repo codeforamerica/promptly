@@ -1,18 +1,21 @@
-<% if @sent != [] %>
+<% if Conversation.organization(@organization.id).all_sent != [] %>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Reminder message</th>
       <th>Sent date</th>
+      <th>Group name</th>
       <th>Number of recipients</th>
     </tr>
   </thead>
   <tbody>
-    <% @sent.each do |batch, reminder|  %>
+    <% @sent.each do |reminder|  %>
+    <% binding.pry %>
     <tr>
-      <td><%= reminder.first.message %></td>
-      <td><%= reminder.first.date.to_s(:date_format) %></td>
-      <td><%= reminder.count %></td>
+      <td><%= reminder[1].first.message %></td>
+      <td><%= reminder[1].first.date.to_s(:date_format) %></td>
+      <td><%= reminder[0] %></td>
+      <td><%= reminder[1].count %></td>
     </tr>
     <% end %>
   </tbody>
