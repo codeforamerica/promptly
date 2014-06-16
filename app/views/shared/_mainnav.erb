@@ -13,7 +13,7 @@
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
               <% if current_user.is_super? %>
-                <% Organization.all.each do |organization| %>
+                <% Organization.order('name ASC').all.each do |organization| %>
                   <li>
                     <a tabindex="-1" href="#">
                       <%= link_to organization.name, [:admin, organization] %>
