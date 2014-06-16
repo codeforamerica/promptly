@@ -30,8 +30,8 @@ GEM
       activesupport (= 3.2.18)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
-    activerecord-sqlserver-adapter (3.0.3)
-      activerecord (~> 3.0)
+    activerecord-sqlserver-adapter (3.2.12)
+      activerecord (~> 3.2.0)
     activeresource (3.2.18)
       activemodel (= 3.2.18)
       activesupport (= 3.2.18)
@@ -94,7 +94,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
-    docile (1.1.4)
+    docile (1.1.5)
     dotenv (0.11.1)
       dotenv-deployment (~> 0.0.2)
     dotenv-deployment (0.0.2)
@@ -146,7 +146,7 @@ GEM
     launchy (2.4.2)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
-    listen (2.7.7)
+    listen (2.7.8)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -216,9 +216,9 @@ GEM
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
       rspec-mocks (~> 3.0.0)
-    rspec-core (3.0.0)
+    rspec-core (3.0.1)
       rspec-support (~> 3.0.0)
-    rspec-expectations (3.0.0)
+    rspec-expectations (3.0.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.0.0)
     rspec-mocks (3.0.1)
@@ -298,7 +298,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-sqlserver-adapter (~> 3.0.0)
+  activerecord-sqlserver-adapter (~> 3.2.0)
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.1.1)
   browser-timezone-rails
