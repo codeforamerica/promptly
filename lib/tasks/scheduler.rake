@@ -18,8 +18,6 @@ desc "This task is called by the Heroku scheduler add-on"
 				@organization.groups.each do |group|
 						@recipients = Group.find(group.id).recipients
 						@recipients.each do |recipient|
-							puts recipient.phone
-							puts number.gsub(/^\+\d/, '')
 							if recipient.phone == number.gsub(/^\+\d/, '')
 								@the_group = group.id
 							else
@@ -62,6 +60,7 @@ desc "This task is called by the Heroku scheduler add-on"
 		# Strip the + and country code for comparison
 		@recipient = Recipient.where('phone = ?' , twilio_call.from.gsub(/^\+\d/, '')).all
 		@conversation.recipients = @recipient
+		@conversation.organization_id = find_organization(@conversation, twilio_call.to)
 		@conversation.save!
 		puts @conversation.call_id
 	end
