@@ -17,13 +17,12 @@ class Reminder < ActiveRecord::Base
     limit = limit.empty? ? 10000000 : limit.first
     @r = Reminder.where('send_date >= ?', DateTime.now)
       .order("send_date")
-      .limit(limit)
     @r.each do |reminder|
       if reminder.send_date.utc < DateTime.now.utc
         @r.delete(reminder)
       end
     end
-    @r
+    @r.limit(limit)
   }
 
   def self.grouped_reminders(limit = 0)
