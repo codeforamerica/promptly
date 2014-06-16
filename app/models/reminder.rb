@@ -13,15 +13,17 @@ class Reminder < ActiveRecord::Base
 
   scope :upcoming, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
-    limit = limit.empty? ? 0 : limit.first
-    if limit != 0
-      Reminder.where('send_date >= ?', DateTime.now)
-        .order("send_date")
-        .limit(limit)
-    else
-      Reminder.where('send_date >= ?', DateTime.now)
-        .order("send_date")
+    # @reminders = []
+    limit = limit.empty? ? 10000000 : limit.first
+    @r = Reminder.where('send_date >= ?', DateTime.now)
+      .order("send_date")
+      .limit(limit)
+    @r.each do |reminder|
+      if reminder.send_date.utc < DateTime.now.utc
+        @r.delete(reminder)
+      end
     end
+    @r
   }
 
   def self.grouped_reminders(limit = 0)
