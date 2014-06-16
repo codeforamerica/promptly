@@ -4,9 +4,16 @@ class Admin::RemindersController < OrgController
   before_filter :patch_batch_id
 
   def index
-    @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
+    @upcoming_reminders = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
     @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations.group_by{ |g| g.group_id}
+    @groups = []
 
+    # This hacky loop is exclusively for SqlServer compatibility
+    @upcoming_reminders.each do |reminder|
+      if reminder.send_date.utc >= DateTime.now.utc
+        @groups << reminder
+      end
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @reminders }
