@@ -12,15 +12,27 @@ class Reminder < ActiveRecord::Base
   scope :upcoming, where("send_date >= ?", Date.current)
 
   def self.grouped_reminders(limit = 0)
+    @reminders =[]
     if limit != 0
-      Reminder.where('send_date >= ?', DateTime.now)
+      r = Reminder.where('send_date >= ?', DateTime.now)
         .order("send_date")
         .limit(limit)
         .to_set
+      # this hacky loop is to deal with SqlServer not converting dates to UTC
+      r.each do |reminder|
+        if reminder.send_date.utc >= DateTime.now.utc
+          @reminders << reminder
+        end
+      end
     else
-      Reminder.where('send_date >= ?', DateTime.now)
+      r = Reminder.where('send_date >= ?', DateTime.now)
         .order("send_date")
         .to_set
+      r.each do |reminder|
+        if reminder.send_date.utc >= DateTime.now.utc
+          @reminders << reminder
+        end
+      end
     end
   end
 
