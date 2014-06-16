@@ -139,7 +139,6 @@ class Admin::UsersController < OrgController
   # Get roles accessible by the current user
   #----------------------------------------------------
   def accessible_roles
-  	# binding.pry
     @accessible_roles = Role.accessible_by(current_ability,:read)
   end
  

@@ -39,7 +39,6 @@ class Admin::OrganizationsController < AdminController
     
     if @organization.save
       params[:organizations_user][:user_ids].each do |user_id|
-        binding.pry
         if user_id[1] == "1"
           @organization_users = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user_id[0]).first_or_create
           @org_role = params[:organizations_user]["#{user_id[0]}"]

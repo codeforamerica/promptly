@@ -10,7 +10,6 @@
   </thead>
   <tbody>
     <% @sent.each do |reminder|  %>
-    <% binding.pry %>
     <tr>
       <td><%= reminder[1].first.message %></td>
       <td><%= reminder[1].first.date.to_s(:date_format) %></td>
