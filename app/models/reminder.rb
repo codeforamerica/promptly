@@ -9,30 +9,31 @@ class Reminder < ActiveRecord::Base
   accepts_nested_attributes_for :message, :recipient
 
   scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
-  scope :upcoming, where("send_date >= ?", Date.current)
+  # scope :upcoming, where("send_date >= ?", Date.current)
+
+  scope :upcoming, lambda  { |*limit|
+    # Hack to have the lambda take an optional argument.
+    limit = limit.empty? ? 0 : limit.first
+    if limit != 0
+      Reminder.where('send_date >= ?', DateTime.now)
+        .order("send_date")
+        .limit(limit)
+    else
+      Reminder.where('send_date >= ?', DateTime.now)
+        .order("send_date")
+    end
+  }
 
   def self.grouped_reminders(limit = 0)
-    @reminders =[]
     if limit != 0
-      r = Reminder.where('send_date >= ?', DateTime.now)
+      Reminder.where('send_date >= ?', DateTime.now)
         .order("send_date")
         .limit(limit)
         .to_set
-      # this hacky loop is to deal with SqlServer not converting dates to UTC
-      r.each do |reminder|
-        if reminder.send_date.utc >= DateTime.now.utc
-          @reminders << reminder
-        end
-      end
     else
-      r = Reminder.where('send_date >= ?', DateTime.now)
+      Reminder.where('send_date >= ?', DateTime.now)
         .order("send_date")
         .to_set
-      r.each do |reminder|
-        if reminder.send_date.utc >= DateTime.now.utc
-          @reminders << reminder
-        end
-      end
     end
   end
 
