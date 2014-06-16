@@ -15,6 +15,7 @@ class Conversation < ActiveRecord::Base
 
   scope :undelivered, where(:status => 'failed')
   scope :undelivered_month, where("status = ? and date >= ?", "failed", DateTime.now - 1.month)
+  scope :delivered_month, where("status = ? and date >= ?", "sent", DateTime.now - 1.month)
   scope :text_responses, where(:status => 'received')
   scope :unsubscribed, where('message = ?', unsubscribed)
   scope :all_sent, where('message_id IS NOT NULL')

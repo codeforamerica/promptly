@@ -32,7 +32,7 @@
       <p><h1><%= @last_month %></h1><%= 'Text'.pluralize( @last_month) %> Sent</p>
     </div>
     <div class="number span1">
-      <p><h1><%= Conversation.month_calls.count %></h1>Call <%= 'Response'.pluralize( Conversation.month_calls.count) %></p>
+      <p><h1><%= Conversation.month_calls.count/2 %></h1>Call <%= 'Response'.pluralize( Conversation.month_calls.count/2) %></p>
     </div>
     <div class="number span1">
       <p><h1><%= Conversation.text_responses.count %></h1>Text <%= 'Response'.pluralize( @conversations.count) %></p>
