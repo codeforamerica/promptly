@@ -21,7 +21,7 @@ class Conversation < ActiveRecord::Base
   scope :all_sent, where('message_id IS NOT NULL')
   scope :grouped_sent_conversations, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
-    limit = limit.empty? ? limit.empty : limit.first
+    limit = limit.empty? ? 1000000 : limit.first
       Conversation.where('status = ?', 'sent')
         .order("date")
         .limit(limit)
