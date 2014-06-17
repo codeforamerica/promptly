@@ -15,19 +15,21 @@ Promptly::Application.routes.draw do
   # match 'logout', :to => 'sessions#destroy', :as => "logout"
 
   namespace :admin do
-    # root to: 'dashboard#index', as: '/dashboard/:organization_id/'
     as :super do
       root to: 'superdashboard#index', as: 'dashboard'
     end
 
     resources :organizations do
+      root to: 'dashboard#index'
       match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
       resources :users
       resources :recipients
       resources :conversations
       resources :groups
       resources :messages
-      resources :organizations
+      resources :organizations do
+        match 'organizations#index', :to => 'dashboard#index'
+      end
       resources :reminders do
         collection do
           post :confirm

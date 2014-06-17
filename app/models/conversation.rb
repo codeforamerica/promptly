@@ -21,15 +21,14 @@ class Conversation < ActiveRecord::Base
   scope :all_sent, where('message_id IS NOT NULL')
   scope :grouped_sent_conversations, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
-    limit = limit.empty? ? 0 : limit.first
-    if limit != 0
+    limit = limit.empty? ? limit.empty : limit.first
       Conversation.where('status = ?', 'sent')
         .order("date")
         .limit(limit)
-    else
-      Conversation.where('status = ?', 'sent')
-        .order("date")
-    end
+  }
+
+  scope :unique_calls_last_month, ->(org_phone_number)  { 
+    Conversation.where("call_id IS NOT NULL and message_id IS NULL and status =? and date >= ? and to_number = ?", "completed", DateTime.now - 1.month, org_phone_number).uniq_by(&:from_number)
   }
 
   def self.first_day
