@@ -5,7 +5,7 @@ class Admin::RemindersController < OrgController
 
   def index
     @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
-    @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations.group_by{ |g| g.group_id}
+    @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations.group_by{ |g| [g.group_id, g.message] }
 
     respond_to do |format|
       format.html # index.html.erb
