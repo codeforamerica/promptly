@@ -36,6 +36,8 @@ desc "Add an organization, a super admin and an organization role to the site."
     user_id: u.id,
     organization_id: o.id,
     roles_mask: mask).first_or_create 
+  u.organizations_user << ou
+  u.save!
 
   # Send org user details to console
   puts "Organization user successfully created:"

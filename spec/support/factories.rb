@@ -51,6 +51,10 @@ FactoryGirl.define do
     name "test"
   end 
 
+  factory :organizations_user do
+    roles_mask 1
+  end 
+
   factory :organization do
     name { Faker::Lorem.words(rand(1..4)).join(" ") }
     phone_number {"+14155824309"}
@@ -81,6 +85,22 @@ FactoryGirl.define do
   factory :group_with_recipient, parent: :group do
     before :create do |group|
       group.recipients = FactoryGirl.create_list(:recipient, 2)
+    end
+  end
+
+  factory :group_with_organization, parent: :group do
+    before :create do |group|
+      group.organization = FactoryGirl.create(:organization)
+    end
+  end
+
+  factory :user_with_organization, parent: :user do
+    after :create do |user|
+      user.organizations << FactoryGirl.create(:organization)
+      # user.save!
+      # user.organizations_user << user.organizations_user.first
+      # binding.pry
+      # user.organizations_user << FactoryGirl.create(:organizations_user,  user_id: user.id, organization_id: user.organizations.first.id, roles_mask: 1)
     end
   end
     

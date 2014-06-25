@@ -34,7 +34,11 @@
             </ul>
           </li>
         <% end %>
-        <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% if current_user.organizations.count >1 %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% else %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign in", new_user_session_path %></li>
