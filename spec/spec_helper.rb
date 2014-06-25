@@ -12,7 +12,6 @@ end
 puts "required simplecov"
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'rspec/autorun'
 require 'capybara/rspec'
 require 'database_cleaner'
 require 'twilio-ruby'
