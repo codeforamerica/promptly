@@ -7,7 +7,8 @@ desc "Add an organization, a super admin and an organization role to the site."
   password = "administrator"
 
   o = Organization.first_or_create(
-    name: "Default Organization"
+    name: "Default Organization",
+    phone_number: "0000000000"
   )
   o.save!
   if o.save! 

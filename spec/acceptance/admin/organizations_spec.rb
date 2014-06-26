@@ -19,4 +19,11 @@ feature "Organizations" do
     expect(page.current_path).to eq "/admin/organizations/#{@user.organizations.first.id}/organizations/new"
     expect(page).to have_content "New Organization"
   end
+
+  scenario "should load all organizations" do
+    sign_in @user
+    visit "/admin/organizations"
+    expect(page.current_path).to eq "/admin/organizations"
+    expect(page).to have_content "Your Organizations"
+  end
 end
