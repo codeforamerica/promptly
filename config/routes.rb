@@ -20,7 +20,6 @@ Promptly::Application.routes.draw do
     end
 
     resources :organizations do
-      root to: 'organizations#index'
       match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
       resources :users
       resources :recipients

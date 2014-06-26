@@ -97,11 +97,14 @@ FactoryGirl.define do
   factory :user_with_organization, parent: :user do
     after :create do |user|
       user.organizations << FactoryGirl.create(:organization)
-      # user.save!
-      # user.organizations_user << user.organizations_user.first
-      # binding.pry
-      # user.organizations_user << FactoryGirl.create(:organizations_user,  user_id: user.id, organization_id: user.organizations.first.id, roles_mask: 1)
     end
   end
+
+  factory :user_with_super, parent: :user_with_organization do
+      after :create do |user|
+        user.roles << :super
+        user.roles_mask = 1
+      end
+    end
     
 end
