@@ -40,6 +40,7 @@ class Notifier
         recipient_id: nil,
         organization_id: nil
       }
+    
     options = defaults.merge(options)
     @recipient_id, @message_id, @group_id, @organization_id = options[:recipient_id], message_id, options[:group_id], options[:organization_id]
     @recipients = []
@@ -117,6 +118,7 @@ class Notifier
   end
 
   def client
+  
     @client = Twilio::REST::Client.new(account_sid, account_token)
   end
 
