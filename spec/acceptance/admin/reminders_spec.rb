@@ -31,7 +31,6 @@ feature "Reminders" do
     @message = FactoryGirl.create :message, name: "hot snakes", organization_id: @user.organizations.first.id
     @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
     visit "/admin/organizations/#{@user.organizations.first.id}/reminders/new"
-    # save_and_open_page
     choose 'message_id_1'
     check 'group_ids_'
     fill_in('Send date', :with => '01/01/2000')
