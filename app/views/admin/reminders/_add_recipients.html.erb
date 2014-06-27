@@ -1,23 +1,27 @@
-<div class="modal hide" id="individual-recipients" tab-index="-1" role="dialog" aria-labelledby="individual-recipients-modal" aria-hidden="true">
-  <div class="modal-header">
-    <a class="close" data-dismiss="modal">&times;</a>
-    <h3>Add a New Group</h3>
-  </div>
-  <div class="modal-body">
-    <%= simple_fields_for :group do |group_fields| %>
-        <%= group_fields.input :name, input_html: { class: "span12" } %>
-        <%= fields_for :recipient do |builder| %>
-        <div class="control-group">
-          <%= builder.label :phone, "Enter a list of phone numbers", :class => 'control-label' %>
-          <div class="controls">
-          <%= builder.text_area :phone, rows: 10, class: "span12" %>
-          </div>
+<div class="modal" id="individual-recipients" tab-index="-1" role="dialog" aria-labelledby="individual-recipients-modal" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content">      
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal">&times;</a>
+        <h3>Add a New Group</h3>
+      </div>
+      <div class="modal-body">
+        <%= simple_fields_for :group do |group_fields| %>
+            <%= group_fields.input :name, input_html: { class: "span12" } %>
+            <%= fields_for :recipient do |builder| %>
+            <div class="control-group">
+              <%= builder.label :phone, "Enter a list of phone numbers", :class => 'control-label' %>
+              <div class="controls">
+              <%= builder.text_area :phone, rows: 10, class: "span12" %>
+              </div>
+              <% end %>
+            </div>
           <% end %>
-        </div>
-      <% end %>
-  </div>
-  <div class="modal-footer">
-    <a href="#" data-dismiss="modal">Cancel</a>
-    <%= link_to "Add Group", admin_organization_groups_path(@organization.id), id: "groups-submit", class: "btn btn-primary save-modal", remote: true %>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-dismiss="modal">Cancel</a>
+        <%= link_to "Add Group", admin_organization_groups_path(@organization.id), id: "groups-submit", class: "btn btn-primary save-modal", remote: true %>
+      </div>
+    </div>
   </div>
 </div>

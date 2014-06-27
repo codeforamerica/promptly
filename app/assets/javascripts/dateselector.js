@@ -1,3 +1,5 @@
 $(function() {
-	$(".the-date").datepicker();
+	$(".the-date").datepicker({
+    todayHighlight: true
+  });
 });
