@@ -1,7 +1,6 @@
 module ApplicationHelper
 
   def is_active?(page_name)
-    # binding.pry
     "active" if current_controller?(page_name)
   end
   
