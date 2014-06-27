@@ -20,6 +20,9 @@ ou = OrganizationsUser.create(
 	user_id: u.id,
 	organization_id: o.id,
 	roles_mask: 8) 
+
+u.organizations_user << ou
+u.save!
  
 # User.create([{ :first_name => 'Jamie' }, { :first_name => 'Jeremy' }]) do |u|
 #   u.is_admin = false

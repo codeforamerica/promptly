@@ -12,19 +12,33 @@
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <% current_user.organizations.each do |organization| %>
-                <li>
-                  <a tabindex="-1" href="#">
-                    <%= link_to organization.name, [:admin, organization] %>
-                  </a>
-                </li>
+              <% if current_user.is_super? %>
+                <% Organization.order('name ASC').all.each do |organization| %>
+                  <li>
+                    <a tabindex="-1" href="#">
+                      <%= link_to organization.name, [:admin, organization] %>
+                    </a>
+                  </li>
+                <% end %>
+              <% else %>
+                <% current_user.organizations.each do |organization| %>
+                  <li>
+                    <a tabindex="-1" href="#">
+                      <%= link_to organization.name, [:admin, organization] %>
+                    </a>
+                  </li>
+                <% end %>
               <% end %>
               <li class="divider"></li>
               <li><%= link_to 'Manage organizations', admin_organizations_path %></li>
             </ul>
           </li>
         <% end %>
-        <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% if current_user.organizations.count >1 %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% else %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
         <li><%= link_to "Sign in", new_user_session_path %></li>

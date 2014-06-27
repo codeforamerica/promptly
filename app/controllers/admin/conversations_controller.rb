@@ -5,11 +5,11 @@ class Admin::ConversationsController < OrgController
 
   def index
     @conversations = Conversation.all
-    @responses = Conversation.all_responses
+    @responses = Conversation.text_responses
     @undelivered = Conversation.undelivered
     @unsubscribed = Conversation.unsubscribed
     @sent_count = Conversation.grouped_sent_conversations
-    @calls = Conversation.calls
+    @calls = Conversation.all_calls
 
     respond_to do |format|
       format.html # index.html.erb

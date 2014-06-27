@@ -4,7 +4,7 @@ class Organization < ActiveRecord::Base
   has_many :organizations_user
   has_many :users, through: :organizations_user
   has_and_belongs_to_many :recipients
-  validates_presence_of :name
+  validates_presence_of :name, :phone_number
   has_many :conversations
   has_many :groups
   has_many :messages

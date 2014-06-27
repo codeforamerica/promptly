@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.13'
+ruby '2.1.2'
+
+gem 'rails', '~> 3.2.13'
 gem 'friendly_id'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'twilio-ruby'
@@ -13,7 +15,6 @@ gem 'role_model'
 gem 'simple_form'
 gem 'whenever'
 gem 'phony_rails'
-gem 'newrelic_rpm'
 gem 'json'
 gem 'rake'
 gem 'daemons'
@@ -22,6 +23,10 @@ gem 'unicorn'
 gem 'foreman'
 gem 'composite_primary_keys'
 gem 'browser-timezone-rails'
+gem 'newrelic_rpm', '>=3.8'
+gem 'sass-rails', '>= 3.2'
+gem 'bootstrap-sass', '~> 3.1.1'
+
 
 group :development do
   gem 'pry'
@@ -36,14 +41,11 @@ group :assets do
   gem 'uglifier', '1.2.3'
   gem 'font-awesome-sass-rails'
   gem 'coffee-rails'
-  gem 'sass'
-  gem 'sass-rails'
   gem 'compass'
   gem 'compass-rails'
-  gem 'bootstrap-sass'
   gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
   gem 'bootstrap-datepicker-rails'
-  gem 'jquery-rails', '2.0.2'
+  gem 'jquery-rails', '~> 2.0.2'
   gem 'jquery-ui-rails'
 end
 
@@ -64,6 +66,6 @@ group :production do
   gem 'tiny_tds'
   # Installing adapter from GH source because because need a recent fix to use
   # Devise on SQL server: https://github.com/rails-sqlserver/activerecord-sqlserver-adapter/pull/262
-  gem 'activerecord-sqlserver-adapter', git: 'git://github.com/rails-sqlserver/activerecord-sqlserver-adapter.git'
+  gem 'activerecord-sqlserver-adapter', '~> 3.2.0'
   gem 'therubyracer'
 end

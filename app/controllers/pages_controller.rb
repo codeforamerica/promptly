@@ -14,12 +14,5 @@ class PagesController < ApplicationController
         render "landing_page", layout: "application"
       end
     end
-	end
-	
-  def hsa
-  end
-
-  def documents
-  end
-  
+	end  
 end

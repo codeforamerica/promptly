@@ -6,9 +6,9 @@ $white: #FFFCFC;
 $red: #D84848;
 
 // Regular imports
-@import "bootstrap";
-@import "bootstrap-responsive";
-@import "constants.css.scss";
+@import "bootstrap/bootstrap.min";
+@import "bootstrap/bootstrap-responsive.min";
+@import "constants";
 
 
 body {

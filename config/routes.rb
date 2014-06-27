@@ -15,7 +15,6 @@ Promptly::Application.routes.draw do
   # match 'logout', :to => 'sessions#destroy', :as => "logout"
 
   namespace :admin do
-    # root to: 'dashboard#index', as: '/dashboard/:organization_id/'
     as :super do
       root to: 'superdashboard#index', as: 'dashboard'
     end

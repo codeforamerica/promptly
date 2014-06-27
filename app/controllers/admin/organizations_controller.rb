@@ -36,7 +36,6 @@ class Admin::OrganizationsController < AdminController
     else
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
-    
     if @organization.save
       params[:organizations_user][:user_ids].each do |user_id|
         if user_id[1] == "1"

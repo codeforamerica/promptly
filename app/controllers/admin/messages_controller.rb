@@ -67,7 +67,7 @@ class Admin::MessagesController < OrgController
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to organization_messages_url(@organization) }
+      format.html { redirect_to admin_organization_messages_url(@organization) }
       format.json { head :no_content }
     end
   end

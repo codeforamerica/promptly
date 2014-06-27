@@ -1,5 +1,5 @@
 class Conversation < ActiveRecord::Base
-  attr_accessible :date, :message, :to_number, :from_number, :message_id, :status, :batch_id, :call_id, :organization_id, :recipient_ids, :conversation_ids
+  attr_accessible :date, :message, :to_number, :from_number, :message_id, :status, :batch_id, :call_id, :organization_id, :recipient_ids, :conversation_ids, :group_id
 
   has_and_belongs_to_many :recipients
   has_many :reports
@@ -15,20 +15,20 @@ class Conversation < ActiveRecord::Base
 
   scope :undelivered, where(:status => 'failed')
   scope :undelivered_month, where("status = ? and date >= ?", "failed", DateTime.now - 1.month)
-  scope :all_responses, where(:status => 'received')
+  scope :delivered_month, where("status = ? and date >= ?", "sent", DateTime.now - 1.month)
+  scope :text_responses, where(:status => 'received')
   scope :unsubscribed, where('message = ?', unsubscribed)
   scope :all_sent, where('message_id IS NOT NULL')
   scope :grouped_sent_conversations, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
-    limit = limit.empty? ? 0 : limit.first
-    if limit != 0
+    limit = limit.empty? ? 1000000 : limit.first
       Conversation.where('status = ?', 'sent')
         .order("date")
         .limit(limit)
-    else
-      Conversation.where('status = ?', 'sent')
-        .order("date")
-    end
+  }
+
+  scope :unique_calls_last_month, ->(org_phone_number)  { 
+    Conversation.where("call_id IS NOT NULL and message_id IS NULL and status =? and date >= ? and to_number = ?", "completed", DateTime.now - 1.month, org_phone_number).uniq_by(&:from_number)
   }
 
   def self.first_day

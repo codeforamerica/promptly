@@ -1,5 +1,5 @@
 .big-number {
-  padding: 15px 25px;
+  padding: 0px 25px;
   font-weight: bold;
   font-size: 300%;
 }
@@ -41,8 +41,8 @@
   color: $white;
   padding: 10px;
   margin: 10px;
-  width: 100px;
-  height: 100px;
-  @include border-radius(100px);
+  width: 120px;
+  height: 120px;
+  @include border-radius(120px);
   text-align: center;
 }
