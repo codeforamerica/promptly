@@ -17,7 +17,7 @@ class Conversation < ActiveRecord::Base
   scope :undelivered_month, where("status = ? and date >= ?", "failed", DateTime.now - 1.month)
   scope :delivered_month, where("status = ? and date >= ?", "sent", DateTime.now - 1.month)
   scope :text_responses, where(:status => 'received')
-  scope :unsubscribed, where('message = ?', unsubscribed)
+  scope :unsubscribed, where('lower(message) IN (?)', unsubscribed)
   scope :all_sent, where('message_id IS NOT NULL')
   scope :grouped_sent_conversations, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.

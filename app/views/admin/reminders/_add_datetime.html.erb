@@ -4,10 +4,11 @@
 
 <div class="row-fluid">
 	<div class="span6">
-		<%= f.input :send_date, as: :string, input_html: { class: 'the-date' } %>
+   <div class="form-group"> 
+  		<%= f.input :send_date, as: :string, input_html: { class: 'the-date form-control' } %>
+    </div>
 	</div>
 	<div class="span6">
-		<%= f.input :send_time, as: :string, input_html: { value: '12:00pm' } %>
+		<%= f.input :send_time, as: :string, input_html: { value: '12:00pm', class: 'form-control' } %>
 	</div>
- <i class="glyphicon glyphicon-th"></i> 
 </div>

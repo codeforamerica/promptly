@@ -25,4 +25,21 @@ feature "Reminders" do
     visit "/admin/organizations/#{@user.organizations.first.id}/reminders/#{reminder.id}"
     expect(page).to have_content
   end
+
+  scenario "creating a reminder should work" do
+    sign_in @user
+    @message = FactoryGirl.create :message, name: "hot snakes", organization_id: @user.organizations.first.id
+    @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
+    visit "/admin/organizations/#{@user.organizations.first.id}/reminders/new"
+    choose 'message_id_1'
+    check 'group_ids_'
+    fill_in('Send date', :with => '01/01/2000')
+    fill_in('Send time', :with => '12:00pm')
+    click_button 'Schedule Reminder'
+    expect(page).to have_content @group.name
+    expect(page).to have_content @message.message_text
+    expect(page).to have_content '01/01/2000'
+    expect(page).to have_content '12:00pm'
+    expect(page).to have_content 'confirm'
+  end
 end

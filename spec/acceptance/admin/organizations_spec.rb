@@ -49,4 +49,13 @@ feature "Organizations" do
     expect(Organization.all.count).to eq @count+1
   end
 
+  scenario "should delete organization" do
+    sign_in @super
+    @count = Organization.all.count
+    @organization = Organization.first
+    visit "/admin/organizations/#{@organization.id}"
+    click_link 'Delete this organization'
+    expect(Organization.all.count).to eq @count-1
+  end
+
 end
