@@ -33,7 +33,6 @@ class Admin::MessagesController < OrgController
   def create
     @message = Message.new(params[:message])
     @message.organization_id = @organization.id
-
     respond_to do |format|
       if @message.save
         format.js
