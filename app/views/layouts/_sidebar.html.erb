@@ -20,6 +20,11 @@
 				<i class="typcn typcn-message"></i>Messages
 			<% end %>
 		<% end %>
+		<%= content_tag(:li, class: is_active?("conversations")) do %>
+			<%= link_to admin_organization_conversations_path(@organization.id) do %>
+				<i class="typcn typcn-phone-outline"></i>Conversations
+			<% end %>
+		<% end %>
 		<%= content_tag(:li, class: is_active?("users")) do %>
 			<%= link_to admin_organization_users_path(@organization.id) do %>
 				<i class="typcn typcn-user"></i>Users
