@@ -1,11 +1,13 @@
 desc "This task is called by the Heroku scheduler add-on"
 	task :update_conversations => :environment do
 
-	def find_organization(conversation, number)
-		if conversation.organization_id
-			conversation.organization_id
+	def find_organization(number)
+		if Organization.exists?(phone_number: number.to)
+			Organization.where(phone_number: number.to).first.id
+		elsif Organization.exists?(phone_number: number.from)
+			Organization.where(phone_number: number.from).first.id
 		else
-			Organization.exists?(phone_number: number) ? Organization.where(phone_number: number).first.id : nil
+			0
 		end
 	end
 
@@ -18,7 +20,7 @@ desc "This task is called by the Heroku scheduler add-on"
 				@organization.groups.each do |group|
 						@recipients = Group.find(group.id).recipients
 						@recipients.each do |recipient|
-							if recipient.phone == number.gsub(/^\+\d/, '')
+							if recipient.phone.gsub(/^\+\d/, '') == number.gsub(/^\+\d/, '')
 								@the_group = group.id
 							else
 								@the_group = nil
@@ -34,7 +36,6 @@ desc "This task is called by the Heroku scheduler add-on"
 	account_sid = ENV["TWILIO_SID"]
 	auth_token = ENV["TWILIO_TOKEN"]
 	@client = Twilio::REST::Client.new account_sid, auth_token
-
 	@client.account.sms.messages.list.each do |message|
 		@conversation = Conversation.where('message_id = ?', message.sid).first_or_create
 		@conversation.message_id = message.sid
@@ -43,10 +44,10 @@ desc "This task is called by the Heroku scheduler add-on"
     @conversation.from_number = message.from
     @conversation.to_number = message.to
     @conversation.message = message.body
-    @conversation.organization_id = find_organization(@conversation, message.to)
-    @conversation.group_id = find_group(@conversation, message.to)
+    @conversation.organization_id.nil? ? @conversation.organization_id = find_organization(message) : @conversation.organization_id = @conversation.organization_id
+    @conversation.group_id.nil? ? find_group(@conversation, message.to) : @conversation.group_id = @conversation.group_id
     @conversation.save!
-    puts @conversation.group_id
+    puts "id=#{@conversation.message_id} group=#{@conversation.group_id} org=#{@conversation.organization_id}"
 	end
 
 	# Import call information from Twilio into conversations table
@@ -60,7 +61,7 @@ desc "This task is called by the Heroku scheduler add-on"
 		# Strip the + and country code for comparison
 		@recipient = Recipient.where('phone = ?' , twilio_call.from.gsub(/^\+\d/, '')).all
 		@conversation.recipients = @recipient
-		@conversation.organization_id = find_organization(@conversation, twilio_call.to)
+		@conversation.organization_id = find_organization(twilio_call)
 		@conversation.save!
 		puts @conversation.call_id
 	end

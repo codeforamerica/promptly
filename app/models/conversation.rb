@@ -27,8 +27,8 @@ class Conversation < ActiveRecord::Base
         .limit(limit)
   }
 
-  scope :unique_calls_last_month, ->(org_phone_number)  { 
-    Conversation.where("call_id IS NOT NULL and message_id IS NULL and status =? and date >= ? and to_number = ?", "completed", DateTime.now - 1.month, org_phone_number).uniq_by(&:from_number)
+  scope :unique_calls_last_month, lambda { |org_phone_number|
+    where("call_id IS NOT NULL and message_id IS NULL and status =? and date >= ? and to_number = ?", "completed", DateTime.now - 1.month, org_phone_number)
   }
 
   def self.first_day
