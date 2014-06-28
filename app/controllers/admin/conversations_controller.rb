@@ -4,12 +4,12 @@ class Admin::ConversationsController < OrgController
   load_and_authorize_resource
 
   def index
-    @conversations = Conversation.all
-    @responses = Conversation.text_responses
-    @undelivered = Conversation.undelivered
-    @unsubscribed = Conversation.unsubscribed
-    @sent_count = Conversation.grouped_sent_conversations
-    @calls = Conversation.all_calls
+    @conversations = Conversation.organization(@organization.id).all
+    @responses = Conversation.organization(@organization.id).text_responses
+    @undelivered = Conversation.organization(@organization.id).undelivered
+    @unsubscribed = Conversation.organization(@organization.id).unsubscribed
+    @sent_count = Conversation.organization(@organization.id).grouped_sent_conversations
+    @calls = Conversation.organization(@organization.id).all_calls
 
     respond_to do |format|
       format.html # index.html.erb
