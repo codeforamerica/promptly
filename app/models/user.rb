@@ -9,10 +9,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles, :roles_mask, :name, :id
+  attr_accessor :current_password
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :roles, :roles_mask, :name, :id, :reset_password_token, :current_password
   validates_presence_of :email
 
   # optionally set the integer attribute to store the roles in,
