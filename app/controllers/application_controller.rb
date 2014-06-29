@@ -16,9 +16,5 @@ class ApplicationController < ActionController::Base
       stored_location_for(resource) || request.referer || root_path
     end
   end
-
-  def after_update_path_for(resource)
-    root_path
-  end
 end
 
