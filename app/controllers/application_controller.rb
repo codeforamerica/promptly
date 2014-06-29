@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if request.referer == sign_in_url
       admin_dashboard_path
     else
-      stored_location_for(resource) || request.referer || root_path
+      root_path || stored_location_for(resource) || request.referer
     end
   end
 end
