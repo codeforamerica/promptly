@@ -131,6 +131,7 @@ class Admin::RemindersController < OrgController
   end
 
   def auth_create
-    can? :manage, Organization, :organization_id => @organization.id
+    @organization.nil? ? @id = params["organization_id"] : @id = @organization.id
+    can? :manage, Organization, :organization_id => @id
   end
 end
