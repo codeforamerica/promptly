@@ -50,7 +50,7 @@ Promptly::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'www.promptly.io' }
+  config.action_mailer.default_url_options = { :host => ENV["DEVISE_EMAIL_HOST"] }
 
 
   # Enable threaded mode
