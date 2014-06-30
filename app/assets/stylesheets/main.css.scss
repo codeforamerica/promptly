@@ -1,3 +1,4 @@
+
 @import "bootstrap";
 @import "bootstrap/bootstrap-responsive.min";
 @import "compass/utilities/general/hacks";
@@ -13,6 +14,9 @@
 @import "charts";
 @import "data_tables";
 @import "dashboard";
+
+$grid-float-breakpoint: 1px;
+
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
@@ -111,15 +115,16 @@ h6 { font-size: 12px; line-height: 12px; }
 }
 
 //responsive
-@media (min-width: 1120px) {
+@media (min-width: 1170px) {
   #content {
     padding: 20px;
     margin-left: -2px;
+    width: 1010px;
   }
   #sidebar-left {
     background: transparent;
     margin: -1px 0px 0px 25px;
-    padding-top: 0px;
+    padding: 0px;
   }
   .sidebar-nav > ul {
     margin: 0px 0px 0px -20px;
@@ -130,17 +135,34 @@ h6 { font-size: 12px; line-height: 12px; }
     position: relative;
     z-index: 2;
   }
+  .container {
+    width: 1010px;
+  }
 }
 
 //responsive
-@media (max-width: 1120px) {
+@media (max-width: 1170px) {
   #content {
     padding: 20px;
     margin-left: -2px;
+    // width: 768px;
   }
   #sidebar-left {
     background: transparent;
     margin: -1px 0px 0px 0px;
-    padding-top: 0px;
+    padding: 0px;
+  }
+  .container {
+    // width: 768px;
+  }
+}
+
+
+@media (min-width: 1201px) {
+  .container {
+    width: 1030px;
+  }
+  #content {
+    width: 1030px;
   }
 }
