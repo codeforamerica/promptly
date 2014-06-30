@@ -11,7 +11,6 @@ Time::DATE_FORMATS[:time_only] = lambda { |time| time.strftime("%l:%M%p %Z") }
 Time::DATE_FORMATS[:date_only] = lambda { |time| time.strftime("%B %d, %Y") }
 Time::DATE_FORMATS[:input_format] = "%yy %mm %dd %H:%M"
 
-
 ActionMailer::Base.smtp_settings = {
   :address        => 'smtp.sendgrid.net',
   :port           => '587',

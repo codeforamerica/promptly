@@ -6,3 +6,16 @@
   border-radius: 0px;
   background-image: none;
 }
+
+//responsive
+@media (max-width: 500px) {
+  #content {
+    padding: 20px;
+    margin-left: -2px;
+  }
+  #sidebar-left {
+    background: transparent;
+    margin: -1px 0px 0px 0px;
+    padding-top: 0px;
+  }
+}
