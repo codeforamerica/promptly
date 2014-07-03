@@ -22,6 +22,12 @@ feature "Organizations" do
     expect(page).to have_content "New Organization"
   end
 
+  scenario "should show roles" do
+    sign_in @user
+    visit "/admin/organizations/#{@user.organizations.first.id}/edit"
+    expect(page).to have_content "admin"
+  end
+
   scenario "should create a new organization" do
     sign_in @user
     visit "/admin/organizations/new"
@@ -41,12 +47,13 @@ feature "Organizations" do
     @count = Organization.all.count
     visit "/admin/organizations/new"
     fill_in('Name', :with => 'hot snakes')
-    fill_in('Phone number', :with => '999')
+    fill_in('Phone number', :with => '9999999999')
     check('organizations_user_user_ids_1')  
     select('admin', :from => 'organizations_user_1[roles_mask]')
     @super.organizations << Organization.last
     click_button 'Create Organization'
     expect(Organization.all.count).to eq @count+1
+    expect(page).to have_content "hot snakes"
   end
 
   scenario "should delete organization" do

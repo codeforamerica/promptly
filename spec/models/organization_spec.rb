@@ -7,17 +7,26 @@ describe Organization do
 
   describe "creation" do
     it "should be a valid model" do
-      lambda { Organization.new }.should_not raise_error
+      expect(lambda { Organization.new }).not_to raise_error
     end
   end
 
   it "should have a users association" do
-    lambda { @organization.users }.should_not raise_error
+    expect(lambda { @organization.users }).not_to raise_error
   end
 
   it "should take another user" do
     @user = FactoryGirl.create :user
     @organization.users << @user
-    @organization.save.should == true    
+    expect(@organization.save).to eq true    
+  end
+
+  describe "save_org_users" do
+    it "should save users to organizations_user" do
+      @user = FactoryGirl.create :user
+      test_array = []
+      test_array << @user.id
+      Organization.save_org_users(test_array)
+    end
   end
 end
