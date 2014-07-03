@@ -12,3 +12,4 @@ before_script:
 script: bundle exec rake spec
 notifications:
   webhooks: http://cfa-project-monitor.herokuapp.com/projects/e794be6b-2609-4246-b34a-6b20eb79b2c0/status
+  slack: postcode:H2UZeySMZDDB927JDoldOkSx
