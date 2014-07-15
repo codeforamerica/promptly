@@ -37,7 +37,7 @@ class Admin::OrganizationsController < AdminController
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
     if @organization.save
-      save_org_users(params[:organizations_user][:user_ids])
+      Organization.save_org_users(@organization.id, params[:organizations_user][:user_ids], params[:organizations_user])
       redirect_to admin_organization_path(@organization) 
     else
       render action: "new", status: "unprocessable_entity"
@@ -47,16 +47,15 @@ class Admin::OrganizationsController < AdminController
   def update
     authorize
     @organization = Organization.update(params[:id], params[:organization])
-    binding.pry
     if params[:organization][:phone_number].length <12 && params[:organization][:phone_number].length >0
       @phone = "+1" + params[:organization][:phone_number]
       @organization.update_attributes(:phone_number => @phone)
     else
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
-    save_org_users(params[:organizations_user][:user_ids])
     
     if @organization.save
+      Organization.save_org_users(@organization.id, params[:organizations_user][:user_ids], params[:organizations_user])
       redirect_to admin_organization_path(@organization)
     else
       render action: "edit", status: "unprocessable_entity"
