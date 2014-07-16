@@ -17,12 +17,11 @@
 //= require raphael
 //= require morris
 //= require graphs
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require foundation-datepicker
+//= require formbuilder
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTablePagination
-//= require formbuilder
 //= require dateselector
 //= require confirm-items
 //= require browser_timezone_rails/application.js

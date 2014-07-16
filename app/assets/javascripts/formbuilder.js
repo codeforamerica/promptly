@@ -20,7 +20,7 @@
   }
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
-  $('.dateSelect').datepicker({
+  $('.dateSelect').fdatepicker({
     format: 'mm/dd/yyyy'
   });
 
