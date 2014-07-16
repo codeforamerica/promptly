@@ -33,6 +33,8 @@ group :development do
   gem 'pry-nav'
   gem 'dotenv-rails'
   gem 'database_cleaner'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Gems used only for assets and not required
@@ -43,7 +45,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'compass'
   gem 'compass-rails'
-  gem 'jquery-datatables-rails', git: 'git://github.com/rweng/jquery-datatables-rails.git'
+  gem 'jquery-datatables-rails', '~> 2.1.10.0.2'
   gem 'bootstrap-datepicker-rails'
   gem 'jquery-rails', '~> 2.0.2'
   gem 'jquery-ui-rails'

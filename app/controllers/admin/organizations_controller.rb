@@ -37,14 +37,7 @@ class Admin::OrganizationsController < AdminController
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
     if @organization.save
-      params[:organizations_user][:user_ids].each do |user_id|
-        if user_id[1] == "1"
-          @organization_users = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user_id[0]).first_or_create
-          @org_role = params[:organizations_user]["#{user_id[0]}"]
-          @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles]))
-          @organization_users.save
-        end
-      end
+      Organization.save_org_users(@organization.id, params[:organizations_user][:user_ids], params[:organizations_user])
       redirect_to admin_organization_path(@organization) 
     else
       render action: "new", status: "unprocessable_entity"
@@ -60,20 +53,9 @@ class Admin::OrganizationsController < AdminController
     else
       @organization.update_attributes(:phone_number => params[:organization][:phone_number])
     end
-    params[:organizations_user][:user_ids].each do |user_id|
-      if user_id[1] == "1"
-        @organization_users = OrganizationsUser.where(:organization_id => params[:id], :user_id => user_id[0]).first_or_create
-        @org_role = params[:organizations_user]["#{user_id[0]}"]
-        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles_mask]))
-        @organization_users.save
-      else
-        if OrganizationsUser.exists?(:organization_id => params[:id], :user_id => user_id[0])
-          OrganizationsUser.find(params[:id], user_id[0]).delete
-        end
-      end
-    end
     
     if @organization.save
+      Organization.save_org_users(@organization.id, params[:organizations_user][:user_ids], params[:organizations_user])
       redirect_to admin_organization_path(@organization)
     else
       render action: "edit", status: "unprocessable_entity"
