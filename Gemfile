@@ -33,6 +33,8 @@ group :development do
   gem 'pry-nav'
   gem 'dotenv-rails'
   gem 'database_cleaner'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 # Gems used only for assets and not required
