@@ -25,7 +25,9 @@ gem 'composite_primary_keys'
 gem 'browser-timezone-rails'
 gem 'newrelic_rpm', '>=3.8'
 gem 'sass-rails', '>= 3.2'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'foundation-rails'
+gem 'morrisjs-rails'
+gem 'raphael-rails'
 
 
 group :development do

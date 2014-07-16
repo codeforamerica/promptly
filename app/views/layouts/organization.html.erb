@@ -1,11 +1,9 @@
 <% content_for :content do %>
-  <div id="sidebar-left" class="col-xs-1">
+  <div id="sidebar-left" class="small-2 columns">
     <%= render 'layouts/sidebar' %>
   </div>
-  <div id="content" class="col-xs-11 col-lg-11">
-    <div class="span12">
-      <h1><%= link_to @organization.name, admin_organization_path(@organization.id) %></h1>
-    </div>
+  <div id="content" class="small-10 columns">
+    <h1><%= link_to @organization.name, admin_organization_path(@organization.id) %></h1>
     <%= yield %>
   </div>
 <% end %>
