@@ -1,13 +1,13 @@
 <div class="row">
-  <div class="pageHeader small-12 columns">
+  <div class="pageHeader small-12 large-12 columns">
     <span class="pageTitle small-3">All Reminders</span>
-    <div class="small-12 small-offset-10">
+    <div class="small-12 large-12 small-offset-6 large-offset-8">
       <%= link_to 'Schedule a reminder', new_admin_organization_reminder_path(@organization.id), :class => 'button large' %>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="small-12">
+  <div class="small-12 large-12">
     <ul class="tabs" data-tab>
       <li class="tab-title active"><a href="#upcoming">Scheduled reminders</a></li>
       <li class="tab-title"><a href="#sent">Sent reminders</a></li>

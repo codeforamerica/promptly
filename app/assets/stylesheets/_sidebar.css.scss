@@ -92,8 +92,8 @@ $loginHeight: 20px;
   	@include promptly-border-radius;
 }
 
-.nav-tabs.nav-stacked  > li.active > a {
-	margin: 1px 0px 0px 0px;
+.main-menu > li.active > a {
+	margin: 1px -20px 0px 0px;
   border: 2px solid $borderColor;
 	border-right: none;
   color: $blue;
