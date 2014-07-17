@@ -14,10 +14,10 @@
     </ul>
     <div class="tabs-content">
       <div class="content active" id="upcoming">
-        <% if @groups != [] %>
-          <%= render('upcoming', :collection => @groups) %>
+        <% if @groups.empty? %>
+          <div class="panel">There are no upcoming reminders.</div>
         <% else %>
-          <%= 'There are no upcoming reminders.' %>
+          <%= render('upcoming', :collection => @groups) %>
         <% end %>
       </div>
       <div class="content" id="sent">
