@@ -1,4 +1,4 @@
-  <div class="reveal-modal" data-reveal id="new-message">
+  <div class="reveal-modal small" data-reveal id="new-message">
       <a class="close-reveal-modal">&#215;</a>
       <h3>Create New Message</h3>
     <div class="modal-body">
@@ -9,6 +9,6 @@
       <% end %>
     </div>
     <div class="modal-footer">
-    <%= button_to "Save Message", admin_organization_messages_path(@organization), id: "new-message-submit", class: "button save-modal", remote: true %>
+    <%= link_to "Save Message", admin_organization_messages_path(@organization), id: "new-message-submit", class: "button save-modal", remote: true %>
     </div>
   </div>

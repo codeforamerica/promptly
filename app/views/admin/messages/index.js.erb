@@ -2,9 +2,10 @@ var message = $('#message_message_text').val();
 var name = $('#message_name').val();
 var newMessage = $.ajax({
   data: { 
-  			'message[message_text]': message,
-			'message[name]': name
-		},
+        'message[message_text]': message,
+      'message[name]': name
+    },
   type: 'post',
-  url: '<%= j admin_organization_messages_url %>'
+  url: '<%= j admin_organization_messages_path %>'
 });
+console.log(newMessage);
