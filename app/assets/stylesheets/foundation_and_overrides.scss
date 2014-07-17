@@ -7,7 +7,8 @@
 //
 
 // This is the default html and body font-size for the base rem value.
-// $rem-base: 16px;
+// $base-font-size: 10px;
+// $rem-base: $base-font-size;
 
 // Allows the use of rem-calc() or lower-bound() in your settings
 @import "foundation/functions";
@@ -64,7 +65,7 @@ $row-width: rem-calc(1200);
 $primary-color: $blue;
 // $secondary-color: #e7e7e7;
 // $alert-color: #f04124;
-// $success-color: #43AC6A;
+$success-color: #EEA758;
 // $warning-color: #f08a24;
 // $info-color: #a0d3e8;
 

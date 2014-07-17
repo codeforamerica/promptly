@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require reminders
 //= require raphael
 //= require morris
 //= require graphs

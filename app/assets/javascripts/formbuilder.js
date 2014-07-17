@@ -45,7 +45,7 @@
 
   $('#messages-table').dataTable( {
         "sDom": '<"top"f>rt<"bottom"p><"clear">',
-        "sPaginationType": "bootstrap",
+        "sPaginationType": "full_numbers",
         "oLanguage": {
           "sLengthMenu": "_MENU_ records per page"
         }
