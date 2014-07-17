@@ -46,21 +46,17 @@ feature "Reminders" do
   scenario "creating a new message should add it to the message list" do
     sign_in @user
     @count = Message.all.count
-    # @message = FactoryGirl.create :message, name: "hot snakes", organization_id: @user.organizations.first.id
-    # @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
     visit "/admin/organizations/#{@user.organizations.first.id}/reminders/new"
     click_link 'Create new message'
     fill_in('message_name', :with => 'audit')
     fill_in('Message text', :with => 'in progress')
+    click_link 'new-message-submit'
     expect(Message.all.count).to eq @count+1
   end
 
   scenario "creating a new group should add it to the group list" do
     sign_in @user
     @count = Group.all.count
-    # @message = FactoryGirl.create :message, name: "hot snakes", organization_id: @user.organizations.first.id
-    # @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
-    visit "/admin/organizations/#{@user.organizations.first.id}/reminders/new"
     click_link 'Add New Group'
     fill_in('group_name', :with => 'unwound')
     fill_in('recipient_phone', :with => '9999999999')

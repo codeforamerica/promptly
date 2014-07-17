@@ -3,11 +3,10 @@ class Admin::MessagesController < OrgController
   
   def index
   	@messages = Message.accessible_by(current_ability).organization(params[:organization_id]).all
-
     respond_to do |format|
+      format.js
       format.html # index.html.erb
       format.json { render json: @messages }
-      format.js
     end
   end
 
@@ -33,15 +32,17 @@ class Admin::MessagesController < OrgController
   def create
     @message = Message.new(params[:message])
     @message.organization_id = @organization.id
+    # binding.pry
     respond_to do |format|
       if @message.save
+        # binding.pry
         format.js
         format.html { redirect_to [:admin, @organization, @message], notice: 'Message was successfully created.' }
         format.json { render json: @message, status: :created, location: @message }
       else
         format.html { render action: "new" }
         format.json { render json: @message.errors, status: :unprocessable_entity }
-        format.js
+        format.js 
       end
     end
   end

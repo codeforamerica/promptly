@@ -6,6 +6,6 @@ var newMessage = $.ajax({
       'message[name]': name
     },
   type: 'post',
-  url: '<%= j admin_organization_messages_path %>'
+  url: '<%= j admin_organization_messages_path(params[:organization_id]) %>'
 });
 console.log(newMessage);
