@@ -17,9 +17,9 @@
     <tr>
       <td><%= reminders.message.message_text || reminders.name %></td>
       <td><%= reminders.send_date.to_s(:date_format) %></td>
-      <td><%= reminders.group %></td>
+      <td><%= Group.where('id = reminders.group_ids').name %></td>
       <td><%= link_to recipient_count, [:admin, @organization, @reminder] %></td>
-      <td><%= link_to 'Edit', edit_admin_organization_reminder_path(@organization, reminders.id), :class => 'btn btn-default btn-mini' %> <%= link_to 'Delete', admin_organization_reminder_path(@organization, reminders.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+      <td><%= link_to 'Edit', edit_admin_organization_reminder_path(@organization, reminders.id), :class => 'button secondary tiny' %> <%= link_to 'Delete', admin_organization_reminder_path(@organization, reminders.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
     </tr>
     <% end %>
   </tbody>
