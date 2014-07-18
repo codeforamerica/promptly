@@ -27,8 +27,9 @@
 
   <div class="row-fluid" id="submit">
     <div class="span12">
+      <%= f.submit "Create Notification", :class => 'button' %>
+      <br>
       <%= link_to "Cancel", admin_organization_dashboard_path(@organization.id) %>
-      <%= f.submit "Schedule Reminder", :class => 'btn btn-primary' %>
     </div>
   </div>
 <% end %> <!-- /form -->
