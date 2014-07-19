@@ -324,6 +324,7 @@ DEPENDENCIES
   jquery-ui-rails
   json
   launchy
+  listen
   newrelic_rpm (>= 3.8)
   pg
   phony_rails
