@@ -25,7 +25,7 @@ Promptly::Application.routes.draw do
       resources :conversations
       resources :groups
       resources :messages
-      resources :organizations
+      # resources :organizations
       resources :reminders do
         collection do
           post :confirm

@@ -10,6 +10,7 @@ class Admin::OrganizationsController < AdminController
 
   def show
     @organization = Organization.find(params[:id])
+    redirect_to(admin_organization_dashboard_path(@organization.id))
   end
 
   def edit
