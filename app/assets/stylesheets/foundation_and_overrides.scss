@@ -154,7 +154,6 @@ $success-color: #EEA758;
 // These control how subheaders are styled.
 // $subheader-line-height: 1.4;
 // $subheader-font-color: scale-color($header-font-color, $lightness: 35%);
-// $subheader-font-weight: $font-weight-normal;
 // $subheader-top-margin: .2rem;
 // $subheader-bottom-margin: .5rem;
 
@@ -1021,8 +1020,8 @@ $success-color: #EEA758;
 // $include-html-nav-classes: $include-html-classes;
 
 // We use these to control margin and padding
-// $sub-nav-list-margin: rem-calc(-4 0 18);
-// $sub-nav-list-padding-top: rem-calc(4);
+// $sub-nav-list-margin: rem-calc(-3 0 18);
+$sub-nav-list-padding-top: rem-calc(10);
 
 // We use this to control the definition
 // $sub-nav-font-family: $body-font-family;
@@ -1030,7 +1029,7 @@ $success-color: #EEA758;
 // $sub-nav-font-color: #999;
 // $sub-nav-font-weight: $font-weight-normal;
 // $sub-nav-text-decoration: none;
-// $sub-nav-padding: rem-calc(3 16);
+$sub-nav-padding: rem-calc(15 16);
 $sub-nav-border-radius: 0px;
 // $sub-nav-font-color-hover: scale-color($sub-nav-font-color, $lightness: -25%);
 
@@ -1214,11 +1213,11 @@ $topbar-bg-color: $blue;
 // $topbar-link-color-active: #fff;
 // $topbar-link-color-active-hover: #fff;
 // $topbar-link-weight: $font-weight-normal;
-// $topbar-link-font-size: rem-calc(13);
+$topbar-link-font-size: rem-calc(15);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 // $topbar-link-bg: $topbar-bg;
-// $topbar-link-bg-color-hover: #555555;
-// $topbar-link-bg-hover: #272727;
+// $topbar-link-bg-color-hover: darken($blue, 75);
+// $topbar-link-bg-hover: darken($blue, 75);
 // $topbar-link-bg-active: $primary-color;
 // $topbar-link-bg-active-hover: scale-color($primary-color, $lightness: -14%);
 // $topbar-link-font-family: $body-font-family;

@@ -107,6 +107,7 @@ $navbarLinkBackgroundActive: $darkBlue;
 
 .promptly-sub-nav {
 	background: $lightGray;
+	margin-top: 2px;
   @include sub-nav(
     // Control the color of the divider between links.
     // Control your font-size per label.
@@ -118,4 +119,19 @@ $navbarLinkBackgroundActive: $darkBlue;
   .right-side {
   	float: right;
   }
+  dd a {
+  	text-transform: none;
+  	&:hover {
+  		background: $blue;
+  		border: none;
+  		color: #fff;
+  	}
+  }
+}
+
+.top-bar a {
+	border: none;
+	&:hover {
+		border: none;
+	}
 }
