@@ -1,8 +1,11 @@
 <% render 'sorting' %>
 
-<div class="row-fluid">
-  <span class="pageTitle span3">All Messages</span>
-  <table class="table table-striped">
+  <%= link_to 'CREATE MESSAGE', new_admin_organization_message_path(@organization), :class => 'button' %>
+
+<div class="row">
+  <div class="large-12 columns">
+  <h3>All Messages</h3>
+  <table>
     <thead>
       <tr>
         <th>Name</th>
@@ -23,7 +26,7 @@
       <% end %>
     </tbody>
   </table>
-  <%= link_to 'Create message', new_admin_organization_message_path(@organization), :class => 'btn btn-primary' %>
+  </div>
 </div>
 
 <script>
