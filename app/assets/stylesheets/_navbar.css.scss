@@ -104,3 +104,15 @@ $navbarLinkBackgroundActive: $darkBlue;
 		}
 	}
 } 
+
+.promptly-sub-nav {
+	background: $lightGray;
+  @include sub-nav(
+    // Control the color of the divider between links.
+    // Control your font-size per label.
+    $font-size: rem-calc(18),
+    // Change the background color for your labels
+    $active-bg: white,
+    $font-color: $blue
+  );
+}

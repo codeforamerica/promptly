@@ -1,13 +1,13 @@
 <% if @current_user.has_role? :admin %>
-  <dl class="sub-nav">
-    <dt><%= @organization.name %></dt>
-    <%= content_tag(:dt, class: is_active?("dashboard")) do %>
+  <dl class="promptly-sub-nav">
+    <dt id="subnav_title" class="small-2"><%= @organization.name %></dt>
+    <%= content_tag(:dt, {class: is_active?("dashboard")}) do %>
       <%= link_to admin_organization_dashboard_path(@organization.id) do %>
         <i class="fi-home large"></i>&nbsp;Dashboard
       <% end %>
     <% end %>
     <%= content_tag(:dt, class: is_active?("reminders")) do %>
-      <%= link_to admin_organization_reminders_path(@organization.id) do %>
+      <%= link_to admin_organization_reminders_path(@organization.id), class: "small-2" do %>
         <i class="fi-telephone large"></i>&nbsp;Reminders
       <% end %>
     <% end %>
@@ -33,7 +33,7 @@
     <% end %>
   </dl>
 <% else %>
-  <dl class="sub-nav">
+  <dl class="promptly-sub-nav">
     <dt><%= @organization.name %></dt>
     <%= content_tag(:dt, class: is_active?("dashboard")) do %>
       <%= link_to admin_organization_dashboard_path(@organization.id) do %>
