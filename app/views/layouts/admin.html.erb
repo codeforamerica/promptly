@@ -1,0 +1,7 @@
+<% content_for :admin do %>
+  <%= render 'shared/adminnav' %>
+  <div id="content" class="small-10 columns">
+    <%= yield %>
+  </div>
+<% end %>
+<%= render file: "layouts/application" %>

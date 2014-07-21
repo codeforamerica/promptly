@@ -1,0 +1,7 @@
+<% if current_user.is_super? %>
+  <dl class="sub-nav">
+    <dt>Admin</dt>
+    <dd class="active"><%= link_to 'Manage organizations', admin_organizations_path %></dd>
+    <dd><a href="#">Manage Users</a></dd>
+  </dl>
+<% end %>

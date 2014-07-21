@@ -1,8 +1,6 @@
-<% content_for :content do %>
-  <div id="sidebar-left" class="small-2 columns">
-    <%= render 'layouts/sidebar' %>
-  </div>
-  <div id="content" class="small-10 columns">
+<% content_for :organization do %>
+  <%= render 'shared/subnav' %>
+  <div id="content" class="small-12 columns">
     <h1><%= link_to @organization.name, admin_organization_path(@organization.id) %></h1>
     <%= yield %>
   </div>

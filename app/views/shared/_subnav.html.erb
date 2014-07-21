@@ -1,0 +1,65 @@
+<% if @current_user.has_role? :admin %>
+  <dl class="sub-nav">
+    <dt><%= @organization.name %></dt>
+    <%= content_tag(:dt, class: is_active?("dashboard")) do %>
+      <%= link_to admin_organization_dashboard_path(@organization.id) do %>
+        <i class="fi-home large"></i>&nbsp;Dashboard
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("reminders")) do %>
+      <%= link_to admin_organization_reminders_path(@organization.id) do %>
+        <i class="fi-telephone large"></i>&nbsp;Reminders
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("groups")) do %>
+      <%= link_to admin_organization_groups_path(@organization.id) do %>
+        <i class="fi-torsos-all large"></i>&nbsp;Groups
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("messages")) do %>
+      <%= link_to admin_organization_messages_path(@organization.id) do %>
+        <i class="fi-pencil large"></i>&nbsp;Messages
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("conversations")) do %>
+      <%= link_to admin_organization_conversations_path(@organization.id) do %>
+        <i class="fi-comments large"></i>&nbsp;Conversations
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("users")) do %>
+      <%= link_to admin_organization_users_path(@organization.id) do %>
+        <i class="fi-torso-female large"></i>&nbsp;Users
+      <% end %>
+    <% end %>
+  </dl>
+<% else %>
+  <dl class="sub-nav">
+    <dt><%= @organization.name %></dt>
+    <%= content_tag(:dt, class: is_active?("dashboard")) do %>
+      <%= link_to admin_organization_dashboard_path(@organization.id) do %>
+        <i class="fi-home large"></i>&nbsp;Dashboard
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("reminders")) do %>
+      <%= link_to admin_organization_reminders_path(@organization.id) do %>
+        <i class="fi-telephone large"></i>&nbsp;Reminders
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("groups")) do %>
+      <%= link_to admin_organization_groups_path(@organization.id) do %>
+        <i class="fi-torsos-all large"></i>&nbsp;Groups
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("messages")) do %>
+      <%= link_to admin_organization_messages_path(@organization.id) do %>
+        <i class="fi-pencil large"></i>&nbsp;Messages
+      <% end %>
+    <% end %>
+    <%= content_tag(:dt, class: is_active?("conversations")) do %>
+      <%= link_to admin_organization_conversations_path(@organization.id) do %>
+        <i class="fi-comments large"></i>&nbsp;Conversations
+      <% end %>
+    <% end %>
+  </dl>
+<% end %>
+

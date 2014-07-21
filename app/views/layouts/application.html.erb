@@ -29,8 +29,10 @@
       </div>
 
       <div class="row">
-        <% if content_for? :content %>
-          <%= yield :content %>
+        <% if content_for? :organization %>
+          <%= yield :organization %>
+        <% elsif content_for? :admin %>
+          <%= yield :admin %>
         <% else %>
           <div id="content">
             <%= yield %>
