@@ -1040,7 +1040,7 @@ $sub-nav-border-radius: 0px;
 // $sub-nav-active-bg: $primary-color;
 // $sub-nav-active-bg-hover: scale-color($sub-nav-active-bg, $lightness: -14%);
 $sub-nav-active-color: $blue;
-// $sub-nav-active-padding: $sub-nav-padding;
+$sub-nav-active-padding:rem-calc(15 16);
 // $sub-nav-active-cursor: default;
 
 // $sub-nav-item-divider: "";
