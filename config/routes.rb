@@ -6,19 +6,18 @@ Promptly::Application.routes.draw do
     put 'users'      => 'devise/registrations#update', :as => 'user_registration'
   end
 
-  authenticated :user do
-    root :to => 'admin::superdashboard#index'
-  end
-  root :to => 'pages#splash'
+  root :to => 'pages#home'
 
 
   # match 'logout', :to => 'sessions#destroy', :as => "logout"
-
-  namespace :admin do
-    as :super do
-      root to: 'superdashboard#index', as: 'dashboard'
+    authenticated :user do
+      root :to => 'pages#home'
     end
 
+  namespace :admin do
+      as :super do
+        root to: 'superdashboard#index', as: 'dashboard'
+      end
     resources :organizations do
       match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
       resources :users

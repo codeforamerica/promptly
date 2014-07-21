@@ -4,7 +4,7 @@ feature "Organizations" do
   before do
     @user = FactoryGirl.create :user_with_organization
     @user.organizations_user.first.update_attributes(roles_mask: 1)
-    @super = FactoryGirl.create :user_with_super
+    @super = FactoryGirl.create :admin_with_organization
     @super.update_attributes(roles_mask: 1)
   end
 
