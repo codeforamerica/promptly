@@ -8,6 +8,11 @@
     <!-- Right Nav Section -->
     <ul class="right">
       <% if user_signed_in? %>
+        <% if current_user.organizations.count >1 %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% else %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% end %>
         <% if current_user.organizations.length > 0 %>
           <li class="has-dropdown">
             <a href="#">Your Organizations</a>
@@ -33,11 +38,6 @@
               <li><%= link_to 'Manage organizations', admin_organizations_path %></li>
             </ul>
           </li>
-        <% end %>
-        <% if current_user.organizations.count >1 %>
-          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
-        <% else %>
-          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
         <% end %>
         <% if current_user.is_super? %>
           <li><%= link_to "Admin", admin_dashboard_path %></li>

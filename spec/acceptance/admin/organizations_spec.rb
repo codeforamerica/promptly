@@ -8,11 +8,11 @@ feature "Organizations" do
     @super.update_attributes(roles_mask: 1)
   end
 
-  it "should load the page when logged in" do
+  it "should load the dashboard when logged in" do
     sign_in @user
-    visit "/admin/organizations/#{@user.organizations.first.id}/organizations"
-    expect(page.current_path).to eq "/admin/organizations/#{@user.organizations.first.id}/organizations"
-    expect(page).to have_content "Organizations"
+    visit "/admin/organizations/#{@user.organizations.first.id}/"
+    expect(page.current_path).to eq "/admin/organizations/#{@user.organizations.first.id}/dashboard"
+    expect(page).to have_content "Dashboard"
   end
 
   scenario "should load the creation page" do
@@ -60,7 +60,7 @@ feature "Organizations" do
     sign_in @super
     @count = Organization.all.count
     @organization = Organization.first
-    visit "/admin/organizations/#{@organization.id}"
+    visit "/admin/organizations/#{@organization.id}/edit"
     click_link 'Delete this organization'
     expect(Organization.all.count).to eq @count-1
   end

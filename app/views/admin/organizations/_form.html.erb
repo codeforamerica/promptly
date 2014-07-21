@@ -2,9 +2,9 @@
   <%= f.input :name, inline_label: "Name" %>
   <%= f.input :phone_number, inline_label: "Phone Number" %>
   <% f.association :users, as: :check_boxes, label: "Users" %>
- <div class="row-fluid">
-  <div class="span12">
-    <table class="table table-hover datatable" id="add-groups">
+ <div class="row">
+  <div class="small-12 columns">
+    <table class="table table-hover datatable small-12" id="add-groups">
       <thead>
         <tr>
           <th>Add to Organziation</th>
@@ -41,16 +41,17 @@
           <td></td>
           <td></td>
           <% if @organization.id? %>
-            <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn'%> </td>
+            <td><%= link_to_if (@current_user.has_any_role? :admin, :super), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'button secondary tiny'%> </td>
           <% else %>
             <td> </td>
           <% end %>
         </tr>
       </tbody>
     </table>
-    
   </div>
 </div>
   
-  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= f.button :submit, :class => 'button small' %>
+  <%= link_to_if (@current_user.has_any_role? :admin, :super), "Delete this organization", [:admin, @organization], method: :delete, data: { confirm: 'Are you sure?' }, :class => 'button alert small right' -%>
+  
 <% end %>

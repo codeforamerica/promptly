@@ -24,7 +24,7 @@ class Admin::OrganizationsController < AdminController
     if @organization.destroy
       redirect_to action: "index", notice: "Organization successfully deleted."
     else
-      redirect_to admin_organization_path(@organization)
+      redirect_to admin_organizations_path
     end    
   end
  
@@ -39,7 +39,7 @@ class Admin::OrganizationsController < AdminController
     end
     if @organization.save
       Organization.save_org_users(@organization.id, params[:organizations_user][:user_ids], params[:organizations_user])
-      redirect_to admin_organization_path(@organization) 
+      redirect_to admin_organizations_path 
     else
       render action: "new", status: "unprocessable_entity"
     end
@@ -57,7 +57,7 @@ class Admin::OrganizationsController < AdminController
     
     if @organization.save
       Organization.save_org_users(@organization.id, params[:organizations_user][:user_ids], params[:organizations_user])
-      redirect_to admin_organization_path(@organization)
+      redirect_to admin_organizations_path
     else
       render action: "edit", status: "unprocessable_entity"
     end
