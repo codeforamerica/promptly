@@ -12,17 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.es
+//= require foundation
+//= require raphael
+//= require morris
+//= require graphs
+//= require foundation-datepicker
+//= require formbuilder
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTablePagination
-//= require formbuilder
 //= require dateselector
 //= require confirm-items
-//= require reminders
-//= require morris.min
-//= require graphs
 //= require browser_timezone_rails/application.js
 //= require_tree .
+
+$(function(){ $(document).foundation(); });

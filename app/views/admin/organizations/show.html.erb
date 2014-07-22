@@ -1,13 +1,13 @@
-<div id="sidebar-left" class="col-xs-1">
+<div id="sidebar-left" class="small-2 columns">
   <%= render 'layouts/sidebar' %>
 </div>
-<div class="org-container col-xs-10">
-  <div class="row-fluid">
+<div class="org-container small-10 columns">
+  <div class="row">
     <div>
       <h1><%= @organization.name -%></h1>
       <span class="pageTitle span3">All Users</span>
       <% if @organization.users.any? %>
-      <table class="table table-striped span8">
+      <table class="table table-striped small-8">
         <thead>
           <tr>
             <th>Name</th>
@@ -28,7 +28,7 @@
       <% end %>
     </div>
   </div>
-  <div class="row-fluid">
+  <div class="row">
     <%= link_to "Edit this organization", edit_admin_organization_path(@organization.id), :class => 'btn btn-primary' %>
     <%= link_to "Delete this organization", admin_organization_path(@organization.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' -%>
   </div>

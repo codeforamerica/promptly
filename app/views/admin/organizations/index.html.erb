@@ -1,8 +1,10 @@
-<h2>Your organizations</h2>
+<div class="heading">
+  <h1>Your organizations</h1>
+</div>
 <ul class="list-unstyled">
 <% if current_user.is_super? %>
   <% Organization.order('name ASC').all.each do |organization| %>
-      <li><%= link_to organization.name, [:admin, organization] %></li>
+      <li><%= link_to organization.name, [:edit, :admin, organization] %></li>
   <% end %>
 <% else %>
   <% current_user.organizations.each do |organization| %>
@@ -12,5 +14,5 @@
 </ul>
 
 <% if current_user.is_super? %>
-  <%= link_to 'Create organization', new_admin_organization_path, :class => 'btn btn-primary' %>
+  <%= link_to 'Create organization', new_admin_organization_path, :class => 'button' %>
 <% end %>

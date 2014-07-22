@@ -1,7 +1,16 @@
-<div class="row-fluid">
-  <span class="pageTitle span3">All Groups</span>
-  <div class="span11">
-    <table class="table table-striped">
+<div class="row">
+  <div class="small-12 columns">
+    <div class="headerBig heading">
+      <h1>All Groups</h1>
+    </div>
+  </div>
+  <div class="small-12 columns">
+    <% if can? :create, Group %>
+        <%= link_to 'CREATE GROUP', new_admin_organization_group_path(@organization.id), :class => 'button' %>
+    <% end %>
+  </div>
+  <div class="small-12 columns">
+    <table class="small-12 columns">
     	<thead>
     		<th>Group name</th>
     		<th>Group description</th>
@@ -13,9 +22,9 @@
   			  <td><%= group.description %></td>
           <% if can? :edit, Group %>
     			  <td>
-              <%= link_to "Edit", edit_admin_organization_group_path(@organization.id, group.id), :class => 'btn btn-default' %>
+              <%= link_to "Edit", edit_admin_organization_group_path(@organization.id, group.id), :class => 'button secondary tiny' %>
               &nbsp;
-              <%= link_to "Delete", [:admin, @organization, group], :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger' %>
+              <%= link_to "Delete", [:admin, @organization, group], :confirm => "Are you sure?", :method => :delete, :class => 'button alert tiny' %>
             </td>
           <% end %>
         </tr>
@@ -24,10 +33,5 @@
     </table>
   </div>
 </div>
-<div class="row-fluid">
-  <% if can? :create, Group %>
-    <div class="pageHeader span12">
-      <%= link_to 'New group', new_admin_organization_group_path(@organization.id), :class => 'cta-button btn btn-primary' %>
-    </div>
-  <% end %>
-</div>
+
+

@@ -1,6 +1,6 @@
 <%= simple_form_for @reminder, :url => confirm_admin_organization_reminders_path do |f| %>
-  <div class="row-fluid">
-    <div class="span12" id="message">
+  <div class="row">
+    <div class="small-12 columns" id="message">
       <% if @reminder.errors.any? %>
         <%= render 'form_errors' %>
       <% end %>
@@ -28,7 +28,7 @@
   <div class="row-fluid" id="submit">
     <div class="span12">
       <%= link_to "Cancel", admin_organization_dashboard_path(@organization.id) %>
-      <%= f.submit "Schedule Reminder", :class => 'btn btn-primary' %>
+      <%= f.submit "Schedule Reminder", :class => 'button' %>
     </div>
   </div>
 <% end %> <!-- /form -->
