@@ -1,7 +1,7 @@
-<div class="row-fluid">
-  <div class="span12">
-    <span class="pageTitle span3">All Users</span>
-    <table class="table table-striped span8">
+<div class="row">
+  <div class="large-12 columns">
+    <h3>All Users</h3>
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -9,18 +9,20 @@
         </tr>
       </thead>
       <tbody>
-      <% @organization.users.each do |u| %>
-        <tr>
-          <td><%= link_to_if(can?(:read, User), "#{u.name}", admin_organization_user_path(@organization.id, u.id)) {} %></td>
-          <td><%= "#{u.email}" %></td>
-          <td><%= link_to_if(can?(:edit, User), "Edit", edit_admin_organization_user_path(@organization.id, u.id), :class => 'btn btn-default btn-mini') %></td>
-          <td><%= link_to_if(can?(:delete, u), "Delete", admin_organization_user_path(@organization.id, u.id), method: :delete, :confirm => "Are you sure?", :class => 'btn btn-danger btn-mini') %></td>
-        </tr>    
-      <% end %>
-    </tbody>
-  </table>
+        <% @organization.users.each do |u| %>
+          <tr>
+            <td><%= link_to_if(can?(:read, User), "#{u.name}", admin_organization_user_path(@organization.id, u.id)) {} %></td>
+            <td><%= "#{u.email}" %></td>
+            <td><%= link_to_if(can?(:edit, User), "Edit", edit_admin_organization_user_path(@organization.id, u.id), :class => 'btn btn-default btn-mini') %></td>
+            <td><%= link_to_if(can?(:delete, u), "Delete", admin_organization_user_path(@organization.id, u.id), method: :delete, :confirm => "Are you sure?", :class => 'btn btn-danger btn-mini') %></td>
+          </tr>    
+        <% end %>
+      </tbody>
+    </table>
   </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <%= link_to_if(can?(:create, User), "CREATE NEW USER", new_admin_organization_user_path(@organization.id), :class => 'button') %>
   </div>
-<div class="row-fluid">
-  <%= link_to_if(can?(:create, User), "Create a new user", new_admin_organization_user_path(@organization.id), :class => 'btn btn-primary') %>
 </div>
