@@ -2,7 +2,6 @@
   <%= render 'shared/subnav' %>
   <div class="row"
     <div id="content" class="small-12 columns">
-      <h1><%= link_to @organization.name, admin_organization_path(@organization.id) %></h1>
       <%= yield %>
     </div>
   </div>
