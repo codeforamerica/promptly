@@ -1,8 +1,6 @@
 <div class="row">
   <% if can? :create, Group %>
-    <div class="small-12 columns">
       <%= link_to 'CREATE GROUP', new_admin_organization_group_path(@organization.id), :class => 'button' %>
-    </div>
   <% end %>
 </div>
 <div class="row">
