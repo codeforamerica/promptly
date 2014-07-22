@@ -1,4 +1,6 @@
-<h2>Your organizations</h2>
+<div class="heading">
+  <h1>Your organizations</h1>
+</div>
 <ul class="list-unstyled">
 <% if current_user.is_super? %>
   <% Organization.order('name ASC').all.each do |organization| %>
