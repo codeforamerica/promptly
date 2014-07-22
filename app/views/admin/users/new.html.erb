@@ -1,8 +1,8 @@
 <div class="row">
-	<div class="large-12 columns">
+	<div class="small-12 columns">
 		<h3>Create New User</h3>
 	</div>
- 	<div class="large-6 end columns">
+ 	<div class="small-6 end columns">
 		<%= form_for [:admin, @organization, @user] do |f| %>
 		 
 		<%= render :partial => 'user_fields', :locals => { :f => f } %>
