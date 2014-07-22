@@ -1,31 +1,35 @@
-<h3><%= @user.name %></h3>
- 
-<%= link_to_if(can?(:update,@user), "Edit", edit_admin_organization_user_path(@organization.id, @user)) %> |
-<%= link_to_if(can?(:delete, @user), "Delete", admin_organization_user_path(@organization.id, @user), :confirm => "Are you sure?", :method => :delete) {} %>
- 
-<table class="one-column-emphasis">
-	<tbody>
-		<tr>
-			<td class="oce-first">Email:</td>
-			<td><%= @user.email %></td>
-		</tr>
-		<tr>
-			<td class="oce-first">Role:</td>
-			<td><%= @org_role %></td>
-		</tr>
-	<% if can?(:see_timestamps,User) %>
-		<tr>
-			<td class="oce-first">Created at:</td>
-			<td><%= @user.created_at %></td>
-		</tr>
-		<tr>
-			<td class="oce-first">Last Sign In:</td>
-			<td><%= @user.last_sign_in_at %></td>
-		</tr>
-		<tr>
-			<td class="oce-first">Sign In Count:</td>
-			<td><%= @user.sign_in_count %></td>
-		</tr>
-	<% end %>
-	</tbody>
-</table>
+<div class="row">
+	<div class="large-12 columns">
+		<h3><%= @user.name %></h3>
+
+		<table>
+			<tbody>
+				<tr>
+					<td class="oce-first">Email:</td>
+					<td><%= @user.email %></td>
+				</tr>
+				<tr>
+					<td class="oce-first">Role:</td>
+					<td><%= @org_role %></td>
+				</tr>
+			<% if can?(:see_timestamps,User) %>
+				<tr>
+					<td class="oce-first">Created at:</td>
+					<td><%= @user.created_at %></td>
+				</tr>
+				<tr>
+					<td class="oce-first">Last Sign In:</td>
+					<td><%= @user.last_sign_in_at %></td>
+				</tr>
+				<tr>
+					<td class="oce-first">Sign In Count:</td>
+					<td><%= @user.sign_in_count %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+
+		<%= link_to_if(can?(:update,@user), "EDIT", edit_admin_organization_user_path(@organization.id, @user)) %> |
+		<%= link_to_if(can?(:delete, @user), "DELETE", admin_organization_user_path(@organization.id, @user), :confirm => "Are you sure you want to delete this user?", :method => :delete) {} %>
+	</div>
+</div>
