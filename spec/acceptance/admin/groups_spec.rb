@@ -15,7 +15,7 @@ feature "Groups" do
     sign_in @user
     visit "/admin/organizations/#{@user.organizations.first.id}/groups"
     expect(page.current_path).to eq("/admin/organizations/#{@user.organizations.first.id}/groups")
-    expect(page).to have_content "New group"
+    expect(page).to have_content "CREATE GROUP"
   end
 
   scenario "should show a group" do

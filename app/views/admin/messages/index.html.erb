@@ -1,9 +1,9 @@
-<% render 'sorting' %>
-
+<div class="row">
   <%= link_to 'CREATE MESSAGE', new_admin_organization_message_path(@organization), :class => 'button' %>
+</div>
 
 <div class="row">
-  <div class="large-12 columns">
+  <div class="small-12 columns">
   <h3>All Messages</h3>
   <table>
     <thead>
@@ -20,15 +20,11 @@
         <td><%= message.message_text %></td>
         <td></td>
         <td>
-          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'btn btn-mini' %>
-          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
+          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'button secondary tiny' %>
+          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
   </div>
 </div>
-
-<script>
-  $('.dropdown-toggle').dropdown()
-</script>
