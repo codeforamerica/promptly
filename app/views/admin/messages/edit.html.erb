@@ -1,11 +1,11 @@
-<div class="row-fluid">
-  <div class="span12">
-		<div class="headerGray">
-			<span class="headerText">Editing reminder</span>
-		</div>
+<div class="row">
+	<div class="small-12 columns">
+		<h3>Edit Message</h3>
+	</div>
+	<div class="small-8 end columns">
+		<%= render 'form' %>
+		<%= link_to 'Show', admin_organization_message_path(@organization) %> |
+		<%= link_to 'Back', admin_organization_messages_path %>
 	</div>
 </div>
-	<%= render 'form' %>
-	<%= link_to 'Show', admin_organization_message_path(@organization) %> |
-	<%= link_to 'Back', admin_organization_messages_path %>
-</div>
+
