@@ -1,30 +1,33 @@
 <div class="row">
-  <%= link_to 'CREATE MESSAGE', new_admin_organization_message_path(@organization), :class => 'button' %>
-</div>
-
-<div class="row">
   <div class="small-12 columns">
-  <h3>All Messages</h3>
-  <table class="small-12 columns">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Message Text</th>
-        <th>Number of Recipients</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @messages.each do |message| %>
-      <tr>
-        <td><%= link_to message.name, [:admin, @organization, message] %></td>
-        <td><%= message.message_text %></td>
-        <td></td>
-        <td>
-          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'button secondary tiny' %>
-          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <div class="headerBig headerAqua">
+      <span class="headerText">All Messages</span>
+    </div>
+  </div>
+  <div class="small-12 columns">
+    <%= link_to 'CREATE MESSAGE', new_admin_organization_message_path(@organization), :class => 'button' %>
+  </div>
+  <div class="small-12 columns">
+    <table class="small-12 columns">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Message Text</th>
+          <th>Number of Recipients</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each do |message| %>
+        <tr>
+          <td><%= link_to message.name, [:admin, @organization, message] %></td>
+          <td><%= message.message_text %></td>
+          <td></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'button secondary tiny' %>
+            <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

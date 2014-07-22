@@ -1,8 +1,10 @@
 <div class="row">
   <div class="pageHeader small-12 large-12 columns">
-    <span class="pageTitle small-3">All Reminders</span>
-    <div class="small-12 large-12 small-offset-6 large-offset-8">
-      <%= link_to 'Schedule a reminder', new_admin_organization_reminder_path(@organization.id), :class => 'button success large' %>
+    <div class="headerBig headerAqua">
+      <span class="headerText">All Notifications</span>
+    </div>
+    <div class="small-12 large-12">
+      <%= link_to 'Schedule a reminder', new_admin_organization_reminder_path(@organization.id), :class => 'button' %>
     </div>
   </div>
 </div>
