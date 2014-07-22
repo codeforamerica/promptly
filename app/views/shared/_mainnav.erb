@@ -7,8 +7,12 @@
   <section class="top-bar-section">
     <!-- Right Nav Section -->
     <ul class="right">
-      <li class="divider"></li>
       <% if user_signed_in? %>
+        <% if current_user.organizations.count >1 %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% else %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% end %>
         <% if current_user.organizations.length > 0 %>
           <li class="has-dropdown">
             <a href="#">Your Organizations</a>
@@ -35,10 +39,8 @@
             </ul>
           </li>
         <% end %>
-        <% if current_user.organizations.count >1 %>
-          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
-        <% else %>
-          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% if current_user.is_super? %>
+          <li><%= link_to "Admin", admin_dashboard_path %></li>
         <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>

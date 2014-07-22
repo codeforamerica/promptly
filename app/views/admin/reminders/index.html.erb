@@ -1,34 +1,32 @@
-<div class="row-fluid">
-  <div class="pageHeader span12">
-    <span class="pageTitle span3">All Reminders</span>
-    <div class="span6 offset3">
-      <%= link_to 'Schedule a reminder', new_admin_organization_reminder_path(@organization.id), :class => 'btn btn-primary cta-button' %>
+<div class="row">
+  <div class="pageHeader small-12 large-12 columns">
+    <span class="pageTitle small-3">All Reminders</span>
+    <div class="small-12 large-12 small-offset-6 large-offset-8">
+      <%= link_to 'Schedule a reminder', new_admin_organization_reminder_path(@organization.id), :class => 'button success large' %>
     </div>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span12">
-    <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#upcoming" data-toggle="tab">Scheduled reminders</a></li>
-        <li><a href="#sent" data-toggle="tab">Sent reminders</a></li>
-      </ul>
-      <div class="tab-content" id="">
-        <div class="tab-pane active" id="upcoming">
-          <% if @groups != [] %>
-            <%= render('upcoming', :collection => @groups) %>
-          <% else %>
-            <%= 'There are no upcoming reminders.' %>
-          <% end %>
-        </div>
-        <div class="tab-pane" id="sent">
-          <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
-        </div>
+<div class="row">
+  <div class="small-12 large-12">
+    <ul class="tabs" data-tab>
+      <li class="tab-title active"><a href="#upcoming">Scheduled reminders</a></li>
+      <li class="tab-title"><a href="#sent">Sent reminders</a></li>
+    </ul>
+    <div class="tabs-content">
+      <div class="content active" id="upcoming">
+        <% if @groups.empty? %>
+          <div class="panel">There are no upcoming reminders.</div>
+        <% else %>
+          <%= render('upcoming', :collection => @groups) %>
+        <% end %>
+      </div>
+      <div class="content" id="sent">
+        <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-  $('.dropdown-toggle').dropdown()
+  // $('.dropdown-toggle').dropdown()
 </script>

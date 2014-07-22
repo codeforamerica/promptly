@@ -20,7 +20,7 @@
   }
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
-  $('.dateSelect').datepicker({
+  $('.dateSelect').fdatepicker({
     format: 'mm/dd/yyyy'
   });
 
@@ -45,7 +45,7 @@
 
   $('#messages-table').dataTable( {
         "sDom": '<"top"f>rt<"bottom"p><"clear">',
-        "sPaginationType": "bootstrap",
+        "sPaginationType": "full_numbers",
         "oLanguage": {
           "sLengthMenu": "_MENU_ records per page"
         }

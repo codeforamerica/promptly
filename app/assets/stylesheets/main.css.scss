@@ -13,6 +13,8 @@
 @import "data_tables";
 @import "dashboard";
 
+$topbar-bg-color: #000;
+
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
 	font-family: $headerFont;
@@ -20,7 +22,6 @@ h1,h2,h3,h4,h5,h6 {
 
 body {
   margin: 0;
-	background-color: $lightGray;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	font-family: $bodyFont;
