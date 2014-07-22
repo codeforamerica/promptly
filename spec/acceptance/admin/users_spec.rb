@@ -40,7 +40,7 @@ feature "Users" do
     sign_in @user
     visit "/admin/organizations/#{@user.organizations.first.id}/users/#{@user2.id}/edit"
     select('guest', :from => 'organizations_user_2[roles_mask]')
-    click_button 'Update'
+    click_button 'UPDATE'
     visit "/admin/organizations/#{@user.organizations.first.id}/users/#{@user2.id}/edit"
     expect( find(:css, 'select').value ).to eq('guest')
   end
