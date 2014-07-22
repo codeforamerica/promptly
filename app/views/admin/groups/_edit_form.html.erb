@@ -25,7 +25,7 @@
   </div>
   
   <div class="control-group">
-    <%= f.label :description, "PHONE NUMBERS" %>
+    <%= f.label :description, "PHONE NUMBER LIST (one phone number per line, no -dashes, ()parenthesis or spaces; ex: 9876543201)" %>
       <div class="controls">
         <% fields_for :recipient do |builder| %>
         <% @group.recipients.each do |recipient| %>
