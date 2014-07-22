@@ -1,13 +1,24 @@
 <!-- start footer-->
 <div class="footer">
-	<div class="row">
-   <div class="small-12 right">
-		Maintained by PostCode <%= link_to image_tag("postcode_logo.png", alt: "PostCode.io"), "http://postcode.io" %> Get the code: 
-    <%= link_to "https://github.com/codeforamerica/promptly/" do %>
-      <i class="fi-social-github large"></i>
-      github
+  <div class="row">
+    <div class="small-1 column">
+      <a href="#"><h6>About</h6></a>
+    </div>
+    <div class="small-1 end column">
+      <a href="mailto:support+promptly@postcode.io"><h6>Help</h6></a>
+    </div>
+    <div class="small-1 end column">
+      <%= link_to "https://github.com/codeforamerica/promptly/" do %>
+      <h6>Github</h6>
     <% end %>  
-    </div>   
-	</div>
+    </div>
+    <div class="small-3 column">
+      <a href="mailto:promptly@postcode.io"><h6>promptly@postcode.io</h6></a>
+    </div>
+    <div class="small-2 column text-right">
+      <p>delivered by</p>
+      <a href="http://postcode.io" target="_title"><img src="http://pobox.herokuapp.com/images/postcode_logo_drkgray.png"></a>
+    </div>
+  </div>
 </div>
 <!-- end footer-->
