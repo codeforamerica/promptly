@@ -1,19 +1,21 @@
 <div class="row">
+  <div class="small-12 columns text-right">
+    <% if can? :create, Group %>
+        <%= link_to 'CREATE GROUP', new_admin_organization_group_path(@organization.id), :class => 'button' %>
+    <% end %>
+  </div>
   <div class="small-12 columns">
     <div class="headerBig heading">
       <h1>All Groups</h1>
     </div>
   </div>
   <div class="small-12 columns">
-    <% if can? :create, Group %>
-        <%= link_to 'CREATE GROUP', new_admin_organization_group_path(@organization.id), :class => 'button' %>
-    <% end %>
-  </div>
-  <div class="small-12 columns">
-    <table class="small-12 columns">
+    <table class="small-9 columns">
     	<thead>
-    		<th>Group name</th>
-    		<th>Group description</th>
+        <tr>
+      		<th>Group name</th>
+      		<th>Group description</th>
+        </tr>
     	</thead>
       <tbody>
       <% @groups.each do |group| %>
