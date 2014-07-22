@@ -14,7 +14,7 @@
             <td><%= link_to_if(can?(:read, User), "#{u.name}", admin_organization_user_path(@organization.id, u.id)) {} %></td>
             <td><%= "#{u.email}" %></td>
             <td><%= link_to_if(can?(:edit, User), "Edit", edit_admin_organization_user_path(@organization.id, u.id), :class => 'btn btn-default btn-mini') %></td>
-            <td><%= link_to_if(can?(:delete, u), "Delete", admin_organization_user_path(@organization.id, u.id), method: :delete, :confirm => "Are you sure?", :class => 'btn btn-danger btn-mini') %></td>
+            <td><%= link_to_if(can?(:delete, u), "Delete", admin_organization_user_path(@organization.id, u.id), method: :delete, :confirm => "Are you sure you want to delete this user?", :class => 'btn btn-danger btn-mini') %></td>
           </tr>    
         <% end %>
       </tbody>
