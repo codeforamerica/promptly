@@ -10,7 +10,7 @@
     <h3>All Groups</h3>
   </div>
   <div class="small-12 columns">
-    <table>
+    <table class="small-12 columns">
     	<thead>
     		<th>Group name</th>
     		<th>Group description</th>
@@ -22,9 +22,9 @@
   			  <td><%= group.description %></td>
           <% if can? :edit, Group %>
     			  <td>
-              <%= link_to "Edit", edit_admin_organization_group_path(@organization.id, group.id), :class => 'btn btn-default' %>
+              <%= link_to "Edit", edit_admin_organization_group_path(@organization.id, group.id), :class => 'button secondary tiny' %>
               &nbsp;
-              <%= link_to "Delete", [:admin, @organization, group], :confirm => "Are you sure?", :method => :delete, :class => 'btn btn-danger' %>
+              <%= link_to "Delete", [:admin, @organization, group], :confirm => "Are you sure?", :method => :delete, :class => 'button alert tiny' %>
             </td>
           <% end %>
         </tr>
