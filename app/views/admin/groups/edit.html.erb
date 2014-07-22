@@ -1,9 +1,9 @@
-<div class="row-fluid">
-  <div class="span12">
-		<div class="headerBig headerGray">Editing group
+<div class="row">
+  	<div class="small-12 columns">
+		<h3>Edit Group</h3>
 	</div>
-</div>
-	<%= render 'edit_form' %>
-	<%= link_to 'Show', [:admin, @organization, @group] %> |
-	<%= link_to 'Back', admin_organization_groups_path(@organization.id) %>
+  	<div class="small-8 end columns">
+		<%= render 'edit_form' %>
+		<%= link_to 'Cancel', admin_organization_groups_path(@organization.id) %>
+	</div>
 </div>
