@@ -9,9 +9,6 @@
     <%= stylesheet_link_tag    "application" %>
     <!-- Foundation 3 for IE 8 and earlier -->
     <!--[if lt IE 9]>
-      <link rel="stylesheet" href="../assets/ie/css/foundation3/normalize.css">
-      <link rel="stylesheet" href="../assets/ie/css/foundation3/foundation.min.css">
-      <link rel="stylesheet" href="../assets/ie/css/foundation3/app.css">
       <%= stylesheet_link_tag 'ie', :media => 'all' %>
     <![endif]-->
     <!-- Foundation 4 for IE 9 and earlier -->
@@ -53,12 +50,12 @@
   </body>
   <!-- Foundation 3 for IE 8 and earlier -->
   <!--[if lt IE 9]>
-      <%= javascript_include_tag "ie" %>
+      <%= javascript_include_tag "ie8" %>
   <![endif]-->
 
   <!-- Foundation 4 for IE 9 and later -->
   <!--[if gt IE 8]><!-->
-    <%= javascript_include_tag "ie/js/foundation4/foundation.min.js" %>
+    <%= javascript_include_tag "ie9" %>
       <script>
           $(document).foundation();
       </script>
