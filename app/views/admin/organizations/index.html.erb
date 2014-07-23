@@ -4,7 +4,7 @@
 <ul class="list-unstyled">
 <% if current_user.is_super? %>
   <% Organization.order('name ASC').all.each do |organization| %>
-      <li><%= link_to organization.name, [:edit, :admin, organization] %></li>
+      <li><%= link_to organization.name, [:admin, organization] %>&nbsp;<%= link_to "Edit", [:edit, :admin, organization], class: "button secondary" %></li>
   <% end %>
 <% else %>
   <% current_user.organizations.each do |organization| %>

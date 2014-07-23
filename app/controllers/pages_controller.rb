@@ -11,7 +11,7 @@ class PagesController < ApplicationController
         redirect_to admin_organizations_path
       end
     else
-      render 'splash', layout: "splash"
+      render 'layouts/home', layout: "home"
     end
 	end  
 end
