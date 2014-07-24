@@ -9,7 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
   *= require_self
-  *= require_tree ./ie
+  *= require ie/ie-nav
+  *= require_tree ./ie/css/foundation3
  */
 
+
+.promptly-sub-nav {
+  width: 100%;
+}
 
