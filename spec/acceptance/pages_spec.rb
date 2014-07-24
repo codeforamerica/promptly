@@ -15,7 +15,7 @@ feature "Pages" do
 
   scenario "the page should show the promptly landing page when noone is logged in" do
     visit "/"
-    expect(page).to have_content "Craft a message"
+    expect(page).to have_content "Forgot your password?"
   end
 
   scenario "the page shown after superadmin login should be the super dashboard" do

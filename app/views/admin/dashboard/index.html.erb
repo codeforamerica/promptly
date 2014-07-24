@@ -4,14 +4,24 @@
     </div>
   </div>
 <div class="row">
+<<<<<<< HEAD
   <div class="pageHeader small-12 columns heading">
     <div class="headerBig">
+=======
+  <div class="small-12 twelve  text-right">
+    <%= link_to 'CREATE NOTIFICATION', new_admin_organization_reminder_path(@organization), :class => 'button' %>
+  </div>
+</div>
+<div class="row">
+  <div class="pageHeader small-12 twelve columns">
+    <div class="headerBig heading">
+>>>>>>> 09ed42abcae893a8b324415522b4288fd6e86708
       <h1>Dashboard</h1>
     </div>
   </div>
 </div>
 <div class="row">
-  <div class="small-6 columns">
+  <div class="small-6 six columns">
     <div class="headerSmall headerAqua">
       <span class="headerText">Upcoming reminders</span>
     </div>
@@ -20,7 +30,7 @@
       <%= render 'upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
     </div>
   </div>
-  <div class="small-6 columns">
+  <div class="small-6 six columns">
     <div class="headerSmall headerGreen">
       <span class="headerText">Sent reminders</span>
     </div>
@@ -31,7 +41,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="small-6 columns">
+  <div class="small-6 six columns">
     <div class="headerSmall headerGreen">
       <span class="headerText">Responses</span>
     </div>
@@ -40,7 +50,7 @@
       <%= render 'responses' || 'There are no responses' %>
     </div>
   </div>
-  <div class="small-6 columns">
+  <div class="small-6 six columns">
     <div class="headerSmall headerRed">
       <span class="headerText">Undelivered reminders</span>
     </div>
@@ -51,7 +61,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="small-6 columns">
+  <div class="small-6 six columns">
     <div class="headerSmall headerAqua">
       <span class="headerText">Calls</span>
     </div>

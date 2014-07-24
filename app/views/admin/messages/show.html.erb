@@ -1,30 +1,31 @@
 <div class="row">
-	<div class="small-12 columns headerBig headerGreen">
-		<span class="headerText">Message</span>
+	<div class="small-12 twelve columns">
+		<h3>Message Info</h3>
+		<table class="small-9 nine columns">
+		  <thead>
+		    <tr>
+		      <th>Message Name</th>
+		      <th>Message Text</th>
+		      <th>Date Created</th>
+		      <th>Date Updated</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td><%= @message.name %></td>
+		      <td><%= @message.message_text %></td>
+		      <td><%= @message.created_at %></td>
+		      <td><%= @message.updated_at || "No updates" %></td>
+		    </tr>
+		  </tbody>
+		</table>
 	</div>
 </div>
 <div class="row">
-	<div class="small-12">
-		<div class="headerSmall headerGray">
-			<span class="headerText">Text Message Preview</span>
-		</div>
-		<p>Message Name: <b><%= @message.name %></b></p>
-		<p>
-		  <span class="well messagetext">Message text: <%= @message.message_text %></span>
-		</p>
-		<div class="headerSmall headerGray">
-			<span class="headerText">Date Created</span>
-		</div>
-		<p><%= @message.created_at %></p>
-		<div class="headerSmall headerGray">
-			<span class="headerText">Date Updated</span>
-		</div>
-		<p><%= @message.updated_at || "No updates" %></p>
+	<div class="small-12 twelve columns">
+		<%= link_to 'EDIT MESSAGE', edit_admin_organization_message_path(@organization.id, @message), :class => 'button' %><br>
 	</div>
-</div>
-<div class="row">
-	<div class="small-12">
-		<%= link_to 'Edit message', edit_admin_organization_message_path(@organization.id, @message), :class => 'button' %>
-		<%= link_to 'Back', admin_organization_messages_path(@organization.id) %>
+	<div class="small-12 twelve columns backto">
+			<%= link_to '< Back to All Messsages', admin_organization_messages_path(@organization.id) %>
 	</div>
 </div>

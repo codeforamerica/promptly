@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 twelve columns">
     <div class="dash-title">DASHBOARD&nbsp;<span class="dash-subtitle">ALL ORGANIZATIONS</span></div>
   </div>
 </div>
@@ -8,13 +8,13 @@
     <div class="headerSmall">
       <span class="headerText headerDate"><%= DateTime.now.strftime("%B %Y") %></span>
     </div>
-    <div class="small-2 columns">
+    <div class="small-2 two columns">
       <div class="upcoming-number">
         <div class="big-number"><%= @upcoming.count %></div>
         <div>Upcoming<br/><%= 'Reminder'.pluralize(@upcoming.count) %></div>
       </div>
     </div>
-    <div class="conversation small-8 columns">
+    <div class="conversation small-8 eight columns">
       <%= render 'admin/superdashboard/upcoming_reminders' || 'There are no upcoming reminders' %>
     </div>
   </div>
@@ -22,25 +22,25 @@
     <div class="headerSmall">
       <span class="headerText headerDate"><%= DateTime.now.strftime("%B %Y") %></span>
     </div>
-    <div class="number small-3 columns">
+    <div class="number small-3 three columns">
       <%= render 'admin/superdashboard/response_rate' || 'There are no sent reminders' %>
     </div>
-    <div class="number small-3 columns">
+    <div class="number small-3 three columns">
       <%= render 'admin/superdashboard/undelivered_rate' || 'There are no sent reminders' %>
     </div>
-    <div class="number small-1 columns">
+    <div class="number small-1 one columns">
       <p><h1><%= @last_month %></h1><%= 'Text'.pluralize( @last_month) %> Sent</p>
     </div>
-    <div class="number small-1 columns">
+    <div class="number small-1 one columns">
       <p><h1><%= Conversation.month_calls.count/2 %></h1>Call <%= 'Response'.pluralize( Conversation.month_calls.count/2) %></p>
     </div>
-    <div class="number small-1 columns">
+    <div class="number small-1 one columns">
       <p><h1><%= Conversation.text_responses.count %></h1>Text <%= 'Response'.pluralize( @conversations.count) %></p>
     </div>
-    <div class="number small-1 columns">
+    <div class="number small-1 one columns">
       <p><h1><%= Conversation.undelivered.count %></h1>Undelivered</p>
     </div>
-    <div class="number small-1 columns end">
+    <div class="number small-1 one columns end">
       <p><h1><%= Conversation.unsubscribed.count %></h1>Unsubscribed</p>
     </div>
   </div>

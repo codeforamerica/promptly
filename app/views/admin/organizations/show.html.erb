@@ -1,13 +1,13 @@
-<div id="sidebar-left" class="small-2 columns">
+<div id="sidebar-left" class="small-2 two columns">
   <%= render 'layouts/sidebar' %>
 </div>
-<div class="org-container small-10 columns">
+<div class="org-container small-10 ten columns">
   <div class="row">
     <div>
       <h1><%= @organization.name -%></h1>
-      <span class="pageTitle span3">All Users</span>
+      <span class="pageTitle small-3 three">All Users</span>
       <% if @organization.users.any? %>
-      <table class="table table-striped small-8">
+      <table class="table table-striped small-8 eight">
         <thead>
           <tr>
             <th>Name</th>

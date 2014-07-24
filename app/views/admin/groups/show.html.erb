@@ -1,11 +1,11 @@
 <div class="row">
-	<div class="small-12 columns">
+	<div class="small-12 twelve columns">
 		<h3><%= @group.name %></h3>
 	</div>
 </div>
 
 <div class="row">	
-	<div class="small-8 end columns">
+	<div class="small-8 eight end columns">
 		<table>
 			<thead>
 				<tr>
@@ -23,8 +23,8 @@
 	</div>
 </div>
 <div class="row">
-    <div class="small-8 end columns">
-	    <h4>Group History</h4>
+    <div class="small-8 eight end columns">
+	    <h4 class="heading">Group History</h4>
 	    <div class="conversation">
 	      <% if @group_conversations %>
 	      	<% @group_conversations.each do |c| %>
@@ -38,15 +38,15 @@
 </div>
 
 <div class="row">
-	<div class="small-8 end columns">
-  		<h4>Upcoming Notifications</h4>
+	<div class="small-8 eight end columns">
+  		<h4 class="heading">Upcoming Notifications</h4>
 	</div>
-	<div class="small-8 end columns">
+	<div class="small-8 eight end columns">
 		<%= render(:partial => 'shared/queued_reminders', :collection => @group_reminders, :as => :reminder) || 'No queued reminders.' %>
 	</div>
 </div>
 <div class="row">
-	<div class="small-12 columns">
-		<%= link_to 'Back', admin_organization_groups_path(@organization) %>
+	<div class="small-12 twelve columns backto">
+		<%= link_to '< Back to Groups', admin_organization_groups_path(@organization) %>
 	</div>
 </div>

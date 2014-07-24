@@ -51,6 +51,7 @@ group :assets do
   gem 'bootstrap-datepicker-rails'
   gem 'jquery-rails', '~> 2.0.2'
   gem 'jquery-ui-rails'
+  gem 'foundation-icons-sass-rails'
 end
 
 group :test do

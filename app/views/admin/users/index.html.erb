@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 twelve columns">
     <div class="heading">
       <h1>All Users</h1> 
     </div>
@@ -24,7 +24,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="small-12 columns">
+  <div class="small-12 twelve columns">
     <%= link_to_if(can?(:create, User), "CREATE NEW USER", new_admin_organization_user_path(@organization.id), :class => 'button') %>
   </div>
 </div>
