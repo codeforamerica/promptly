@@ -330,7 +330,11 @@ DEPENDENCIES
   jquery-ui-rails
   json
   launchy
+<<<<<<< HEAD
   morrisjs-rails
+=======
+  listen
+>>>>>>> 7aaa546510f4d0c3ec8820407ebbcf9f57fa62c9
   newrelic_rpm (>= 3.8)
   pg
   phony_rails
