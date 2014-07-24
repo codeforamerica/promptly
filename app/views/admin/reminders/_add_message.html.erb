@@ -3,9 +3,9 @@
   <h3>Create New Message</h3>
   <div class="modal-body">
     <%= simple_fields_for :message do |message_fields| %>
-      <%= message_fields.input :name, input_html: { class: "span12" } %>
+      <%= message_fields.input :name, input_html: { class: "small-12 twelve columns" } %>
       <%= label_tag "Add New Message:" %>
-      <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "span12" } %>
+      <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "small-12 twelve columns" } %>
     <% end %>
   </div>
   <div class="modal-footer">

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="large-12 columns">
+  <div class="small-12 twelve large-12 columns">
     <%= simple_form_for [:admin, @organization, @message] do |f| %>
       <% if @message.errors.any? %>
         <div id="error_explanation">
@@ -17,7 +17,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="large-12 columns">
+  <div class="small-12 twelve large-12 columns">
      <div class="actions">
         <%= f.submit :class => 'button'%>
         <br>

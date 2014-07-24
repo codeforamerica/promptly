@@ -25,25 +25,21 @@
 
   <body>
      <%= render 'shared/mainnav' %>
-
+      <% if content_for? :organization %>
+        <%= yield :organization %>
+      <% elsif content_for? :admin %>
+        <%= yield :admin %>
+      <% else %>
       <div class="row">
         <div class="notice">
-          <div><%= notice %></div>
-          <div><%= alert %></div>
+          <div class="label"><%= notice %></div>
+          <div class="alert label"><%= alert %></div>
+        </div>
+        <div id="content">
+          <%= yield %>
         </div>
       </div>
-
-        <% if content_for? :organization %>
-          <%= yield :organization %>
-        <% elsif content_for? :admin %>
-          <%= yield :admin %>
-        <% else %>
-      <div class="row">
-          <div id="content">
-            <%= yield %>
-          </div>
-        <% end %>
-      </div>
+    <% end %>
 
     <%= render 'shared/footer' %>
     <%= javascript_include_tag "application" %>

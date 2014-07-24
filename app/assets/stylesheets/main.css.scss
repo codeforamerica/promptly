@@ -109,6 +109,21 @@ h6 { font-size: 12px; line-height: 12px; }
 .label-danger {
   background-color: #d9534f;
 }
+
 .backto{
 	margin: 2.5em 0 0 0;
 }
+
+a.button{
+	&:hover {
+		border: none;
+	}
+}
+
+.tab-title a {
+	&:hover {
+		border: none;
+	}
+}
+
+

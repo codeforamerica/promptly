@@ -3,12 +3,12 @@
   <h3>Add a New Group</h3>
   <div class="modal-body">
     <%= simple_fields_for :group do |group_fields| %>
-        <%= group_fields.input :name, input_html: { class: "span12" } %>
+        <%= group_fields.input :name, input_html: { class: "small-12 twelve columns" } %>
         <%= fields_for :recipient do |builder| %>
         <div class="control-group">
           <%= builder.label :phone, "Enter a list of phone numbers", :class => 'control-label' %>
           <div class="controls">
-          <%= builder.text_area :phone, rows: 10, class: "span12" %>
+          <%= builder.text_area :phone, rows: 10, class: "small-12 twelve columns" %>
           </div>
           <% end %>
         </div>
