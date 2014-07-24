@@ -114,13 +114,7 @@ h6 { font-size: 12px; line-height: 12px; }
 	margin: 2.5em 0 0 0;
 }
 
-a.button{
-	&:hover {
-		border: none;
-	}
-}
-
-.tab-title a {
+a.button, .tab-title a, input[type="submit"]:hover.button {
 	&:hover {
 		border: none;
 	}
