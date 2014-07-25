@@ -1,15 +1,6 @@
-<div class="row">
-	<div class="small-12 twelve">
-		<div class="headerBig heading">
-			<span>Schedule Reminder</span>
-		</div>
-	</div>
-</div>
+
 	<div class="row">
-		<div class="small-10 ten small-offset-1 reminderConfirm">
-			<div class="headerSmall heading pageHeader">
-				<span>Confirm Reminder</span>
-			</div>
+		<div class="small-10 ten small-offset-1">
 			<%= simple_form_for [:admin, @organization, @reminder] do |f| %>
     
 	    <% if @reminder.errors.any? %>
@@ -17,7 +8,7 @@
 	    <% end %>
 			
 			<h3>Almost there! Just to confirm:</h3>
-			<p>We're sending</p>
+			<p>We're sending this notification</p>
 			<div class="row">
 				<div class="small-6 six">
 					<div class="infoItem">
@@ -47,8 +38,9 @@
 			<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 
+			<%= f.submit "SCHEDULE REMINDER", class: 'button' %>
+			<br>
 			<%= link_to "Cancel", admin_organization_path(@organization) %>
-			<%= f.submit "Schedule Reminder", class: 'button' %>
 		<% end %><!-- /form -->
 	</div>
 </div>
