@@ -35,7 +35,7 @@ feature "Reminders" do
     check 'group_ids_'
     fill_in('Send date', :with => '01/01/2000')
     fill_in('Send time', :with => '12:00pm')
-    click_button 'Schedule Reminder'
+    click_button 'SCHEDULE NOTIFICATION'
     expect(page).to have_content @group.name
     expect(page).to have_content @message.message_text
     expect(page).to have_content '01/01/2000'
