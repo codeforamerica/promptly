@@ -38,7 +38,7 @@
 			<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
 			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 
-			<%= f.submit "SCHEDULE REMINDER", class: 'button' %>
+			<%= f.submit "SCHEDULE NOTIFICATION", class: 'button' %>
 			<br>
 			<%= link_to "Cancel", admin_organization_path(@organization) %>
 		<% end %><!-- /form -->
