@@ -118,9 +118,11 @@ class Admin::UsersController < OrgController
     else
       @user.errors[:base] << "The password you entered is incorrect" unless @user.valid_password?(params[:user][:current_password])
     end
- 
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
+        @organization_users = OrganizationsUser.where(:organization_id => params[:organization_id], :user_id => params[:id]).first_or_create
+        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(params[:organizations_user].first[1][:roles_mask]))
+        @organization_users.save
         flash[:notice] = "Your account has been updated"
         format.json { render :json => @user.to_json, :status => 200 }
         format.xml  { head :ok }

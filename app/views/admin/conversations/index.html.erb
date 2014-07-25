@@ -1,27 +1,27 @@
-<div class="row-fluid">
-  <div class="span12 pageHeader">
-    <div class="headerBig headerAqua">
-    <span class="headerText">Conversations</span>
+<div class="row">
+  <div class="small-12 twelve pageHeader">
+    <div class="headerBig heading">
+      <h1>Responses</h1>
     </div>
   </div>
 </div>
-<div class="row-fluid">
-  <div class="span12">
-    <h1>Total calls: <%= @calls.count %></h1>
+<div class="row">
+  <div class="small-12 twelve">
+    <h3>Total: <%= @calls.count %></h3>
     <div class="tabbable"> <!-- Only required for left/right tabs -->
-      <ul class="nav nav-tabs">
-        <li class="active"><a href="#call" data-toggle="tab">Calls</a></li>
-        <li><a href="#response" data-toggle="tab">Responses</a></li>
-        <li><a href="#undelivered" data-toggle="tab">Undelivered</a></li>
+      <ul class="tabs" data-tab>
+        <li class="tab-title active"><a href="#call">By Phone</a></li>
+        <li class="tab-title"><a href="#response">By Text Message</a></li>
+        <li class="tab-title"><a href="#undelivered">Undelivered</a></li>
       </ul>
-      <div class="tab-content">
-        <div class="tab-pane active" id="call">
+      <div class="tabs-content">
+        <div class="content active" id="call">
           <%= render 'call', :collection => @calls || 'There are no calls.'%>
         </div>
-        <div class="tab-pane" id="response">
+        <div class="content" id="response">
           <%= render 'response', :collection => @responses || 'There are no responses.'%>
         </div>
-        <div class="tab-pane" id="undelivered">
+        <div class="content" id="undelivered">
           <%= render 'undelivered', :collection => @undelivered || 'There are no undelivered reminders.' %>
         </div>
       </div>

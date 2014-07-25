@@ -1,2 +1,2 @@
 $('#messages-table').append('<tr><td><%= radio_button_tag "message_id", @message.id, true, class: "table-row-radio" %></td><td><%= @message.message_text %></td><td><%= @message.name %></td></tr>');
-$('.modal').modal( 'hide' );
+$('.reveal-modal').foundation('reveal', 'close');

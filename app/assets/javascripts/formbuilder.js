@@ -20,9 +20,6 @@
   }
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
-  $('.dateSelect').datepicker({
-    format: 'mm/dd/yyyy'
-  });
 
   $('#message_message_text').live('keyup keydown', function(e) {
     var maxLen = 160;
@@ -45,7 +42,7 @@
 
   $('#messages-table').dataTable( {
         "sDom": '<"top"f>rt<"bottom"p><"clear">',
-        "sPaginationType": "bootstrap",
+        "sPaginationType": "full_numbers",
         "oLanguage": {
           "sLengthMenu": "_MENU_ records per page"
         }

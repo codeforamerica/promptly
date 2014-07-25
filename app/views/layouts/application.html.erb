@@ -1,41 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Promptly</title>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "Promptly" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <!-- Foundation 3 for IE 8 and earlier -->
     <!--[if lt IE 9]>
-      <%= stylesheet_link_tag 'ie', :media => 'all' %>
+      <%= stylesheet_link_tag 'ie8', :media => 'all' %>
     <![endif]-->
-    <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" %>
+    <!-- Foundation 4 for IE 9 and earlier -->
+    <!--[if gt IE 8]>
+      <%= stylesheet_link_tag 'ie9', :media => 'all' %>
+      <link rel="stylesheet" href="../assets/ie/css/foundation4/normalize.css">
+      <link rel="stylesheet" href="../assets/ie/css/foundation4/foundation.min.css">
+    <![endif]-->
+    <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <link href='http://pobox.herokuapp.com/css/postcode_main.css' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-    <%= render 'shared/mainnav' %>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
+     <%= render 'shared/mainnav' %>
+      <% if content_for? :organization %>
+        <%= yield :organization %>
+      <% elsif content_for? :admin %>
+        <%= yield :admin %>
+      <% else %>
+      <div class="row">
         <div class="notice">
-          <div><%= notice %></div>
-          <div><%= alert %></div>
+          <div class="label"><%= notice %></div>
+          <div class="alert label"><%= alert %></div>
+        </div>
+        <div id="content">
+          <%= yield %>
         </div>
       </div>
-
-      <div class="row-fluid">
-        <% if content_for? :content %>
-          <%= yield :content %>
-        <% else %>
-          <div id="content" class="col-xs-12">
-            <%= yield %>
-          </div>
-        <% end %>
-      </div>
-    </div>
+    <% end %>
 
     <%= render 'shared/footer' %>
+    <%= javascript_include_tag "application" %>
   </body>
+  <!-- Foundation 3 for IE 8 and earlier -->
+  <!--[if lt IE 9]>
+      <%= javascript_include_tag "ie8" %>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Foundation 4 for IE 9 and later -->
+  <!--[if gt IE 8]>
+    <%= javascript_include_tag "ie9" %>
+      <script>
+          $(document).foundation();
+      </script>
+  <![endif]-->
 </html>
+
+

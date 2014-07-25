@@ -1,14 +1,14 @@
-<div class="headerSmall headerAqua">
-  <span class="headerText">Date and Time</span>
+<div class="heading">
+  <h3>Select Date and Time</3>
 </div>
 
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+	<div class="small-6 six columns">
    <div class="form-group"> 
   		<%= f.input :send_date, as: :string, input_html: { class: 'the-date form-control' } %>
     </div>
 	</div>
-	<div class="span6">
+	<div class="small-6 six columns end">
 		<%= f.input :send_time, as: :string, input_html: { value: '12:00pm', class: 'form-control' } %>
 	</div>
 </div>

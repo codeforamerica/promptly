@@ -2,7 +2,7 @@
 $white: #fff;
 $lightGray: #f5f5f5;
 $darkGray: darken($lightGray, 20);
-$blue: #2E88CC;
+$blue: #789FD3;
 $darkBlue: #116FA8;
 $lightBlue: #81C7EA;
 $aqua: #A7DBD8;
@@ -18,17 +18,6 @@ $borderColor: darkent($lightGray, 10);
 //Fonts
 $headerFont: 'Open Sans Condensed', sans-serif;
 $bodyFont: 'Open Sans', sans-serif;
-
-@font-face {
-  font-family: 'typicons';
-  src: url("typicons/typicons.eot");
-  src: url("typicons/typicons.eot?#iefix") format('embedded-opentype'),
-       url("typicons/typicons.woff") format('woff'),
-       url("typicons/typicons.ttf") format('truetype'),
-       url("typicons/typicons.svg#typicons") format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 $base-font-size: 14px;
 

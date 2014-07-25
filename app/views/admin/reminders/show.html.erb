@@ -1,12 +1,12 @@
 <% if @reminders.any? %>
   <div class="container">
-    <div class="row-fluid">
-      <div class="span12 headerSmall headerGreen">
-        <span class="headerText">Reminder <%= @reminders.first.try { |reminder| reminder.name } %></span>
+    <div class="row">
+      <div class="small-12 twelve headerSmall heading">
+        <span>Reminder <%= @reminders.first.try { |reminder| reminder.name } %></span>
       </div>
     </div>
-    <div class="row-fluid">
-      <div class="span12">
+    <div class="row">
+      <div class="small-12 twelve columns">
       <p>On <%= @reminders.first.send_date.to_s(:date_only) %> at <%= @reminders.first.send_date.to_s(:time_only) %> the message: </p>
       <blockquote><%= Message.find(@reminders.first.message_id).message_text %></blockquote>
       <p>will be sent to <%= pluralize(@total_count, 'recipient') %>.</p>
