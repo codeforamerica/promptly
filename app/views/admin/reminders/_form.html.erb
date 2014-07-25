@@ -27,8 +27,9 @@
 
   <div class="row" id="submit">
     <div class="small-12 twelve">
-      <%= link_to "Cancel", admin_organization_dashboard_path(@organization.id) %>
       <%= f.submit "Schedule Reminder", :class => 'button' %>
+      <br>
+      <%= link_to "Cancel", admin_organization_dashboard_path(@organization.id) %>
     </div>
   </div>
 <% end %> <!-- /form -->
