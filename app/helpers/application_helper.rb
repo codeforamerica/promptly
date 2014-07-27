@@ -3,11 +3,6 @@ module ApplicationHelper
   def is_active?(page_name)
     "active" if current_controller?(page_name)
   end
-  
-  def link_to_add_modal(param_name, tag_type, options = nil)
-    fields = content_tag(tag_type, name: param_name, id: param_name)
-    link_to(name, '#', class: "add_modal btn", data: {id: id, fields: fields.gsub("\n", "")})
-  end
 
   def link_to_add_fields(name, f, association, child_association = nil)
     new_object = f.object.class.reflect_on_association(association).klass.new
@@ -70,4 +65,17 @@ module ApplicationHelper
     end
     graph_data
   end
+
+  def resource_name
+    :user
+  end
+
+  def resource
+    @resource ||= User.new
+  end
+
+  def devise_mapping
+    @devise_mapping ||= Devise.mappings[:user]
+  end
+  
 end

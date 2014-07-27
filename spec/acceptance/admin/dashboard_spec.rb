@@ -16,7 +16,7 @@ feature "Dashboard" do
     sign_in @user
     visit "/admin/organizations/#{@user.organizations.first.id}/dashboard"
     expect(page.current_path).to eq "/admin/organizations/#{@user.organizations.first.id}/dashboard"
-    expect(page).to have_content "Schedule a reminder"
+    expect(page).to have_content "CREATE NOTIFICATION"
     expect(page).to have_content "Upcoming reminders"
     expect(page).to have_content "Sent reminders"
     expect(page).to have_content "Responses"

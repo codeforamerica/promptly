@@ -33,5 +33,16 @@ feature "Users" do
     visit "/admin/organizations/#{@user.organizations.first.id}/users/1"
     expect(page).to have_content
   end
+
+  scenario "should update roles" do
+    @user2 = FactoryGirl.create :user_with_organization
+    @user2.organizations_user.first.update_attributes(roles_mask: 1)
+    sign_in @user
+    visit "/admin/organizations/#{@user.organizations.first.id}/users/#{@user2.id}/edit"
+    select('guest', :from => 'organizations_user_2[roles_mask]')
+    click_button 'UPDATE'
+    visit "/admin/organizations/#{@user.organizations.first.id}/users/#{@user2.id}/edit"
+    expect( find(:css, 'select').value ).to eq('guest')
+  end
     
 end

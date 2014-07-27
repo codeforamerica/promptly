@@ -1,6 +1,4 @@
-
-@import "bootstrap";
-@import "bootstrap/bootstrap-responsive.min";
+@import "foundation_and_overrides";
 @import "compass/utilities/general/hacks";
 @import "compass/css3";
 @import "constants";
@@ -15,8 +13,7 @@
 @import "data_tables";
 @import "dashboard";
 
-$grid-float-breakpoint: 1px;
-
+$topbar-bg-color: #000;
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
@@ -24,8 +21,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 body {
-    margin: 0;
-	background-color: $lightGray;
+  margin: 0;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	font-family: $bodyFont;
@@ -114,58 +110,20 @@ h6 { font-size: 12px; line-height: 12px; }
   background-color: #d9534f;
 }
 
-//responsive
-@media (min-width: 1170px) {
-  #content {
-    padding: 20px;
-    margin-left: -2px;
-    width: 1010px;
-  }
-  #sidebar-left {
-    background: transparent;
-    margin: -1px 0px 0px 25px;
-    padding: 0px;
-  }
-  .sidebar-nav > ul {
-    margin: 0px 0px 0px -20px;
-  }
-  footer {
-    margin: 20px -20px 0px -20px;
-    padding: 10px 20px;
-    position: relative;
-    z-index: 2;
-  }
-  .container {
-    width: 1010px;
-  }
+.backto{
+	margin: 2.5em 0 0 0;
 }
 
-//responsive
-@media (max-width: 1170px) {
-  #content {
-    padding: 20px;
-    margin-left: -2px;
-    // width: 768px;
-  }
-  #sidebar-left {
-    background: transparent;
-    margin: -1px 0px 0px 0px;
-    padding: 0px;
-  }
-  .container {
-    // width: 768px;
-  }
+a.button{
+	&:hover {
+		border: none;
+	}
+}
+
+.tab-title a {
+	&:hover {
+		border: none;
+	}
 }
 
 
-@media (min-width: 1201px) {
-  .container {
-    width: 1030px;
-  }
-  .org-container {
-    width: 880px;
-  }
-  #content {
-    width: 1030px;
-  }
-}

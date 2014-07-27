@@ -1,14 +1,14 @@
-<div class="row-fluid">
-	<div class="span12">
-		<div class="headerBig headerGray pageHeader">
-			<span class="headerText">Schedule Reminder</span>
+<div class="row">
+	<div class="small-12 twelve">
+		<div class="headerBig heading">
+			<span>Schedule Reminder</span>
 		</div>
 	</div>
 </div>
-	<div class="row-fluid">
-		<div class="span10 offset1 reminderConfirm">
-			<div class="headerSmall headerAqua pageHeader">
-				<span class="headerText">Confirm Reminder</span>
+	<div class="row">
+		<div class="small-10 ten small-offset-1 reminderConfirm">
+			<div class="headerSmall heading pageHeader">
+				<span>Confirm Reminder</span>
 			</div>
 			<%= simple_form_for [:admin, @organization, @reminder] do |f| %>
     
@@ -18,8 +18,8 @@
 			
 			<h3>Almost there! Just to confirm:</h3>
 			<p>We're sending</p>
-			<div class="row-fluid">
-				<div class="span6">
+			<div class="row">
+				<div class="small-6 six">
 					<div class="infoItem">
 						<%= link_to new_admin_organization_reminder_path(@organization,anchor: "message") do %>
 							<%= Message.find(params[:reminder][:message_id]).message_text %>
@@ -48,7 +48,7 @@
 			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
 
 			<%= link_to "Cancel", admin_organization_path(@organization) %>
-			<%= f.submit "Schedule Reminder", class: 'btn btn-primary dumbMargin' %>
+			<%= f.submit "Schedule Reminder", class: 'button' %>
 		<% end %><!-- /form -->
 	</div>
 </div>

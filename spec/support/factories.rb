@@ -51,6 +51,14 @@ FactoryGirl.define do
     name "test"
   end 
 
+  factory :admin, :class => User do |u|
+    u.email
+    u.password "password"
+    u.password_confirmation "password"
+    u.roles "super"
+    u.name 'Admin'
+  end
+
   factory :organizations_user do
     roles_mask 1
   end 
@@ -100,11 +108,10 @@ FactoryGirl.define do
     end
   end
 
-  factory :user_with_super, parent: :user_with_organization do
-      after :create do |user|
-        user.roles << :super
-        user.roles_mask = 1
-      end
+  factory :admin_with_organization, parent: :admin do
+    after :create do |user|
+      user.organizations << FactoryGirl.create(:organization)
     end
+  end
     
 end

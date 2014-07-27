@@ -1,31 +1,33 @@
-<% render 'sorting' %>
-
-<div class="row-fluid">
-  <span class="pageTitle span3">All Messages</span>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Message Text</th>
-        <th>Number of Recipients</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @messages.each do |message| %>
-      <tr>
-        <td><%= link_to message.name, [:admin, @organization, message] %></td>
-        <td><%= message.message_text %></td>
-        <td></td>
-        <td>
-          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'btn btn-mini' %>
-          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'btn btn-danger btn-mini' %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <%= link_to 'Create message', new_admin_organization_message_path(@organization), :class => 'btn btn-primary' %>
+<div class="row">
+  <div class="small-12 twelve columns text-right">
+    <%= link_to 'CREATE MESSAGE', new_admin_organization_message_path(@organization), :class => 'button' %>
+  </div>
+  <div class="small-12 twelve columns">
+    <div class="headerBig heading">
+      <h1>All Messages</h1>
+    </div>
+  </div>
+  <div class="small-12 twelve columns">
+    <table class="small-12 twelve columns">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Message Text</th>
+          <th>Number of Recipients</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @messages.each do |message| %>
+        <tr>
+          <td><%= link_to message.name, [:admin, @organization, message] %></td>
+          <td><%= message.message_text %></td>
+          <td></td>
+          <td>
+            <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'button secondary tiny' %>
+            <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-
-<script>
-  $('.dropdown-toggle').dropdown()
-</script>

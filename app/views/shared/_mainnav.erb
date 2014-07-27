@@ -1,17 +1,22 @@
-<div class="navbar navbar-static-top">
-	<div class="navbar-inner">
-    <%= link_to "Promptly", root_path, :class => "brand" %>
-    <ul class="nav pull-right">
+<nav class="top-bar" data-topbar>
+	<ul class="title-area">
+    <li class="name">
+      <h1><%= link_to "Promptly", root_path, :class => "brand" %></h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
       <% if user_signed_in? %>
+        <% if current_user.organizations.count >1 %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% else %>
+          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% end %>
         <% if current_user.organizations.length > 0 %>
-          <li class="dropdown">
-            <a class="dropdown-toggle"
-               data-toggle="dropdown"
-               href="#">
-              Your Organizations
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+          <li class="has-flyout has-dropdown">
+            <%= link_to "Your Organizations", admin_organizations_path, class: "flyout-toggle" %>
+            <ul class="flyout dropdown">
               <% if current_user.is_super? %>
                 <% Organization.order('name ASC').all.each do |organization| %>
                   <li>
@@ -34,10 +39,8 @@
             </ul>
           </li>
         <% end %>
-        <% if current_user.organizations.count >1 %>
-          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
-        <% else %>
-          <li><%= link_to "Welcome, #{current_user.name}", [:admin, current_user.organizations.first, current_user] %></li>
+        <% if current_user.is_super? %>
+          <li><%= link_to "Admin", admin_dashboard_path %></li>
         <% end %>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       <% else %>
@@ -45,4 +48,4 @@
       <% end %>
     </ul>
 	</div>
-</div>
+</nav>

@@ -1,21 +1,14 @@
-  <div class="modal fade" id="new-message" tab-index="-1" role="dialog" aria-labelledby="new-message-modal" aria-hidden="true">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header ">
-          <a class="close" data-dismiss="modal">&times;</a>
-          <h3>Create New Message</h3>
-        </div>
-        <div class="modal-body">
-          <%= simple_fields_for :message do |message_fields| %>
-            <%= message_fields.input :name, input_html: { class: "span12" } %>
-            <%= label_tag "Add New Message:" %>
-            <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "span12" } %>
-          <% end %>
-        </div>
-        <div class="modal-footer">
-          <a href="#" class="cancel-modal" data-dismiss="modal">Cancel</a>
-        <%= link_to "Save Message", admin_organization_messages_path(@organization), id: "new-message-submit", class: "btn btn-primary save-modal", remote: true %>
-        </div>
-      </div>
-    </div>
+<div class="reveal-modal small" data-reveal id="new-message">
+  <a class="close-reveal-modal">&#215;</a>
+  <h3>Create New Message</h3>
+  <div class="modal-body">
+    <%= simple_fields_for :message do |message_fields| %>
+      <%= message_fields.input :name, input_html: { class: "small-12 twelve columns" } %>
+      <%= label_tag "Add New Message:" %>
+      <%= message_fields.input :message_text, as: :text, rows: 15, input_html: { class: "small-12 twelve columns" } %>
+    <% end %>
   </div>
+  <div class="modal-footer">
+  <%= link_to "Save Message", admin_organization_messages_path(@organization), id: "new-message-submit", class: "button save-modal", remote: true %>
+  </div>
+</div>

@@ -18,20 +18,25 @@
   </div>
   
   <div class="control-group">
-    <%= f.label :description, "Group description" %>
+    <%= f.label :description, "GROUP DESCRIPTION" %>
     <div class="controls">
       <%= f.text_area :description, rows: 3 %>
     </div>
   </div>
-    
-  <% fields_for :recipient do |builder| %>
-      <% @group.recipients.each do |recipient| %>
+  
+  <div class="control-group">
+    <%= f.label :description, "PHONE NUMBER LIST (one phone number per line, no -dashes, ()parenthesis or spaces; ex: 9876543201)" %>
+      <div class="controls">
+        <% fields_for :recipient do |builder| %>
+        <% @group.recipients.each do |recipient| %>
         <% phone_numbers = recipient.phone %>
       <% end %>
-  <% end %>
-  <%= f.text_area :phone, rows: 10, value: phone_numbers %>
+    <% end %>
+    <%= f.text_area :phone, rows: 10, value: phone_numbers %>
+    </div>
+  </div>
 
   <div class="actions">
-    <%= f.submit :class => 'btn btn-primary' %>
+    <%= f.submit :class => 'button' %>
   </div>  
 <% end %>
