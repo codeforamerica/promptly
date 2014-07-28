@@ -41,14 +41,18 @@ class ContraCostaImporter
 
     group = Group.where(name: build_group_name(appointment[:appt_datetime])).first_or_create
     group.description = 'Built automatically by The Importer.'
+    Group.add_phone_numbers_to_group(appointment[:phone_nbr], group)
+    group.save!
 
     message = get_message(appointment)
     
     # TODO(christianbryan@gmail.com): There could be some serious time zone issues here.
     date = Time.strptime(DATE_FORMAT, appointment[:appt_datetime])
-    reminder = Reminder.where(name: 'Importer Job', organization_id: ORGANIZATION_ID).first_or_create
-    reminder.send_date = date
-    reminder.send_time = date
+    # reminder = Reminder.where(name: 'Importer Job', organization_id: ORGANIZATION_ID).first_or_create
+    # reminder.send_date = date
+    # reminder.send_time = date
+
+    Reminder.create_new_reminders(message, date, group_id: group.id, organization: ORGANIZATION_ID)
 
     puts group.inspect
   end
