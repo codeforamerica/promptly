@@ -7,7 +7,7 @@ $stdout.sync = true
 namespace :contra_costa do
   desc "Imports data from Contra Costa County data sources"
   task :import => :environment do
-    listener = Listen.to('/tmp', only: /\*\.csv$/) do |modified, added, removed|
+    listener = Listen.to('/tmp', only: /CCC.*\.csv$/) do |modified, added, removed|
       added.each do |fresh_path|
         puts "Saw a new file at #{fresh_path}."
         importer = ContraCostaImporter.new(fresh_path)
