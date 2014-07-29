@@ -45,11 +45,9 @@ class ContraCostaImporter
     group.save!
 
     message = get_message(appointment)
-    puts message.inspect
     # TODO(christianbryan@gmail.com): There could be some serious time zone issues here.
     date = appointment[:appt_datetime].to_datetime
     Reminder.create_new_reminders(message, date, group_id: group.id, organization_id: ORGANIZATION_ID)
-
     puts Reminder.last.inspect
     puts group.inspect
   end
@@ -64,7 +62,7 @@ class ContraCostaImporter
       new_message.save!
       new_message
     else
-      Message.where(name: appointment[:mssg_cd] + appointment[:language])
+      Message.where(name: appointment[:mssg_cd] + appointment[:language]).first_or_create
     end
   end
 end
