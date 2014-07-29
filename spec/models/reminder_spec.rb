@@ -33,7 +33,6 @@ describe Reminder do
 
     it "does not create duplicate reminders" do
       Reminder.create_new_reminders(@message, DateTime.new(2100,2,3), group_id: @group.id.to_s, organization_id: @organization.id)
-      binding.pry
       expect(Reminder.all.count).to eq 1
       expect(Delayed::Job.count).to eq 1
       Reminder.create_new_reminders(@message, DateTime.new(2100,2,3), group_id: @group.id.to_s, organization_id: @organization.id)

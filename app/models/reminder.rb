@@ -58,7 +58,6 @@ class Reminder < ActiveRecord::Base
       begin
         reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
         @reminders = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id)
-        
         if @reminders.empty?
           @reminder = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id).first_or_create
           @reminder.create_and_save_reminder(the_recipient, reminder_time, reminder_date, options)
@@ -69,7 +68,7 @@ class Reminder < ActiveRecord::Base
         else
           @reminders.each do |reminder|
             @stored_date = reminder.send_date.to_date
-            if @stored_date = reminder_date.to_date
+              if @stored_date = reminder_date.to_date
               @reminder = reminder
               @reminder.create_and_save_reminder(the_recipient, reminder_time, reminder_date, options)
               if @reminder.job_id.nil?
