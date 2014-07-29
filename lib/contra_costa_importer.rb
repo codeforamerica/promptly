@@ -41,6 +41,7 @@ class ContraCostaImporter
 
     group = Group.where(name: build_group_name(appointment[:appt_datetime])).first_or_create
     group.description = 'Built automatically by The Importer.'
+    group.update_attributes(organization_id: ORGANIZATION_ID)
     Group.add_phone_numbers_to_group(appointment[:phone_nbr], group)
     group.save!
 
