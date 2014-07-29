@@ -11,4 +11,4 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 // require_self
-// require_tree ./ie/foundation3
+// require ./ie/foundation3/foundation.min

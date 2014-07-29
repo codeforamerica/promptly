@@ -28,7 +28,7 @@ gem 'sass-rails', '>= 3.2'
 gem 'foundation-rails'
 gem 'morrisjs-rails'
 gem 'raphael-rails'
-
+gem 'listen'
 
 group :development do
   gem 'pry'

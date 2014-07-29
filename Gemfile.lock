@@ -334,6 +334,7 @@ DEPENDENCIES
   jquery-ui-rails
   json
   launchy
+  listen
   morrisjs-rails
   newrelic_rpm (>= 3.8)
   pg

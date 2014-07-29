@@ -20,6 +20,9 @@
   }
 
 //https://github.com/Nerian/bootstrap-datepicker-rails
+  $('.dateSelect').fdatepicker({
+    format: 'mm/dd/yyyy'
+  });
 
   $('#message_message_text').live('keyup keydown', function(e) {
     var maxLen = 160;
