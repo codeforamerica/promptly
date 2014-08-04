@@ -48,7 +48,9 @@ class ContraCostaImporter
     message = get_message(appointment)
     # TODO(christianbryan@gmail.com): There could be some serious time zone issues here.
     date = appointment[5].to_datetime
-    Reminder.create_new_reminders(message, date, group_id: group.id, organization_id: ORGANIZATION_ID)
+    date = Time.use_zone('Pacific Time (US & Canada)') { Time.zone.local_to_utc(date) }
+    time = date.strftime('%T')
+    Reminder.create_new_reminders(message, date, group_id: group.id, organization_id: ORGANIZATION_ID, send_time: time)
     puts Reminder.last.inspect
     puts group.inspect
   end
