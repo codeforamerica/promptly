@@ -22,11 +22,16 @@ class ContraCostaImporter
   DATE_FORMAT = '%F %H:%M:%S'
 
   def initialize(path)
+    @notification_count = Reminder.all.count ||= 0
+    @group_count = Group.all.count ||= 0
     @content = File.read(path)
     puts "New importer built."
     import
-    @users_email = User.where(email: 'andy@codeforamerica.org')
-    UserNotifier.send_daily_import_log(@users_email).deliver
+    @new_notifications = (Reminder.all.count - @notification_count)
+    @new_groups = (Group.all.count - @group_count)
+    @total_records = csv_data.length
+    user = User.where(email: 'andy@codeforamerica.org')
+    UserNotifier.send_daily_import_log(@total_records, @new_notifications, @new_groups, user).deliver
   end
 
   def csv_data
