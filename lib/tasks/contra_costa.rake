@@ -1,6 +1,5 @@
 require 'listen'
 require 'contra_costa_importer'
-require 'pry'
 
 # Make sure our blabber gets to Foreman quickly.
 $stdout.sync = true
