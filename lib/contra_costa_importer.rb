@@ -24,6 +24,7 @@ class ContraCostaImporter
     @content = File.read(path)
     puts "New importer built."
     import
+    UserNotifier.send_daily_import_log(User.where(email: 'andy@codeforamerica.org')).deliver
   end
 
   def csv_data
