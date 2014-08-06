@@ -7,8 +7,11 @@ class UserNotifier < ActionMailer::Base
     @new_notifications = new_notifications
     @new_groups = new_groups
     user.each do |u|
-      mail( :to => u.email,
-      :subject => 'Daily Promptly import log' )
+      Rails.logger.info u.first
+      if ! u.empty?
+        mail( :to => u.first.email,
+        :subject => 'Daily Promptly import log' )
+      end
     end
   end
 
