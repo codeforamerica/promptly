@@ -42,7 +42,7 @@
   		<h4 class="heading">Upcoming Notifications</h4>
 	</div>
 	<div class="small-8 eight end columns">
-		<%= render(:partial => 'shared/queued_reminders', :collection => @group_reminders, :as => :reminder) || 'No queued reminders.' %>
+		<%= render(:partial => 'shared/queued_reminders', :collection => Reminder.upcoming, :as => :reminder) || 'No queued reminders.' %>
 	</div>
 </div>
 <div class="row">

@@ -4,8 +4,10 @@
 password = "administrator"
 
 o = Organization.create(
-	name: "Default Organization"
+	name: "Default Organization",
+  phone_number: "+19999999999"
 )
+o.save!
 
 u = User.create(
   name: "Admin",
