@@ -43,6 +43,14 @@ feature "Reminders" do
     expect(page).to have_content 'confirm'
   end
 
+  scenario "creating multiple reminders should work" do
+    sign_in @user
+    @reminder = FactoryGirl.create :reminder_with_message_and_group
+    @count = Reminder.count
+    FactoryGirl.create :reminder_with_message_and_group, send_date: DateTime.now + 2.days
+    expect(Reminder.count).to eq @count +1
+  end
+
   scenario "creating a new message should add it to the message list" do
     # sign_in @user
     # @count = Message.all.count

@@ -18,6 +18,25 @@ feature "Groups" do
     expect(page).to have_content "CREATE GROUP"
   end
 
+  scenario "should create a group" do
+    sign_in @user
+    @count = Group.all.count
+    visit "/admin/organizations/#{@user.organizations.first.id}/groups/new"
+    fill_in('group_name', :with => 'Hot Snakes')
+    fill_in('group_description', :with => 'No Hands')
+    fill_in('recipient_phone', :with => Faker::PhoneNumber.phone_number)
+    click_button 'Create Group'
+    expect(Group.all.count).to eq @count +1
+  end
+
+  scenario "index should show group name" do
+    sign_in @user
+    @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
+    visit "/admin/organizations/#{@user.organizations.first.id}/groups"
+    save_and_open_page
+    expect(page).to have_content "#{@group.name}"
+  end
+
   scenario "should show a group" do
     sign_in @user
     group = FactoryGirl.create :group, name: "Shock G", organization_id: @user.organizations.first.id
