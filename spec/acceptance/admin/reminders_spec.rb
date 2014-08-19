@@ -28,6 +28,7 @@ feature "Reminders" do
 
   scenario "creating a reminder should work" do
     sign_in @user
+    @count = Reminder.all.count
     @message = FactoryGirl.create :message, name: "hot snakes", organization_id: @user.organizations.first.id
     @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
     visit "/admin/organizations/#{@user.organizations.first.id}/reminders/new"
@@ -41,6 +42,16 @@ feature "Reminders" do
     expect(page).to have_content '01/01/2000'
     expect(page).to have_content '12:00pm'
     expect(page).to have_content 'confirm'
+    click_button 'SCHEDULE NOTIFICATION'
+    expect(Reminder.all.count).to eq @count +1
+  end
+
+  scenario "creating multiple reminders should work" do
+    sign_in @user
+    @reminder = FactoryGirl.create :reminder_with_message_and_group
+    @count = Reminder.count
+    FactoryGirl.create :reminder_with_message_and_group, send_date: DateTime.now + 2.days
+    expect(Reminder.count).to eq @count +1
   end
 
   scenario "creating a new message should add it to the message list" do

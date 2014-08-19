@@ -9,13 +9,12 @@ class Reminder < ActiveRecord::Base
   accepts_nested_attributes_for :message, :recipient
 
   scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
-  # scope :upcoming, where("send_date >= ?", Date.current)
 
   scope :upcoming, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
     # @reminders = []
     limit = limit.empty? ? 10000000 : limit.first
-    upcoming_reminders = Reminder.where('send_date >= ?', DateTime.now)
+    upcoming_reminders = Reminder.where('send_date >= ?', DateTime.now.utc)
       .order("send_date")
     upcoming_reminders.each do |reminder|
       if reminder.send_date.utc < DateTime.now.utc
@@ -24,6 +23,8 @@ class Reminder < ActiveRecord::Base
     end
     upcoming_reminders.limit(limit)
   }
+
+  scope :group_upcoming, ->(org_id, group_id) {joins(:groups).where("groups.organization_id = ? AND groups.id = ?", org_id, group_id) & Reminder.upcoming}
 
   def self.grouped_reminders(limit = 0)
     if limit != 0
@@ -59,28 +60,18 @@ class Reminder < ActiveRecord::Base
         reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
         @reminders = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id)
         if @reminders.empty?
-          @reminder = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id).first_or_create
+          @reminder = Reminder.new(message_id: message.id)
           @reminder.create_and_save_reminder(the_recipient, reminder_time, reminder_date, options)
           @reminder.save!
           if @reminder.job_id.nil?
             @reminder.add_to_queue
           end
         else
-          @reminders.each do |reminder|
-            @stored_date = reminder.send_date.to_date
-              if @stored_date = reminder_date.to_date
-              @reminder = reminder
-              @reminder.create_and_save_reminder(the_recipient, reminder_time, reminder_date, options)
-              if @reminder.job_id.nil?
-                @reminder.add_to_queue
-              end
-            else
-              @reminder = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id).first_or_create
-              @reminder.create_and_save_reminder(the_recipient, reminder_time, reminder_date, options)
-              if @reminder.job_id.nil?
-                @reminder.add_to_queue
-              end
-            end
+          @reminder = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id, send_date: reminder_date.to_datetime).first_or_create
+          @reminder.create_and_save_reminder(the_recipient, reminder_time, reminder_date, options)
+          @reminder.save!
+          if @reminder.job_id.nil?
+            @reminder.add_to_queue
           end
         end
       rescue
