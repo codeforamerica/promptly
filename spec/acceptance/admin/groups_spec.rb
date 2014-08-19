@@ -33,7 +33,6 @@ feature "Groups" do
     sign_in @user
     @group = FactoryGirl.create :group, organization_id: @user.organizations.first.id
     visit "/admin/organizations/#{@user.organizations.first.id}/groups"
-    save_and_open_page
     expect(page).to have_content "#{@group.name}"
   end
 

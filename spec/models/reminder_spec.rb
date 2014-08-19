@@ -39,6 +39,15 @@ describe Reminder do
       expect(Reminder.all.count).to eq 1
     end
 
+    it "creates a new reminder for a different time" do
+      Reminder.create_new_reminders(@message, DateTime.now + 2.days, group_id: @group.id.to_s, organization_id: @organization.id)
+      expect(Reminder.all.count).to eq 1
+      expect(Delayed::Job.count).to eq 1
+      Reminder.create_new_reminders(@message, DateTime.now + 3.days, group_id: @group.id.to_s, organization_id: @organization.id)
+      expect(Reminder.all.count).to eq 2
+      expect(Delayed::Job.count).to eq 2
+    end
+
   end
 
   describe "#check_for_valid_date" do
