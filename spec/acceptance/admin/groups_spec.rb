@@ -25,4 +25,28 @@ feature "Groups" do
     expect(page).to have_content "Shock G"
     expect(page).to have_content "Group History"
   end    
+
+  scenario "should show notification history" do
+    sign_in @user
+    @group = FactoryGirl.create :group, name: "Unwound", organization_id: @user.organizations.first.id
+    @message = FactoryGirl.create :message
+    @reminder = FactoryGirl.create :reminder_with_message_and_recipient, send_date: DateTime.now - 1.day
+    @group.recipients << @reminder.recipient
+    @reminder.groups << @group
+    @conversation = FactoryGirl.create :conversation, message: @group.reminders.first.message.message_text
+    @conversation.recipients << @group.recipients
+    visit "/admin/organizations/#{@user.organizations.first.id}/groups/#{@group.id}"
+    expect(page).to have_content "#{@group.reminders.first.message.message_text}"
+  end  
+
+  scenario "should show upcoming notifications" do
+    sign_in @user
+    @group = FactoryGirl.create :group, name: "Unwound", organization_id: @user.organizations.first.id
+    @message = FactoryGirl.create :message
+    @reminder = FactoryGirl.create :reminder_with_message_and_recipient, send_date: DateTime.now + 1.day
+    @group.recipients << @reminder.recipient
+    @reminder.groups << @group
+    visit "/admin/organizations/#{@user.organizations.first.id}/groups/#{@group.id}"
+    expect(page).to have_content "#{@group.reminders.first.message.message_text}"
+  end     
 end

@@ -9,13 +9,12 @@ class Reminder < ActiveRecord::Base
   accepts_nested_attributes_for :message, :recipient
 
   scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
-  # scope :upcoming, where("send_date >= ?", Date.current)
 
   scope :upcoming, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
     # @reminders = []
     limit = limit.empty? ? 10000000 : limit.first
-    upcoming_reminders = Reminder.where('send_date >= ?', DateTime.now)
+    upcoming_reminders = Reminder.where('send_date >= ?', DateTime.now.utc)
       .order("send_date")
     upcoming_reminders.each do |reminder|
       if reminder.send_date.utc < DateTime.now.utc
@@ -24,6 +23,8 @@ class Reminder < ActiveRecord::Base
     end
     upcoming_reminders.limit(limit)
   }
+
+  scope :group_upcoming, ->(org_id, group_id) {joins(:groups).where("groups.organization_id = ? AND groups.id = ?", org_id, group_id) & Reminder.upcoming}
 
   def self.grouped_reminders(limit = 0)
     if limit != 0

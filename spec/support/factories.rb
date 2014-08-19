@@ -65,11 +65,11 @@ FactoryGirl.define do
 
   factory :organization do
     name { Faker::Lorem.words(rand(1..4)).join(" ") }
-    phone_number {"+14155824309"}
+    phone_number { "+1" + Faker::Number.number(10) }
   end
 
   factory :conversation_with_message, parent: :conversation do
-    after :create do 
+    after :create do |conversation|
       conversation.message = FactoryGirl.create(:message)
     end
   end
