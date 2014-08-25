@@ -15,7 +15,9 @@ class ContraCostaImporter
     '100EN' => 22,
     '300EN' => nil,
     '100SP' => 20,
-    '300SP' => nil
+    '300SP' => nil,
+    '200EN' => 30,
+    '200SP' => 31
   }
 
 
