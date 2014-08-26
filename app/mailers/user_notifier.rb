@@ -6,10 +6,9 @@ class UserNotifier < ActionMailer::Base
     @total = total
     @new_notifications = new_notifications
     @new_groups = new_groups
-    user.each do |u|
-      mail( :to => u.email,
-      :subject => 'Daily Promptly import log' )
-    end
+    binding.pry
+    mail( :to => @user.email,
+    :subject => 'Daily Promptly import log' )
   end
 
 end

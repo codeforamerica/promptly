@@ -20,6 +20,13 @@ class ContraCostaImporter
     '200SP' => 31
   }
 
+  REPORT_RECIPIENTS = [
+    'andy@postcode.io',
+    'reed@postcode.io',
+    'deisenlohr@ehsd.cccounty.us',
+    'rdelavega@ehsd.cccounty.us'
+  ]
+
 
   DATE_FORMAT = '%F %H:%M:%S'
 
@@ -32,8 +39,12 @@ class ContraCostaImporter
     @new_notifications = (Reminder.all.count - @notification_count)
     @new_groups = (Group.all.count - @group_count)
     @total_records = csv_data.length
-    user = User.where(email: 'andy@codeforamerica.org')
-    UserNotifier.send_daily_import_log(@total_records, @new_notifications, @new_groups, user).deliver
+    # user = User.where(email: 'andy@codeforamerica.org')
+    user = REPORT_RECIPIENTS.collect {|email| User.where(email: email).first_or_create}
+    # binding.pry
+    user.each do |u|
+      UserNotifier.send_daily_import_log(@total_records, @new_notifications, @new_groups, u).deliver
+    end
   end
 
   def csv_data

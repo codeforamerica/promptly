@@ -37,6 +37,7 @@ group :development do
   gem 'database_cleaner'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 # Gems used only for assets and not required

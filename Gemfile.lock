@@ -149,6 +149,8 @@ GEM
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     libv8 (3.16.14.3)
     listen (2.7.9)
       celluloid (>= 0.15.2)
@@ -334,6 +336,7 @@ DEPENDENCIES
   jquery-ui-rails
   json
   launchy
+  letter_opener
   listen
   morrisjs-rails
   newrelic_rpm (>= 3.8)
