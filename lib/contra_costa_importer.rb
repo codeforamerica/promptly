@@ -39,9 +39,7 @@ class ContraCostaImporter
     @new_notifications = (Reminder.all.count - @notification_count)
     @new_groups = (Group.all.count - @group_count)
     @total_records = csv_data.length
-    # user = User.where(email: 'andy@codeforamerica.org')
     user = REPORT_RECIPIENTS.collect {|email| User.where(email: email).first_or_create}
-    # binding.pry
     user.each do |u|
       UserNotifier.send_daily_import_log(@total_records, @new_notifications, @new_groups, u).deliver
     end
@@ -81,12 +79,22 @@ class ContraCostaImporter
   end
 
   def get_message(appointment)
-    if Message.where(name: appointment[:mssg_cd] + appointment[:language]).empty?
-      new_message = Message.new(name: appointment[:mssg_cd] + appointment[:language], message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
-      new_message.save!
-      new_message
+    if appointment[:language] != 'SP' || appointment[:language] != 'EN'
+      if Message.where(name: appointment[:mssg_cd] + 'EN').empty? && 
+        new_message = Message.new(name: appointment[:mssg_cd] + 'EN', message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
+        new_message.save!
+        new_message
+      else
+        Message.where(name: appointment[:mssg_cd] + 'EN').first_or_create
+      end
     else
-      Message.where(name: appointment[:mssg_cd] + appointment[:language]).first_or_create
+      if Message.where(name: appointment[:mssg_cd] + appointment[:language]).empty? && 
+        new_message = Message.new(name: appointment[:mssg_cd] + appointment[:language], message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
+        new_message.save!
+        new_message
+      else
+        Message.where(name: appointment[:mssg_cd] + appointment[:language]).first_or_create
+      end 
     end
   end
 end
