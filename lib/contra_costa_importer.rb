@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 # Imports CSV dumps given to us by Contra Costa County.
 class ContraCostaImporter
@@ -79,7 +78,7 @@ class ContraCostaImporter
   end
 
   def get_message(appointment)
-    if appointment[:language] != 'SP' || appointment[:language] != 'EN'
+    if appointment[:language] != 'SP' && appointment[:language] != 'EN'
       if Message.where(name: appointment[:mssg_cd] + 'EN').empty? && 
         new_message = Message.new(name: appointment[:mssg_cd] + 'EN', message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
         new_message.save!
