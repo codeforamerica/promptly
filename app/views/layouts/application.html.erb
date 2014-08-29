@@ -14,8 +14,8 @@
     <!-- Foundation 4 for IE 9 and earlier -->
     <!--[if gt IE 8]>
       <%= stylesheet_link_tag 'ie9', :media => 'all' %>
-      <link rel="stylesheet" href="../assets/ie/css/foundation4/normalize.css">
-      <link rel="stylesheet" href="../assets/ie/css/foundation4/foundation.min.css">
+      <%= stylesheet_link_tag 'ie/css/foundation4/normalize.css' %>
+      <%= stylesheet_link_tag 'ie/css/foundation4/foundation.min.css' %>
     <![endif]-->
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
