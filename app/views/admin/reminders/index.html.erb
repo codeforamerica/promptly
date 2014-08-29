@@ -1,36 +1,23 @@
 <div class="row">
-  <div class="small-12 twelve large-12 text-right">
-    <%= link_to 'CREATE NOTIFICATION', new_admin_organization_reminder_path(@organization.id), :class => 'button' %>
+  <div class="large-9 large-offset-3 column">
+    <div><%= link_to 'CREATE NOTIFICATION', new_admin_organization_reminder_path(@organization.id), :class => 'button cta-button' %></div>
   </div>
-</div>
-<div class="row">
-  <div class="pageHeader small-12 twelve large-12 columns">
-    <div class="headerBig heading">
-      <h1>All Notifications</h1>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="small-12 twelve large-12">
-    <ul class="tabs" data-tab>
-      <li class="tab-title active"><a href="#upcoming">Scheduled Notifications</a></li>
-      <li class="tab-title"><a href="#sent">Sent Notifications</a></li>
+  <div class="large-12 column">
+    <ul class="tabs vertical" data-tab>
+      <li class="tab-title active"><a href="#panel1a">Upcoming Notifications</a></li>
+      <li class="tab-title"><a href="#panel2a">Past Notifications</a></li>
     </ul>
-    <div class="tabs-content">
-      <div class="content active" id="upcoming">
-        <% if @groups.empty? %>
-          <div class="panel">There are no upcoming notifications.</div>
-        <% else %>
-          <%= render('upcoming', :collection => @groups) %>
-        <% end %>
+    <div class="tabs-content vertical">
+      <div class="content active" id="panel1a" style="background: #FFF; padding: 10px;">
+          <% if @groups != [] %>
+            <%= render('upcoming', :collection => @groups) %>
+          <% else %>
+            <%= 'There are no upcoming reminders.' %>
+          <% end %>
       </div>
-      <div class="content" id="sent">
-        <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
+      <div class="content" id="panel2a">
+          <%= render('sent', :collection => @sent) || 'There are no sent reminders.' %>
       </div>
     </div>
   </div>
 </div>
-
-<script>
-  // $('.dropdown-toggle').dropdown()
-</script>
