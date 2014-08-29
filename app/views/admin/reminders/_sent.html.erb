@@ -13,7 +13,7 @@
     <tr>
       <td><%= reminder[1].first.message %></td>
       <td><%= reminder[1].first.date.to_s(:date_format) %></td>
-      <td><%= Group.find(reminder[0][0]).first.name %></td>
+      <td><%= Group.find(reminder[0][0]).name %></td>
       <td><%= reminder[1].count %></td>
     </tr>
     <% end %>
