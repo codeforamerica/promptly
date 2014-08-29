@@ -1,5 +1,4 @@
 require 'csv'
-require 'pry'
 
 # Imports CSV dumps given to us by Contra Costa County.
 class ContraCostaImporter
@@ -15,13 +14,16 @@ class ContraCostaImporter
     '100EN' => 22,
     '300EN' => nil,
     '100SP' => 20,
-    '300SP' => nil
+    '300SP' => nil,
+    '200EN' => 30,
+    '200SP' => 31
   }
 
   REPORT_RECIPIENTS = [
-    'andy@codeforamerica.org', 
-    'andy@postcode.io', 
-    'reed@postcode.io'
+    'andy@postcode.io',
+    'reed@postcode.io',
+    'deisenlohr@ehsd.cccounty.us',
+    'rdelavega@ehsd.cccounty.us'
   ]
 
 
@@ -36,8 +38,10 @@ class ContraCostaImporter
     @new_notifications = (Reminder.all.count - @notification_count)
     @new_groups = (Group.all.count - @group_count)
     @total_records = csv_data.length
-    user = REPORT_RECIPIENTS.collect {|email| User.where(email: email)}
-    UserNotifier.send_daily_import_log(@total_records, @new_notifications, @new_groups, user).deliver
+    user = REPORT_RECIPIENTS.collect {|email| User.where(email: email).first_or_create}
+    user.each do |u|
+      UserNotifier.send_daily_import_log(@total_records, @new_notifications, @new_groups, u).deliver
+    end
   end
 
   def csv_data
@@ -74,12 +78,22 @@ class ContraCostaImporter
   end
 
   def get_message(appointment)
-    if Message.where(name: appointment[:mssg_cd] + appointment[:language]).empty?
-      new_message = Message.new(name: appointment[:mssg_cd] + appointment[:language], message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
-      new_message.save!
-      new_message
+    if appointment[:language] != 'SP' && appointment[:language] != 'EN'
+      if Message.where(name: appointment[:mssg_cd] + 'EN').empty? && 
+        new_message = Message.new(name: appointment[:mssg_cd] + 'EN', message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
+        new_message.save!
+        new_message
+      else
+        Message.where(name: appointment[:mssg_cd] + 'EN').first_or_create
+      end
     else
-      Message.where(name: appointment[:mssg_cd] + appointment[:language]).first_or_create
+      if Message.where(name: appointment[:mssg_cd] + appointment[:language]).empty? && 
+        new_message = Message.new(name: appointment[:mssg_cd] + appointment[:language], message_text: "add a text message here.", organization_id: ORGANIZATION_ID, description: "automatically created")
+        new_message.save!
+        new_message
+      else
+        Message.where(name: appointment[:mssg_cd] + appointment[:language]).first_or_create
+      end 
     end
   end
 end
