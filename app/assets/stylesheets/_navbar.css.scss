@@ -108,6 +108,8 @@ $navbarLinkBackgroundActive: $darkBlue;
 .promptly-sub-nav {
 	background: $lightGray;
 	margin-top: 2px;
+	width: 100% !important;
+	margin-left: 0em !important;
   @include sub-nav(
     // Control the color of the divider between links.
     // Control your font-size per label.
