@@ -1,3 +1,4 @@
+[ ![Codeship Status for postcode/promptly](https://www.codeship.io/projects/ec855670-2bd6-0132-f980-1e923bfe56e2/status)](https://www.codeship.io/projects/38700)
 [![Build Status](https://travis-ci.org/postcode/promptly.png?branch=master)](https://travis-ci.org/postcode/promptly)
 [![Stories in Ready](https://badge.waffle.io/codeforamerica/promptly.png?label=ready)](https://waffle.io/codeforamerica/promptly)
 
