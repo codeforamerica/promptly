@@ -88,8 +88,8 @@ class Admin::UsersController < OrgController
       @organization_user = OrganizationsUser.create(
         user_id: @user.id,
         organization_id: params[:organization_id],
-        roles_mask: 1) 
-      puts "Roles mask: #{@user.roles_mask}"
+        roles_mask: OrganizationsUser.mask_for(params[:organizations_user][:roles_mask])) 
+      puts "Roles mask: #{@organization_user.roles_mask}"
       if @organization_user.save  
         respond_to do |format|
           flash[:notice] = "Account has been created"
