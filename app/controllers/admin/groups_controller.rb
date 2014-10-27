@@ -16,13 +16,13 @@ class Admin::GroupsController < OrgController
   # GET /Groups/1
   # GET /Groups/1.json
   def show
-    @group = Group.find(params[:id])
+    @group = Group.accessible_by(current_ability).organization(params[:organization_id]).find(params[:id])
     @group_reminders = @group.reminders
     @group_recipients = @group.recipients
     @group_conversations =[]
     @group_recipients.each do |recipient|
       if recipient.conversations != []
-        @group_conversations << recipient.conversations
+        @group_conversations << recipient.conversations.where(organization_id: params[:organization_id], group_id: @group.id.to_s)
       end
     end
 
