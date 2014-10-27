@@ -51,7 +51,7 @@ feature "Groups" do
     @reminder = FactoryGirl.create :reminder_with_message_and_recipient, send_date: DateTime.now - 1.day
     @group.recipients << @reminder.recipient
     @reminder.groups << @group
-    @conversation = FactoryGirl.create :conversation, message: @group.reminders.first.message.message_text
+    @conversation = FactoryGirl.create :conversation, message: @group.reminders.first.message.message_text, organization_id: @user.organizations.first.id, group_id: @group.id
     @conversation.recipients << @group.recipients
     visit "/admin/organizations/#{@user.organizations.first.id}/groups/#{@group.id}"
     expect(page).to have_content "#{@group.reminders.first.message.message_text}"
