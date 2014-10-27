@@ -5,7 +5,7 @@
     <th>Send date</th>
   </thead>
   <tbody>
-    <% @undelivered.each do |batch, undelivered| %>
+    <% @undelivered.each do |undelivered| %>
     <tr>
       <td><%= number_to_phone(undelivered.from_number, :area_code => true) %></td>
       <td><%= undelivered.date.to_s(:date_format) %></td>
