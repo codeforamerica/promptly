@@ -38,7 +38,7 @@ class Conversation < ActiveRecord::Base
   end
 
   def self.csv_export_stop_start
-    @stop = Conversation.unsubscribed.order('date')
+    @stop = Conversation.unsubscribed
     @start = Conversation.subscribed 
     @filename = "stop-start-#{DateTime.now.strftime('%m_%d_%Y')}.csv"    
     CSV.open("#{Rails.root.to_s}/tmp/#{@filename}", "wb") do |csv| #creates a tempfile csv
