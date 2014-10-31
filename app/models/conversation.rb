@@ -6,6 +6,7 @@ class Conversation < ActiveRecord::Base
   has_many :programs
   belongs_to :organization
   unsubscribed = ["stop", "quit", "unsubscribe", "cancel"]
+  subscribed = ["start", "yes"]
   
   scope :organization, ->(org_id) { where("organization_id = ?", org_id) }
   
@@ -18,6 +19,7 @@ class Conversation < ActiveRecord::Base
   scope :delivered_month, where("status = ? and date >= ?", "sent", DateTime.now - 1.month)
   scope :text_responses, where(:status => 'received')
   scope :unsubscribed, where('lower(message) IN (?)', unsubscribed)
+  scope :subscribed, where('lower(message) IN (?)', subscribed)
   scope :all_sent, where('message_id IS NOT NULL')
   scope :grouped_sent_conversations, lambda  { |*limit|
     # Hack to have the lambda take an optional argument.
@@ -33,5 +35,20 @@ class Conversation < ActiveRecord::Base
 
   def self.first_day
     Conversation.order("date").first
+  end
+
+  def self.csv_export_stop_start
+    @stop = Conversation.unsubscribed.order('date')
+    @start = Conversation.subscribed 
+    @filename = "stop-start-#{DateTime.now.strftime('%m_%d_%Y')}.csv"    
+    CSV.open("#{Rails.root.to_s}/tmp/#{@filename}", "wb") do |csv| #creates a tempfile csv
+      csv << ["Status", "Phone Number", "Date"] #creates the header
+      @stop.each do |s|            
+        csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection
+      end
+      @start.each do |s|            
+        csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection
+      end
+    end
   end
 end
