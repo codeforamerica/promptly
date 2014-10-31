@@ -56,7 +56,7 @@ desc "This task is called by the Heroku scheduler add-on. Updates conversations 
 	  messages = messages.next_page
 	end while not messages.empty?
 
-	calls = client.calls.list
+	calls = client.calls.list(StartTime: Date.today)
 	begin
 	  calls.each do |twilio_call|
 			@conversation = Conversation.where('call_id = ? and to_number = ?' , twilio_call.sid, twilio_call.to).first_or_create
