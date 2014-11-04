@@ -5,11 +5,11 @@ class Admin::ConversationsController < OrgController
 
   def index
     @conversations = Conversation.organization(@organization.id).all
-    @responses = Conversation.organization(@organization.id).text_responses
-    @undelivered = Conversation.organization(@organization.id).undelivered
+    @responses = Conversation.organization(@organization.id).text_responses.order("date DESC")
+    @undelivered = Conversation.organization(@organization.id).undelivered.order("date DESC")
     @unsubscribed = Conversation.organization(@organization.id).unsubscribed
     @sent_count = Conversation.organization(@organization.id).grouped_sent_conversations
-    @calls = Conversation.organization(@organization.id).all_calls
+    @calls = Conversation.organization(@organization.id).all_calls.order("date DESC")
 
     respond_to do |format|
       format.html # index.html.erb
