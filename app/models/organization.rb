@@ -3,7 +3,8 @@ class Organization < ActiveRecord::Base
   has_many :organizations_user
   has_many :users, through: :organizations_user
   validates_presence_of :name
-  validates_plausible_phone :phone_number, :presence => true
+  validates_plausible_phone :phone_number, presence: true
+  validates :phone_number, uniqueness: true
   has_many :conversations
   has_many :groups
   has_many :messages
