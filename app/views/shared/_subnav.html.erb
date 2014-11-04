@@ -26,7 +26,7 @@
         <i class="fi-comments large"></i>&nbsp;Conversations
       <% end %>
     <% end %>
-    <% if @current_user.is_super? || OrganizationsUser.org_user(@organization.id, @current_user.id).first.is_admin? %>
+    <% if can? :manage, User %>
       <%= content_tag(:dd, class: is_active?("users")) do %>
         <%= link_to admin_organization_users_path(@organization.id) do %>
           <i class="fi-torso large"></i>&nbsp;Users

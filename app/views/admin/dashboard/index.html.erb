@@ -15,7 +15,7 @@
     <div class="headerSmall headerAqua">
       <span class="headerText">Upcoming reminders</span>
     </div>
-      <div><%= link_to 'View all', admin_organization_reminders_path(@organization), :class => 'button secondary tiny right' %></div>
+      <div><%= link_to 'View all', admin_organization_reminders_path(@organization), :class => 'button secondary tiny right panel-btn' %></div>
     <div class="conversation">
       <%= render 'upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
     </div>
@@ -24,7 +24,7 @@
     <div class="headerSmall headerGreen">
       <span class="headerText">Sent reminders</span>
     </div>
-    <div><%= link_to 'View all', admin_organization_reminders_path(@organization), :class => 'button secondary tiny right' %></div>
+    <div><%= link_to 'View all', admin_organization_sent_reminders_path(@organization), :class => 'button secondary tiny right' %></div>
     <div class="conversation">
       <%= render 'sent_reminders', object: @conversations || 'There are no sent reminders' %>
     </div>

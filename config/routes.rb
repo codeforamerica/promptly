@@ -19,6 +19,7 @@ Promptly::Application.routes.draw do
         root to: 'superdashboard#index', as: 'dashboard'
       end
     resources :organizations do
+      match 'reminders#panel2a' => 'reminders#panel2a', :as => :sent_reminders
       match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
       resources :users
       resources :recipients

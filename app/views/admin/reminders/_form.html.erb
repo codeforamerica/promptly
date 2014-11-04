@@ -8,14 +8,18 @@
       <%= f.input :recipient_id, as: :hidden %><!-- adds the recipient_id as a param so we can add it manually -->
 
       <%= render 'message_table', :f => f %>
-      <%= render 'add_message', :f => f %>
+      <% if can? :manage, Message %>
+        <%= render 'add_message', :f => f %>
+      <% end %>
     </div><!-- message -->
   </div>
 
   <div class="row" id="recipients">
     <div class="small-12 twelve">
       <%= render 'group_table', :f => f %>
-      <%= render 'add_recipients', :f => f %>
+      <% if can? :manage, Group %>
+        <%= render 'add_recipients', :f => f %>
+      <% end %>
     </div>
   </div><!-- recipients -->
 

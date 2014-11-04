@@ -29,7 +29,7 @@ class Ability
           can :manage, Reminder, :organization_id => @organization_user.organization_id
           can :read, Message, :organization_id => @organization_user.organization_id
           can :manage, Conversation, :organization_id => @organization_user.organization_id
-          can :manage, Group, :organization_id => @organization_user.organization_id
+          can :read, Group, :organization_id => @organization_user.organization_id
         elsif @organization_user.has_role? :guest
             #guest can only sign up for the site
           can :read, [User]

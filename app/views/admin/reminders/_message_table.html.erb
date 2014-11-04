@@ -20,12 +20,16 @@
           <td><%= message.message_text %></td>
           <td><%= message.name %></td>
           <td>
-          <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'button secondary tiny' %>
-          <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
+          <% if can? :manage, Message %>
+            <%= link_to 'Edit', edit_admin_organization_message_path(@organization.id,message), :class=>'button secondary tiny' %>
+            <%= link_to 'Delete', [:admin, @organization, message], method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
     </table>
-    <p>Need a new message? <a id="new_message_button" href="#" class="button secondary small" data-reveal-id="new-message">Create new message</a>
+    <% if can? :manage, Message %>
+      <p>Need a new message? <a id="new_message_button" href="#" class="button secondary small" data-reveal-id="new-message">Create new message</a>
+    <% end %>
   </div>
 </div>
