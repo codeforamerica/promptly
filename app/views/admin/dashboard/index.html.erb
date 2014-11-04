@@ -33,7 +33,7 @@
 <div class="row">
   <div class="small-6 six columns">
     <div class="headerSmall headerGreen">
-      <span class="headerText">Responses</span>
+      <span class="headerText">Text Responses</span>
     </div>
     <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'button secondary tiny right' %></div>
     <div class="conversation">
@@ -53,8 +53,9 @@
 <div class="row">
   <div class="small-6 six columns">
     <div class="headerSmall headerAqua">
-      <span class="headerText">Calls</span>
+      <span class="headerText">Call Responses</span>
     </div>
+    <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'button secondary tiny right panel-btn' %></div>
     <div class="conversation">
       <%= render 'calls' || 'There are no calls' %>
     </div>
