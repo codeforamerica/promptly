@@ -17,4 +17,6 @@ class OrganizationsUser < ActiveRecord::Base
   # roles later, always append them at the end!
   roles :admin, :user, :guest
 
+  scope :org_user, ->(org_id, user_id) { where("organization_id = ? and user_id=?", org_id, user_id) }
+
 end
