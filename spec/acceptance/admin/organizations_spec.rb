@@ -65,4 +65,19 @@ feature "Organizations" do
     expect(Organization.all.count).to eq @count-1
   end
 
+  scenario "should not show the user button if not an admin" do
+    sign_in @user
+    @user.organizations_user.first.update_attributes(roles_mask: 2)
+    @organization = Organization.first
+    visit "/admin/organizations/#{@organization.id}/"
+    expect(page).to have_no_selector(:link_or_button, 'Users')
+  end
+
+  scenario "should  show the user button a super user" do
+    sign_in @super
+    @organization = Organization.first
+    visit "/admin/organizations/#{@organization.id}/"
+    expect(page).to have_selector(:link_or_button, 'Users')
+  end
+
 end
