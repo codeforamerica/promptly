@@ -7,7 +7,7 @@
     <table class="table table-hover datatable small-12 twelve" id="add-groups">
       <thead>
         <tr>
-          <th>Add to Organziation</th>
+          <th>Add to Organization</th>
           <th>Name</th>
           <th>Role</th>
         </tr>
@@ -27,9 +27,9 @@
                 <div class="controls">
                   <% role = OrganizationsUser.where(:organization_id => @organization.id, :user_id => user.id) %>
                   <% if role.exists? %>
-                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => role[0].roles.first} %>
+                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:selected => role[0].roles.first} %>
                   <% else %>
-                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
+                    <%= org_user.collection_select "#{user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:selected => 'user'} %>
                   <% end %>
                 </div>
               </div>

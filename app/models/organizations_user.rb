@@ -4,7 +4,8 @@ class OrganizationsUser < ActiveRecord::Base
   include RoleModel
 
   attr_accessible :organization_id, :user_id, :roles_mask, :roles, :name
-  validates_presence_of :organization_id, :user_id
+  validates_presence_of :organization_id, :user_id, :roles_mask
+  validates :roles_mask, numericality: { greater_than: 0 }
   self.primary_keys = :organization_id, :user_id
   belongs_to :organization
   belongs_to :user

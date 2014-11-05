@@ -17,10 +17,12 @@ class Organization < ActiveRecord::Base
   def self.save_org_users(org_id, ids, roles)
     ids.each do |user_id|
       if user_id[1] == "1"
-        @organization_users = OrganizationsUser.where(:organization_id => org_id, :user_id => user_id[0]).first_or_create
+        @organization_user = OrganizationsUser.where(:organization_id => org_id, :user_id => user_id[0]).first_or_create
         @org_role = roles["#{user_id[0]}"]
-        @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles_mask]))
-        @organization_users.save
+        @organization_user.update_attributes(:roles_mask => OrganizationsUser.mask_for(@org_role[:roles_mask]))
+        if !@organization_user.save
+          @organization_user.errors.messages
+        end
       else
         if OrganizationsUser.exists?(:organization_id => org_id, :user_id => user_id[0])
           OrganizationsUser.find(org_id, user_id[0]).delete
