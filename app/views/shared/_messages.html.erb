@@ -1,0 +1,11 @@
+<% if !notice.nil? %>
+  <div data-alert class="alert-box secondary">
+    <span class="notice"><%= notice %></span>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% elsif !alert.nil? %>
+  <div data-alert class="alert-box warning">
+    <span class="notice"><%= alert %></span>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>

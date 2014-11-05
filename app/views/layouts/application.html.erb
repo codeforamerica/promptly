@@ -32,10 +32,7 @@
         <%= yield :admin %>
       <% else %>
       <div class="row">
-        <div class="notice">
-          <div class="label"><%= notice %></div>
-          <div class="alert label"><%= alert %></div>
-        </div>
+        <%= render 'shared/messages' %>
         <div id="content">
           <%= yield %>
         </div>

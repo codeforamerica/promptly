@@ -25,7 +25,7 @@ class Conversation < ActiveRecord::Base
     # Hack to have the lambda take an optional argument.
     limit = limit.empty? ? 1000000 : limit.first
       Conversation.where('status = ?', 'sent')
-        .order("date")
+        .order("date DESC")
         .limit(limit)
   }
 

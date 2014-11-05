@@ -22,17 +22,19 @@ class Ability
           can :manage, Group, :organization_id => @organization_user.organization_id
           can :manage, User
         elsif @organization_user.has_role? :user
-          # an user can read everything
-          can :manage, [Conversation, Recipient]
-          # can :manage, Reminder, :organization_id => organization_id
-          can :read, Organization, :organization_id => @organization_user.organization_id
+          # a user can read everything
+          can :manage, Recipient
           can :manage, Reminder, :organization_id => @organization_user.organization_id
-          can :read, Message, :organization_id => @organization_user.organization_id
           can :manage, Conversation, :organization_id => @organization_user.organization_id
+          can :read, Message, :organization_id => @organization_user.organization_id
+          can :read, Organization, :organization_id => @organization_user.organization_id
           can :read, Group, :organization_id => @organization_user.organization_id
         elsif @organization_user.has_role? :guest
             #guest can only sign up for the site
-          can :read, [User]
+          can :read, User, :organization_id => @organization_user.organization_id 
+          can :read, Organization, :organization_id => @organization_user.organization_id 
+          can :read, Conversation, :organization_id => @organization_user.organization_id 
+          can :read, Reminder, :organization_id => @organization_user.organization_id
         end
       end
     end

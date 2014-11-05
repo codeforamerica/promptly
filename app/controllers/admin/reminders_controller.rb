@@ -5,7 +5,7 @@ class Admin::RemindersController < OrgController
   load_and_authorize_resource :only => [:show,:new,:destroy]
 
   def index
-    @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).grouped_reminders
+    @groups = Reminder.accessible_by(current_ability).organization(params[:organization_id]).upcoming
     @sent = Conversation.accessible_by(current_ability).organization(params[:organization_id]).grouped_sent_conversations.group_by{ |g| [g.group_id, g.message] }
 
     respond_to do |format|
