@@ -21,7 +21,7 @@
       <td>
         <%= link_to_if(!Group.find(reminders.group_ids).first.name.nil?, Group.find(reminders.group_ids).first.name, admin_organization_group_path(@organization.id, reminders.group_ids.first)) %>
       </td>
-      <td><%= link_to recipient_count, [:admin, @organization, @reminder] %></td>
+      <td><%= recipient_count %></td>
       <td><%= link_to 'Edit', edit_admin_organization_reminder_path(@organization, reminders.id), :class => 'button secondary tiny' %> <%= link_to 'Delete', admin_organization_reminder_path(@organization, reminders.id), method: :delete, data: { confirm: 'Are you sure?' }, :class=>'button alert tiny' %></td>
     </tr>
     <% end %>

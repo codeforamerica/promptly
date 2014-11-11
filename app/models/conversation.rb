@@ -33,6 +33,10 @@ class Conversation < ActiveRecord::Base
     where("call_id IS NOT NULL and message_id IS NULL and status =? and date >= ? and to_number = ?", "completed", DateTime.now - 1.month, org_phone_number)
   }
 
+  scope :texts_sent_last_month, lambda { |org_phone_number|
+    where("message_id IS NOT NULL and status =? and date >= ? and from_number = ?", "sent", DateTime.now - 1.month, org_phone_number)
+  }
+
   def self.first_day
     Conversation.order("date").first
   end
