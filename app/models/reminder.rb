@@ -58,7 +58,7 @@ class Reminder < ActiveRecord::Base
         the_recipient = nil
       end
       begin
-        reminder_date = DateTime.new(send_date.year, send_date.month, send_date.day, reminder_timehour, reminder_timemin, reminder_timesec, reminder_timezone).getutc
+        reminder_date = DateTime.new(send_date.year, send_date.month, send_date.day, reminder_time.hour, reminder_time.min, reminder_time.sec, reminder_time.zone).getutc
         # reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
         @reminders = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id)
         if @reminders.empty?
