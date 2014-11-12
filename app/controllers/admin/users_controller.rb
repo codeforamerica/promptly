@@ -122,15 +122,24 @@ class Admin::UsersController < OrgController
       account_update_params.delete("password")
       account_update_params.delete("password_confirmation")
     end
+    if @current_user.id == @user.id
+      @bypass_flag = true
+    else
+      @bypass_flag = false
+    end
 
     respond_to do |format|
       if @user.errors[:base].empty? and @user.update_attributes(params[:user])
         @organization_users = OrganizationsUser.where(:organization_id => params[:organization_id], :user_id => params[:id]).first_or_create
         @organization_users.update_attributes(:roles_mask => OrganizationsUser.mask_for(params[:organizations_user].first[1][:roles_mask]))
         @organization_users.save
+        @organization = Organization.find(params[:organization_id])
+        if @bypass_flag == true
+          sign_in(@user, :bypass => true)
+        end
           format.json { render :json => @user.to_json, :status => 200 }
           format.xml  { head :ok }
-          format.html { redirect_to admin_organization_users_path(params[:organization_id]), notice: 'User account has been updated' }
+          format.html { redirect_to admin_organization_users_path(@organization), notice: 'User account has been updated' }
       else
         format.json { render :text => "Could not update user", :status => :unprocessable_entity } #placeholder
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
