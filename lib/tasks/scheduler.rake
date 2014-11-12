@@ -1,5 +1,5 @@
-desc "This task is called by the Heroku scheduler add-on"
-	task :update_conversations => :environment do
+desc "This task is called by the Heroku scheduler add-on. Updates conversations for today only."
+	task :update_daily_conversations => :environment do
 
 	def find_organization(number)
 		if Organization.exists?(phone_number: number.to)
@@ -37,7 +37,7 @@ desc "This task is called by the Heroku scheduler add-on"
 	auth_token = ENV["TWILIO_TOKEN"]
 	client = Twilio::REST::Client.new account_sid, auth_token
 
-	messages = client.messages.list
+	messages = client.messages.list(DateSent: Date.today)
 	begin
 	  messages.each do |message|
 	    puts message.sid + "\t" + message.from + "\t" + message.to + "\t"
@@ -56,7 +56,7 @@ desc "This task is called by the Heroku scheduler add-on"
 	  messages = messages.next_page
 	end while not messages.empty?
 
-	calls = client.calls.list
+	calls = client.calls.list(StartTime: Date.today)
 	begin
 	  calls.each do |twilio_call|
 			@conversation = Conversation.where('call_id = ? and to_number = ?' , twilio_call.sid, twilio_call.to).first_or_create

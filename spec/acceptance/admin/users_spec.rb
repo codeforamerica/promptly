@@ -44,5 +44,16 @@ feature "Users" do
     visit "/admin/organizations/#{@user.organizations.first.id}/users/#{@user2.id}/edit"
     expect( find(:css, 'select').value ).to eq('guest')
   end
+
+  scenario "user should be able to change their password" do
+    sign_in @user
+    @password = Faker::Internet.password(8)
+    visit "/admin/organizations/#{@user.organizations.first.id}/users/#{@user.id}/edit"
+    fill_in('user_password', with: @password)
+    fill_in('user_password_confirmation', with: @password)
+    fill_in('user_current_password', with: @user.password)
+    click_button 'UPDATE'
+    expect(page).to have_content("User account has been updated")
+  end
     
 end

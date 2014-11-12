@@ -1,6 +1,7 @@
 <% content_for :admin do %>
   <%= render 'shared/adminnav' %>
-  <div class="row"
+  <div class="row">
+    <%= render 'shared/messages' %>
     <div id="content" class="small-10 columns">
       <%= yield %>
     </div>

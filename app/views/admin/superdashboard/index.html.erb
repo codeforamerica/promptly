@@ -28,19 +28,19 @@
     <div class="number small-3 three columns">
       <%= render 'admin/superdashboard/undelivered_rate' || 'There are no sent reminders' %>
     </div>
-    <div class="number small-1 one columns">
+    <div class="number small-2 two columns">
       <p><h1><%= @last_month %></h1><%= 'Text'.pluralize( @last_month) %> Sent</p>
     </div>
-    <div class="number small-1 one columns">
+    <div class="number small-2 two columns">
       <p><h1><%= Conversation.month_calls.count/2 %></h1>Call <%= 'Response'.pluralize( Conversation.month_calls.count/2) %></p>
     </div>
-    <div class="number small-1 one columns">
+    <div class="number small-2 two columns">
       <p><h1><%= Conversation.text_responses.count %></h1>Text <%= 'Response'.pluralize( @conversations.count) %></p>
     </div>
-    <div class="number small-1 one columns">
+    <div class="number small-2 two columns">
       <p><h1><%= Conversation.undelivered.count %></h1>Undelivered</p>
     </div>
-    <div class="number small-1 one columns end">
+    <div class="number small-2 two columns end">
       <p><h1><%= Conversation.unsubscribed.count %></h1>Unsubscribed</p>
     </div>
   </div>

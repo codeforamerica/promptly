@@ -49,7 +49,6 @@ class Reminder < ActiveRecord::Base
       options = defaults.merge(options)
 
       reminder_time = Time.zone.parse(options[:send_time])
-      reminder_time = reminder_time.getutc
       send_date = check_for_valid_date(send_date)
       if options[:recipient]
         the_recipient = options[:recipient].id
@@ -57,7 +56,7 @@ class Reminder < ActiveRecord::Base
         the_recipient = nil
       end
       begin
-        reminder_date = DateTime.parse(send_date.to_s).change(hour: reminder_time.strftime('%H').to_i, min: reminder_time.strftime('%M').to_i)
+        reminder_date = DateTime.new(send_date.year, send_date.month, send_date.day, reminder_time.hour, reminder_time.min, reminder_time.sec, reminder_time.zone).getutc
         @reminders = Reminder.includes(:groups, :organization, :message).where(:groups => {id: options[:group_id]}, organization_id: options[:organization_id], message_id: message.id)
         if @reminders.empty?
           @reminder = Reminder.new(message_id: message.id)

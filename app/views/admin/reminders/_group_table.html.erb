@@ -21,7 +21,9 @@
         <% end %>
       </tbody>
     </table>
-    <p>Need to add a new group?
-    <a href="#" id="new_group_button" class="button secondary small" data-reveal-id="individual-recipients">Add new group</a></p>
+    <% if can? :manage, Group %>
+      <p>Need to add a new group?
+      <a href="#" id="new_group_button" class="button secondary small" data-reveal-id="individual-recipients">Add new group</a></p>
+    <% end %>
   </div>
 </div>
