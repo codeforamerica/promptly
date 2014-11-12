@@ -14,5 +14,8 @@ end
 
 every 2.minutes do
   rake "update_daily_conversations", :environment => 'production'
+end
+
+every :monday, :at => '8am' do
   runner "Conversation.csv_export_stop_start"
 end
