@@ -20,10 +20,11 @@ class ContraCostaImporter
   }
 
   REPORT_RECIPIENTS = [
-    'andy@postcode.io',
+    'rdelavega@ehsd.co.contra-costa.ca.us',
+    'roydelavega@ehsd.cccounty.us',
     'reed@postcode.io',
     'deisenlohr@ehsd.cccounty.us',
-    'rdelavega@ehsd.cccounty.us'
+    'andy@postcode.io'
   ]
 
 
