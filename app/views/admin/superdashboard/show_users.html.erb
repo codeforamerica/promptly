@@ -1,0 +1,31 @@
+<div class="spacing">
+<div class="row pageTitle">
+  <div class="large-6 medium-4 columns">
+    <h2>ALL USERS</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="large-12 columns">
+    <table class="table table-striped large-8 medium-10 small-12 columns">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= "#{u.name}" %></td>
+          <td><%= "#{u.email}" %></td>
+          <td><%= link_to "Edit", admin_superdashboard_edit_user_path(1,u.id), :class => 'button secondary tiny' %></td>
+        </tr>    
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
+
