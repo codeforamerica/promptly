@@ -1,0 +1,21 @@
+<%= simple_form_for :update_user do |f| %>
+  <div class="row">
+    <div class="small-6 six end columns">
+      <h3><%= @user == @current_user ? "Edit Your Account" : "Edit User" %></h3>
+      <%= simple_fields_for :user do |user| %>
+        <%= render :partial => 'user_fields', :locals => { :f => user } %>
+         
+          <%= user.label :password, 'New Password'%>
+          <%= user.password_field :password %>
+         
+          <%= user.label :password_confirmation, 'Confirm New Password' %>
+          <%= user.password_field :password_confirmation %>
+         
+          <%= user.label :current_password, 'Old Password (to confirm changes)' %>
+          <%= user.password_field :current_password %>
+        <% end %>
+      <%= f.submit "UPDATE", :class => 'button'%>
+      <%= link_to "Cancel", admin_superdashboard_show_users_path(1) %>
+    </div>
+  </div>
+<% end %>

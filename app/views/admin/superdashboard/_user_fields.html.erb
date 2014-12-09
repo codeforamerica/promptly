@@ -1,0 +1,11 @@
+<p><%= f.label :name %></p>
+<p><%= f.text_field :name %></p>
+ 
+<p><%= f.label :email %></p>
+<p><%= f.text_field :email %></p>
+
+<%= f.label :roles, 'Select a role' %>
+  <% role = User.find(@user.id) %>
+  <div class="controls">
+    <%= f.collection_select "roles", User.valid_roles, :to_s, :to_s, {:prompt => true, :selected => role.roles.first} %>
+  </div>

@@ -18,6 +18,11 @@ Promptly::Application.routes.draw do
       as :super do
         root to: 'superdashboard#index', as: 'dashboard'
       end
+      resources :superdashboard, only: [:index] do
+        get :show_users
+        get 'edit_user/:id', to: 'superdashboard#edit_user', as: :edit_user
+        post 'edit_user/:id', to: 'superdashboard#update_user', as: :update_user
+      end
     resources :organizations do
       match 'reminders#panel2a' => 'reminders#panel2a', :as => :sent_reminders
       match 'dashboard', :to => 'dashboard#index', :as => "dashboard"
