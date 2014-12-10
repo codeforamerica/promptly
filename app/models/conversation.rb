@@ -65,4 +65,14 @@ class Conversation < ActiveRecord::Base
       end
     end
   end
+
+  def self.to_csv(conversation_data, options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      conversation_data.each do |conversation|
+        csv << conversation.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end

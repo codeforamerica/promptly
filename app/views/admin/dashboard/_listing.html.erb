@@ -1,3 +1,4 @@
+<%= link_to 'Export', admin_organization_dashboard_export_path(:options => @export_link, :format => :csv) %>
 <% unless smart_listing.empty? %>
 <div>
   <table id="all_notifications" class="notification_table large-12 columns">
@@ -5,9 +6,9 @@
       <th><%= smart_listing.sortable "Status", "status" %></th>
       <th><%= smart_listing.sortable "#", "id" %></th>
       <th><%= smart_listing.sortable "Date", "date" %></th>
-      <th>To</th>
-      <th>From</th>
-      <th>Message</th>
+      <th><%= smart_listing.sortable "To", "to_number" %></th>
+      <th><%= smart_listing.sortable "From", "from_number" %></th>
+      <th><%= smart_listing.sortable "Message", "message" %></th>
     </thead>
     <tbody>
       <% smart_listing.collection.each do |o| %>
