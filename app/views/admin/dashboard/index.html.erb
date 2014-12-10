@@ -61,3 +61,70 @@
     </div>
   </div>
 </div>
+<div class="row">
+      <div class="large-3 medium-3 small-12 columns">
+      <%= smart_listing_controls_for(:notifications) do %>
+        <!-- # Add search box to form - it submits the form automatically on text change -->
+      <ul class="side-nav large-12 columns">
+        <li class="large-12 columns request_search">
+          <h4>SEARCH:</h4>
+          <div class="row collapse">
+            <div class="small-10 columns">
+              <%= text_field_tag :filter, '', placeholder: "I'd like to find...", autocomplete: :on %>
+            </div>
+            <div class="small-2 columns">
+              <button class="button postfix primary"><i class="fi-magnifying-glass"></i></button>
+            </div>
+          </div>
+        </li>
+        <hr>
+        <li class="large-12 columns">
+          <h4>REFINE SEARCH:</h4>
+        </li>
+        <li class="large-12 columns status_filter">
+          <h5>Status</h5>
+          <div class="checkbox row collapse">
+            <div class="checkbox inline">
+              <div>
+                <%= hidden_field_tag :messages_check, "0", id: "cc" %>
+                <%= check_box_tag :messages_check %>
+                <span class="closed"><i class="fi-archive"></i><%= "Text Messages" %></span>
+              </div>
+              <div>
+                <%= hidden_field_tag :calls_check, "0", id: "cc" %>
+                <%= check_box_tag :calls_check %>
+                <span class="closed"><i class="fi-archive"></i><%= "Calls" %></span>
+              </div>
+              <div>
+                <%= hidden_field_tag :stop_check, "0", id: "st" %>
+                <%= check_box_tag :stop_check %>
+                <span class="stop"><i class="fi-loop"></i><%= "Stop Messages" %></span>
+              </div>
+              <div>
+                <%= hidden_field_tag :undelivered_check, "0", id: "ds" %>
+                <%= check_box_tag :undelivered_check %>
+                <span class="undelivered"><i class="fi-flag"></i><%= "Undelivered Messages" %></span>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="large-12 columns">
+          <h5>Notification Date</h5>
+          <div class="row collapse">
+            <div class="large-5 medium-5 small-5 columns">
+              <%= text_field_tag :start_date, '', placeholder: "Start date", class: 'dateSelect' %>
+            </div>
+            <div class="Large-5 large-offset-1 medium-5 medium-offset-1 small-5 small-offset-1 columns end">
+              <%= text_field_tag :end_date, '', placeholder: "End date", class: 'dateSelect'  %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+  <div class="large-9 medium-9 small-9 columns end">
+    <%= smart_listing_render :notifications  %>
+  </div>
+</div>
+
+

@@ -24,5 +24,6 @@
 //= require dateselector
 //= require confirm-items
 //= require browser_timezone_rails/application.js
+//= require smart_listing
 
 $(function(){ $(document).foundation(); });

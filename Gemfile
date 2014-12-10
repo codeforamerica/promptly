@@ -29,6 +29,8 @@ gem 'foundation-rails'
 gem 'morrisjs-rails'
 gem 'raphael-rails'
 gem 'listen'
+gem 'smart_listing'
+gem 'kaminari'
 
 group :development do
   gem 'pry'

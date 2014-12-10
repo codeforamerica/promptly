@@ -146,6 +146,9 @@ GEM
       railties (>= 3.2.16)
     json (1.8.1)
     jwt (1.0.0)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.9.2)
     launchy (2.4.2)
       addressable (~> 2.3)
@@ -259,6 +262,10 @@ GEM
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.6.0)
+    smart_listing (1.0.0)
+      coffee-rails
+      kaminari (>= 0.15.1)
+      rails (>= 3.2)
     spreadsheet (0.9.7)
       ruby-ole (>= 1.0)
     sprockets (2.2.2)
@@ -335,6 +342,7 @@ DEPENDENCIES
   jquery-rails (~> 2.0.2)
   jquery-ui-rails
   json
+  kaminari
   launchy
   letter_opener
   listen
@@ -355,6 +363,7 @@ DEPENDENCIES
   shoulda-matchers
   simple_form
   simplecov
+  smart_listing
   steak
   therubyracer
   tiny_tds

@@ -37,6 +37,16 @@ class Conversation < ActiveRecord::Base
     where("message_id IS NOT NULL and status =? and date >= ? and from_number = ?", "sent", DateTime.now - 1.month, org_phone_number)
   }
 
+  scope :like, ->(search) { where("message ilike ?", '%' + search + '%') }
+
+  scope :date_filter, lambda  { |*args|
+   start_date = args[0][:start_date]
+   end_date = args[0][:end_date]
+   args[0][:start_date].empty? ? start_date = "01/01/1900".to_date : start_date = DateTime.strptime(args[0][:start_date], "%m/%d/%Y")
+   args[0][:end_date].empty? ? end_date = Date.today : end_date = DateTime.strptime(args[0][:end_date], "%m/%d/%Y")
+   Conversation.where(:date => start_date.beginning_of_day..end_date.end_of_day)
+  }
+
   def self.first_day
     Conversation.order("date").first
   end
