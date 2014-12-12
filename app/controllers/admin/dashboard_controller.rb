@@ -63,9 +63,8 @@ class Admin::DashboardController < OrgController
     if @options_hash["start_date"] || @options_hash["end_date"]
       notifications_scope = notifications_scope.date_filter(start_date: @options_hash["start_date"], end_date: @options_hash["end_date"]) if !@options_hash["start_date"].empty? || !@options_hash["end_date"].empty?
     end
-
     respond_to do |format|
-      format.csv { render text: notifications_scope.to_csv(notifications_scope, headers: "filename=notifications") }
+      format.csv { render text: notifications_scope.to_csv(notifications_scope) }
     end
   end
 
