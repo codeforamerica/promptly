@@ -16,7 +16,13 @@ class Admin::DashboardController < OrgController
     @last_month == 0 ? @response_rate = 0 : @response_rate = ((Conversation.organization(@organization.id).unique_calls_last_month(@this_org.phone_number).count.to_f/2)/@last_month.to_f)*100
     @undelivered_rate = Conversation.organization(@organization.id).undelivered_month.count >0? ((Conversation.organization(@organization.id).month_calls.count.to_f/2)/Conversation.organization(@organization.id).undelivered_month.count.to_f)*100 : 0
 
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json 
+    end
+  end
 
+  def report
     notifications_scope = Conversation.organization(@organization.id)
     if !params[:filter].nil? 
       notifications_scope = notifications_scope.like(params[:filter]) if !params[:filter].empty?
@@ -35,6 +41,7 @@ class Admin::DashboardController < OrgController
       format.json 
       format.js
     end
+    
   end
 
   def export
@@ -58,7 +65,7 @@ class Admin::DashboardController < OrgController
     end
 
     respond_to do |format|
-      format.csv { render text: notifications_scope.to_csv(notifications_scope) }
+      format.csv { render text: notifications_scope.to_csv(notifications_scope, headers: "filename=notifications") }
     end
   end
 

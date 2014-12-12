@@ -26,6 +26,11 @@
         <i class="fi-comments large"></i>&nbsp;Conversations
       <% end %>
     <% end %>
+    <%= content_tag(:dd, class: is_active?("report")) do %>
+      <%= link_to admin_organization_report_path(@organization.id) do %>
+        <i class="fi-comments large"></i>&nbsp;Reports
+      <% end %>
+    <% end %>
     <% if can? :manage, User %>
       <%= content_tag(:dd, class: is_active?("users")) do %>
         <%= link_to admin_organization_users_path(@organization.id) do %>

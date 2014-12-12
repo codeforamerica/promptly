@@ -1,5 +1,11 @@
-<%= link_to 'Export', admin_organization_dashboard_export_path(:options => @export_link, :format => :csv) %>
 <% unless smart_listing.empty? %>
+<div class="row">
+  <div class="large-2 columns">
+    <h4 class="">Total:&nbsp;<%= smart_listing.count %></h4>
+  </div>
+  <div class="large-5 large-offset-5 columns">
+</div>
+</div>
 <div>
   <table id="all_notifications" class="notification_table large-12 columns">
     <thead>
@@ -29,7 +35,7 @@
   <br>
   <div class="text-center">
     <h3>Your search didn't match any requests.</h3>
-    <p>Try different: search terms, statuses, request dates, or departments.</p>
+    <p>Try different: search terms, statuses, or dates.</p>
   </div>
   <% end %>
 </div>
