@@ -24,8 +24,8 @@ class Admin::DashboardController < OrgController
 
   def report
     notifications_scope = Conversation.organization(@organization.id)
-    if !params[:filter].nil? 
-      notifications_scope = notifications_scope.like(params[:filter]) if !params[:filter].empty?
+    if !params[:searchfilter].nil? 
+      notifications_scope = notifications_scope.like(params[:searchfilter]) if !params[:searchfilter].empty?
     end
     notifications_scope = notifications_scope.all_calls if params[:calls_check] == "1"
     notifications_scope = notifications_scope.undelivered if params[:undelivered_check] == "1"
@@ -53,8 +53,8 @@ class Admin::DashboardController < OrgController
     end
 
     notifications_scope = Conversation.organization(@organization.id)
-    if !@options_hash["filter"].nil? 
-      notifications_scope = notifications_scope.like(@options_hash["filter"]) if !@options_hash["filter"].empty?
+    if !@options_hash["searchfilter"].nil? 
+      notifications_scope = notifications_scope.like(@options_hash["searchfilter"]) if !@options_hash["searchfilter"].empty?
     end
     notifications_scope = notifications_scope.all_calls if @options_hash["calls_check"] == "1"
     notifications_scope = notifications_scope.undelivered if @options_hash["undelivered_check"] == "1"
