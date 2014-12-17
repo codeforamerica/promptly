@@ -35,7 +35,7 @@ class Admin::DashboardController < OrgController
       notifications_scope = notifications_scope.date_filter(start_date: params[:start_date], end_date: params[:end_date]) if !params[:start_date].empty? || !params[:end_date].empty?
     end
     @notifications = smart_listing_create(:notifications, notifications_scope, partial: "admin/dashboard/listing")
-    @export_link = params
+    @export_link = Base64.encode64(params.to_s)
     respond_to do |format|
       format.html # index.html.erb
       format.json 
@@ -45,23 +45,21 @@ class Admin::DashboardController < OrgController
   end
 
   def export
-    @options = params[:options].split("&")
-    @options_hash = Hash[]
-    @options.each do |o|
-      @a = o.split("=")
-      @options_hash[@a[0]] = @a[1]
-    end
+    @params = Base64.decode64(params[:options])
+    if !@params.nil?
+      @options_hash = JSON.parse @params.gsub('=>', ':')
 
-    notifications_scope = Conversation.organization(@organization.id)
-    if !@options_hash["searchfilter"].nil? 
-      notifications_scope = notifications_scope.like(@options_hash["searchfilter"]) if !@options_hash["searchfilter"].empty?
-    end
-    notifications_scope = notifications_scope.all_calls if @options_hash["calls_check"] == "1"
-    notifications_scope = notifications_scope.undelivered if @options_hash["undelivered_check"] == "1"
-    notifications_scope = notifications_scope.unsubscribed if @options_hash["stop_check"] == "1"
-    notifications_scope = notifications_scope.all_sent if @options_hash["messages_check"] == "1"
-    if @options_hash["start_date"] || @options_hash["end_date"]
-      notifications_scope = notifications_scope.date_filter(start_date: @options_hash["start_date"], end_date: @options_hash["end_date"]) if !@options_hash["start_date"].empty? || !@options_hash["end_date"].empty?
+      notifications_scope = Conversation.organization(@organization.id)
+      if !@options_hash["searchfilter"].nil? 
+        notifications_scope = notifications_scope.like(@options_hash["searchfilter"]) if !@options_hash["searchfilter"].empty?
+      end
+      notifications_scope = notifications_scope.all_calls if @options_hash["calls_check"] == "1"
+      notifications_scope = notifications_scope.undelivered if @options_hash["undelivered_check"] == "1"
+      notifications_scope = notifications_scope.unsubscribed if @options_hash["stop_check"] == "1"
+      notifications_scope = notifications_scope.all_sent if @options_hash["messages_check"] == "1"
+      if @options_hash["start_date"] || @options_hash["end_date"]
+        notifications_scope = notifications_scope.date_filter(start_date: @options_hash["start_date"], end_date: @options_hash["end_date"]) if !@options_hash["start_date"].empty? || !@options_hash["end_date"].empty?
+      end
     end
     respond_to do |format|
       format.csv { render text: notifications_scope.to_csv(notifications_scope) }

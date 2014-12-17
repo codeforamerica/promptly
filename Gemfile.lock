@@ -219,6 +219,8 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    render_csv (2.0.0)
+      rails (>= 3.0)
     role_model (0.8.1)
     roo (1.13.2)
       nokogiri
@@ -356,6 +358,7 @@ DEPENDENCIES
   rails (~> 3.2.13)
   rake
   raphael-rails
+  render_csv (~> 2.0.0)
   role_model
   roo
   rspec-rails

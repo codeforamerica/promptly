@@ -31,6 +31,7 @@ gem 'raphael-rails'
 gem 'listen'
 gem 'smart_listing'
 gem 'kaminari'
+gem 'render_csv', '~> 2.0.0'
 
 group :development do
   gem 'pry'
