@@ -40,7 +40,7 @@ module ApplicationHelper
           #Using midnight-midnight range gets around using date() sql function to cast dates,
           #which doesn't work on SQLServer 08 
           number_sent: model.order(date_field_sym)
-                        .where(date_field_sym => date.to_datetime..(date+1).to_datetime)
+                        .where(date_field_sym => date.to_datetime.to_time_in_current_zone.utc..(date+1).to_datetime.to_time_in_current_zone.utc)
                         .count
         }
       end
