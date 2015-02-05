@@ -55,7 +55,7 @@ class Conversation < ActiveRecord::Base
     @stop = Conversation.unsubscribed
     @start = Conversation.subscribed 
     @filename = "stop-start-#{DateTime.now.strftime('%m_%d_%Y')}.csv"    
-    CSV.open("#{Rails.root.to_s}/tmp/#{@filename}", "wb") do |csv| #creates a tempfile csv
+    CSV.open("#{ENV['DATA_PATH']}/#{@filename}", "wb") do |csv| #creates a tempfile csv
       csv << ["Status", "Phone Number", "Date"] #creates the header
       @stop.each do |s|            
         csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection

@@ -15,7 +15,11 @@
 			<tbody>
 			<% @group.recipients.each do |recipient| %>
 				<tr>
-					<td><%= link_to number_to_phone(recipient.phone.phony_formatted!(:normalize => :US, :spaces => ''), :area_code => true), [:admin, @organization, recipient] %></td>
+					<% if recipient.phone.present? %>
+						<% if recipient.phone.phony_formatted(:strict => true) %>
+							<td><%= link_to number_to_phone(recipient.phone.phony_formatted!(:normalize => :US, :spaces => ''), :area_code => true), [:admin, @organization, recipient] %></td>
+						<% end %>
+					<% end %>
 				</tr>
 			<% end %>
 		</tbody>

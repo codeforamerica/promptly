@@ -8,7 +8,8 @@ class Recipient < ActiveRecord::Base
   has_many :messages, :through => :reminders
 
   accepts_nested_attributes_for :messages
-  validates :phone, :presence => true
+  phony_normalize :phone, :default_country_code => 'US'
+  validates :phone, :phony_plausible => true
 
   def phone_or_name
     name ? "#{name}" : "#{phone}"
