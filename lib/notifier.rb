@@ -65,7 +65,6 @@ class Notifier
         @group_recipients = Group.find_recipients_in_group(group)
         @group_recipients.each do |recipient|
           the_message = client.account.sms.messages.create(attributes(recipient))
-          binding.pry
           Rails.logger.info "The message = #{the_message}"
           Logger.log(the_message, recipient, @organization_id, group)
         end
