@@ -16,15 +16,16 @@ class Group < ActiveRecord::Base
     end
     phones_to_group = []
     phone_numbers.each do |phone_number|
-      if phone_number.present?
+      if phone_number.present? && phone_number.to_i > 1
         phone = PhonyRails.normalize_number(phone_number, :country_code => 'US')
         recipient = Recipient.where(phone: phone).first_or_create
-        recipient.save
+        recipient.save!
         unless recipient == ""
           phones_to_group << recipient.id
         end
       end
       the_group.recipient_ids = phones_to_group
+      the_group.save!
     end
   end
 
