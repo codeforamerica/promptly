@@ -65,6 +65,6 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
-
+  Faker::Config.locale = 'en-US'
 
 end

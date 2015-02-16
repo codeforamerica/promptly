@@ -11,7 +11,7 @@ describe Recipient do
     it "returns phone if name is not present" do
       recipient = FactoryGirl.create(:recipient, phone: "9999999999")
       recipient.update_attributes(name: nil)
-      expect(recipient.phone_or_name).to eq "9999999999"
+      expect(recipient.phone_or_name).to eq "19999999999"
     end
   end
 

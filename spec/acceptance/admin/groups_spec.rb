@@ -24,7 +24,7 @@ feature "Groups" do
     visit "/admin/organizations/#{@user.organizations.first.id}/groups/new"
     fill_in('group_name', :with => 'Hot Snakes')
     fill_in('group_description', :with => 'No Hands')
-    fill_in('recipient_phone', :with => Faker::PhoneNumber.phone_number)
+    fill_in('recipient_phone', :with => Faker::PhoneNumber.area_code+Faker::PhoneNumber.exchange_code+Faker::PhoneNumber.subscriber_number)
     click_button 'Create Group'
     expect(Group.all.count).to eq @count +1
   end
