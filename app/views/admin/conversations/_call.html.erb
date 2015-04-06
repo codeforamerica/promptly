@@ -1,0 +1,18 @@
+<% if @calls != [] %>
+<table class="small-12 twelve columns">
+  <thead>
+    <th>Call ID</th>
+    <th>From</th>
+    <th>Date received</th>
+  </thead>
+  <tbody>
+    <% @calls.each do |c| %>
+    <tr>
+      <td><%= c.call_id %></td>
+      <td><%= number_to_phone(c.from_number.phony_formatted!(:normalize => :US, :spaces => ''), :area_code => true) %></td>
+      <td><%= c.date.to_s(:date_format) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

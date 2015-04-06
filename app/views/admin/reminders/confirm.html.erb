@@ -1,0 +1,44 @@
+	<div class="row">
+		<div class="small-10 ten small-offset-1">
+			<%= simple_form_for [:admin, @organization, @reminder] do |f| %>
+    
+	    <% if @reminder.errors.any? %>
+	      <%= render 'form_errors' %>
+	    <% end %>
+			
+			<h3>Almost there! Just to confirm:</h3>
+			<p>We're sending the following notification</p>
+			<div class="row">
+				<div class="small-6 six">
+					<div class="infoItem">
+						<%= link_to new_admin_organization_reminder_path(@organization,anchor: "message") do %>
+							<%= Message.find(params[:reminder][:message_id]).message_text %>
+						<% end %>
+						<%= f.hidden_field :message_id, :value => Message.find(params[:reminder][:message_id]).id %>
+					</div>
+				</div>
+			</div>
+
+			<% if params[:group_ids] != "" %>
+				<p>To</p>
+				<ul class="unstyled" id="groups-list">
+				<% @groups.each do |group| %>
+					<li>
+						<span class="infoItemInline"><%= link_to group.name, new_admin_organization_reminder_path(@organization,anchor: "recipients") %><%= f.hidden_field :group_ids, :multiple => true, :value => group.id %></span>
+					</li>
+				<% end %>
+				</ul>
+			<% end %>
+
+			<%= f.hidden_field :recipient_id, :value => params[:individual_recipients] %>
+
+			<p>On <span class="infoItemInline"><%= link_to(params[:reminder][:send_date], new_admin_organization_reminder_path(@organization,anchor: "date-and-time")) %></span> at <span class="infoItemInline"><%= link_to(params[:reminder][:send_time], new_admin_organization_reminder_path(@organization,anchor: "date-and-time")) %></span>.</p>
+
+			<%= f.hidden_field :send_date, :value => params[:reminder][:send_date] %>
+			<%= f.hidden_field :send_time, :value => params[:reminder][:send_time] %>
+			<%= f.submit "SCHEDULE NOTIFICATION", class: 'button' %>
+			<br>
+			<%= link_to "Cancel", admin_organization_path(@organization) %>
+		<% end %><!-- /form -->
+	</div>
+</div>

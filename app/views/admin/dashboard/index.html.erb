@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="small-3 small-offset-9 columns">
+    <%= link_to 'CREATE NOTIFICATION', new_admin_organization_reminder_path(@organization), :class => 'button' %>
+  </div>
+</div>
+<div class="row">
+  <div class="pageHeader small-12 twelve columns">
+    <div class="headerBig heading">
+      <h1>Dashboard</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="small-6 six columns">
+    <div class="headerSmall headerAqua">
+      <span class="headerText">Upcoming reminders</span>
+    </div>
+      <div><%= link_to 'View all', admin_organization_reminders_path(@organization), :class => 'button secondary tiny right panel-btn' %></div>
+    <div class="conversation">
+      <%= render 'upcoming_reminders', object: @upcoming || 'There are no upcoming reminders' %>
+    </div>
+  </div>
+  <div class="small-6 six columns">
+    <div class="headerSmall headerGreen">
+      <span class="headerText">Sent reminders</span>
+    </div>
+    <div><%= link_to 'View all', admin_organization_sent_reminders_path(@organization), :class => 'button secondary tiny right' %></div>
+    <div class="conversation">
+      <%= render 'sent_reminders', object: @conversations || 'There are no sent reminders' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 six columns">
+    <div class="headerSmall headerGreen">
+      <span class="headerText">Text Responses</span>
+    </div>
+    <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'button secondary tiny right' %></div>
+    <div class="conversation">
+      <%= render 'responses' || 'There are no responses' %>
+    </div>
+  </div>
+  <div class="small-6 six columns">
+    <div class="headerSmall headerRed">
+      <span class="headerText">Undelivered reminders</span>
+    </div>
+    <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'button secondary tiny right' %></div>
+    <div class="conversation">
+      <%= render 'undelivered' || 'There are no upcoming reminders' %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-6 six columns">
+    <div class="headerSmall headerAqua">
+      <span class="headerText">Call Responses</span>
+    </div>
+    <div><%= link_to 'View all', admin_organization_conversations_path(@organization), :class => 'button secondary tiny right panel-btn' %></div>
+    <div class="conversation">
+      <%= render 'calls' || 'There are no calls' %>
+    </div>
+  </div>
+</div>
+
+

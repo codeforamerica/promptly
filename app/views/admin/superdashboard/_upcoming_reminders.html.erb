@@ -1,0 +1,3 @@
+<div class="recentReminder">
+	<%= content_tag :div, "",class: "chart line", id: "upcoming_chart", data: {graph_data: chart_data(Date.today, Date.today+4.weeks, "send_date", @upcoming)} %>
+</div>

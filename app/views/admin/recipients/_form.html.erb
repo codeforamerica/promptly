@@ -1,0 +1,20 @@
+<%= simple_form_for [:admin, @organization, @recipient]  do |f| %>
+  <% if @recipient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@recipient.errors.count, "error") %> prohibited this recipient from being saved:</h2>
+
+      <ul>
+      <% @recipient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :phone, required: true %>
+  <%= f.input :name, required: false %>
+
+  <div class="actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+  </div>  
+<% end %>

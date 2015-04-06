@@ -1,5 +1,6 @@
-@import "bootstrap";
-@import "bootstrap-responsive";
+@import "foundation_and_overrides";
+@import "compass/utilities/general/hacks";
+@import "compass/css3";
 @import "constants";
 @import "buttons";
 @import "headers";
@@ -10,6 +11,9 @@
 @import "forms";
 @import "charts";
 @import "data_tables";
+@import "dashboard";
+
+$topbar-bg-color: #000;
 
 //bootstrap overrides
 h1,h2,h3,h4,h5,h6 {
@@ -17,8 +21,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 body {
-	background-color: $lightGray;
-	border: none;
+  margin: 0;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	font-family: $bodyFont;
@@ -40,12 +43,17 @@ h6 { font-size: 12px; line-height: 12px; }
 	@include promptly-border-radius(0px 5px 5px 5px);
 	border: 2px solid $borderColor;
 	position: relative;
-	
+  overflow: hidden;
 	&.full-radius {
 		@include promptly-border-radius(5px);
 		margin-right: -6px;
 		margin-left: 0px;
 	}
+}
+
+.container-fluid {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .footer {
@@ -58,6 +66,10 @@ h6 { font-size: 12px; line-height: 12px; }
 .lbl {
 	background-color: $lightGray;
 	font-weight: bold;
+}
+
+.table th {
+  font-weight: normal;
 }
 
 //Custom styles
@@ -94,24 +106,18 @@ h6 { font-size: 12px; line-height: 12px; }
 }
 // Over-riding .span* styles so the positioning works out.
 
-//responsive
-@media (min-width: 1200px) {
-  #content {
-    padding: 20px;
-    margin-left: -2px;
-  }
-  #sidebar-left {
-    background: transparent;
-    margin: -1px 0px 0px 25px;
-    padding-top: 0px;
-  }
-  .sidebar-nav > ul {
-    margin: 0px 0px 0px -20px;
-  }
-  footer {
-    margin: 20px -20px 0px -20px;
-    padding: 10px 20px;
-    position: relative;
-    z-index: 2;
-  }
+.label-danger {
+  background-color: #d9534f;
 }
+
+.backto{
+	margin: 2.5em 0 0 0;
+}
+
+a.button, .tab-title a, input[type="submit"]:hover.button {
+	&:hover {
+		border: none;
+	}
+}
+
+

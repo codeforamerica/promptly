@@ -1,10 +1,11 @@
 class ImportHelper < ActiveRecord::Base
   
-  def self.update_or_create_group_from_db_table(table, group_name_id)
+  def self.update_or_create_group_from_db_table(table, group_name_id, organization_id)
     now = DateTime.now.to_s(:date_format)  
-    puts "Starting import from table:#{table} to group:#{group_name_id}"
+    puts "Starting import from table:#{table} to organization:#{organization_id} group:#{group_name_id}"
     Rails.logger.info("#Starting group import at #{now}
       Group: #{group_name_id}
+      Organization: #{organization_id}
       From table: #{table}")
 
     # Check for table
@@ -36,14 +37,17 @@ class ImportHelper < ActiveRecord::Base
       val = p_hash[key]
       phone_numbers << val
     end
+    
     # Remove duplicates, nils
     phone_numbers = phone_numbers.uniq.compact
 
     # Find or create group
-    g = Group.where(group_name_id: group_name_id).first_or_create(
+    puts "Finding/creating group"
+    g = Group.organization(params[:organization_id]).where(group_name_id: group_name_id).first_or_create(
       :group_name_id => group_name_id,
       :name => group_name_id,
-      :editable => 0
+      :editable => 0,
+      :organization_id => organization_id
       )
     g.update_attributes(:description => "Imported #{phone_numbers.count} phone numbers from #{table} at #{now}.")
     g.save

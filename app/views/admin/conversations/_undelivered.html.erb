@@ -1,0 +1,14 @@
+<table class="small-12 twelve columns">
+  <thead>
+    <th>To phone number</th>
+    <th>Send date</th>
+  </thead>
+  <tbody>
+    <% @undelivered.each do |undelivered| %>
+    <tr>
+      <td><%= number_to_phone(undelivered.to_number, :area_code => true) %></td>
+      <td><%= undelivered.date.to_s(:date_format) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

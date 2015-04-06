@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="small-12 twelve columns text-right">
+    <% if can? :create, Group %>
+        <%= link_to 'CREATE GROUP', new_admin_organization_group_path(@organization.id), :class => 'button' %>
+    <% end %>
+  </div>
+  <div class="small-12 twelve columns">
+    <div class="headerBig heading">
+      <h1>All Groups</h1>
+    </div>
+  </div>
+  <div class="small-12 twelve columns">
+    <table class="small-9 columns">
+    	<thead>
+        <tr>
+      		<th>Group name</th>
+      		<th>Group description</th>
+        </tr>
+    	</thead>
+      <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+  	      <td><%= link_to_if(can?(:read, Group), group.name, admin_organization_group_path(@organization.id ,group.id)) {} %></td>
+  			  <td><%= group.description %></td>
+          <% if can? :edit, Group %>
+    			  <td>
+              <%= link_to "Edit", edit_admin_organization_group_path(@organization.id, group.id), :class => 'button secondary tiny' %>
+              &nbsp;
+              <%= link_to "Delete", [:admin, @organization, group], :confirm => "Are you sure?", :method => :delete, :class => 'button alert tiny' %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

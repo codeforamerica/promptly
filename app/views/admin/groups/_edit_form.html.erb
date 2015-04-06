@@ -1,0 +1,42 @@
+<%= simple_form_for [:admin, @organization, @group]  do |f| %>
+  <% if @group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% @group.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="controls">
+      <%= f.input :name, required: true %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :description, "GROUP DESCRIPTION" %>
+    <div class="controls">
+      <%= f.text_area :description, rows: 3 %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :description, "PHONE NUMBER LIST (one phone number per line, no -dashes, ()parenthesis or spaces; ex: 9876543201)" %>
+      <div class="controls">
+        <% fields_for :recipient do |builder| %>
+        <% @group.recipients.each do |recipient| %>
+        <% phone_numbers = recipient.phone %>
+      <% end %>
+    <% end %>
+    <%= f.text_area :phone, rows: 10, value: phone_numbers %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.submit :class => 'button' %>
+  </div>  
+<% end %>

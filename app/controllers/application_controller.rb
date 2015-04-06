@@ -11,9 +11,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     sign_in_url = url_for(:action => 'new', :controller => 'sessions', :only_path => false, :protocol => 'http')
     if request.referer == sign_in_url
-      return dashboard_path
+      root_path
     else
-      stored_location_for(resource) || request.referer || root_path
+      root_path || stored_location_for(resource) || request.referer
     end
   end
 end
+

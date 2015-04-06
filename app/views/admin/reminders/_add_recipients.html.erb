@@ -1,0 +1,21 @@
+<div class="reveal-modal small" data-reveal id="individual-recipients">      
+  <a class="close-reveal-modal">&#215;</a>
+  <h3>Add a New Group</h3>
+  <div class="modal-body">
+    <%= simple_fields_for :group do |group_fields| %>
+        <%= group_fields.input :name, input_html: { class: "small-12 twelve columns" } %>
+        <%= fields_for :recipient do |builder| %>
+        <div class="control-group">
+          <%= builder.label :phone, "Enter a list of phone numbers", :class => 'control-label' %>
+          <div class="controls">
+          <%= builder.text_area :phone, rows: 10, class: "small-12 twelve columns" %>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+  </div>
+  <div class="modal-footer">
+    <a href="#" data-dismiss="modal">Cancel</a>
+    <%= link_to "Add Group", admin_organization_groups_path(@organization.id), id: "groups-submit", class: "button save-modal", remote: true %>
+  </div>
+</div>

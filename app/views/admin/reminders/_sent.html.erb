@@ -1,0 +1,27 @@
+<h3>Sent Reminders</h3>
+<% if Conversation.organization(@organization.id).all_sent != [] %>
+<table class="table table-striped small-12 twelve columns">
+  <thead>
+    <tr>
+      <th>Reminder message</th>
+      <th>Sent date</th>
+      <th>Group name</th>
+      <th>Number of recipients</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sent.each do |reminder|  %>
+    <tr>
+      <td><%= reminder[1].first.message %></td>
+      <td><%= reminder[1].first.date.to_s(:date_format) %></td>
+      <% if !reminder[1].first.group_id.nil? %>
+        <td><%= link_to_if !Group.find(reminder[1].first.group_id).nil?, Group.find(reminder[1].first.group_id).name, admin_organization_group_path(@organization.id, Group.find(reminder[1].first.group_id))  %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <td><%= reminder[1].count %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

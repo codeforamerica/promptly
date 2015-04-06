@@ -1,0 +1,26 @@
+@import "../constants";
+
+/* This is IE 8 styling stuff */
+.navbar-inner {
+  background-color: $blue;
+  border-radius: 0px;
+  background-image: none;
+}
+
+//responsive
+@media (max-width: 500px) {
+  #content {
+    padding: 20px;
+    margin-left: -2px;
+  }
+  #sidebar-left {
+    background: transparent;
+    margin: -1px 0px 0px 0px;
+    padding-top: 0px;
+  }
+}
+
+.container-fluid {
+  width: 940px !important;
+}
+

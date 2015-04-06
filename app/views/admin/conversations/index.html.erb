@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="small-12 twelve pageHeader">
+    <div class="headerBig heading">
+      <h1>Responses</h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 twelve">
+    <h3>Total: <%= @calls.count %></h3>
+    <div class="tabbable"> <!-- Only required for left/right tabs -->
+      <ul class="tabs" data-tab>
+        <li class="tab-title active"><a href="#call">By Phone</a></li>
+        <li class="tab-title"><a href="#response">By Text Message</a></li>
+        <li class="tab-title"><a href="#undelivered">Undelivered</a></li>
+      </ul>
+      <div class="tabs-content">
+        <div class="content active" id="call">
+          <%= render 'call', :collection => @calls || 'There are no calls.'%>
+        </div>
+        <div class="content" id="response">
+          <%= render 'response', :collection => @responses || 'There are no responses.'%>
+        </div>
+        <div class="content" id="undelivered">
+          <%= render 'undelivered', :collection => @undelivered || 'There are no undelivered reminders.' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

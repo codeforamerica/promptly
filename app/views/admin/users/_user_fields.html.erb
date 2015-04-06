@@ -1,0 +1,22 @@
+<p><%= f.label :name %></p>
+<p><%= f.text_field :name %></p>
+ 
+<p><%= f.label :email %></p>
+<p><%= f.text_field :email %></p>
+<% if can?(:edit, User) %>
+  <%= simple_fields_for :organizations_user do |org_user| %>
+  <div class="field">
+    <div class="control-group">
+      <%= f.label :roles, 'Select a role' %>
+        <% role = OrganizationsUser.where(:organization_id => @organization.id, :user_id => @user.id) %>
+        <div class="controls">
+        <% if role.exists? %>
+          <%= org_user.collection_select "#{@user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true, :selected => role[0].roles.first} %>
+        <% else %>
+          <%= org_user.collection_select "#{@user.id}[roles_mask]", OrganizationsUser.valid_roles, :to_s, :to_s, {:prompt => true}%>
+        <% end %>
+        </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>

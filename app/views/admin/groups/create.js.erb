@@ -1,0 +1,2 @@
+$('#add-groups').append('<tr><td><%= check_box_tag "group_ids[]", @group.id, true, :class => "table-row-checkbox" %></td><td><%= @group.name %></td><td><%= @group.recipients.count %></td>></tr>')
+$('.reveal-modal').foundation('reveal', 'close');

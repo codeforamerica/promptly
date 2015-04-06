@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="small-8 eight columns">
+    <%= form_for :reminder do |f| %>
+      <%= f.label :send_date, "Reminder date" %>
+      <%= f.text_field :send_date, :class => 'dateSelect', :value => @reminders.send_date.to_date %>
+      <%= f.label :send_time, "Reminder time" %>
+      <%= f.text_field :send_time, :value => @reminders.send_time.getlocal.strftime('%l:%M%p') %>
+      
+        <div class="field">
+        <div class="control-group">
+          <%= f.label :message_id, "Available reminders", :class => 'control-label' %>
+          <div class="controls">
+            <%= f.collection_select :message_id, Message.all, :id, :name, {:prompt => 'Select a text message', :selected => @reminders.message_id.to_i} %>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit :class => 'button' %>
+      </div>  
+    </div>
+    
+  <% end %>
+  </div>

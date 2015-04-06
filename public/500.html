@@ -1,25 +1,45 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>We're sorry, but something went wrong (500)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oops</title>
 
-<body>
-  <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <h1>We're sorry, but something went wrong.</h1>
-  </div>
-</body>
+    <!-- Foundation -->
+    <link href='http://pobox.herokuapp.com/css/postcode_main.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/main.css" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body class="fivehundred-error">   
+      <div class="row">
+        <div class="large-8 column">
+          <h1 class="wht">We'll be back Shortly<h1>
+          <p class="wht"><em><strong>500 Internal Server Error</strong></em><br>
+          Something went wrong! try refreshing the page. If the problem persists feel free to contact us.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 wht">
+          <a href="https://twitter.com/postcode_io">@postcode_io</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="mailto:info@postcode.io">info@postcode.io</a>
+        </div>
+      </div>
+      <div class="wht citation">
+        <small>
+            <a href="https://www.flickr.com/photos/ollesvensson/3451663493/in/photolist-6g1Fix-6s1obR-bL1GmP-aEDLEA-a9GQQV-9hRRRi-8vBWbc-8TQhJG-nBnuMy-azhXqo-m4i1Xp-nzXrfi-nAbCjW-h8CeGw-bcXFTz-nivdFb-6zTKfa-ie57a-edM2aU-niuvMj-nziE1W-niFf5K-njgvvN-njfwed-nAa9ax-nAvG9Q-nBnnrm-nBnc8q-nja4ZC-9LEdY-iRFAxz-hLqU6Z-aT6PSM-nDnabr-nBn7iX-njRywC-bBoYCB-njQs9w-afv7hX-4LJ6e8-ahqgyQ-a8B8dp-9ZMYWN-6W4v1N-nj95Ma-hLqX4T-3K3ydo-9mnXrx-8wAntw-7hRPPc" target="_title">source:flickr.com, Olle Svensson; CC by 2.0</a>
+        </small>
+      </div>
+    <!-- Foundation js -->
+    <script src="assets/jquery.js"></script>
+    <script src="assets/modernizr.js"></script>
+    <script src="assets/foundation.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
 </html>

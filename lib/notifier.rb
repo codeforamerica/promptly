@@ -1,14 +1,15 @@
 class Notifier
 
   class Logger
-    def initialize(response, recipient)
+    def initialize(response, recipient, org_id, group_id)
       @response = response
       @recipient = recipient
-      # @batch_id = batch_id
+      @org_id = org_id
+      @group_id = group_id
     end
 
-    def self.log(response, recipient)
-      new(response, recipient).log
+    def self.log(response, recipient, org_id, group_id)
+      new(response, recipient, org_id, group_id).log
     end
 
     def log
@@ -18,8 +19,9 @@ class Notifier
         to_number: response.to,
         from_number: response.from,
         message_id: response.sid,
-        status: response.status
-        # batch_id: @batch_id
+        status: response.status,
+        organization_id: @org_id,
+        group_id: @group_id
       })
       @conversation.recipients << @recipient
       @conversation.save
@@ -35,19 +37,13 @@ class Notifier
   def initialize(message_id, options ={})
       defaults = {
         group_id: nil,
-        recipient_id: nil
+        recipient_id: nil,
+        organization_id: nil
       }
+    
     options = defaults.merge(options)
-    @recipient_id, @message_id, @group_id = options[:recipient_id], message_id, options[:group_id]
+    @recipient_id, @message_id, @group_id, @organization_id = options[:recipient_id], message_id, options[:group_id], options[:organization_id]
     @recipients = []
-    if @group_id
-      @group_id.each do |group|
-        @group_recipients = Group.find_recipients_in_group(group)
-        @group_recipients.each do |recipient|
-          @recipients << recipient
-        end
-      end
-    end
     if @recipient_id
       @recipients << Recipient.find(@recipient_id)
     end
@@ -56,16 +52,23 @@ class Notifier
   def self.perform(message_id, options ={})
       defaults = {
         group_id: nil,
-        recipient_id: nil
+        recipient_id: nil,
+        organization_id: nil
       }
       options = defaults.merge(options)
-    new(message_id, group_id: options[:group_id], recipient_id: options[:recipient_id]).perform
+    new(message_id, group_id: options[:group_id], recipient_id: options[:recipient_id], organization_id: options[:organization_id]).perform
   end
 
   def perform
-    @recipients.each do |recipient|
-      the_message = client.account.sms.messages.create(attributes(recipient))
-      Logger.log(the_message, recipient)
+    if @group_id
+      @group_id.each do |group|
+        @group_recipients = Group.find_recipients_in_group(group)
+        @group_recipients.each do |recipient|
+          the_message = client.account.sms.messages.create(attributes(recipient))
+          Rails.logger.info "The message = #{the_message}"
+          Logger.log(the_message, recipient, @organization_id, group)
+        end
+      end
     end
   end
 
@@ -82,12 +85,21 @@ class Notifier
   attr_reader :recipient
   attr_reader :body
 
+  def recipients_group(recipient, group)
+    {
+      phone: recipient.phone,
+      name: recipient.name,
+      id: recipient.id,
+      group: group
+    }
+  end
+
   def from
-    ENV["TWILIO_NUMBER"]
+    Organization.find(@organization_id).phone_number ? Organization.find(@organization_id).phone_number : ENV["TWILIO_NUMBER"]
   end
 
   def to(recipient)
-    recipient.phone
+    recipient[:phone]
   end
 
   def body
@@ -107,6 +119,7 @@ class Notifier
   end
 
   def client
+  
     @client = Twilio::REST::Client.new(account_sid, account_token)
   end
 

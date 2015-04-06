@@ -1,11 +1,24 @@
 <!-- start footer-->
 <div class="footer">
-	<div class="container">
-		<%= image_tag "cfa_logo_black.png", alt: "Code for America logo" %>
-		&nbsp;&nbsp;&nbsp;
-		<%= image_tag "cities_sf_seal.png", alt: "San Francisco seal" %>
-		&nbsp;&nbsp;&nbsp;
-		Built by Code for America + San Francisco. See our <%= link_to "Github project", "https://github.com/codeforamerica/promptly/" %>!
-	</div>
+  <div class="row">
+    <div class="small-1 column">
+      <a href="http://www.postcode.io/promptly" target="_title"><h6>About</h6></a>
+    </div>
+    <div class="small-1 end column">
+      <a href="https://promptlyio.zendesk.com/hc/en-us"><h6>Help</h6></a>
+    </div>
+    <div class="small-1 end column">
+      <%= link_to "https://github.com/postcode/promptly/" do %>
+      <h6>Github</h6>
+    <% end %>  
+    </div>
+    <div class="small-3 column">
+      <a href="mailto:promptly@postcode.io"><h6>promptly@postcode.io</h6></a>
+    </div>
+    <div class="small-2 column text-right">
+      <p>delivered by</p>
+      <a href="http://postcode.io" target="_title"><img src="http://pobox.herokuapp.com/images/postcode_logo_drkgray.png"></a>
+    </div>
+  </div>
 </div>
 <!-- end footer-->

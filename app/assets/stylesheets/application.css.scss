@@ -9,10 +9,12 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap-datepicker
+ *= require foundation_and_overrides
+ *= require main
+ *= require foundation-datepicker
  *= require morris
- *= require typicons/typicons.min
- *= require dataTables/jquery.dataTables.bootstrap
+ *= require icons/foundation-icons
+ *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  */
-
-@import "main.css.scss";
+// @import 'foundation-icons';
+// @import "main.css.scss";

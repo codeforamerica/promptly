@@ -1,0 +1,15 @@
+<% if current_user.is_super? %>
+  <dl class="promptly-sub-nav">
+    <dt class="name"><%= link_to "Admin", admin_dashboard_path %></dt>
+     <span class="right-side">
+      <%= content_tag(:dd, class: is_active?("admin")) do %>
+        <%= link_to admin_superdashboard_show_users_path(1) do %>
+          <i class="fi-torsos-all large"></i>&nbsp;Manage Users
+        <% end %>
+        <%= link_to admin_organizations_path do %>
+          <i class="fi-list-thumbnails large"></i>&nbsp;Manage Organizations
+        <% end %>
+      <% end %>
+    </span>
+  </dl>
+<% end %>

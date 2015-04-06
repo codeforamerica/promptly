@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="small-12 twelve large-12 columns">
+    <%= simple_form_for [:admin, @organization, @message] do |f| %>
+      <% if @message.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@message.errors.count, "error") %> prohibited this report from being saved:</h2>
+          <ul>
+          <% @message.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= f.input :name, label: "MESSAGE NAME", input_html: { class: 'span6' } %>
+      <%= f.input :message_text, as: :text, label: "MESSAGE TEXT", input_html: { maxlength: 160, class: 'span6', rows: 5 } %> 
+    <div class="characterCount offset3 span6">Characters left: <span id="char-count">160</span></div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 twelve large-12 columns">
+     <div class="actions">
+        <%= f.submit :class => 'button'%>
+        <br>
+        <%= link_to 'Cancel', admin_organization_messages_path(@organization) %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

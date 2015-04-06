@@ -1,0 +1,42 @@
+<dl class="promptly-sub-nav">
+  <dt class="name"><%= link_to @organization.name, admin_organization_dashboard_path(@organization.id) %></dt>
+  <span class="right-side">
+    <%= content_tag(:dd, class: is_active?("dashboard")) do %>
+      <%= link_to admin_organization_dashboard_path(@organization.id) do %>
+        <i class="fi-home large"></i>&nbsp;Dashboard
+      <% end %>
+    <% end %>
+    <%= content_tag(:dd, class: is_active?("reminders")) do %>
+      <%= link_to admin_organization_reminders_path(@organization.id) do %>
+        <i class="fi-clock large"></i>&nbsp;Notifications
+      <% end %>
+    <% end %>
+    <%= content_tag(:dd, class: is_active?("messages")) do %>
+      <%= link_to admin_organization_messages_path(@organization.id) do %>
+        <i class="fi-background-color large"></i>&nbsp;Messages
+      <% end %>
+    <% end %>
+    <%= content_tag(:dd, class: is_active?("groups")) do %>
+      <%= link_to admin_organization_groups_path(@organization.id) do %>
+        <i class="fi-torsos-all large"></i>&nbsp;Groups
+      <% end %>
+    <% end %>
+    <%= content_tag(:dd, class: is_active?("conversations")) do %>
+      <%= link_to admin_organization_conversations_path(@organization.id) do %>
+        <i class="fi-comments large"></i>&nbsp;Conversations
+      <% end %>
+    <% end %>
+    <%= content_tag(:dd, class: is_active?("report")) do %>
+      <%= link_to admin_organization_report_path(@organization.id) do %>
+        <i class="fi-comments large"></i>&nbsp;Reports
+      <% end %>
+    <% end %>
+    <% if can? :manage, User %>
+      <%= content_tag(:dd, class: is_active?("users")) do %>
+        <%= link_to admin_organization_users_path(@organization.id) do %>
+          <i class="fi-torso large"></i>&nbsp;Users
+        <% end %>
+      <% end %>
+    <% end %>
+  </span>
+</dl>

@@ -1,0 +1,21 @@
+<div class="row">
+	<div class="small-6 six end columns">
+		<h3><%= @user == @current_user ? "Edit Your Account" : "Edit User" %></h3>
+ 
+			<%= form_for([:admin, @organization, @user], :html => { :method => :put }) do |f| %>
+				<%= render :partial => 'user_fields', :locals => { :f => f } %>
+			 
+				<%= f.label :password, 'New Password'%>
+				<%= f.password_field :password %>
+			 
+				<%= f.label :password_confirmation, 'Confirm New Password' %>
+				<%= f.password_field :password_confirmation %>
+			 
+				<%= f.label :current_password, 'Old Password (to confirm changes)' %>
+				<%= f.password_field :current_password %>
+			 
+			  	<%= f.submit "UPDATE", :class => 'button'%>
+			<% end %>
+		<%= link_to "Cancel", :back %>
+	</div>
+</div>

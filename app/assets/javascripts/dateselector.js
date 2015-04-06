@@ -1,3 +1,6 @@
 $(function() {
-	$(".datepicker").datepicker();
+	$(".the-date").fdatepicker({
+    todayHighlight: true,
+    format: 'mm/dd/yyyy'
+  });
 });

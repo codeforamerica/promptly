@@ -1,0 +1,10 @@
+<%= simple_fields_for :organizations_user do |org_user| %>
+<div class="field">
+    <div class="control-group">
+      <%= org_user.label :roles, 'Select a role' %>
+      <div class="controls">
+        <%= org_user.collection_select "organizations_user[user_ids][roles]", OrganizationsUser.valid_roles, :to_s, :to_s %>
+      </div>
+    </div>
+  </div>
+<% end %>

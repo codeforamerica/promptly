@@ -1,0 +1,42 @@
+<% unless smart_listing.empty? %>
+<div class="row">
+  <div class="large-2 columns">
+    <h4 class="">Total:&nbsp;<%= smart_listing.count %></h4>
+  </div>
+  <div class="large-5 large-offset-5 columns">
+    <%= link_to 'EXPORT TABLE', admin_organization_dashboard_export_path(:options => @export_link, :format => :csv), :class => 'button primary small' %>
+  </div>
+</div>
+<div>
+  <table id="all_notifications" class="notification_table large-12 columns">
+    <thead>
+      <th><%= smart_listing.sortable "Status", "status" %></th>
+      <th><%= smart_listing.sortable "#", "id" %></th>
+      <th><%= smart_listing.sortable "Date", "date" %></th>
+      <th><%= smart_listing.sortable "To", "to_number" %></th>
+      <th><%= smart_listing.sortable "From", "from_number" %></th>
+      <th><%= smart_listing.sortable "Message", "message" %></th>
+    </thead>
+    <tbody>
+      <% smart_listing.collection.each do |o| %>
+      <tr>
+        <td><%= o.status %></td>
+        <td><%= o.id %></td>
+        <td><%= o.date.strftime('%D %r') %></td>
+        <td><%= o.to_number.phony_formatted(:normalize => :US, :spaces => '-', :area_code => true) %></td>
+        <td><%= o.from_number.phony_formatted(:normalize => :US, :spaces => '-', :area_code => true) %></td>
+        <td><%= o.message %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= smart_listing.paginate %>
+  <h5><%= smart_listing.pagination_per_page_links %></h5>
+  <% else %>
+  <br>
+  <div class="text-center">
+    <h3>Your search didn't match any requests.</h3>
+    <p>Try different: search terms, statuses, or dates.</p>
+  </div>
+  <% end %>
+</div>

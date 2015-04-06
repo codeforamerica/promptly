@@ -1,0 +1,48 @@
+.big-number {
+  padding: 0px 25px;
+  font-weight: bold;
+  font-size: 300%;
+}
+
+.dash-title {
+  background: $lightGray;
+  color: darken($darkGray, 60);
+  padding: 10px;
+  margin: 10px 0px 40px;
+  font-size: 24px;
+}
+
+.dash-subtitle {
+  color: darken($darkGray, 20);
+  font-size: 16px;
+  padding: 10px;
+}
+
+.dashboard-wrapper {
+  position: relative;
+  background: $white;
+}
+
+.dashboard-sidebar {
+  padding: 10px;
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+  float: left;
+  .number {
+    text-align: center;
+    background: $lightGray;
+    padding: 10px 0px;
+    margin: 0px 0px 15px;
+  }
+}
+
+.upcoming-number {
+  background: $blue;
+  color: $white;
+  padding: 10px;
+  margin: 10px;
+  width: 120px;
+  height: 120px;
+  @include border-radius(120px);
+  text-align: center;
+}

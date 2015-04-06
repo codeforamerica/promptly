@@ -13,7 +13,7 @@
   </li>
 </ul>
 
-<%= form_for @reminder_import, :url => reminder_imports_review_path do |f| %>
+<%= form_for @reminder_import, :url => organization_reminder_imports_review_path(@organization) do |f| %>
   <% if @reminder_import.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reminder_import.errors.count, "error") %> prohibited this import from completing:</h2>

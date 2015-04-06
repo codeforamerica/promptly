@@ -1,0 +1,37 @@
+<div id="sidebar-left" class="small-2 two columns">
+  <%= render 'layouts/sidebar' %>
+</div>
+<div class="org-container small-10 ten columns">
+  <div class="row">
+    <div>
+      <h1><%= @organization.name -%></h1>
+      <span class="pageTitle small-3 three">All Users</span>
+      <% if @organization.users.any? %>
+      <table class="table table-striped small-8 eight">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @organization.users.each do |user| %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email -%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+        <p>There currently aren't any users in this organization. <%= link_to "Add some!", new_admin_organization_user_path(@organization.id) -%>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to "Edit this organization", edit_admin_organization_path(@organization.id), :class => 'btn btn-primary' %>
+    <%= link_to "Delete this organization", admin_organization_path(@organization.id), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' -%>
+  </div>
+</div>
+
+

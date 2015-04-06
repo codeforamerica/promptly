@@ -1,0 +1,7 @@
+var groupName = $('#group_name').val();
+var phones = $('#recipient_phone').val();
+$.ajax({
+  data: { 'group[name]': groupName, 'recipient[phone]': phones },
+  type: 'post',
+  url: '<%= j admin_organization_groups_url(params[:organization_id]) %>'
+});

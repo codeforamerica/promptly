@@ -1,0 +1,29 @@
+<div class="heading">
+  <h3>Select Recipients</h3>
+</div>
+<div class="row">
+  <div class="small-12 twelve columns">
+    <table class="table table-hover datatable small-12 twelve" id="add-groups">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Group Name</th>
+          <th>Recipients</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% Group.accessible_by(current_ability).organization(params[:organization_id]).all.each do |group| %>
+        <tr>
+          <td><%= check_box_tag "group_ids[]", group.id, false, :class => 'table-row-checkbox' %></td>
+          <td><%= link_to group.name, admin_organization_group_path(@organization,group) %></td>
+          <td><%= link_to group.recipients.count, admin_organization_group_path(@organization,group) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if can? :manage, Group %>
+      <p>Need to add a new group?
+      <a href="#" id="new_group_button" class="button secondary small" data-reveal-id="individual-recipients">Add new group</a></p>
+    <% end %>
+  </div>
+</div>

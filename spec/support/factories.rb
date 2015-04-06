@@ -1,9 +1,19 @@
 # spec/support/factories.rb
 FactoryGirl.define do
 
+  sequence :call_id do |n|
+    "test#{n}callID"
+  end
+
+  factory :conversation_with_call, parent: :conversation do
+    call_id
+  end
+
   factory :conversation do
     date DateTime.now
     message "test message"
+    to_number { Faker::PhoneNumber.phone_number }
+    from_number { Faker::PhoneNumber.phone_number }
   end
 
   factory :recipient do
@@ -17,28 +27,49 @@ FactoryGirl.define do
 
   factory :message do
     name "test message"
-    message_text "A test from rspec."
+    message_text { Faker::Lorem.characters(rand(100..140)) }
     description "this is a test message"
   end
-
 
   factory :reminder do
     name "test reminder"
     send_date Date.today
     send_time "12:00pm"
-    recipient FactoryGirl.create(:recipient)
+    recipient
+    message
+  end
+
+  sequence :email do |n|
+    "test#{n}@example.com"
   end
 
   factory :user do
-    email "example@email.com"
+    email # pulls in from the defined sequence
     password "password"
     password_confirmation "password"
     roles "admin"
     name "test"
   end 
 
+  factory :admin, :class => User do |u|
+    u.email
+    u.password "password"
+    u.password_confirmation "password"
+    u.roles "super"
+    u.name 'Admin'
+  end
+
+  factory :organizations_user do
+    roles_mask 1
+  end 
+
+  factory :organization do
+    name { Faker::Lorem.words(rand(1..4)).join(" ") }
+    phone_number { "+1" + Faker::Number.number(10) }
+  end
+
   factory :conversation_with_message, parent: :conversation do
-    after :create do 
+    after :create do |conversation|
       conversation.message = FactoryGirl.create(:message)
     end
   end
@@ -48,6 +79,7 @@ FactoryGirl.define do
     before :create do |reminder|
       reminder.message = FactoryGirl.create(:message)
       reminder.groups = FactoryGirl.create_list(:group_with_recipient, 1)
+      reminder.organization = FactoryGirl.create(:organization)
     end
   end
 
@@ -61,6 +93,24 @@ FactoryGirl.define do
   factory :group_with_recipient, parent: :group do
     before :create do |group|
       group.recipients = FactoryGirl.create_list(:recipient, 2)
+    end
+  end
+
+  factory :group_with_organization, parent: :group do
+    before :create do |group|
+      group.organization = FactoryGirl.create(:organization)
+    end
+  end
+
+  factory :user_with_organization, parent: :user do
+    after :create do |user|
+      user.organizations << FactoryGirl.create(:organization)
+    end
+  end
+
+  factory :admin_with_organization, parent: :admin do
+    after :create do |user|
+      user.organizations << FactoryGirl.create(:organization)
     end
   end
     
