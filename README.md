@@ -10,7 +10,6 @@ Promptly is a text message notification system originally built by 2013 Code for
 This project is not actively maintained.
 
 ### Requirements
-**MUST DEV ON A *NIX PLATFORM DUE TO kgio gem DEPENDENCY**
 
 Promptly is a Ruby on Rails application that uses Twilio to send text messages.
 
