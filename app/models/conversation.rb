@@ -57,11 +57,15 @@ class Conversation < ActiveRecord::Base
     @filename = "stop-start-#{DateTime.now.strftime('%m_%d_%Y')}.csv"    
     CSV.open("#{Rails.root.to_s}/tmp/#{@filename}", "wb") do |csv| #creates a tempfile csv
       csv << ["Status", "Phone Number", "Date"] #creates the header
-      @stop.each do |s|            
-        csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection
+      @stop.each do |s| 
+        if s.date >= DateTime.now - 1.day           
+          csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection
+        end
       end
-      @start.each do |s|            
-        csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection
+      @start.each do |s|  
+        if s.date >= DateTime.now - 1.day          
+          csv << ["#{s.message}", "#{s.from_number}", "#{s.date}"] #create new line for each item in collection
+        end
       end
     end
   end
