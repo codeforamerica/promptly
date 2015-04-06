@@ -7,12 +7,14 @@
 Promptly is a text message notification system originally built by 2013 Code for America fellows for the San Francisco Human Services Agency. See [promptly.io](http://promptly.io) for more info on the project. See our [wiki](https://github.com/postcode/promptly/wiki) for documentation.
 
 ### Contribute
-This project is young and in flux. Feel free to email info@postcode.io if you're interested in deploying or contributing.
+This project is not actively maintained.
 
 ### Requirements
 Promptly is a Ruby on Rails application that uses Twilio to send text messages.
 
 If you need help setting up RVM, Ruby, and all that stuff, we recommend [Moncef's](http://about.me/moncef) great tutorial on [setting up a Mac for development with Xcode, Homebrew, Git, RVM & Ruby](http://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/).
+
+If you are installing on Windows try [RailsInstaller](http://railsinstaller.org/en). Installing Rails on Windows can be tricky. There is a fork that is being actively developed within a Windows environment at SF HSA. You can have a look at their fork here: [https://github.com/sf-hsa/promptly](https://github.com/sf-hsa/promptly) Some users have run into an error bundling on Windows because of a `kgio` error. See [http://stackoverflow.com/questions/11199620/rails-on-windows-without-kgio](http://stackoverflow.com/questions/11199620/rails-on-windows-without-kgio) For a solution, hint: you can comment out `gem unicorn` and use a different web server for local development.
 
 You'll also need to setup a [Twilio account](https://www.twilio.com/) and buy a Twilio phone number. You can get a development phone number for free but you'll need to pay to send text messages. [Check our their pricing](https://www.twilio.com/sms/pricing).
 
